@@ -2,574 +2,579 @@
 layout: default
 title: Monoids 
 ---
-
-Monoids etc
+Monoids 等等 (Monoids etc)
 ===
 
-Since we are done with categories, let's look at some other structures that are also interesting --- monoids. Like categories, monoids/groups are also abstract systems consisting of set of elements and operations for manipulating these elements, however the operations look different than the operations we have for categories. Let's see them.
+既然我们已经讲完了范畴 (categories)，现在让我们看看一些同样有趣的结构——幺半群 (monoids)。与范畴一样，幺半群/群 (monoids/groups) 也是由元素集合及操作组成的抽象系统，用于操作这些元素。然而，这些操作与我们在范畴中使用的操作有所不同。让我们来看看。
 
-What are monoids
+什么是幺半群 (What are monoids)
 ===
 
-Monoids are simpler than categories. A monoid is defined by a collection/set of elements (called the monoid's *underlying set*, together with an *monoid operation* --- a rule for combining two elements that produces a third element one of the same kind.
+幺半群比范畴简单得多。幺半群由一组元素 (称为幺半群的*基础集合* (underlying set)) 和一个*幺半群操作* (monoid operation) 定义——这是一个组合两个元素并产生同类第三个元素的规则。
 
-Let's take our familiar colorful balls.
+让我们用我们熟悉的彩色球来说明。
 
 ![Balls](../03_monoid/balls.svg)
 
-We can define a monoid based on this set by defining an operation for "combining" two balls into one. An example of such operation would be blending the colors of the balls, as if we are mixing paint.
+我们可以通过定义一个“组合”两个球为一个的操作来基于这个集合定义一个幺半群。例如，这样的操作可以是将球的颜色混合，就像混合颜料一样。
 
 ![An operation for combining balls](../03_monoid/balls_operation.svg)
 
-You can probably think of other ways to define a similar operation. This will help you realize that there can be many ways to create a monoid from a given set of set elements i.e. the monoid is not the set itself, it is the set *together with the operation*.
+你可能会想到定义类似操作的其他方法。这将帮助你意识到，可以从给定的元素集合中创建许多种不同的幺半群，也就是说，幺半群不仅仅是集合，它是集合*与操作的结合*。
 
-Associativity
+结合律 (Associativity)
 ---
 
-The monoid operation should, like functional composition, be *associative* i.e. applying it on the same number of elements in a different order should make no difference.
+幺半群的操作应该像函数组合一样具有*结合性* (associative)，即以不同顺序应用它对相同数量的元素不应产生不同的结果。
 
 ![Associativity in the color mixing operation](../03_monoid/balls_associativity.svg)
 
-When an operation is associative, this means we can use all kinds of algebraic operations to any sequence of terms (or in other words to apply equation reasoning), like for example we can replace any element with a set of elements from which it is composed of, or add a term that is present at both sides of an equation and retaining the equality of the existing terms.
+当一个操作具有结合性时，这意味着我们可以对任何序列的项应用各种代数操作（或者换句话说，应用等式推理），例如我们可以用它由多个元素组成的集合替换任何一个元素，或者添加一个在等式两边都存在的项，并保持现有项的相等性。
 
 ![Associativity in the color mixing operation](../03_monoid/balls_arithmetic.svg)
 
-The identity element
+单位元 (The identity element)
 ---
 
-Actually, not any (associative) operation for combining elements makes the balls form a monoid (it makes them form a *semigroup*, which is also a thing, but that's a separate topic). To be a monoid, a set must feature what is called an *identity element* of a given operation, the concept of which you are already familiar from both sets and categories --- it is an element that when combined with any other element gives back that same element (not the identity but the other one). Or simply $x • i = x$ and $i • x = x$ for any $x$. 
+实际上，并非任何（结合的）组合元素的操作都能使球组成一个幺半群（它们可能组成*半群* (semigroup)，这也是一个主题，但我们暂且不谈）。要构成幺半群，一个集合必须有一个给定操作的*单位元* (identity element)，这是你在集合论和范畴论中已经熟悉的概念——它是与任何其他元素组合时，返回该元素的元素（不是单位元，而是另一个元素）。简单来说，$x • i = x$ 和 $i • x = x$ 对于任何 $x$ 都成立。
 
-In the case of our color-mixing monoid the identity element is the white ball (or perhaps a transparent one, if we have one).
+在我们的颜色混合幺半群中，白球（或者如果有的话，透明球）就是单位元。
 
-![The identity element of the color-mixing monoid](../03_monoid/balls_identity.svg) 
+![The identity element of the color-mixing monoid](../03_monoid/balls_identity.svg)
 
-As you probably remember from the last chapter, functional composition is also associative and it also contains an identity element, so you might start suspecting that it forms a monoid in some way. This is indeed the case, but with one caveat, for which we will talk about later.
+正如你可能还记得的，上章中函数组合也是结合的，并且也有一个单位元，所以你可能开始怀疑它以某种方式也构成了一个幺半群。确实如此，但这里有一个需要我们稍后讨论的细节。
 
-Basic monoids 
+基础幺半群 (Basic monoids)
 ===
 
-To keep the suspense, before we discuss the relationship between monoids and categories, we are going through see some simple examples of monoids. 
+为了保留悬念，在讨论幺半群与范畴之间的关系之前，我们先来看看一些简单的幺半群示例。
 
-Monoids from numbers
+从数构成的幺半群 (Monoids from numbers)
 ---
 
-Mathematics is not only about numbers, however numbers do tend to pop up in most of its areas, and monoids are no exception. The set of natural numbers $\mathbb{N}$ forms a monoid when combined with the all too familiar operation of addition (or *under* addition as it is traditionally said). This group is denoted $\left< \mathbb{N},+ \right>$ (in general, all groups are denoted by specifying the set and the operation, enclosed in angle brackets).
+数学不仅仅与数字有关，但数字确实会在大多数数学领域中出现，幺半群也不例外。当自然数集 $\mathbb{N}$ 与我们熟悉的加法操作组合时，它构成了一个幺半群（传统上称为“在加法下” (under addition)）。这个幺半群记作 $\left< \mathbb{N},+ \right>$ （通常，所有群体都用角括号括起集合和操作来表示）。
 
 ![The monoid of numbers under addition](../03_monoid/numbers_addition.svg)
 
-If you see a $1 + 1 = 2$ in your textbook you know you are either reading something very advanced, or very simple, although I am not really sure which of the two applies in the present case.
+如果你在课本中看到“$1 + 1 = 2$”，你要么在阅读非常高级的内容，要么在阅读非常简单的内容，不过我不太确定这里到底属于哪种情况。
 
-Anyways, the natural numbers also form a monoid under multiplication as well.
+无论如何，自然数在乘法下也构成了一个幺半群。
 
 ![The monoid of numbers under multiplication](../03_monoid/numbers_multiplication.svg)
 
-**Question:** Which are the identity elements of those monoids?
+**问题 (Question):** 这些幺半群的单位元是什么？
 
-**Task:** Go through other mathematical operations and verify that they are monoidal.
+**任务 (Task):** 研究其他数学运算，并验证它们是否为幺半群。
 
-Monoids from boolean algebra
+布尔代数中的幺半群 (Monoids from boolean algebra)
 ---
 
-Thinking about operations that we covered, we may remember the boolean operations *and* and *or*. Both of them form monoids, which operate on the set, consisting of just two values $\{ True, False \}$. 
+思考我们所讨论的运算时，你可能会想起布尔运算中的*与* ($\land$) 和*或* ($\lor$)。这两者都形成幺半群，其作用于仅包含两个值的集合 $\{ True, False \}$。
 
-**Task:** Prove that $\land$ is associative by expanding the formula $(A \land B) \land C = A \land (B \land C)$ with all possible values. Do the same for *or*.
+**任务 (Task):** 通过展开公式 $(A \land B) \land C = A \land (B \land C)$ 的所有可能值，证明 $\land$ 是结合的。同样对*或*运算进行验证。
 
-**Question:** Which are the identity elements of the *and* and *or* operations?
+**问题 (Question):** “与”和“或”运算的单位元是什么？
 
-Monoid operations in terms of set theory
+幺半群运算的集合论定义 (Monoid operations in terms of set theory)
 ===
 
-We now know what the monoid operation is, and we even saw some simple examples. However, we never defined the monoid rule/operation formally i.e. using the language of set theory with which we defined everything else. Can we do that? Of course we can --- everything can be defined in terms of sets. 
+现在我们已经知道了什么是幺半群运算，甚至还看到了几个简单的例子。然而，我们还没有正式地定义幺半群规则/运算，即使用我们为其他内容定义时所用的集合论语言。我们能做到这一点吗？当然可以——一切都可以用集合来定义。
 
-We said that a monoid consists of two things a set (let's call it $A$) and a monoid operation that acts on that set. Since $A$ is already defined in set theory (because it is just a set), all we have to do is define the monoid operation.
+我们说过，幺半群由两个东西组成：一个集合（我们称之为 $A$）和作用于该集合的幺半群操作。由于 $A$ 已经在集合论中定义（因为它只是一个集合），我们只需定义幺半群操作。
 
-Defining the operation is not hard at all. Actually, we have already done it for the operation $+$ --- in chapter 2, we said that *addition* can be represented in set theory as a function that accepts a product of two numbers and returns a number (formally $+: \mathbb{Z} \times \mathbb{Z} \to \mathbb{Z}$).
+定义这个操作并不难。实际上，我们已经为加法操作 $+$ 做过类似的定义——在第2章中，我们说过“加法”可以用集合论表示为一个接受两个数的乘积并返回一个数的函数（形式上为 $+: \mathbb{Z} \times \mathbb{Z} \to \mathbb{Z}$）。
 
 ![The plus operation as a function](../03_monoid/plus_operation.svg)
 
-Every other monoid operation can also be represented in the same way --- as a function that takes a pair of elements from the monoid's set and returns one other monoid element.
+其他任何幺半群操作也可以以相同的方式表示——作为一个函数，该函数从幺半群的集合中取一对元素并返回另一个幺半群元素。
 
 ![The color-mixing operation as a function](../03_monoid/color_mixing_operation.svg)
 
-Formally, we can define a monoid from any set $A$, by defining an (associative) function with type signature $A \times A \to A$. That's it. Or to be precise, that is *one way* to define the monoid operation. And there is another way, which we will see next. Before that, let's examine some more categories.
+形式上，我们可以从任何集合 $A$ 定义一个幺半群，通过定义一个具有类型签名 $A \times A \to A$ 的（结合的）函数。就是这样。准确来说，这是定义幺半群操作的*一种方法*。还有另一种方法，我们将在接下来看到。在那之前，让我们再研究一些范畴。
 
-Other monoid-like objects
+类似幺半群的其他对象 (Other monoid-like objects)
 ===
 
-Monoid operations obey two laws --- they are *associative* and there is an *identity element*. In some cases we come across operations that also obey other laws that are also interesting. Imposing more (or less) rules to the way in which (elements) objects are combined results in the definition of other monoid-like structures.
+幺半群运算遵守两条定律——它们是*结合的* (associative)，并且存在一个*单位元* (identity element)。在某些情况下，我们会遇到一些遵循其他定律的运算，这些定律也同样有趣。向结合元素的方式施加更多（或更少）的规则，会导致定义类似幺半群的结构。
 
-Commutative (abelian) monoids
+交换幺半群 (Commutative (abelian) monoids)
 ---
 
-Looking at the monoid laws and the examples we gave so far, we observe that all of them obey one more rule (law) which we didn't specify --- the order in which the operations are applied is irrelevant to the end result.
+查看幺半群定律和我们给出的示例时，我们会发现所有这些例子都遵循一个我们没有明确说明的规则——应用操作的顺序对最终结果没有影响。
 
 ![Commutative monoid operation](../03_monoid/monoid_commutative.svg)
 
-Such operations (ones for which combining a given set of elements yields the same result no matter which one is first and which one is second) are called *commutative* operations. Monoids with operations that are commutative are called *commutative monoids*. 
+这样的操作（对任何给定的元素集合进行组合，无论先应用哪一个，结果都是相同的）称为*交换的* (commutative) 操作。具有交换操作的幺半群称为*交换幺半群* (commutative monoids)。
 
-As we said, addition is commutative as well --- it does not matter whether if I have given you 1 apple and then 2 more, or if I have given you 2 first and then 1 more.
+正如我们所说，加法是交换的——无论我是先给你1个苹果然后再给你2个，还是先给你2个再给你1个，结果都是相同的。
 
 ![Commutative monoid operation](../03_monoid/addition_commutative.svg)
 
-All monoids that we examined so far are also *commutative*. We will see some non-commutative ones later. 
+到目前为止，我们研究的所有幺半群都是*交换的*。稍后我们会看到一些非交换的例子。
 
-Groups
+群 (Groups)
 ---
 
-A group is a monoid such that for each of its elements, there is another element which is the so called "inverse" of the first one  where the element and its inverse cancel each other out when applied one after the other. Plain-English definitions like this make you appreciate mathematical formulas more --- formally we say that for all elements $x$, there must exist $x'$ such that $x • x' = i$ ( where $i$ is the identity element).
+群是这样一种幺半群，其中对于每个元素，都存在一个所谓的“逆元” (inverse element)，当两个相继应用时，它们会相互抵消。用平白的语言定义这些概念让你更能理解数学公式的优势——形式上我们说，对于所有元素 $x$，必须存在 $x'$ 使得 $x • x' = i$ （其中 $i$ 是单位元）。
 
-If we view *monoids* as a means of modeling the effect of applying a set of (associative) actions, we use *groups* to model the effects of actions are also *reversible*.
+如果我们将*幺半群*视为建模一组（结合的）动作效果的手段，我们则使用*群*来建模这些动作也是*可逆的*。
 
-A nice example of a monoid that we covered that is also a group is the set of integers under addition. The inverse of each number is its opposite number (positive numbers' inverse are negatives and vice versa). The above formula, then, becomes $x + (-x) = 0$
+我们讨论过的一个既是幺半群又是群的例子是自然数集在加法下的集合。每个数的逆元是其相反数（正数的逆元是负数，反之亦然）。上面的公式变成 $x + (-x) = 0$。
 
-The study of groups is a field that is much bigger than the theory of monoids (and perhaps bigger than category theory itself). And one of its the biggest branches is the study of the "symmetry groups" which we will look into next.
+群的研究是一个比幺半群理论大得多的领域（甚至可能比范畴论本身还大）。其中一个最大的分支是“对称群” (symmetry groups) 的研究，我们将在接下来讨论。
 
-Summary
+总结 (Summary)
 ---
 
-But before that, just a quick note --- the algebraic structures that we saw can be summarized based on the laws that define them in this table.
+但是在此之前，先做一个简单的总结——这些代数结构可以根据定义它们的定律汇总在以下表格中。
 
-| | Semigroups | Monoids | Groups |
+| | 半群 (Semigroups) | 幺半群 (Monoids) | 群 (Groups) |
 |---| ---             | ---        |
-|Associativity| X | X | X |
-|Identity| | X | X |
-|Invertability | |  | X |
+|结合律 (Associativity)| X | X | X |
+|单位元 (Identity)| | X | X |
+|可逆性 (Invertibility) | |  | X |
 
-And now for the symmetry groups.
+现在，让我们来看一下对称群 (symmetry groups)。
 
-Symmetry groups and group classifications
+对称群及群分类 (Symmetry groups and group classifications)
 ===
 
-An interesting kinds of groups/monoids are the groups of *symmetries* of geometric figures. Given some geometric figure, a symmetry is an action after which the figure is not displaced (e.g. it can fit into the same mold that it fit before the action was applied).
+几何图形的*对称性* (symmetries) 群是一类有趣的幺半群/群。给定一个几何图形，对称性指的是一种动作，执行这种动作后图形不会发生位移（例如，它可以完美地适应在应用动作之前所适应的模具）。
 
-We won't use the balls this time, because in terms of symmetries they have just one position and hence just one action --- the identity action (which is its own reverse, by the way). So let's take this triangle, which, for our purposes, is the same as any other triangle (we are not interested in the triangle itself, but in its rotations).
+这次我们不会再使用球了，因为在对称性方面，球只有一个位置，因此只有一个动作——即恒等动作 (identity action)（顺便说一下，它是自己的逆元）。所以让我们使用这个三角形，就我们的目的而言，它和其他三角形没有区别（我们对三角形本身不感兴趣，而是对它的旋转感兴趣）。
 
 ![A triangle](../03_monoid/symmetry_group.svg)
 
-Groups of rotations
+旋转群 (Groups of rotations)
 ---
 
-Let's first review the group of ways in which we can rotate our triangle i.e. its *rotation group*. A geometric figure can be rotated without displacement in positions equal to the number of its sides, so for our triangle there are 3 positions.
+首先让我们回顾一下我们如何旋转三角形的方式的群，即它的*旋转群* (rotation group)。一个几何图形可以在不发生位移的情况下旋转的次数等于其边的数量，所以对于我们的三角形来说，有3个位置。
 
 ![The group of rotations in a triangle](../03_monoid/symmetry_rotation.svg)
 
-Connecting the dots (or the triangles in this case) shows us that there are just two possible rotations that get us from any state of the triangle to any other one --- a *120-degree rotation* (i.e. flipping the triangle one time) and a *240-degree rotation* (i.e. flipping it two times (or equivalently, flipping it once, but in the opposite direction)). Adding the identity action of 0-degree rotation makes up for 3 rotations (objects) in total.
+将点（在这里是三角形）连接起来表明，从任何状态到另一个状态的可能旋转方式只有两种——*120度旋转* (120-degree rotation)（即翻转一次三角形）和*240度旋转* (240-degree rotation)（即翻转两次，或者等价地，沿相反方向翻转一次）。加上零度旋转（恒等动作），总共有3种旋转方式（对象）。
 
 ![The group of rotations in a triangle](../03_monoid/symmetry_rotation_actions.svg)
 
-The rotations of a triangle form a monoid --- the *rotations are objects* (of which the zero-degree rotation is the identity) and the monoid operation which combines two rotations into one is just the operation of performing the first rotation and then performing the second one.
+三角形的旋转构成了一个幺半群——*旋转是对象*（零度旋转是单位元），幺半群的操作是将两个旋转组合成一个，这就是先执行第一个旋转再执行第二个旋转的操作。
 
-**NB:** Note once again that the elements in the group are the *rotations*, not the triangles themselves, actually the group has nothing to do with triangles, as we shall see later.
+**注意 (NB):** 再次强调，群中的元素是*旋转*，而不是三角形本身，实际上这个群与三角形无关，正如我们稍后将看到的那样。
 
-Cyclic groups/monoids
+循环群/幺半群 (Cyclic groups/monoids)
 ---
 
-The diagram that enumerates all the rotations of a more complex geometrical figure looks quite messy at first.
+更复杂的几何图形的旋转群的图表起初看起来相当杂乱。
 
 ![The group of rotations in a more complex figure](../03_monoid/symmetry_rotation_square.svg)
 
-But it gets  much simpler to grasp if we notice the following: although our group has many rotations, and there are more still for figures with more sides (if I am not mistaken, the number of rotations is equal to the number of the sides), *all those rotations can be reduced to the repetitive application of just one rotation*, (for example, the 120-degree rotation for triangles and the 45-degree rotation for octagons). Let's make up a symbol for this rotation.
+但如果我们注意到以下几点，它会变得更容易理解：尽管我们的群有许多旋转，并且对于更多边的图形（如果我没记错的话，旋转的次数等于边数）有更多的旋转，*所有这些旋转都可以归结为单一旋转的反复应用*（例如，三角形的120度旋转和八边形的45度旋转）。让我们为这个旋转做个符号。
 
 ![The group of rotations in a triangle](../03_monoid/symmetry_rotation_cyclic.svg)
 
-Symmetry groups that have such "main" rotation, and, in general, groups and monoids that have an object that is capable of generating all other objects by its repeated application, are called *cyclic groups*. And such rotation are called the group's *generator*.
+具有这样“主要”旋转的对称群，以及一般的幺半群和群，拥有一个对象，通过反复应用它可以生成所有其他对象，称为*循环群* (cyclic groups)。这样的旋转称为群的*生成元* (generator)。
 
-All rotation groups are cyclic groups. Another example of a cyclic groups is, yes, the natural numbers under addition. Here we can use $+1$ or $-1$ as generators.
+所有的旋转群都是循环群。另一个循环群的例子是自然数集在加法下的集合。这里我们可以使用 $+1$ 或 $-1$ 作为生成元。
 
 ![The group of numbers under addition](../03_monoid/numbers_cyclic.svg)
 
-Wait, how can this be a cyclic group when there are no cycles? This is because the integers are an *infinite* cyclic group. 
+等等，既然没有循环，为什么这是循环群呢？因为整数是*无限的*循环群。
 
-A number-based example of a finite cyclic group is the group of natural numbers under *modular arithmetic* (sometimes called "clock arithmetic"). Modular arithmetic's operation is based on a number called the modulus (let's take $12$ for example). In it, each number is mapped to the *remainder of the integer addition of that number and the modulus*.
+基于数的一个有限循环群的例子是*模运算* (modular arithmetic) 下的自然数集（有时称为“时钟算术” (clock arithmetic)）。模运算基于一个数，称为模数 (modulus)（我们以 $12$ 为例）。在其中，每个数都映射到该数与模数相加后取余数的结果。
 
-For example: $1 \pmod{12} = 1$ (because $1/12 = 0$ with $1$ remainder) $2 \pmod{12} = 2$ etc. 
+例如：$1 \pmod{12} = 1$ （因为 $1/12 = 0$ 余 $1$）$2 \pmod{12} = 2$，等等。
 
-But $13 \pmod{12} = 1$ (as $13/12 = 1$ with $1$ remainder) $14 \pmod{12} = 2$, $15 \pmod{12} = 3$ etc. 
+但是 $13 \pmod{12} = 1$ （因为 $13/12 = 1$ 余 $1$），$14 \pmod{12} = 2$，$15 \pmod{12} = 3$ 等等。
 
-In effect numbers "wrap around", forming a group with as many elements as it the modulus number. Like for example a group representation of modular arithmetic with modulus $3$ has 3 elements.
+实际上，数“绕圈”形成一个与模数相同数量的元素的群。例如，模数为 $3$ 的模运算的群表示有3个元素。
 
 ![The group of numbers under addition](../03_monoid/numbers_modular.svg)
 
-All cyclic groups that have the same number of elements (or that are of the *same order*) are isomorphic to each other (careful readers might notice that we haven't yet defined what a group isomorphisms are, even more careful readers might already have an idea about what it is).
+所有具有相同数量元素的循环群（或者它们是*相同阶* (same order) 的）是同构的（细心的读者可能注意到我们还没有定义什么是群同构 (group isomorphisms)，更加细心的读者可能已经对它有了一个概念）。
 
- For example, the group of rotations of the triangle is isomorphic to the natural numbers under the addition with modulo $3$. 
+例如，三角形的旋转群与模 $3$ 加法下的自然数集同构。
 
 ![The group of numbers under addition](../03_monoid/symmetry_modular.svg)
 
-All cyclic groups are *commutative* (or "abelian" as they are also called). 
+所有的循环群都是*交换的* (commutative)（也称为“阿贝尔” (abelian) 群）。
 
-**Task:** Show that there are no other groups with 3 objects, other than $Z_3$.
+**任务 (Task):** 证明除了 $Z_3$ 之外，没有其他具有3个对象的群。
 
-There are abelian groups that are not cyclic, but, as we shall see below, the concepts of cyclic groups and of abelian groups are deeply related.
+有些阿贝尔群不是循环的，但正如我们将在下文中看到的，循环群和阿贝尔群的概念是密切相关的。
 
-Group isomorphisms
+群同构 (Group isomorphisms)
 ---
 
-We already mentioned group isomorphisms, but we didn't define what they are. Let's do that now --- an isomorphism between two groups is an isomorphism ($f$) between their respective sets of elements, such that for any $a$ and $b$ we have $f(a \circ b) = f(a) \circ f(b)$. Visually, the diagrams of isomorphic groups have the same structure.
+我们已经提到过群同构，但没有定义它们。现在让我们定义——两个群之间的同构是它们各自元素集合之间的同构 ($f$)，使得对于任何 $a$ 和 $b$，我们有 $f(a \circ b) = f(a) \circ f(b)$。直观上，同构群的图表具有相同的结构。
 
 ![Group isomorphism between different representations of S3](../03_monoid/group_isomorphism.svg)
 
-As in category theory, in group theory isomorphic groups they considered instances of one and the same group. For example the one above is called $Z_3$.
+在范畴论中，群论中的同构群被认为是同一个群的实例。例如上图所示的群称为 $Z_3$。
 
-Finite groups
+有限群 (Finite groups)
 ---
 
-Like with sets, the concept of an isomorphism in group theory allows us to identify common finite groups.
+与集合一样，群论中的同构概念允许我们识别常见的有限群。
 
-The smallest group is just the trivial group $Z_1$ that has just one element.
+最小的群就是仅有一个元素的平凡群 (trivial group) $Z_1$。
 
 ![The smallest group](../03_monoid/trivial_group.svg)
 
-The smallest non-trivial group is the group $Z_2$ that has two elements.
+最小的非平凡群是 $Z_2$，它有两个元素。
 
 ![The smallest non-trivial group](../03_monoid/smallest_group.svg)
 
-$Z_2$ is also known as the *boolean group*, due to the fact that it is isomorphic to the ${ True, False }$ set under the operation that negates a given value.
+$Z_2$ 也被称为*布尔群* (boolean group)，因为它与 ${ True, False }$ 集在否定运算下同构。
 
-Like $Z_3$, $Z_1$ and $Z_2$ are cyclic.
+像 $Z_3$ 一样，$Z_1$ 和 $Z_2$ 都是循环的。
 
-Group/monoid products
+群/幺半群的积 (Group/monoid products)
 ===
 
-We already saw a lot of abelian groups that are also cyclic, but we didn't see any abelian groups that are not cyclic. So let's examine what those look like. This time, instead of looking into individual examples, we will present a general way for producing abelian non-cyclic groups from cyclic ones --- it is by uniting them by using *group product*.
+我们已经看到很多既是阿贝尔群也是循环群的例子，但我们还没有看到任何非循环的阿贝尔群。那么让我们看看它们的样子。这次，我们不再看单个例子，而是展示一种通过*群积* (group product) 将循环群组合成非循环阿贝尔群的一般方法。
 
-Given any two groups, we can combine them to create a third group, comprised of all possible pairs of elements from the two groups and of the sum of all their actions. 
+给定任意两个群，我们可以将它们组合成第三个群，该群由两个群的所有可能元素对组成，并包含它们所有操作的和。
 
-Let's see how the product looks like take the following two groups (which, having just two elements and one operation, are both isomorphic to $Z2$). To make it easier to imagine them, we can think of the first one as based on the vertical reflection of a figure and the second, just the horizontal reflection.
+让我们看看积的样子。取以下两个群（由于它们只有两个元素和一个操作，它们都与 $Z2$ 同构）。为了更容易想象它们，我们可以将第一个群看作基于图形的垂直反射，而第二个群则是水平反射。
 
 ![Two trivial groups](../03_monoid/groups_product.svg)
 
-We get set of elements of the new group by taking *the Cartesian product* of the set of the elements of the first group and the set of the element of the second one.
+通过取第一个群的元素集合与第二个群的元素集合的*笛卡尔积* (Cartesian product)，我们得到了新群的元素集合。
 
 ![Two trivial groups](../03_monoid/groups_product_four.svg)
 
-And the *actions* of a product group are comprised of the actions of the first group, combined with the actions of the second one, where each action is applied only on the element that is a member of its corresponding group, leaving the other element unchanged.
+而积群的*操作*由第一个群的操作与第二个群的操作组成，其中每个操作只作用于属于其对应群的元素，而另一个元素保持不变。
 
 ![Klein four](../03_monoid/klein_four_as_product.svg)
 
-The product of the two groups we presented is called the *Klein four-group* and it is the simplest *non-cyclic abelian* group. 
+我们展示的两个群的积称为*克莱因四元群* (Klein four-group)，它是最简单的*非循环阿贝尔* (non-cyclic abelian) 群。
 
-Another way to present the Klein-four group is the *group of symmetries of a non-square rectangle*.
+克莱因四元群的另一种表示方式是*非正方形矩形的对称群*。
 
 ![Klein four](../03_monoid/klein_four.svg)
 
-**Task:** Show that the two representations are isomorphic.
+**任务 (Task):** 证明这两种表示是同构的。
 
-The Klein-four group is *non-cyclic* (because there are not one, but two generators) --- vertical and horizontal spin. It is, however, still *abelian*, because the ordering of the actions still does not matter for the end results. Actually, the Klein-four group is the *smallest non-cyclic group*.
+克莱因四元群是*非循环的*（因为它有两个生成元）——垂直旋转和水平旋转。然而，它仍然是*阿贝尔的*，因为操作顺序对最终结果没有影响。实际上，克莱因四元群是*最小的非循环群*。
 
-Cyclic product groups
+循环积群 (Cyclic product groups)
 ---
 
-Product groups are *non-cyclic*, provided that the number of elements of the groups that comprise them (or their *orders*) aren't *relatively prime* (have some GCD other than 1).
+当组成积的群的元素数量（即它们的*阶* (orders)）不是*互质* (relatively prime) 时，积群是*非循环的*。
 
-If two groups have orders that aren't relatively prime, (like for example $2$ and $2$, (which are both divided by 2) as the groups that comprise Klein-four), then even if the two groups are cyclic and have just 1 generator each, their product would have 2 generators. 
+如果两个群的阶不是互质的（例如 $2$ 和 $2$，它们都能被2整除，就像构成克莱因四元群的群一样），那么即使这两个群都是循环的，并且每个群只有一个生成元，它们的积也会有两个生成元。
 
-And if you combine two groups with orders that are relatively prime, (like $2$ and $3$) the resulting group would be isomorphic to a cyclic group of the same order, as the product of $Z_3$ and $Z_2$ is isomorphic to the group $Z_6$ ($Z_3 \times Z_2 \cong Z_6$)
+如果你将两个阶是互质的群组合在一起（例如 $2$ 和 $3$），所得群将与同阶的循环群同构，因为 $Z_3$ 与 $Z_2$ 的积与 $Z_6$ 群同构 ($Z_3 \times Z_2 \cong Z_6$)。
 
 ![Chinese reminder theorem](../03_monoid/chinese_remainder_theorem.svg)
 
-This is a consequence of an ancient result, known as the *Chinese Remainder theorem*.
+这是一个古老结果的推论，称为*中国剩余定理* (Chinese Remainder theorem)。
 
-Abelian product groups
+阿贝尔积群 (Abelian product groups)
 ---
 
-Product groups are *abelian*, provided that the *groups that form them* are abelian. We can see that this is true by noticing that, although the generators are more than one, each of them acts only on its own part of the group, so they don't interfere with each other in any way.
+当组成积的*群是阿贝尔的*时，积群也是*阿贝尔的*。我们可以通过注意到，虽然生成元不止一个，但每个生成元只作用于它自己群的部分，因此它们之间不会相互干扰，从而看到这一点。
 
-Fundamental theorem of Finite Abelian groups
+有限阿贝尔群基本定理 (Fundamental theorem of Finite Abelian groups)
 ---
 
-Products provide one way to create non-cyclic abelian groups --- by creating a product of two or more cyclic groups. The fundamental theory of finite abelian groups is a result that tells us that *this is the only way* to produce non-cyclic abelian groups i.e. 
+积提供了一种从循环群创建非循环阿贝尔群的方法——通过将两个或多个循环群相乘。有限阿贝尔群基本定理是一个结果，告诉我们*这是生成非循环阿贝尔群的唯一方法*，即
 
-> All abelian groups are either cyclic or products of cyclic groups.
+> 所有阿贝尔群要么是循环的，要么是循环群的积。
 
-We can use this law to gain intuitive understanding of the what abelian groups are, but also to test whether a given group can be broken down to a product of more elementary groups.
+我们可以利用这一定律来直观理解阿贝尔群的本质，也可以用它来检验某个给定的群是否可以分解为更多基本群的积。
 
 {% if site.distribution == 'print' %}
 
-Color-mixing monoid as a product
+颜色混合幺半群作为积 (Color-mixing monoid as a product)
 ---
 
-To see how can we use this theorem, let's revisit our color mixing monoid that we saw earlier. 
+为了看看我们如何使用这个定理，让我们重温一下之前看到的颜色混合幺半群。
 
 ![color-mixing group](../03_monoid/balls_rule.svg)
 
-As there doesn't exist a color that, when mixed with itself, can produce all other colors, the color-mixing monoid is *not cyclic*. However, the color mixing monoid *is abelian*. So according to the theorem of finite abelian groups (which is valid for monoids as well), the color-mixing monoid must be (isomorphic to) a product. 
+由于不存在一个可以通过与自身混合生成所有其他颜色的颜色，颜色混合幺半群是*非循环的*。然而，颜色混合幺半群*是阿贝尔的*。因此，根据有限阿贝尔群定理（该定理对幺半群同样适用），颜色混合幺半群必须（同构于）一个积。
 
-And it is not hard to find the monoids that form it --- although there isn't one color that can produce all other colors, there are three colors that can do that --- the prime colors. This observation leads us to the conclusion that the color-mixing monoid, can be represented as the product of three monoids, corresponding to the three primary colors.
+而且，找到组成它的幺半群并不难——虽然没有一种颜色可以生成所有其他颜色，但有三种颜色可以做到——即三原色。这一观察使我们得出结论，颜色混合幺半群可以表示为三个幺半群的积，对应于三种原色。
 
 ![color-mixing group as a product](../03_monoid/color_mixing_product.svg)
 
-You can think of each color monoid as a boolean monoid, having just two states (colored and not-colored).
+你可以将每个颜色幺半群视为一个布尔幺半群，只有两种状态（有颜色和无颜色）。
 
 ![Cyclic groups, forming the color-mixing group](../03_monoid/color_mixing_cyclic.svg)
 
-Or alternatively, you can view it as having multiple states, representing the different levels of shading.
+或者，替代地，你可以将其视为具有多个状态，表示不同的着色层次。
 
 ![Color-shading cyclic group](../03_monoid/cyclic_shading.svg)
 
-In both cases the monoid would be cyclic.
+在这两种情况下，幺半群都是循环的。
 
 {%endif%}
 
-Dihedral groups
+二面体群 (Dihedral groups)
 ===
 
-Now, let's finally examine a non-commutative group --- the group of rotations *and reflections* of a given geometrical figure. It is the same as the last one, but here besides the rotation action that we already saw (and its composite actions), we have the action of flipping the figure vertically, an operation which results in its mirror image:
+现在，我们终于要研究一个非交换群 (non-commutative group)——一个几何图形的*旋转和反射* (rotations and reflections) 的群。与上一个群类似，但这里除了我们已经看到的旋转操作（及其复合操作）之外，还有一个操作是垂直翻转图形，这个操作会使图形变为其镜像：
 
 ![Reflection of a triangle](../03_monoid/reflection.svg)
 
-Those two operations and their composite results in a group called $Dih3$ that is not abelian (and is furthermore the *smallest* non-abelian group).
+这两个操作及其复合结果形成一个称为 $Dih3$ 的群，它是非阿贝尔的（而且是*最小的*非阿贝尔群）。
 
 ![The group of rotations and reflections in a triangle](../03_monoid/symmetry_reflection.svg)
 
-**Task:** Prove that this group is indeed not abelian.
+**任务 (Task):** 证明该群确实是非阿贝尔的。
 
-**Question:** Besides having two main actions, what is the defining factor that makes this and any other group non-abelian?
+**问题 (Question):** 除了有两个主要操作外，是什么决定了该群及其他任何群为非阿贝尔的？
 
-Groups that represent the set of rotations and reflections of any 2D shape are called *dihedral groups*
+表示任何二维形状的旋转和反射集的群称为*二面体群* (dihedral groups)。
 
 <!--
 TODO: FSM as monoids
 https://faculty.uml.edu/klevasseur/ads/s-monoid-of-fsm.html
 -->
 
-Groups/monoids categorically
+
+幺半群/群的范畴化视角 (Groups/monoids categorically)
 ===
 
-We began by defining a monoid as a set of composable *elements*. Then we saw that for some groups, like the groups of symmetries and rotations, those elements can be viewed as *actions*. And this is actually true for all other groups as well, e.g. the *red ball* in our color-blending monoid can be seen as the action of *adding the color red* to the mix, the number $2$ in the monoid of addition can be seen as the operation $+2$ etc. This observation leads to a categorical view of the theory of groups and monoids.
+我们首先定义了幺半群 (monoid) 为一组可组合的*元素*。然后我们看到对于某些群 (groups)，如对称群 (groups of symmetries) 和旋转群 (rotations)，这些元素可以视为*动作*。事实上，这对于其他所有群也同样适用。例如，我们颜色混合幺半群 (color-blending monoid) 中的*红球*可以看作是*将红色加入混合物*的动作，数字 $2$ 在加法幺半群中可以看作是操作 $+2$ 等等。这一观察引出了幺半群和群的范畴化视角。
 
-Currying
+柯里化 (Currying)
 ---
 
-When we defined monoids, we saw that their operations are two-argument functions. And we introduced a way for representing such functions using set theory --- by uniting the two arguments into one using products. i.e. we showed that a function that accepts two arguments (say $A$ and $B$) and maps them into some result ($C$), can be thought as a mapping from the product of the sets of two arguments to the result. So $A\times B\to C$.
+当我们定义幺半群时，看到它们的操作是双参数函数。我们使用集合论 (set theory) 引入了一种表示这些函数的方法——通过使用积将两个参数合并。也就是说，我们展示了一个接受两个参数的函数（比如 $A$ 和 $B$）并将它们映射到某个结果（$C$），可以视为从这两个参数集合的积映射到结果。所以 $A\times B\to C$。
 
-However, this is not the only way to represent multi-argument function set-theoretically --- there is another, equally interesting way, that doesn't rely on any data structures, but only on functions: that way is to have a function that maps the first of the two arguments (i.e. from $A$) to *another function* that maps the second argument to the final result (i.e. $B \to C$). So $A\to B \to C$. 
+然而，这并不是集合论表示多参数函数的唯一方式——还有另一种同样有趣的方式，它不依赖于任何数据结构，而只依赖于函数：这种方式是有一个函数，它将第一个参数（即 $A$）映射到*另一个函数*，该函数将第二个参数映射到最终结果（即 $B \to C$）。所以 $A\to B \to C$。
 
-The practice of transforming a function that takes a pair of objects to a function that takes just one object and returns a function that takes another one is called *currying*. It is achieved by a higher-order function. Here is how such a function might be implemented.
+将一个接受一对对象的函数转换为一个接受一个对象并返回一个接受另一个对象的函数的过程称为*柯里化* (currying)。它通过高阶函数来实现。下面是这种函数的实现方式。
 
 ```
 const curry = <A, B, C> (f:(a:A, b:B) => C) => (a:A) => (b:B) => f(a, b)
 ```
-And equally important is the opposite function, which maps a curried function to a multi-argument one, which is known as *uncurry*.
+
+同样重要的是反向函数，它将柯里化的函数映射为多参数函数，称为*反柯里化* (uncurry)。
 
 ```
 const uncurry = <A, B, C> (f:(a:A) => (b:B) => C) => (a:A, b:B ) => f(a)(b)
 ```
 
-There is a lot to say about these two functions, starting from the fact that its existence gives rise to an interesting relationship between the concept of a *product* and the concept of a *morphism* in category theory, called an *adjunction*. But we will cover this later. For now, we are interested in the fact the two function representations are isomorphic, formally $A\times B\to C\cong A\to B \to C$. 
+关于这两个函数还有很多可以说的，首先是它们的存在引发了范畴论中*积* (product) 和*态射* (morphism) 概念之间的一种有趣关系，称为*伴随* (adjunction)。但我们将在后面讨论这一点。目前，我们关心的是这两种函数表示是同构的，形式上为 $A\times B\to C\cong A\to B \to C$。
 
-By the way, this isomorphism can be represented in terms of programming as well. It is equivalent to the statement that the following function always returns `true` for any arguments, 
+顺便说一下，这种同构也可以用编程来表示。它等价于以下函数对于任何参数总是返回 `true` 的声明：
 
 ```
 (...args) => uncurry(curry(f(...args)) === f(...args)
 ```
 
-This is one part of the isomorphism, the other part is the equivalent function for curried functions.
+这是同构的一部分，另一部分是柯里化函数的等价函数。
 
-**Task:** Write the other part of the isomorphism.
+**任务 (Task):** 编写同构的另一部分。
 
-Monoid elements as functions/permutations
+幺半群元素作为函数/置换 (Monoid elements as functions/permutations)
 ---
 
-Let's take a step back and examine the groups/monoids that we covered so far in the light of what we learned. We started off by representing group operation as a function from pairs. For example, the operation of a symmetric group,(let's take $Z_3$ as an example) are actions that converts two rotations to another rotation. 
+让我们回头看看我们到目前为止讨论的幺半群/群，结合我们学到的知识。我们一开始将群操作表示为一个对的函数。例如，对称群的操作（以 $Z_3$ 为例）是将两个旋转转换为另一个旋转的动作。
 
 ![The group of rotations in a triangle - group notation](../03_monoid/symmetry_rotation_actions.svg)
 
-Using currying, we can represent the elements of a given group/monoid as functions by uniting them to the group operation, and the group operation itself --- as functional composition. For example, the 3 elements of $Z_3$ can be seen as 3 bijective (invertable) functions from a set of 3 elements to itself (in group-theoretic context, these kinds of functions are called *permutations*, by the way).
+通过柯里化，我们可以将一个给定群/幺半群的元素表示为函数，并将群操作本身表示为函数的组合。例如，$Z_3$ 的三个元素可以看作是从一个包含三个元素的集合到自身的三个双射函数（在群论背景下，这种函数称为*置换* (permutations)）。
 
 ![The group of rotations in a triangle - set notation](../03_monoid/symmetry_rotation_functions.svg)
 
-We can do the same for the addition monoid --- numbers can be seen not as *quantities* (as in two apples, two oranges etc.), but as *operations*, (e.g. as the action of adding two to a given quantity). 
+我们也可以对加法幺半群进行同样的操作——数字可以不被视为*数量*（例如两个苹果、两个橙子等），而是*操作*（例如作为将一个给定数量加上2的动作）。
 
-Formally, the operation of the addition monoid, that we saw above has the following type signature. 
+形式上，加法幺半群的操作可以有如下类型签名：
 
 $+: \mathbb{Z} \times \mathbb{Z} \to \mathbb{Z}$
 
-Because of the isomorphism we presented above, this function is equivalent to the following function.
+由于我们上面展示的同构关系，这个函数等价于如下函数：
 
 $+: \mathbb{Z} \to (\mathbb{Z} \to \mathbb{Z})$
 
-When we apply an element of the monoid to that function (say $2$), the result is the function $+2$ that adds 2 to a given number.
+当我们将幺半群的一个元素（例如 $2$）应用于该函数时，结果是将 2 加到一个给定数上的函数 $+2$。
 
 $+2: \mathbb{Z} \to \mathbb{Z}$
 
-And because the monoid operation is always a given in the context of a given monoid, we can view the element $2$ and the function $+2$ as equivalent in the context of the monoid.
+由于幺半群操作在上下文中是给定的，因此我们可以将元素 $2$ 和函数 $+2$ 在幺半群的上下文中视为等价。
 
 $2 \cong +2$
 
-In other words, in addition to representing the monoid elements in the set as *objects* that are combined using a function, we can represent them as *functions* themselves.
+换句话说，除了将幺半群的元素表示为*对象*，我们也可以将它们表示为*函数*。
 
-Monoid operations as functional composition
+幺半群操作作为函数组合 (Monoid operations as functional composition)
 ---
 
-The functions that represent the monoid elements have the same set as source and target, or same signature, as we say (formally, they are of the type $A \to A$ for some $A$). Because of that, they all can be composed with one another, using *functional composition*, resulting in functions that *also has the same signature*.
+表示幺半群元素的函数具有相同的源和目标，或者如我们所说的相同的类型签名（形式上，它们属于类型 $A \to A$，其中 $A$ 为某个集合）。因此，它们可以通过*函数组合* (functional composition) 相互组合，生成*同样类型签名*的函数。
 
 ![The group of rotations in a triangle - set notation](../03_monoid/symmetry_rotation_cayley.svg)
 
-And the same is valid for the addition monoid --- number functions can be combined using functional composition.
+同样，这也适用于加法幺半群——数字函数可以通过函数组合进行组合。
 
 $+2 \circ +3 \cong +5$
 
-So, basically the functions that represent the elements of a monoid also form a monoid, under the operation of functional composition (and the functions that represent the elements that form a group also form a group). 
+因此，表示幺半群元素的函数也构成了一个幺半群，在函数组合操作下（表示群元素的函数在函数组合下也构成了一个群）。
 
-**Question:** Which are the identity elements of function groups?
+**问题 (Question):** 哪些是函数群的单位元？
 
-**Task:** Show that the functions representing inverse group elements are also inverse.
+**任务 (Task):** 证明表示逆群元素的函数也是逆函数。
 
-Cayley's theorem
+凯莱定理 (Cayley's theorem)
 ---
 
-Once we learn how to represent the elements of any monoid as permutations that also form a monoid, using currying, it isn't too surprising to learn that this constructed permutation monoid is isomorphic to the original one (the one from which it is constructed --- this is a result known as the Cayley's theorem:
+一旦我们学会如何通过柯里化将任何幺半群的元素表示为置换，它们也形成了一个幺半群，这样就不奇怪了，这个构造的置换幺半群与原始幺半群同构（即从其构造的幺半群——这是一个称为凯莱定理的结果：
 
-> Any group is isomorphic to a permutation group. 
+> 任何群都同构于一个置换群。
 
-Formally, if we use $Perm$ to denote the permutation group then $Perm(A) \cong A$ for any $A$.
+形式上，如果我们用 $Perm$ 表示置换群，则对于任何集合 $A$，有 $Perm(A) \cong A$。
 
 ![The group of rotations in a triangle --- set notation and normal notation](../03_monoid/symmetry_rotation_comparison.svg)
 
-Or in other words, representing the elements of a group as permutations actually yields a representation of the monoid itself (sometimes called its *standard representation*). 
+换句话说，将一个群的元素表示为置换实际上产生了该幺半群的一个表示（有时称为其*标准表示* (standard representation)）。
 
-Cayley's theorem may not seem very impressive, but that only shows how influential it has been as a result.
+凯莱定理也许看起来并不那么令人印象深刻，但这恰恰说明了它作为一个结果有多么具有影响力。
 
 {% if site.distribution == 'print' %}
 
-Interlude: Symmetric groups
+插曲：对称群 (Symmetric groups)
 ---
 
-The first thing that you have to know about the symmetric groups is that they are *not the same thing as symmetry groups*. Once we have that out of the way, we can understand what they actually are: given a natural number $n$, the symmetric group of $n$, denoted $\mathrm{S}_n$ (symmetric group of degree $n$) is the group of all possible permutations of a set with $n$ elements. The number of the elements of such groups is equal to are $1\times 2\times 3...\times n$ or $n!$ (n-factorial). 
+首先需要知道的是，对称群*不等同于*对称性群体 (symmetry groups)。当我们明确了这一点后，我们可以理解它们实际是什么：给定一个自然数 $n$，$n$ 的对称群，记作 $\mathrm{S}_n$（$n$ 度的对称群），是一个集合所有可能的置换组成的群。这样的群的元素数等于 $1\times 2\times 3...\times n$ 或 $n!$（即 $n$ 的阶乘）。
 
-So, for example the group $\mathrm{S}_1$ of permutations of the one-element set has just 1 element (because a 1-element set has no other functions to itself other than the identity function.
+例如，$\mathrm{S}_1$ 表示一元素集的置换群只有一个元素（因为一元素集除了恒等函数之外没有其他函数）。
 
 ![The S1 symmetric group](../03_monoid/s1.svg)
 
-The group $\mathrm{S}_2$, has $1 \times 2 = 2$ elements (by the way, the colors are there to give you some intuition as to why the number of permutations of a $n$-element set is $n!$).
+$\mathrm{S}_2$ 有 $1 \times 2 = 2$ 个元素（顺便说一下，颜色用于直观表示为什么 $n$ 元素集的置换数为 $n!$）。
 
 ![The S2 symmetric group](../03_monoid/s2.svg)
 
-And with $\mathrm{S}_3$ we are already feeling the power of exponential (and even faster than exponential!) growth of the factorial function --- it has $1\times 2\times 3=6$ elements.
+到了 $\mathrm{S}_3$，我们已经感受到了指数增长（甚至比指数增长更快！）的力量——它有 $1\times 2\times 3=6$ 个元素。
 
 ![The S3 symmetric group](../03_monoid/s3.svg)
 
-Each symmetric group $\mathrm{S}_n$ contains all groups of order $n$ --- this is so, because (as we saw in the prev section) every group with $n$ elements is isomorphic to a set of permutations on the set of $n$ elements and the group $\mathrm{S}_n$ contains *all such* permutations that exist. 
+每个对
 
-Here are some examples: 
-- $\mathrm{S}_1$ is isomorphic to $Z_1$, the *trivial group*, and $\mathrm{S}_2$ is isomorphic to $Z_2$ , the *boolean group*, (but no other symmetric grops are isomorphic to cycle groups)
-- The top three permutations of $\mathrm{S}_3$ are isomorphic to the group $Z_3$. 
+称群 $\mathrm{S}_n$ 都包含所有 $n$ 阶的群——这是因为（如我们在上一节所见）每个具有 $n$ 个元素的群都同构于 $n$ 元素集上的一个置换集，而 $\mathrm{S}_n$ 包含了*所有此类*存在的置换。
+
+以下是一些例子：
+- $\mathrm{S}_1$ 同构于 $Z_1$，即*平凡群* (trivial group)，而 $\mathrm{S}_2$ 同构于 $Z_2$，即*布尔群* (boolean group)（但其他对称群不与循环群同构）。
+- $\mathrm{S}_3$ 的前三个置换同构于 $Z_3$。
 
 ![The S3 symmetric group](../03_monoid/s3_z3.svg)
 
-- $\mathrm{S}_3$ is also isomorphic to $Dih3$ (but no other symmetric group is isomorphic to a dihedral group)
+- $\mathrm{S}_3$ 也同构于 $Dih3$（但其他对称群不与二面体群同构）。
 
-Based on this insight, can state Cayley's theorem in terms of symmetric groups in the following way: 
+基于这一见解，我们可以这样表述凯莱定理：
 
-> All groups are isomorphic to subgroups of symmetric groups.
+> 所有群都同构于对称群的子群。
 
-**Task:** Show how the two are equivalent.
+**任务 (Task):** 证明两者是如何等价的。
 
-Fun fact: the study of group theory actually started by examining symmetric groups, so this theorem was actually a prerequisite for the emergence of the normal definition of groups that we all know and love (OK, at least *I* love it) --- it provided a proof that the notion described by this definition is equivalent to the already existing notion of symmetric groups.
+有趣的事实：群论研究实际上始于对称群的研究，因此该定理实际上是我们现在所知并热爱的群的标准定义出现的先决条件（好吧，至少*我*喜欢它）——它提供了证明，该定义所描述的概念与对称群已有的概念是等价的。
 
 {% endif %}
 
-Monoids as categories
+幺半群作为范畴 (Monoids as categories)
 ---
 
-We saw that converting the monoid's elements to actions/functions yields an accurate representation of the monoid in terms of sets and functions. 
+我们看到，将幺半群的元素转换为动作/函数，可以在集合和函数的上下文中准确地表示幺半群。
 
 ![The group of rotations in a triangle - set notation and normal notation](../03_monoid/symmetry_rotation_set.svg)
 
-However, it seems that the set part of the structure in this representation is kinda redundant --- you have the same set everywhere --- so, it would do it good if we can simplify it. And we can do that by depicting it as an external (categorical) diagram.
+然而，似乎这种表示中的集合部分有点多余——你到处都有相同的集合——所以，如果我们能简化它，那就好了。而我们可以通过将其描绘为一个外部（范畴的）图来做到这一点。
 
 ![The group of rotations in a triangle - categorical notation](../03_monoid/symmetry_rotation_external.svg)
 
-But wait, if the monoids' underlying *sets* correspond to *objects* in category theory, then the corresponding category would have just one object. And so the correct representation would involve just one point from which all arrows come and to which they go. 
+但是等一下，如果幺半群的*集合*对应于范畴论中的*对象*，那么对应的范畴将只有一个对象。因此，正确的表示将仅涉及一个点，从中发出的箭头和回到该点的箭头。
 
 ![The group of rotations in a triangle - categorical notation](../03_monoid/symmetry_rotation_category.svg)
 
-The only difference between different monoids would be the number of morphisms that they have and the relationship between them.
+不同幺半群之间的唯一区别是它们拥有的态射数量及其之间的关系。
 
-The intuition behind this representation from a category-theoretic standpoint is encompassed by the law of *closure* that monoid and group operations have and that categories lack --- it is the law stating that applying the operation (functional composition) on any two objects always yields the same object, e.g. no matter how do you flip a triangle, you'd still get a triangle. 
+从范畴论的角度看，这种表示的直觉由幺半群和群的*封闭性* (closure) 定律所体现，而范畴没有该定律——它规定无论如何组合两个对象，结果总是相同的对象。例如，不管你如何旋转一个三角形，你仍然得到一个三角形。
 
-| | Categories | Monoids | Groups 
+| | 范畴 (Categories) | 幺半群 (Monoids) | 群 (Groups)
 |---| ---             | ---        |
-|Associativity| X | X | X |
-|Identity| X | X | X |
-|Invertibility  | |  | X |
-|Closure  | | X | X |
+|结合性 (Associativity)| X | X | X |
+|单位元 (Identity)| X | X | X |
+|可逆性 (Invertibility) | |  | X |
+|封闭性 (Closure)  | | X | X |
 
-When we view a monoid as a category, this law says that all morphisms in the category should be from one object to itself - a monoid, any monoid, can be seen as a *category with one object*. The converse is also true: any category with one object can be seen as a monoid.
+当我们将幺半群视为范畴时，这条定律表明该范畴中的所有态射都应该来自同一个对象并指向同一个对象——一个幺半群，无论是什么幺半群，都可以看作是*具有一个对象的范畴*。反之亦然：任何具有一个对象的范畴都可以看作是一个幺半群。
 
-Let's elaborate on this thought by reviewing the definition of a category from chapter 2.
+让我们通过回顾第2章中的范畴定义来详细说明这一想法。
 
-> A category is a collection of *objects* (we can think of them as points) and *morphisms* (arrows) that go from one object to another, where:
-> 1. Each object has to have the identity morphism.
-> 2. There should be a way to compose two morphisms with an appropriate type signature into a third one in a way that is associative.
+> 范畴是*对象*（我们可以将其视为点）和*态射*（箭头）的集合，态射从一个对象指向另一个对象，其中：
+> 1. 每个对象必须有一个恒等态射。
+> 2. 必须有一种方法将两个具有适当类型签名的态射组合成一个第三个态射，并且这种组合是结合的。
 
-Aside from the little-confusing fact that *monoid objects are morphisms* when viewed categorically, this describes exactly what monoids are. 
+除了*幺半群的对象在范畴中是态射*这一有些令人困惑的事实外，这正是幺半群的描述。
 
-Categories have an identity morphism for each object, so for categories with just one object, there should also be exactly one identity morphism. And monoids do have an identity object, which when viewed categorically corresponds to that identity morphism.
+范畴对于每个对象都有一个恒等态射，因此对于只有一个对象的范畴，也应该有一个唯一的恒等态射。而幺半群确实有一个恒等对象，从范畴论的角度来看，它对应于那个恒等态射。
 
-Categories provide a way to compose two morphisms with an appropriate type signature, and for categories with one object this means that *all morphisms should be composable* with one another. And the monoid operation does exactly that --- given any two objects (or two morphisms, if we use the categorical terminology), it creates a third.
+范畴提供了一种将两个具有适当类型签名的态射组合在一起的方法，对于只有一个对象的范畴，这意味着*所有态射都应该可以组合*。而幺半群操作正是这样做的——给定任意两个对象（或者说，两个态射，如果我们使用范畴术语），它会生成第三个态射。
 
-Philosophically, defining a monoid as a one-object category means corresponds to the view of monoids as a model of how a set of (associative) actions that are performed on a given object alter its state. Provided that the object's state is determined solely by the actions that are performed on it, we can leave it out of the equation and concentrate on how the actions are combined. And as per usual, the actions (and elements) can be anything, from mixing colors in paint, or adding a quantities to a given set of things etc.
+哲学上，将幺半群定义为一个单对象范畴意味着它对应于这样一种观点，即幺半群是对一组（结合的）动作如何在给定对象上执行并改变其状态的建模。假设对象的状态仅由执行的动作决定，我们可以将其排除在外，专注于动作如何组合。通常情况下，这些动作（和元素）可以是任何东西，从混合颜色、给定数量的事物增加等。
 
-Group/monoid presentations
+群/幺半群的表示 (Group/monoid presentations)
 ---
 
-When we view cyclic groups/monoids as categories, we would see that they correspond to categories that (besides having just one object) also have *just one morphism* (which, as we said, is called a *generator*) along with the morphisms that are created when this morphism is composed with itself. In fact the infinite cyclic monoid (which is isomorphic to the natural numbers), can be completely described by this simple definition.
+当我们将循环群/幺半群视为范畴时，我们会看到它们对应于具有*一个对象*和*一个态射*（如我们所说的*生成元*）的范畴，以及生成元与其自身组合时生成的态射。事实上，无限循环幺半群（同构于自然数），可以通过这个简单定义完全描述。
 
 ![Presentation of an infinite cyclic monoid](../03_monoid/infinite_cyclic_presentation.svg)
 
-This is so, because applying the generator again and again yields all elements of the infinite cyclic group. Specifically, if we view the generator as the action $+1$ then we get the natural numbers.
+这是因为生成元一次又一次的应用会产生无限循环群的所有元素。具体来说，如果我们将生成元视为操作 $+1$，则我们得到自然数。
 
 ![Presentation of an infinite cyclic monoid](../03_monoid/infinite_cyclic_presentation_elements.svg)
 
-Finite cyclic groups/monoids are the same, except that their definition contains an additional law, stating that that once you compose the generator with itself $n$ number of times, you get identity morphism. For the cyclic group $Z_3$ (which can be visualized as the group of triangle rotations) this law states that composing the generator with itself $3$ times yields the identity morphism.
+有限循环群/幺半群也是如此，只是它们的定义包含一条附加规则，规定一旦你将生成元与其自身组合了 $n$ 次，就会得到恒等态射。对于循环群 $Z_3$（可以看作是三角形旋转群），该规则规定生成元与其自身组合三次后得到恒等态射。
 
 ![Presentation of a finite cyclic monoid](../03_monoid/finite_cyclic_presentation.svg)
 
-Composing the group generator with itself, and then applying the law, yields the three morphisms of $Z_3$.
+将群生成元与其自身组合，然后应用该规则，得到 $Z_3$ 的三个态射。
 
 ![Presentation of a finite cyclic monoid](../03_monoid/finite_cyclic_presentation_elements.svg)
 
-We can represent product groups this way too. Let's take Klein four-group as an example, The Klein four-group has two generators that it inherits from the groups that form it (which we viewed like vertical and horizontal rotation of a non-square rectangle) each of which comes with one law.
+我们也可以用这种方式表示积群。让我们以克莱因四元群为例，克莱因四元群有两个生成元，它继承自组成它的群（我们视为非正方形矩形的垂直和水平旋转），每个生成元都有一个规则。
 
 ![Presentation of Klein four](../03_monoid/klein_four_presentation.svg)
 
-To make the representation complete, we add the law for combining the two generators.
+为了使表示完整，我们添加了组合这两个生成元的规则。
 
 ![Presentation of Klein four - third law](../03_monoid/klein_four_presentation_third_law.svg)
 
-And then, if we start applying the two generators and follow the laws, we get the four elements.
+然后，如果我们开始应用这两个生成元并遵循这些规则，我们就得到了四个元素。
 
 ![The elements of Klein four](../03_monoid/klein_four_presentation_elements.svg)
 
-The set of generators and laws that defines a given group is called the *presentation of a group*. Every group has a presentation.
+定义给定群的生成元和规则集合称为群的*表示* (presentation of a group)。每个群都有一个表示。
 
 {% if site.distribution == 'print' %}
 
-Interlude: Free monoids
+插曲：自由幺半群 (Free monoids)
 ---
 
-We saw how picking a different selection of laws gives rise to different types of monoid. But what monoids would we get if we pick no laws at all? These monoids (we get a different one depending on the set we picked) are called a *free monoids* (the word "free" is used in the sense that once you have the set, you can upgrade it to a monoid for free (i.e. without having to define anything else).
+我们看到，选择不同的规则集合会产生不同类型的幺半群。那么如果我们不选择任何规则呢？这些幺半群（我们根据选择的集合得到不同的幺半群）称为*自由幺半群* (free monoids)（“自由”一词在这里的意思是，一旦你有了集合，你可以“免费”将其升级为幺半群，即无需定义其他任何内容）。
 
-If you revisit the previous section you will notice that we already saw one such monoid. The free monoid with just one generator is isomorphic to the monoid of integers.
+如果你重温前一节，你会注意到我们已经看到过一个这样的幺半群。具有一个生成元的自由幺半群与整数幺半群同构。
 
 ![The free monoid with one generator](../03_monoid/infinite_cyclic_presentation_elements.svg)
 
-We can make a free monoid from the set of colorful balls --- the monoid's elements would be sequences of all possible combinations of the balls.
+我们可以从一组彩色球中构造一个自由幺半群——该幺半群的元素将是所有可能的球的组合序列。
 
 ![The free monoid with the set of balls as a generators](../03_monoid/balls_free.svg)
 
-The free monoid is a special one --- each element of the free monoid over a given set, can be converted to a corresponding element in any any other monoid that uses the same set of generators by just applying the monoid's laws. For example, here is how the elements above would look like if we apply the laws of the color-mixing monoid.
+自由
+
+幺半群是特殊的——在给定集合上的自由幺半群的每个元素都可以通过应用幺半群的规则，转换为任何其他使用相同生成元的幺半群的相应元素。例如，如果我们将上述元素应用于颜色混合幺半群的规则，得到如下结果。
 
 ![Converting the elements of the free monoid to the elements of the color-mixing monoid](../03_monoid/balls_free_color_mixing.svg)
 
-**Task:** Write up the laws of the color-mixing monoid.
+**任务 (Task):** 写出颜色混合幺半群的规则。
 
-If we put out programmers' hat, we will see that the type of the free monoid under the set of generators T (which we can denote as `FreeMonoid<T>`) is isomorphic to the type `List<T>` (or `Array<T>`, if you prefer) and that the intuition behind the special property that we described above is actually very simple: keeping objects in a list allows you to convert them to any other structure i.e. when we want to perform some manipulation on a bunch of objects, but we don't know exactly what this manipulation is, we just keep a list of those objects until it's time to do it.
+如果我们戴上程序员的帽子，会发现集合 $T$ 上的自由幺半群类型（我们可以记作 `FreeMonoid<T>`）与类型 `List<T>`（如果你更喜欢的话，可以用 `Array<T>`）是同构的，并且我们上面描述的特殊性质的直觉实际上非常简单：将对象保存在列表中可以让你将它们转换为任何其他结构，即当我们想要对一堆对象进行某些操作，但我们不知道具体是什么操作时，我们只是将这些对象保存在列表中，直到执行操作的时机到来。
 
-While the intuition behind free monoids seems simple enough, the formal definition is not our cup of tea... yet, simply because we have to cover more stuff.
+虽然自由幺半群的直觉似乎足够简单，但它的正式定义目前还不是我们可以处理的内容... 因为我们还需要覆盖更多内容。
 
-We understand that, being the most general of all monoids for a given set of generators, a free monoid can be converted to all of them. i.e. there exist a function from it to all of them. But what kind of function would that be? Tune in after a few chapters to find out.
+我们知道，作为给定生成集合中最一般的幺半群，自由幺半群可以转换为所有其他幺半群。即存在一个函数将自由幺半群映射到其他幺半群。但这个函数是什么呢？请继续关注接下来的章节。
 
 {%endif%}

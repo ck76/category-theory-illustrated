@@ -1,270 +1,303 @@
+---
 layout: default
-title: Natural transformations
+title: 自然变换 (Natural Transformations)
 ---
 
-Natural transformations 
+自然变换 (Natural Transformations)
 ===
 
-> I didn’t invent categories to study functors; I invented them to study natural transformations. --- Saunders Mac Lane
+> 我发明范畴不是为了研究函子，而是为了研究自然变换。—— 桑德斯·麦克兰 (Saunders Mac Lane)
 
-In this chapter, we will introduce the concept of a morphism between functors or *natural transformation*. Understanding natural transformations will enable us to define category equality and some other advanced concepts.
+在本章中，我们将介绍函子 (functors) 之间的态射 (morphisms) 概念，或者说 *自然变换 (natural transformations)*。理解自然变换将使我们能够定义范畴的等价性以及其他一些高级概念。
 
-Natural transformations really are at the heart of category theory --- As a matter of fact, category theory was invented with the purpose of studying natural transformations. However, the importance of natural transformations is not obvious at first, and so, before introducing them, I like to talk about the body of knowledge that this heart maintains (I am good with metaphors... in principle).
+自然变换实际上是范畴论的核心——事实上，范畴论是为了研究自然变换而发明的。然而，自然变换的重要性一开始并不明显，因此在介绍它们之前，我喜欢谈谈这一核心所维持的知识体系（我在比喻方面还是不错的……原则上如此）。
 
-The categorical way AKA Objects are overrated
+范畴的方法论——对象被高估了 (The Categorical Way AKA Objects Are Overrated)
 ===
 
-> The world is the collection of facts, not of things. --- Ludwig Wittgenstein
+> 世界是事实的集合，而不是事物的集合。——路德维希·维特根斯坦 (Ludwig Wittgenstein)
 
-Some 2500 years ago, the philosopher Parmenides postulated that the nature of universe is permanence, and what we see as transformations are merely illusory appearances. Although far from obviously true, his view is easy to relate to --- objects are all around us, everything we "see", both literary (in real life), or metaphorically (in mathematics), can be viewed as an object. And so we might be inclined to think, that the key to understanding the world is understanding *what objects are*. This is what set theory does, from one standpoint (as well as classical logic) --- the main (we may say the only) atomic concept in set theory is a concept of a set. When mathematicians say that "everything is a set", they are saying that *all objects can be represented by sets*.
+大约2500年前，哲学家巴门尼德 (Parmenides) 提出宇宙的本质是永恒不变的，而我们看到的变化只是表象。虽然这一观点远非显而易见，但却容易理解——对象充斥在我们周围，无论是在现实生活中还是在数学中，都可以被视为对象。因此，我们可能倾向于认为，理解世界的关键在于理解 *什么是对象*。这就是集合论 (set theory) 从一个角度所做的（经典逻辑也是如此）——集合论中的主要（甚至可以说唯一的）基本概念就是集合的概念。当数学家说“万物皆集合”时，他们的意思是 *所有对象都可以用集合来表示*。
 
-However, there is another way to look at things. What is an object, when viewed by itself? Can we study an object in isolation and will there anything left to study about it, once it is detached from its environment? And, as Theseus once asked, if a given object undergoes a process to get all of it's part replaced, is it still the same object?
+然而，还有另一种看待事物的方式。当一个对象独立存在时，它是什么？我们能否孤立地研究一个对象，并且一旦它脱离其环境后，是否还有什么值得研究的？正如忒修斯 (Theseus) 曾经问的，如果一个对象经过某种过程使其所有部分被替换，它还是同一个对象吗？
 
-Asking such questions might lead us to suspect that, although what we *see* when we look at the world are the objects, it's processes or *functions* that are the real key to understanding it. For example, when we think hard about everyday objects we realize that each of them has a specific *function* or functions without which, it would not be itself. Is a lamp that doesn't glow still a lamp? Is there food that is non-edible (or an edible item that isn't food)? And this is even more valid for mathematical objects, which, without the functions that go between them, are not objects at all. In logic, for example, we specify objects using existential quantifiers i.e. we say there exist an object such that so and so. So instead of thinking about objects that just happen to have some morphisms between them, we might take the opposite view and say *that objects are only interesting as sources and targets of morphisms.* 
+问这些问题可能会让我们怀疑，虽然当我们观察世界时看到的是对象，但理解世界的真正关键在于过程或 *函数 (functions)*。例如，当我们认真思考日常对象时，我们意识到每个对象都有一个特定的 *功能* 或功能，离开了这个功能，它将不再是它本身。比如，一盏不发光的灯还是灯吗？不可食用的食物还是食物吗？这在数学对象中更为明显——如果没有它们之间的函数，这些对象根本不能称之为对象。例如，在逻辑中，我们通过存在量词 (existential quantifiers) 来指定对象，即我们说存在一个对象，使得如此这般。因此，取而代之的是，我们可能会采取相反的观点，即 *对象之所以有趣，只是因为它们是态射的来源和目标*。
 
-Although old, (dating back to Parmenides' rival  Heraclitus) this view has been largely unexplored, both in the realm of philosophy, and that of mathematics. But it is deeply engrained in category theory. For example, when we say that a given property defines an object *up to a unique isomorphism* what we mean is exactly this --- that if there are two or more objects that are isomorphic to one another and have exactly the same morphisms from/to all other objects in the category (have the same *functions* in the category), then these objects are, for all intends and purposes, equivalent. And the key to understanding how this works are natural transformations.
+虽然这种观点由来已久（可以追溯到巴门尼德的对手赫拉克利特 (Heraclitus)），但无论在哲学领域还是在数学领域，它都很少得到探讨。然而，它在范畴论中却根深蒂固。例如，当我们说某个属性定义了一个对象 *直至唯一同构 (up to a unique isomorphism)* 时，我们的意思正是如此——如果有两个或多个对象是同构的，并且在范畴中从/到所有其他对象的态射完全相同（在范畴中有相同的 *函数*），那么这些对象在所有意图和目的上是等价的。而理解这一点的关键就是自然变换。
 
-So, are you ready to hear about natural transformations? Actually it is my opinion that you are not, so I would like to continue with something else. Let's ask ourselves the same question that we were pondering at the beginning of the previous chapter ---  what does it mean for two categories to be equal. 
+那么，你准备好听自然变换了吗？实际上，我认为你还没准备好，所以我想继续谈谈别的事情。让我们重新问一下在上一章开头思考的问题——什么意味着两个范畴相等。
 
-Isomorphisms and equivalence 
+同构与等价 (Isomorphisms and Equivalence)
 ===
 
-In the prev chapter, we talked a lot about how great isomorphisms are and how important they are for defining the concept of equality in category theory, but at the same time we said that *categorical isomorphisms* do not capture the concept of equality of categories.
+在上一章中，我们讨论了同构 (isomorphisms) 有多么重要，它们在范畴论中如何定义相等性，但同时我们也说 *范畴同构* 并不能捕捉范畴的相等性概念。
 
-![Isomorphic categories](isomorphic_categories.svg)
+![同构范畴 (Isomorphic Categories)](isomorphic_categories.svg)
 
-This is simply because (though it may seem contradictory) *isomorphic objects and morphisms aren't considered equal* according to categorical isomorphisms i.e. categories that only differ by having some additional isomorphic objects aren't isomorphic themselves 
+这只是因为（尽管看起来可能有些矛盾）*同构对象和态射在范畴同构中不被视为相等*，即仅因某些附加同构对象不同的范畴不一定是同构的。
 
-![Isomorphic categories](equal_categories.svg)
+![同构范畴 (Equal Categories)](equal_categories.svg)
 
-However, these categories they are equivalent.
+然而，这些范畴是等价的。
 
-**Parmenides:** This category surely cannot be equal to the other one --- it has a different amount of objects!
+**巴门尼德：** 这个范畴显然不能等同于另一个——它有不同数量的对象！
 
-**Heraclitus:** Who cares bro, they are isomorphic.
+**赫拉克利特：** 谁在乎呢兄弟，它们是同构的。
 
-To understand equivalent categories better, let's go back to the functor between a given map and the area it represents. In order for this functor to be invertible (and the categories --- isomorphic) the the map should represent the area completely i.e. there should be arrow for each road and a point for each little place.
+为了更好地理解等价范畴，让我们回到一个从地图到所代表区域的函子。为了使这个函子是可逆的（并且范畴是同构的），地图应该完全表示区域，即每条道路应该都有箭头，每个小地方应该都有点。
 
-![Isomorphic categories](isomorphic_map.svg)
+![同构范畴 (Isomorphic Map)](isomorphic_map.svg)
 
-Such a map is necessary if your goal is to know about all *places*, however, like we said, when working with category theory, we are not so interested in *places*, but in the *routes* that connect them i.e. we focus not on *objects* but on *morphisms*.
+这样的地图是必要的，如果你的目标是了解所有的 *地方*，然而，正如我们所说，当我们研究范畴论时，我们不那么关心 *地方*，而是关心 *连接它们的路径*，即我们关注的不是 *对象* 而是 *态射*。
 
-For example, if there are intersections that are positioned in such a way that there are routes from one and to the other and vice-versa a map may may collapse them into one intersection and still show all routes that exist. 
+例如，如果有交叉点以某种方式排列，使得从一个交叉点到另一个有路径并且反之亦然，那么地图可以将它们折叠成一个交叉点，但仍然显示所有存在的路径。
 
-![Equivalent categories](equivalent_map.svg)
+![等价范畴 (Equivalent Categories)](equivalent_map.svg)
 
-We see that, although these two categories are *not isomorphic*, going from one of them to the other and back again always leads you, if not to the same, at least to *isomophic objects and morphisms*.
+我们看到，尽管这两个范畴 *不是同构的*，但从其中一个范畴到另一个再返回时，总是会得到 *同构的对象和态射*。
 
-![Equivalent categories](equivalent_map_equivalence.svg)
+![等价范畴 (Equivalent Categories)](equivalent_map_equivalence.svg)
 
-In this case we say that these categories are *equivalent*.
+在这种情况下，我们称这些范畴是 *等价的 (equivalent)*。
 
-Equivalence of orders
+订单的等价性 (Equivalence of Orders)
 ===
 
-Before we present a formal definition of order equivalence, we need to revise the definition of order isomorphisms.
+在正式定义订单等价性之前，我们需要回顾订单同构的定义。
 
-In the chapter about orders we presented a definition of order isomorphism that is based on *set* isomorphisms.
+在关于订单的章节中，我们给出了一个基于 *集合* 同构的订单同构定义。
 
-> An order isomorphism is essentially an isomorphism  between the orders' underlying sets (invertible function). However, besides their underlying sets, orders also have the arrows that connect them, so there is one more condition: in order for an invertible function to constitute an order isomorphism it has to *respect those arrows*, in other words it should be *order preserving*. More specifically, applying this function (let's call it $F$) to any two elements in one set ($a$ and $b$) should result in two elements that have the same corresponding order in the other set (so $a ≤ b$ if and only if $F(a) ≤ F(b)$). 
-But, since we know about functors, we will present a new definition, based on functors: 
+> 订单同构 (Order Isomorphism) 本质上是两个订单的底层集合的同构 (invertible function)。然而，除了它们的底层集合之外，订单还有连接它们的箭头，因此还有一个条件：为了使一个可逆函数构成订单同构，它必须 *尊重这些箭头*，换句话说，它应该是 *保持订单的*。更具体地说，将这个函数（让我们称之为 $F$）应用于一个集合中的任意两个元素（$a$ 和 $b$）应该导致在另一个集合中具有相同对应顺序的两个元素（因此 $a ≤ b$ 当且仅当 $F(a) ≤ F(b)$）。
 
-> Given two orders $A$ and $B$, an *order isomorphism* consists of two functors $F: A \to B$ and $G: B \to A$, such that composing one with the other leads us back to the same object. 
+但既然我们知道了函子，我们将基于函子的定义重新表述：
 
-> More formally, for all objects $a$ of $A$ and $b$ of $B$ we should have have $b = F(G(b))$ and $a = G(F(a))$ (or alternatively $ ID_{B} = F \circ G$ and $ ID_{A} = G \circ F$).
+> 给定两个订单 $A$ 和 $B$，订单同构包括两个函子 $F: A \to B$ 和 $G: B \to A$，它们的组合将我们带回到相同的对象。
 
-![isomorphic orders](isomorphic_orders.svg)
+> 更正式地说，对于 $A$ 的所有对象 $a$ 和 $B$ 的对象 $b$，我们应该有 $b = F(G(b))$ 和 $a = G(F(a))$（或者 $ ID_{B} = F \circ G$ 和 $ ID_{A} = G \circ F$）。
 
-**Task:** Show that the two definitions are equivalent.
+![同构订单 (Isomorphic Orders)](isomorphic_orders.svg)
 
-The equivalence of orders is the same, except you replace equality with isomorphism (and $=$ with $\cong$): 
+**任务：** 证明这两个定义是等价的。
 
-Given two orders $A$ and $B$, an *order isomorphism* consists of two functors $F: A \to B$ and $G: B \to A$, such that composing one with the other leads us to the same *or to an isomorphic* object. 
-
-More formally, for all objects $a$ of $A$ and $b$ of $B$ we should have have $b \boldsymbol{\cong} F(G(b))$ and $a \boldsymbol{\cong} G(F(a))$ (or alternatively $ ID_{B}  \boldsymbol{\cong} F \circ G$ and $ ID_{A} \boldsymbol{\cong} G \circ F$).
-
-![Equivalent orders](equivalent_orders.svg)
-
-Order equivalence and equivalence classes
+订单等价与等价类 (Order Equivalence and Equivalence Classes)
 ---
 
-By the way, remember the concept of *equivalence classes* that we covered in the chapter about orders? Turns out that this concept is related. To see how, we visualize the equivalence classes of the two equivalent orders that we saw above.
+还记得我们在订单章节中介绍的 *等价类 (equivalence classes)* 概念吗？事实证明，这个概念与等价性有关。为了了解它的关联性，我们可以直观地展示两个等价订单的等价类。
 
-![Orders with isomorphic equivalence classes](equivalent_order_classes.svg)
+![同构等价类的订单 (Orders with Isomorphic Equivalence Classes)](equivalent_order_classes.svg)
 
-It turns our that two orders are equivalent precisely when the orders made of their equivalence classes are isomorphic.
+事实证明，两个订单是等价的，当且仅当由它们的等价类组成的订单是同构的。
 
-**Task**: Prove this.
+**任务：** 证明这一点。
 
-Equivalence of categories
+范畴的等价性 (Equivalence of Categories)
 ===
 
-Now that we warmed our minds up with order equivalences, we are ready to tackle the little more-complex *categorical equivalences.* This is going to be similar to that time we moved from order functors (monotone maps) to categorical functors, and, as with functors, the definition would *look* a lot more complicated, but will actually be just an upgrade of the definition that we have for orders.
+现在我们已经通过订单等价性热身了头脑，接下来我们准备处理更加复杂的 *范畴等价性*。这类似于我们从订单函子（单调映射）过渡到范畴函子，尽管定义看起来更复杂，但实际上只是订单定义的升级版本。
 
-Why do we need to upgrade the definition? In categories we can have more than one morphism between any two objects, and so even when the objects we get when we apply the two functors one after the other are isomorphic, the functions may not be, for example the following two categories are *not* equivalent (the category on the left has just one morphism, but the category on the right has two).
+为什么我们需要升级定义？在范畴中，我们可以在任意两个对象之间有多个态射，因此即使通过两个函子组合得到的是同构对象，函数也可能不是同构的。例如，以下两个范畴 *不是* 等价的（左边的范畴只有一个态射，而右边的范畴有两个）。
 
-![Non-equivalent categories](unequal_categories.svg)
+![不等价的范畴 (Non-equivalent Categories)](unequal_categories.svg)
 
-This might seem at odds with the idea that a map is equal to its territory when it covers all routes that exist, as in this case both categories we have a route between the two objects, however a route is not just about going from point A to point B, just like a function that converts a number to a boolean value is not just its type signature. This is easy to ignore in the context of orders where we have, by definition, just one route between two objects, but still necessary to consider when we talk about categories.
+这看起来似乎与地图等于其所覆盖领土的想法相悖，因为在这种情况下，我们在两个范畴中都有从一个对象到另一个的路径。然而，路径不仅仅是从点 A 到点 B 的简单过程，正如将一个数字转换为布尔值的函数不仅仅是它的类型签名一样。这在订单上下文中很容易被忽略，因为订单中只允许两个对象之间有一条路径，但在范畴中这是必须考虑的。
 
-So how do we make the definition of equivalence more general, so it applies to all categories? 
+因此，我们如何使定义变得更加广泛，以适应所有范畴呢？
 
-Natural transformations
+自然变换 (Natural Transformations)
 ===
 
-The progression that we made so far (morphisms -> functors -> natural transformations) might lure you into thinking that natural transformations are similar to morphisms and functors, but they are actually not completely similar, they are not "recursive", to be more precise --- both normal morphisms and functors are morphisms between objects (or *1-morphisms*), but natural transformations are morphisms between morphisms (known as *2-morphisms*).
+到目前为止，我们已经介绍了态射、函子和自然变换的进展，这可能会让你认为自然变换与态射和函子类似，但它们并不完全相同。更准确地说，自然变换不是递归的——普通态射和函子是对象之间的态射（或 *一态射 (1-morphisms)*），而自然变换是态射之间的态射（称为 *二态射 (2-morphisms)*）。
 
-But enough talking, let's draw some diagrams. 
+但是，少说空话，还是画一些图吧。
 
-We know that natural transformations are morphisms between functors, so let's draw two functors (I am omitting the arrows between the morphisms for brevity).
+我们知道自然变换是函子之间的态射，因此我们先画出两个函子（为了简洁省略态射之间的箭头）。
 
-![Two functors](natural_functors_objects.svg)
+![两个函子 (Two Functors)](natural_functors_objects.svg)
 
-Note that the functors are similar have the same signature --- both their input and output categories are the same --- this is a necessary (but not sufficient) condition for them to be connected by a natural transformation.
+请注意，这两个函子具有相同的签名——它们的输入和输出范畴是相同的——这是它们之间可以通过自然变换连接的必要（但不充分）条件。
 
-Building the object mapping mapping
+构建对象映射的映射 (Building the Object Mapping Mapping)
 ---
 
-A functor is comprised of two components --- object mapping and morphism mapping, so a natural transformation, being a morphism between functors, should take those two mappings into account.
+一个函子由两个部分组成——对象映射 (object mapping) 和态射映射 (morphism mapping)，因此作为函子之间的态射，自然变换也应该考虑这两个映射。
 
-Let's first connect the object mappings of the two functors, creating what we called "object mapping mapping". It is simpler than it sounds when we realize that we only need to connect the object in functors' *target category*. The objects in the source category would just always be the same as both functors would include *all* object from the source category, (because that is what functions do, right?)
+首先，让我们连接两个函子的对象映射，创建我们称之为“对象映射的映射”。当我们意识到我们只需要连接函子 *目标范畴 (target category)* 中的对象时，它就比听起来要简单得多。在源范畴中的对象总是相同的，因为两个函子都将包含源范畴中的 *所有* 对象（因为这就是函数的作用，对吧？）
 
-In other words, mapping the two functors' object components involves nothing more than specifying a bunch of morphisms in the target category.
+换句话说，映射两个函子的对象部分仅仅涉及指定目标范畴中的一些态射。
 
-![Two functors](natural_transformation.svg)
+![自然变换 (Natural Transformation)](natural_transformation.svg)
 
-Note that the mappings between these objects do not (always) have the character of a functor, since not all objects are mapped to other objects.
+注意，这些对象之间的映射并不总是具有函子的性质，因为并非所有对象都被映射到其他对象。
 
-Building the morphism mapping mapping
----
-Once the connections between the object mappings are already established, there is only one way to do the morphism mapping ---  take each morphism in the source category and connect the two images that this morphism has (generated by the two functors), in the target category.
-
-![Two functors](natural_functors.svg)
-
-Formal definition 
+构建态射映射的映射 (Building the Morphism Mapping Mapping)
 ---
 
-Before we finish up this chapter, let's distill a rigorous definition of natural transformations: For any two functors $F$ and $G$ that both have the same type signature of source category $C$ and a target category $D$ (so $F : C \to D$ and $G : C \to D$), a natural transformation $\alpha : F \Rightarrow G$ is a collection of morphisms between objects in $D$ that maps all target objects of functor $F$ (or the image of $F$ in $D$ as it is also called) to target objects of functor $G$. 
+一旦对象映射之间的连接已经建立，态射映射的构建就只有一种方法——获取源范畴中的每个态射，并连接两个函子在目标范畴中生成的态射的图像。
 
-Furthermore, the mapping must be such that any morphism in $C$ with a signature $X \to Y$, the object $F(X)$ in $D$ should always be mapped to $G(X)$ and object $F(Y)$ should be mapped to $G(Y)$.
+![两个函子 (Two Functors)](natural_functors.svg)
 
-Note that if the condition above (sometimes called the "naturality condition") is met, the below diagram would commute. This works the other way too --- if the diagram commutes, the condition is met, so we can say that *the diagram and the definition are isomorphic*. And because the diagram is much simpler we may think of it as the real definition.
-
-![Two functors](natural_transformation_formula.svg)
-
-If you look just a little bit closely, you will see that the only difference between this diagram and our example is that here morphisms are displayed vertically, while in the example they are horizontal.
-
-Natural transformations again
-===
-
-Now that we saw the definition of natural transformations, it is time to see the definition of natural transformations (and if you feel that the quality of the humour in this book is deteriorating, that's only because *things are getting serious*).
-
-I am sure that once you saw one definition of a natural transformation, you just cannot get enough of them. So let's work out one more. Let's start with our two functors.
-
-![Two functors](natural_functors.svg)
-
-This diagram might prompt us into thinking of natural transformations as some kind of "double functors" that have not one but two arrows coming from each object. This notion, of course, cannot be defined (as we said several times, the whole point of functions is the that there is just one arrow for each object), but a related notion that can be defined is that of *product categories*.
-
-Product categories
+形式定义 (Formal Definition)
 ---
 
-We already saw products between *groups/monoids*, the product categories are similar: take any two categories (in practice it is good if one of them is a finite one, but any two would work). 
+在结束本章之前，我们来提炼出自然变换的严格定义：对于具有相同类型签名的两个函子 $F$ 和 $G$，其源范畴 $C$ 和目标范畴 $D$ 相同（即 $F : C \to D$ 和 $G : C \to D$），一个自然变换 $\alpha : F \Rightarrow G$ 是一组在 $D$ 中的态射，它将函子 $F$ 的所有目标对象（或称为 $F$ 在 $D$ 中的像）映射到函子 $G$ 的目标对象。
 
-![Product category - components](product_components.svg)
+此外，映射必须满足，对于 $C$ 中任何具有签名 $X \to Y$ 的态射，$D$ 中对象 $F(X)$ 总是被映射到 $G(X)$，对象 $F(Y)$ 被映射到 $G(Y)$。
 
-And then take the set of all possible pairs of the objects of these categories.
+请注意，如果上述条件（有时称为“自然性条件 (naturality condition)”）成立，那么下图将是交换的。这反过来也成立——如果图是交换的，那么条件就成立，所以我们可以说 *这个图和定义是同构的*。因为这个图更简单，我们可以将其视为真正的定义。
 
-![Product category - objects](product_set.svg)
+![自然变换公式 (Natural Transformation Formula)](natural_transformation_formula.svg)
 
-Is there a way to make a category from that set? Sure, we saw something similar in the chapter about group/monoid products --- we just take all morphisms coming from any of the two categories and replicate them to all pairs that feature some objects from their type signature.
+如果你仔细观察，你会发现这个图与我们的例子唯一的区别在于，这里的态射是垂直排列的，而在我们的例子中它们是水平的。
 
-![Product category](product_category.svg)
+再次解释自然变换 (Natural Transformations Again)
+===
 
-This is the *product category* of the two categories.
+现在我们已经看到了自然变换的定义，接下来我们将再次看到自然变换的定义（如果你觉得这本书的幽默质量有所下降，那只是因为 *事情变得严肃了*）。
 
-Natural transformations as functors of product categories
+我相信一旦你看到了一个自然变换的定义，你一定会觉得意犹未尽。所以让我们再看一个。让我们从我们的两个函子开始。
+
+![两个函子 (Two Functors)](natural_functors.svg)
+
+这个图可能会让我们认为自然变换是一种“二重函子 (double functors)”，每个对象都有两个箭头。这种概念当然无法定义（正如我们多次提到的，函数的全部意义在于每个对象只有一个箭头），但可以定义一个相关的概念，即 *乘积范畴 (product categories)*。
+
+乘积范畴 (Product Categories)
 ---
 
-When looking into the last diagram, you might suspect that the categories we chose to demonstrate the notion of the product category is not arbitrary. And you would be right --- we can already see the naturality square in it. 
+我们已经看过 *群/幺半群的乘积 (products of groups/monoids)*，乘积范畴与之类似：取任意两个范畴（在实践中，最好有一个是有限的，但任何两个都可以）。
 
-![Product category](product_category_target_category.svg)
+![乘积范畴的组成部分 (Product Category Components)](product_components.svg)
 
-That is because the category with two objects and one morphism (which, if you remember is called $2$) is the key to constructing a functor that is equivalent to a natural transformation --- because it has two objects, it produces two copies of the source category and because the two objects are connected, the two copies are connected in the same way as the two "images" in the target category are connected. And so all that is left is to draw the two functors.
+然后获取这些范畴的对象的所有可能对的集合。
 
-![Product category](product_category_natural_transformation.svg)
+![乘积范畴的对象 (Product Category Objects)](product_set.svg)
 
-Formal definition
----
-Let's state formally what we saw in these diagrams. As you remember we call our two functors $F$ and $G$ and the our categories $C$ and $D$ (so $F : C \to D$ and $G : C \to D$). 
+有没有办法从这个集合中创建一个范畴？当然，我们在群/幺半群乘积的章节中看到过类似的东西——我们只需取出两个范畴中所有的态射，并将它们复制到其类型签名中包含的所有对中。
 
-Also, we call the category with two connected objects $2$ and the morphisms in it are $0$ and $1$.
+![乘积范畴 (Product Category)](product_category.svg)
 
-In this case, our natural transformation $\alpha : F \Rightarrow G$ is just a functor from the product category of $2$ to $C$ so $2 \times C \to G$, such that if we take the subcategory of $C$ comprised of just those objects that have the $0$ object, and the morphisms between them, then that functor is equivalent to $F$, and if we consider the subcategory that contains $1$, then the functor is equivalent to $G$ (we write $\alpha(-,0)=F$ and $\alpha(-,1)=G$). Et voilà!
+这就是两个范畴的 *乘积范畴*。
 
-**Task:** See how the two definitions are equivalent.
-
-/*
-
-Natural transformations from surjective functors are just regular functors.
-
-
-Limits and colimits
-====
-
-Interlude: Naturality explained
+将自然变换视为乘积范畴的函子 (Natural Transformations as Functors of Product Categories)
 ---
 
-Isomorphism is not hard to construct --- given two sets, containing three objects each, there are three isomorphisms that connect them, and that number grows exponentially. 
+当我们看最后一个图时，你可能会怀疑我们选择的这两个范畴用于演示乘积范畴的概念并非随机选择。你猜对了——我们可以在其中已经看到自然性方块 (naturality square)。
 
-But most of these isomorphisms, are just random. In our studies we are only interested in structures that *make sense*. In category theory the abstract notion of making sense is captured by the naturality condition.
+![乘积范畴目标范畴 (Product Category Target Category)](product_category_target_category.svg)
 
+这是因为具有两个对象和一个态射的范畴（如果你还记得，它被称为 $2$）是构建等价于自然变换的函子的关键——因为它有两个对象，它生成源范畴的两个副本，并且因为这两个对象是连接的，这两个副本之间的连接方式与目标范畴中的两个“图像”之间的连接方式相同。所以剩下的就是画出这两个函子。
 
+![乘积范畴中的自然变换 (Natural Transformation in Product Category)](product_category_natural_transformation.svg)
 
-Limits
-===
-
-Products are one example of what is known in category theory as *limits*. A limit is an object that summarizes a structure (also called a diagram) consisting of other objects and morphisms in a way that allows us to later retrieve some of it.
-
-A limit also has to be unique in the sense that you cannot have two limit objects for the same structure.
-
-The notion of a limit is strongly related with the notion of a commuting diagrams. This is not obvious when we are examining products because the diagram of products does not have several routes reaching to the same point.
-
-Limits can be defined formally, just like everything else that we examine, but we won't bother to do that here.
-
-Products are Limits
+形式定义 (Formal Definition)
 ---
 
-OK, we said that limits summarize a structure. What is the structure that a product is summarizing? It is a structure that consists of two objects (sets) that are have no connections between them.
- 
-![External diagram](product_part_external.svg)
- 
-Why is the product unique when it comes to representing the two objects? Because any other object that also represents them is connected to the product through a morphism (this is known as the *universal property* of limits).
+让我们正式说明我们在这些图中看到的内容。如你所记得的，我们称两个函子为 $F$ 和 $G$，它们的范畴分别为 $C$ 和 $D$（因此 $F : C \to D$ 和 $G : C \to D$）。
 
+此外，我们称具有两个连接对象的范畴为 $2$，其中的态射是 $0$ 和 $1$。
 
+在这种情况下，我们的自然变换 $\alpha : F \Rightarrow G$ 只是从 $2$ 的乘积范畴到 $C$ 的函子，即 $2 \times C \to G$，如此一来，如果我们取出 $C$ 的子范畴，该子范畴仅包含具有 $0$ 对象的那些对象及其态射，那么该函子等价于 $F$，如果我们考虑包含 $1$ 的子范畴，那么该函子等价于 $G$（我们写作 $\alpha(-,0)=F$ 和 $\alpha(-,1)=G$）。 Voilà!
 
+**任务：** 查看这两个定义是如何等价的。
 
-Natural transformations and associativity
+---
+
+自然变换的其他定义
+---
+
+自然变换从主函子 (representable functors) 到其他函子的转换就是常规函子的转换。
+
+极限与余极限 (Limits and Colimits)
 ===
 
-The definition of natural transformation just states that (ab)c = a(bc)
+自然性解释的插曲 (Interlude: Naturality Explained)
+---
 
+构造同构并不难——给定两个包含三个对象的集合，有三种同构连接它们，而这个数字呈指数增长。
 
-Free objects
+但大多数这些同构只是随机的。在我们的研究中，我们只对 *有意义的* 结构感兴趣。在范畴论中，“有意义”的抽象概念通过自然性条件 (naturality condition) 来捕捉。
+
+---
+
+极限 (Limits)
 ===
 
-https://math.stackexchange.com/questions/131389/what-are-free-objects
+乘积是范畴论中称为 *极限 (limits)* 的一个例子。极限是一个总结了由其他对象和态射组成的结构（也称为图 (diagram)）的对象，它允许我们以后检索其中的一部分。
 
-Monads
+极限还必须是唯一的，因为对于相同的结构，不能有两个极限对象。
+
+极限的概念与交换图 (commuting diagrams) 的概念密切相关。当我们研究乘积时，这一点并不明显，因为乘积的图没有几条通往同一点的路径。
+
+尽管我们不会在此深入讨论，但极限可以像我们研究的其他内容一样被正式定义。
+
+---
+
+乘积是极限 (Products Are Limits)
 ===
 
+好了，我们说极限总结了一个结构。乘积总结的是什么结构？它是由两个没有连接的对象（集合）组成的结构。
 
-Representable functors
+![外部图 (External Diagram)](product_part_external.svg)
+
+为什么乘积在表示这两个对象时是唯一的？因为任何其他也表示它们的对象都通过一个态射连接到乘积（这被称为极限的 *泛属性 (universal property)*）。
+
+---
+
+自然变换与结合律 (Natural Transformations and Associativity)
 ===
 
-A Hom-functor can always be converted to any set-valued functor (Yoneda lemma). But not the other way around
+自然变换的定义只说明了 $(ab)c = a(bc)$。
 
-Yoneda Lemma
+---
+
+自由对象 (Free Objects)
 ===
+
+[什么是自由对象？ (What are Free Objects?)](https://math.stackexchange.com/questions/131389/what-are-free-objects)
+
+---
+
+Monad 单子
+===
+
+---
+
+可表函子 (Representable Functors)
+===
+
+一个 Hom-函子可以始终转换为任何取值为集合的函子（Yoneda 引理），但反之则不然。
+
+---
+
+Yoneda 引理 (Yoneda Lemma)
+===
+
+---
+
+[Applied Category Theory Course](https://www.azimuthproject.org/azimuth/show/Applied+Category+Theory+Course#Course)
+
+---
+
+[Herding Cats](https://eed3si9n.com/herding-cats/day1.html)
+
+---
+
+[Topology: MIT Press](https://topology.mitpress.mit.edu/)
+
+---
+
+[What Is a Natural Transformation?](https://www.math3ma.com/blog/what-is-a-natural-transformation)
+
+---
+
+[Makelele 和线性代数](https://graphicallinearalgebra.net/2015/04/23/makelele-and-linear-algebra/)
+
+---
+
+[什么是范畴论？](https://www.math3ma.com/blog/what-is-category-theory-anyway)
+
+---
+
+[数学工具箱 (Mathematical Toolkit)](https://www.youtube.com/watch?v=8j9AF2cfmFo&list=PLk-BCMYCWSzW-nPNnw19Y6oQJnvaAcp1I)
 
 
 https://www.azimuthproject.org/azimuth/show/Applied+Category+Theory+Course#Course
