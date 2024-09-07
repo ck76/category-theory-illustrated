@@ -1,154 +1,149 @@
+---
 layout: default
-title: Adjunctions
+title: 伴随 (Adjunctions)
 ---
 
-Adjunctions
+伴随 (Adjunctions)
 ===
 
-In this chapter we will continue with this *leit motif* that we developed in the previous two chapters - to begin each of them by introducing a new concept of equality between categories (and furthermore, for each new type of equality to be more relaxed than the previous one).
+在本章中，我们将继续前两章中发展的这个*主旋律*，即通过引入新的范畴之间的等价关系来开始每一章（并且每一种新的等价关系比前一种更为宽松）。
 
-We started the chapter about functors by reviewing *categorical isomorphisms*, which are invertible functions between categories.
+我们从关于函子 (functors) 的章节开始，回顾了*范畴同构* (categorical isomorphisms)，这是一种在范畴之间可逆的函数。
 
-Then in the chapter on *natural transformations* we saw categories that are equivalent up to an isomorphism.
+然后在关于*自然变换* (natural transformations) 的章节中，我们看到了在同构意义下等价的范畴。
 
-And now we will relax the condition even more and will review a relationship that is not exactly an equality, , but it is not non-equality either. It is not two-way, but at the same time it is not exactly one-way as well. A relationship called *adjunction*. 
+现在我们将进一步放宽条件，回顾一种既不是完全等价但也不是完全不等价的关系。这种关系不是完全的双向，但同时也不是完全的单向。它被称为*伴随* (adjunction)。
 
-As you can see, I am not very good at explaining, so I got some examples aligned. But before we proceed with them, we will go through something else.
-
+如你所见，我不太擅长解释这个概念，因此我准备了一些例子。但在进行这些例子之前，我们先来看一些其他的内容。
 
 {% if site.distribution == 'print' %}
 
-Free and forgetful functors
+自由函子与遗忘函子 (Free and Forgetful Functors)
 ===
 
-A lot of categories that are in $Cat$ are based on each other i.e. ones where one category is the same as the other plus some additional law - groups are monoids with added inversion, partial orders are antisymmetric preorders. And virtually all categories can be viewed as are sets with added morphisms. Between any two such categories there are two functors called the *forgetful* functor that goes from the richer category to the more plain one and the *free* functor, which goes the other way around.
+$Cat$ 范畴中的许多范畴是基于彼此构建的，即一个范畴是另一个范畴加上一些额外的法则——例如，群 (groups) 是具有逆元 (inversion) 的幺半群 (monoids)，偏序 (partial orders) 是反对称的预序 (antisymmetric preorders)。实际上，几乎所有范畴都可以看作是具有附加态射 (morphisms) 的集合 (sets)。在这类范畴之间存在两个函子，一个是从丰富的范畴映射到较为简单的范畴的*遗忘函子* (forgetful functor)，另一个则是从较简单范畴映射到较复杂范畴的*自由函子* (free functor)。
 
-![Free and forgetful functors](free_forgetful_functors.svg)
+![自由函子与遗忘函子](free_forgetful_functors.svg)
 
-
-Forgetful functors
+### 遗忘函子 (Forgetful Functors)
 ===
 
-Forgetful functors map the objects from the more richer and featureful category to their corresponding objects in the simpler and more unstructured one. 
+遗忘函子将较为复杂、具有更多结构的范畴中的对象映射到相应的较为简单、结构较少的范畴中的对象。
 
-![Forgetful functors](forgetful_functors.svg)
+![遗忘函子](forgetful_functors.svg)
 
-They strip (forget) all the structure of the more complex category which is not present in the simpler one. i.e. 
+它会去除（遗忘）较复杂范畴中那些在较简单范畴中不存在的所有结构。
 
-Object mapping
+#### 对象映射 (Object Mapping)
 ---
 
-The object mapping of the forgetful functor consists of picking the object in the simpler category that corresponds to the one from the richer one. It works by just removing the extra structure or properties of each object in the richer category which is not present in the simpler one.
+遗忘函子的对象映射由选择对应于较复杂范畴中对象的较简单范畴中的对象组成。它的工作方式是移除较复杂范畴中每个对象的附加结构或属性，这些结构或属性在较简单范畴中不存在。
 
-Let's take the forgetful functor between the category of sets $Set$ and the category of monoids ($Mon$) as an example. A monoid is a set, combined with *a monoid operation*. The monoid operation is the extra structure. And if you do away with it, what is left from a monoid is its underlying set. This observation defines the object mapping of a forgetful functor that goes from the category of monoids to the category of sets - each monoid is mapped to its underlying set.
+以集合范畴 $Set$ 和幺半群范畴 $Mon$ 之间的遗忘函子为例。幺半群是一个集合，结合了*幺半群运算*。幺半群运算就是额外的结构。如果我们去掉它，幺半群剩下的就是其底层的集合。这一观察定义了从幺半群范畴到集合范畴的遗忘函子的对象映射——每个幺半群映射到其底层集合。
 
-![Forgetful functor - object mapping](forgetful_functor_objects.svg)
+![遗忘函子的对象映射](forgetful_functor_objects.svg)
 
-This same type of functor exists for any two categories that are based on each other. And two categories are based on each other only if such a functor exists.
+这种类型的函子存在于基于彼此的任何两个范畴之间。只有在这样的函子存在时，两个范畴才被认为是基于彼此的。
 
-Morphism mapping
+#### 态射映射 (Morphism Mapping)
 ---
 
-In order for the forgetful functor to really be a functor it also must map morphisms between the two categories i.e. to map every *monoid homomorphism* between two monoids to a function between their underlying sets. 
+为了使遗忘函子真正成为函子，它还必须在两个范畴之间映射态射，也就是说，必须将每个*幺半群同态* (monoid homomorphism) 映射为它们底层集合之间的函数。
 
-This is not hard - we said that monoid homomorphisms are function between the monoids' underlying sets which preserves the group operation. Which means that they are *functions between the monoids' underlying sets*. So all we need to do is to forget about the extra conditions.
+这并不难——我们说过幺半群同态是其底层集合之间的函数，并且该函数保持群运算。这意味着它们实际上是*底层集合之间的函数*。因此，我们所要做的就是忘记这些额外的条件。
 
-Functor laws
+#### 函子定律 (Functor Laws)
 ---
 
-Since we basically copied the structure of one category into the other one, the functor laws are obviously followed.
+由于我们基本上是将一个范畴的结构复制到另一个范畴，因此函子定律显然得以遵守。
 
-Free functors
+### 自由函子 (Free Functors)
 ===
 
-Now let's review the functor that has certain relation to the forgetful functor, but goes the other way around - from richer to simpler categories.
+现在让我们回顾与遗忘函子相关，但方向相反的函子——从较简单范畴到较复杂范畴的函子。
 
-![Free functors](free_functors.svg)
+![自由函子](free_functors.svg)
 
-Saying "going the other way around" is actually not entirely accurate, as we cannot literary reverse the mapping from the forgetful functor. This is so, simply due to the fact that given one simple structure (such as a set) there can be more than one richer structures that correspond to it (e.g. the set of natural numbers is the underlying set of both the monoid of natural numbers under addition and the monoid of natural numbers under multiplication).
+说“方向相反”实际上并不完全准确，因为我们不能简单地反转遗忘函子的映射。这是因为，给定一个简单的结构（例如一个集合），可能对应多个较复杂的结构（例如，整数集可以是自然数在加法下形成的幺半群，也可以是自然数在乘法下形成的幺半群）。
 
-But, although we cannot create a functor that is the reverse of the forgetful functor, there is one functor that still has some interesting connection to it - this functor is called the *free functor* for a given category. It works by connecting each object from the simpler category to the *free object* corresponding to it. In our case the case of monoids it is the free monoid generated by a given set.
+尽管如此，我们仍有一个与其存在有趣关系的函子——这个函子被称为给定范畴的*自由函子*。它通过将较简单范畴中的每个对象连接到与其对应的*自由对象*来工作。在我们的例子中，自由对象是由给定集合生成的自由幺半群。
 
-Object mapping
+#### 对象映射 (Object Mapping)
 ---
 
-The object mapping of the free functor is the procedure for generating *free objects*. For any given object $o$ from the simpler category the free object of $o$, $F(o)$ is an object of the more complex category that adds the minimum structure needed for the $o$ to become an object of the more complex category. 
+自由函子的对象映射是生成*自由对象*的过程。对于较简单范畴中的任一对象 $o$，$F(o)$ 是较复杂范畴中的对象，它为 $o$ 添加了使其成为较复杂范畴对象所需的最小结构。
 
-This concept is complex, so let's take the free monoids as an example. When we reviewed them (in chapter 3) we said that the free monoid of a given set of is just the monoid that "does nothing" i.e. the one that has no laws. 
+这一概念比较复杂，因此我们以自由幺半群为例。在我们回顾它们时（在第三章），我们提到给定集合的自由幺半群是“什么也不做”的幺半群，即没有规则的幺半群。
 
-What does that mean? We said that each monoid can be represented by a set of basic elements, called generators, (such as the 60 degree rotation of a right triangle)
+这意味着什么？我们说每个幺半群可以由一组基本元素表示，称为生成元 (generators)（例如，直角三角形的60度旋转）。
 
-![Generator of the monoid of rotations](generator_rotations.svg)
+![旋转生成元](generator_rotations.svg)
 
-And a bunch of rules or equations describing how sequences of these generators collapse to a single element (e.g. the fact that rotating the triangle three times gets you to its initial position).
+还有一组规则或方程描述了这些生成元的序列如何缩减为单个元素（例如，旋转三角形三次使其回到初始位置的规则）。
 
-![Rule of the monoid of rotations](rule_rotations.svg)
+![旋转规则](rule_rotations.svg)
 
-Here the rules for a given set of generators can be arbitrary, so the free monoid is the monoid that has no such rules. As a result, the free monoid of a given set is the monoid of all possible (endless) sequences of elements of a that set (which is taken as the monoid's set of generators).
+在这里，给定一组生成元的规则可以是任意的，因此自由幺半群是没有这些规则的幺半群。结果是，给定集合的自由幺半群是由该集合的所有可能（无穷）序列组成的幺半群（该集合被视为幺半群的生成元集合）。
 
-If you think about this definition we would realize that the free monoid is actually just the *list datatype* that we are familiar from programming. And the free functor converting sets to monoids is actually the list functor that we saw in one of the previous sections.
+如果你仔细思考这一定义，就会意识到自由幺半群实际上就是我们在编程中熟悉的*列表数据类型*。并且将集合转换为幺半群的自由函子实际上就是我们在前一章节中看到的列表函子。
 
-![Free functors](free_functor_objects.svg)
+![自由函子](free_functor_objects.svg)
 
-Formally the free monoid over a set $A$ is just the type $[A]$ and the free functor is the function $a \to [a]$ for all $a:A$.
+形式上，集合 $A$ 上的自由幺半群就是类型 $[A]$，自由函子是 $a \to [a]$，其中 $a:A$。
 
-Morphism mapping
+#### 态射映射 (Morphism Mapping)
 ---
 
-Once we established that the free functor for set $A$ is just the list functor we already know how the morphism mapping that converts function between sets to functions between lists of sets, and the way to construct this mapping is to apply the function to every element of that list.
+一旦我们确定了集合 $A$ 的自由函子就是列表函子，我们就已经知道了如何构建将集合之间的函数转换为这些集合的列表之间的函数的映射，而构建此映射的方法是将该函数应用于列表中的每个元素。
 
-Adjoint functors
+### 伴随函子 (Adjoint Functors)
 ===
 
-If the concept of a free object and the corresponding free functor seemed somewhat arbitrary to you, don't worry, it will seem clearer once we pinpoint the relationship it has with the (arguably more straightforward) concept of forgetful functor.
+如果自由对象及其对应的自由函子的概念对你来说显得有些随意，不要担心，一旦我们明确它与（可以说更直接的）遗忘函子的关系后，它会变得更加清晰。
 
-The relationship is a little bit complex - explaining it involves three steps.
+这种关系有些复杂——解释它涉及三个步骤。
 
-Step one: Given a free object, in our case a free monoid from a given set of generators, there exists a monoid homomorphism from it, to any other monoid that is composed of the same set of generators. The homomorphism consists of just applying the monoid laws and, by doing that, converting each elements of the free monoid to an element of the other one. 
+第一步：给定一个自由对象（在我们的例子中是由一组生成元生成的自由幺半群），存在从该自由幺半群到由相同生成元组成的其他幺半群的幺半群同态。该同态仅通过应用幺半群法则来完成，将自由幺半群的每个元素转换为另一个幺半群的元素。
 
-So for example, by applying the color-mixing rule we can convert any element of the free monoid generated by the set of the red blue and yellow balls to an element of the color-mixing monoid.
+例如，通过应用颜色混合规则，我们可以将由红色、蓝色和黄色球组成的自由幺半群的任何元素转换为颜色混合幺半群的元素。
 
-![Adjunction](adjunction_1.svg)
+![伴随](adjunction_1.svg)
 
-Step two: there exist a morphism from any set to the underlying set of any monoid that is generated by the elements of that set as generators.
+第二步：存在从任何集合到由该集合的元素作为生成元生成的幺半群的底层集合的态射。
 
-![Adjunction](adjunction_2.svg)
+![伴随](adjunction_2.svg)
 
-Finally, there is a isomorphism between these two sets of functions, which in turn translates to a relationship between the free and forgetful functor that looks like this (the free functor is in green and the forgetful one is in red).
+最后，这两个函数集之间存在同构，这反过来又转化为自由函子和遗忘函子之间的关系，如下图所示（自由函子用绿色表示，遗忘函子用红色表示）。
 
-![Adjunction](adjunction_3.svg)
+![伴随](adjunction_3.svg)
 
-You see that This relationship is called an *adjunction* and it defines what the free functor is in terms of the forgetful one, or vice versa.
+你可以看到，这种关系被称为*伴随* (adjunction)，它定义了自由函子与遗忘函子的关系，反之亦然。
 
-Unit and counit
+### 单位与共单位 (Unit and Counit)
 ---
 
-
-Another example
+### 另一个例子 (Another Example)
 ---
 
-Let's take another example. The free monoid comprised of just one generator object (which for our purposes we identify with $1$) can be mapped to all cyclic monoids like $Z_{1}$, $Z_{2}$, $Z_{3}$ etc. as well as to the monoid of natural numbers under addition, pictured below
+让我们看另一个例子。仅包含一个生成元对象的自由幺半群（在我们的例子中是 $1$）可以映射到所有循环幺半群（如 $Z_1$、$Z_2$、$Z_3$ 等），以及自然数在加法下形成的幺半群，如下图所示。
 
-![Adjunction](adjunction_numbers_1.svg)
+![伴随](adjunction_numbers_1.svg)
 
-And in the category of sets, there exist a function between a singleton set and any other set that features its element. 
+在集合范畴中，存在从单元素集合到包含该元素的任意集合的函数。
 
-![Adjunction](adjunction_numbers_2.svg)
+![伴随](adjunction_numbers_2.svg)
 
-The equivalence of those two functions is actually another instance of the adjunction between monoids and sets, created by the free and forgetful functor.
+这两个函数的等价实际上是由自由函子和遗忘函子构建的集合与幺半群之间的伴随关系的另一个实例。
 
-![Adjunction](adjunction_numbers.svg)
+![伴随](adjunction_numbers.svg)
 
-There definitely is more to be said about free and forgetful functors, as well as for adjunctions, but as always, I will leave things at the most interesting moment in order to revisit them from a different perspective later.
+关于自由函子和遗忘函子以及伴随函子，还有很多可以讨论的内容，但正如往常一样，我会在最有趣的时刻停下来，以便稍后从不同的角度重新审视它们。
 
-{%endif%}
+{% endif %}
 
+伴随 (Adjunction) 和等价 (Equivalence) 一样，是范畴之间的关系。伴随由两个函子组成，类似于等价关系。
 
-
-
-Like equivalence, adjunction is a relationship between two categories. Like equivalence, it is composed of two functors.
-
-However, unlike equivalence, an adjunction is not symmetric i.e. although the two functors are two way and we 
+然而，与等价不同，伴随关系并非对称，即尽管这两个函子是双向的...
 
 $F \bullet G \cong  id_{D}$
 
@@ -158,21 +153,16 @@ $F \bullet G \to id_{D}$
 
 $G \bullet F \to id_{C}$
 
-
-
-Free-forgetful adjunctions
+### 自由-遗忘伴随 (Free-Forgetful Adjunctions)
 ===
 
-Formal concept analysis
+### 形式概念分析 (Formal Concept Analysis)
 ===
 
-Tensor-Hom adjunction
+### 张量-同态伴随 (Tensor-Hom Adjunction)
 ===
 
-The tensor-hom adjunction is actually a codename for the curry-uncurry function that we saw earlier.
-
-
-
+张量-同态伴随实际上是我们之前看到的柯里化 (currying) 和逆柯里化 (uncurrying) 的别名。
 
 Adjunctions
 ===
