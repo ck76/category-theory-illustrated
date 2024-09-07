@@ -3,37 +3,37 @@ layout: default
 title: Orders
 ---
 
-Orders
+顺序 (Orders)
 ===
 
-Given a set of objects, there can be numerous criteria, based on which to order them (depending on the objects themselves) --- size, weight, age, alphabetical order etc.
+给定一组对象，可以基于许多不同的标准对它们进行排序（具体取决于对象本身）——如大小、重量、年龄、字母顺序等。
 
-However, currently we are not interested in the *criteria* that we can use to order objects, but in the *nature of the relationships* that define order. Of which there can be several types as well. 
+然而，目前我们并不关心用来对对象排序的*标准*，而是关心定义顺序的*关系的本质*，这种关系也有不同的类型。
 
-Mathematically, the order as a construct is represented (much like a monoid) by two components. 
+从数学上讲，顺序作为一个结构（类似于幺半群 (monoid)）由两个部分组成。
 
-One is a *set of things* (e.g. colorful balls) which we sometimes call the order's *underlying set*.
+其中之一是一个*事物的集合*（例如彩色球），有时我们称之为顺序的*底层集合*。
 
 ![Balls](../04_order/balls.svg)
 
-And the other is a *binary relation* between these things, which are often represented as arrows.
+另一个是这些事物之间的*二元关系*，通常用箭头表示。
 
 ![Binary relation](../04_order/binary_relation.svg)
 
-Not all binary relationships are orders --- only ones that fit certain criteria that we are going to examine as we review the different types of order.
+并不是所有的二元关系都是顺序——只有符合某些特定标准的关系才可以成为顺序。我们将在回顾不同类型的顺序时进行讨论。
 
-Linear order
+线性顺序 (Linear order)
 ===
 
-Let's start with an example --- the most straightforward type of order that you think of is *linear order* i.e. one in which every object has its place depending on every other object. In this case the ordering criteria is completely deterministic and leaves no room for ambiguity in terms of which element comes before which. For example, order of colors, sorted by the length of their light-waves (or by how they appear in the rainbow).
+让我们从一个例子开始——最直接的顺序类型是*线性顺序*，即每个对象都有自己的位置，并且可以与其他所有对象进行比较。在这种情况下，排序标准是完全确定的，不存在任何关于哪个元素在前哪个在后的模糊性。比如，按颜色的光波长排序（或根据它们在彩虹中的顺序排序）。
 
 ![Linear order](../04_order/linear_order.svg)
 
-Using set theory, we can represent this order, as well as any other order, as a cartesian products of the order's underlying set with itself.
+使用集合论 (set theory)，我们可以将这种顺序以及任何其他顺序表示为底层集合与其自身的笛卡尔积 (cartesian product)。
 
 ![Binary relation as a product](../04_order/binary_relation_product.svg)
 
-And in programming, orders are defined by providing a function which, given two objects, tells us which one of them is "bigger" (comes first) and which one is "smaller". It isn't hard to see that this function is actually a definition of a cartesian product.
+在编程中，顺序是通过提供一个函数来定义的，该函数给定两个对象后，告诉我们哪个对象“更大”（排在前面），哪个“更小”。不难看出这个函数实际上是笛卡尔积的定义。
 
 ```
 [1, 3, 2].sort((a, b) => { 
@@ -45,506 +45,484 @@ And in programming, orders are defined by providing a function which, given two 
 })
 ```
 
-However (this is where it gets interesting) not all such functions (and not all cartesian products) define orders. To really define an order (e.g. give the same output every time, independent of how the objects were shuffled initially), functions have to obey several rules. 
+然而（这里开始变得有趣），并不是所有这样的函数（也不是所有笛卡尔积）都定义了顺序。为了真正定义一个顺序（例如，每次给出相同的输出，独立于最初对象的排列方式），函数必须遵守几个规则。
 
-Incidentally, (or rather not incidentally at all), these rules are nearly equivalent to the mathematical laws that define the criteria of the order relationship i.e. those are the rules that define which element can point to which. Let's review them.
+巧合的是（或者说这根本不是巧合），这些规则几乎等同于定义顺序关系标准的数学法则，即那些定义哪个元素可以指向哪个元素的规则。让我们来回顾一下它们。
 
-Reflexivity 
+自反性 (Reflexivity)
 ---
 
-Let's get the most boring law out of the way --- each object has to be bigger or equal to itself, or $a ≤ a$ for all $a$ (the relationship between elements in an order is commonly denoted as $≤$ in formulas, but it can also be represented with an arrow from first object to the second.)
+让我们先讨论最无趣的法则——每个对象都必须大于或等于它自己，或者说对于所有 $a$，$a ≤ a$ （在公式中，元素之间的关系通常用 $≤$ 表示，但也可以用箭头表示，箭头从第一个对象指向第二个对象）。
 
 ![Reflexivity](../04_order/reflexivity.svg)
 
-There is no special reason for this law to exist, except that the "base case" should be covered somehow. 
+这个法则存在的特殊理由并不多，除了“基本情况”应该以某种方式被涵盖。
 
-We can formulate it the opposite way too and say that each object should *not* have the relationship to itself, in which case we would have a relation than resembles *bigger than*, as opposed to *bigger or equal to* and a slightly different type of order, sometimes called a *strict* order.
+我们也可以反过来表述这个法则，说每个对象*不应该*与自身具有这种关系，在这种情况下，我们会得到一个类似于*大于*而非*大于或等于*的关系，这样的顺序称为*严格顺序*。
 
-Transitivity
+传递性 (Transitivity)
 ---
 
-The second law is maybe the least obvious, (but probably the most essential) --- it states that if object $a$ is bigger than object $b$, it is automatically bigger than all objects that are smaller than $b$ or $a ≤ b \land b ≤ c \to a ≤ c$. 
+第二个法则可能是最不明显的（但可能也是最关键的）——它指出，如果对象 $a$ 大于对象 $b$，那么它也自动大于所有比 $b$ 小的对象，即 $a ≤ b \land b ≤ c \to a ≤ c$。
 
 ![Transitivity](../04_order/transitivity.svg)
 
-This is the law that to a large extend defines what an order is: if I am better at playing soccer than my grandmother, then I would also be better at it than my grandmother's friend, whom she beats, otherwise I wouldn't really be better than her.
+这是在很大程度上定义了什么是顺序的法则：如果我踢足球比我祖母好，那么我也应该比我祖母的朋友好，否则我就不能说我踢得比她好。
 
-Antisymmetry
+反对称性 (Antisymmetry)
 ---
 
-The third law is called antisymmetry. It states that the function that defines the order should not give contradictory results (or in other words you have $x ≤ y$ and $y ≤ x$ only if $x = y$). 
+第三个法则称为反对称性 (antisymmetry)。它指出，定义顺序的函数不应该给出矛盾的结果（换句话说，如果 $x ≤ y$ 且 $y ≤ x$，那么仅当 $x = y$ 时才成立）。
 
 ![antisymmetry](../04_order/antisymmetry.svg)
 
-It also means that no ties are permitted --- either I am better than my grandmother at soccer or she is better at it than me.
+这也意味着不允许平局——要么我踢足球比我祖母好，要么她踢得比我好。
 
-Totality
+完备性 (Totality)
 ---
 
-The last law is called *totality* (or *connexity*) and it mandates that all elements that belong to the order should be *comparable* ($a ≤ b \lor b ≤ a$). That is, for any two elements, one would always be "bigger" than the other. 
+最后一个法则称为*完备性*（或*联通性* (connexity)），它规定属于该顺序的所有元素必须是*可比较的*（即 $a ≤ b \lor b ≤ a$）。换句话说，对于任意两个元素，总有一个比另一个“更大”。
 
-By the way, this law makes the reflexivity law redundant, as reflexivity is just a special case of totality when $a$ and $b$ are one and the same object, but I still want to present it for reasons that will become apparent soon.
+顺便说一句，这条法则使自反性法则成为多余的，因为自反性只是当 $a$ 和 $b$ 是同一个对象时完备性的特例，但我仍然想要讨论它，原因稍后会变得清晰。
 
 ![connexity](../04_order/connexity.svg)
 
-Actually, here are the reasons: this law does not look so "set in stone" as the rest of them i.e. we can probably think of some situations in which it does not apply. For example, if we aim to order all people based on soccer skills there are many ways in which we can rank a person compared to their friends their friend's friends etc. but there isn't a way to order groups of people who never played with one another.
+实际上，原因是这样的：这条法则不像其他法则那样“板上钉钉”，即我们可能会想到某些不适用它的情况。例如，如果我们试图根据足球技能来对所有人排序，有很多方法可以对一个人相对于他们的朋友或他们朋友的朋友进行排名，但没有办法对从未互相踢过球的群体进行排序。
 
-Orders, like the order people based on their soccer skills, that don't follow the totality law are called *partial orders*, (and linear orders are also called *total orders*.)
+那些不遵循完备性法则的顺序称为*偏序* (partial orders)，（线性顺序也称为*全序* (total orders)）。
 
-**Question:**  Previously, we covered a relation that is pretty similar to this. Do you remember it? What is the difference?
+**问题：** 我们之前讨论过一个与此非常相似的关系。你还记得它吗？有什么不同？
 
-**Task:** Think about some orders that you know about and figure out whether they are partial or total.
+**任务：** 想一想你知道的一些顺序，并弄清楚它们是偏序还是全序。
 
-Partial orders are actually much more interesting than linear/total orders. But before we dive into them, let's say a few things about numbers.
+偏序实际上比线性/全序更有趣。不过在我们深入讨论之前，先谈谈数字。
 
-The order of natural numbers
+自然数的顺序 (The order of natural numbers)
 ---
 
-Natural numbers form a linear order under the operation *bigger or equal to* (the symbol of which we have been using in our formulas.)
+自然数在“大于或等于”运算下形成线性顺序（我们在公式中一直使用的符号）。
 
 ![numbers](../04_order/numbers.svg)
 
-In many ways, numbers are the quintessential order --- every finite order of objects is isomorphic to a subset of the order of numbers, as we can map the first element of any order to the number $1$, the second one to the number $2$ etc (and we can do the opposite operation as well).
+在许多方面，数字是典型的顺序——任何有限的对象顺序都是自然数顺序的同构 (isomorphic)，因为我们可以将任何顺序的第一个元素映射到数字 $1$，第二个元素映射到数字 $2$，等等（反向操作也是可以的）。
 
-If we think about it, this isomorphism is actually closer to the everyday notion of a linear order, than the one defined by the laws --- when most people think of order, they aren't thinking of a *transitive, antisymmetric* and *total* relation, but are rather thinking about criteria based on which they can decide which object comes first, which comes second etc. So it's important to notice that the two are equivalent.
+如果我们仔细思考，这种同构实际上比通过法则定义的顺序更接近日常所理解的线性顺序——当大多数人想到顺序时，他们并不是在想一个*传递的、反对称的*和*完备的*关系，而是想到一种基于某种标准决定哪个对象排在前面、哪个排在后面的顺序。因此，注意到这两者是等价的很重要。
 
 ![Linear order isomorphisms](../04_order/linear_order_isomorphism.svg)
 
-From the fact that any finite order of objects is isomorphic to the natural numbers, it also follows that all linear orders of the same magnitude are isomorphic to one another.
+由于任何有限的对象顺序都与自然数同构，故所有相同大小的线性顺序都是相互同构的。
 
-So, the linear order is simple, but it is also (and I think that this isomorphism proves it) the most *boring* order ever, especially when looked from a category-theoretic viewpoint --- all finite linear orders (and most infinite ones) are just isomorphic to the natural numbers and so all of their diagrams look the same way.
+所以，线性顺序很简单，但从范畴论 (category theory) 的角度来看，这也是最*无聊*的顺序，特别是当我们看到所有有限的线性顺序（以及大多数无限顺序）都与自然数同构时，它们的图示看起来都一样。
 
 ![Linear order (general)](../04_order/general_linear_order.svg)
 
-However, this is not the case with partial orders that we will look into next.
+然而，偏序并非如此，我们将在接下来的内容中继续探讨。
 
-<!--TODO Cantor's theorem -->
 
-Partial order 
+
+偏序 (Partial order)
 ===
 
-Like a linear order, a partial order consists of a set plus a relation, with the only difference that, although it still obeys the *reflexive, transitive* and the *antisymmetric* laws, the relation does not obey the law of *totality*, that is, not all of the sets elements are necessarily ordered. I say "necessarily" because even if all elements are ordered, it is still a partial order (just as a group is still a monoid) --- all linear orders are also partial orders, but not the other way around. We can even create an *order of orders*, based on which is more general.
+与线性顺序类似，偏序由一个集合加上一个关系组成，唯一的区别是，尽管它依然遵循*自反、传递*和*反对称*的法则，这个关系并不遵守*完备性*法则，也就是说，并非集合中的所有元素都一定是有序的。我说“不一定”是因为即使所有元素都是有序的，它依然是一个偏序（就像群 (group) 依然是幺半群 (monoid) 一样）——所有线性顺序都是偏序，但反过来则不然。我们甚至可以创建一个*顺序的顺序*，根据其一般性来排序。
 
-Partial orders are also related to the concept of an *equivalence relations* that we covered in chapter 1, except that *symmetry* law is replaced with *antisymmetry*.
+偏序还与我们在第一章中讨论的*等价关系 (equivalence relations)* 概念相关，只不过*对称性 (symmetry)* 法则被*反对称性 (antisymmetry)* 所取代。
 
-If we revisit the example of the soccer players rank list, we can see that the first version that includes just **m**yself, my **g**randmother and her **f**riend is a linear order.
+如果我们重温之前足球选手的排名列表的例子，可以看到包含的只有**我自己**、我**祖母**和她的**朋友**时是一个线性顺序。
 
 ![Linear soccer player order](../04_order/player_order_linear.svg)
 
-However, including this **o**ther person whom none of us played yet, makes the hierarchy non-linear i.e. a partial order.
+然而，加入一个我们谁也没有踢过比赛的**另一位**人选后，层级变得非线性的，即变成了偏序。
 
 ![Soccer player order - leftover element](../04_order/player_order_leftover.svg)
 
-This is the main difference between partial and total orders --- partial orders cannot provide us with a definite answer of the question who is better than who. But sometimes this is what we need --- in sports, as well as in other domains, there isn't always an appropriate way to rate people linearly. 
+这就是偏序和全序的主要区别——偏序不能给出一个确定的答案，告诉我们谁比谁好。但有时候这正是我们需要的——在体育比赛和其他领域，并不总有一种适合线性评价的方式。
 
-Chains
+链 (Chains)
 ---
 
-Before, we said that all linear orders can be represented by the same chain-like diagram, we can reverse this statement and say that all diagrams that look something different than the said diagram represent partial orders. An example of this is a partial order that contains a bunch of linearly-ordered subsets, e.g. in our soccer example we can have separate groups of friends who play together and are ranked with each other, but not with anyone from other groups.
+之前我们说过，所有线性顺序都可以用相同的链状图表示，我们可以反过来说，所有看起来不同于这种图的图都代表偏序。例如，偏序可能包含一些线性排列的子集，例如在我们的足球例子中，我们可以有不同的朋友群体，他们只在群体内部相互比赛并有各自的排名，但与其他群体没有排名关系。
 
 ![Soccer order - two hierarchies](../04_order/player_order_two.svg)
 
-The different linear orders that make up the partial order are called *chains*. There are two chains in this diagram $m \to g \to f$ and $d \to o$.
+构成偏序的不同线性顺序被称为*链*。在这个图中有两条链，分别是 $m \to g \to f$ 和 $d \to o$。
 
-The chains in an order don't have to be completely disconnected from each other in order for it to be partial. They can be connected as long as the connections are not all *one-to-one* i.e. ones when the last element from one chain is connected to the first element of the other one (this would effectively unite them into one chain.) 
+链不必完全彼此独立才能形成偏序。它们可以相互连接，只要这些连接并非完全*一对一*的，即最后一个元素从一条链连接到另一条链的第一个元素（这将有效地将它们统一为一条链）。
 
 ![Soccer order - two hierarchies and a join](../04_order/player_order_two_join.svg)
 
-The above set is not linearly-ordered. This is because, although we know that $d ≤ g$ and that $f ≤ g$, the relationship between $d$ and $f$ is *not* known --- any element can be bigger than the other one.
+上面的集合不是线性排序的。因为尽管我们知道 $d ≤ g$ 且 $f ≤ g$，但 $d$ 和 $f$ 之间的关系是*未知的*——它们中的任何一个都可能比另一个大。
 
-Greatest and least objects
+最大和最小对象 (Greatest and least objects)
 ---
 
-Although partial orders don't give us a definitive answer to "Who is better than who?", some of them still can give us an answer to the more important question (in sports, as well as in other domains), namely "Who is number one?" i.e. who is the champion, the player who is better than anyone else. Or, more generally, the element that is bigger than all other elements. 
+尽管偏序不能为我们提供关于“谁比谁好”的确定答案，但其中一些仍然可以回答更为重要的问题（无论是在体育比赛还是其他领域），即“谁是第一名？”也就是，谁是冠军，谁比其他人都好。或者更普遍地说，哪个元素比其他所有元素都大。
 
-We call such element the *greatest element*. Some (not all) partial orders do have such element --- in our last diagram $m$ is the greatest element, in this diagram, the green element is the biggest one.
+我们称这样的元素为*最大元素*。一些（但不是所有）偏序确实有这样的元素——在我们上一个图中，$m$ 是最大元素，在下一个图中，绿色元素是最大的。
 
 ![Join diagram with one more element](../04_order/join_additional_element.svg)
 
-Sometimes we have more than one elements that are bigger than all other elements, in this case none of them is the greatest.
+有时我们有多个比所有其他元素都大的元素，在这种情况下，它们中没有一个是最大的。
 
 ![A diagram with no greatest element](../04_order/non_maximal_element.svg)
 
-In addition to the greatest element, a partial order may also have a least (smallest) element, which is defined in the same way.
+除了最大元素之外，偏序还可能有最小元素，其定义方式与最大元素相同。
 
-Joins
+并 (Joins)
 ---
 
-The *least upper bound* of two elements that are connected as part of an order is called the *join* of these elements, e.g. the green element is a join of the other two. 
+连接两个作为偏序一部分的元素的*最小上界*称为这两个元素的*并* (join)，例如，绿色元素是另两个的并。
 
 ![Join](../04_order/join.svg)
 
-There can be multiple elements bigger than $a$ and $b$ (all elements that are bigger than $c$ are also bigger than $a$ and $b$), but only one of them is a join. Formally, the join of $a$ and $b$ is defined as the smallest element that is bigger than both $a$ and $b$ (i.e. smallest $c$ for which $a ≤ c$, and $b ≤ c$.)
+可能有多个比 $a$ 和 $b$ 大的元素（所有比 $c$ 大的元素也比 $a$ 和 $b$ 大），但它们中只有一个是并。形式上，$a$ 和 $b$ 的并定义为比 $a$ 和 $b$ 都大的最小元素（即对于 $a ≤ c$ 且 $b ≤ c$，$c$ 是最小的）。
 
 ![Join with other elements](../04_order/join_other_elements.svg)
 
-Given any two elements in which one is bigger than the other (e.g. $a ≤ b$), the join is the bigger element (in this case $b$). 
+给定任意两个元素，其中一个大于另一个（例如 $a ≤ b$），并就是较大的那个元素（在这个例子中是 $b$）。
 
-In a linear orders, the *join* of any two elements is just the bigger element.
+在线性顺序中，任意两个元素的*并*就是较大的那个元素。
 
-Like with the greatest element, if two elements have several upper bounds that are equally big, then none of them is a *join* (a join must be unique).
+和最大元素类似，如果两个元素有多个同样大的上界，那么它们中没有一个是*并*（并必须是唯一的）。
 
 ![A non-join diagram](../04_order/non_join.svg)
 
-If, however, one of those elements is established as smaller than the rest of them, it immediately qualifies.
+如果其中一个元素被确定为比其他元素小，它就立刻符合条件成为并。
 
 ![A join diagram](../04_order/non_join_fix.svg)
 
-**Question:** Which concept in category theory reminds you of joins?
+**问题：** 范畴论中的哪个概念让你联想到并？
 
-Meets
+交 (Meets)
 ---
 
-Given two elements, the biggest element that is smaller than both of them is called the *meet* of these elements.
+给定两个元素，比它们都小的最大元素称为这些元素的*交* (meet)。
 
 ![Meet](../04_order/meet.svg)
 
-The same rules as for the joins apply. 
+其规则与并的规则相同。
 
-Hasse diagrams
+哈斯图 (Hasse diagrams)
 ---
 
-The diagrams that we use in this section are called "Hasse diagrams" and they work much like our usual diagrams, however they have an additional rule that is followed --- "bigger" elements are always positioned above smaller ones. 
+我们在本节中使用的图称为“哈斯图” (Hasse diagrams)，它们的工作方式与我们通常的图类似，但有一个额外的规则——“较大”的元素总是位于较小元素的上方。
 
-In terms of arrows, the rule means that if you add an arrow to a point, the point *to* which the arrow points must always be above the one *from* which it points.
+在箭头的层面上，这条规则意味着如果你向一个点添加箭头，箭头指向的点必须总是在发出箭头的点上方。
 
 ![A join diagram](../04_order/hasse.svg)
 
-This arrangement allows us to compare any two points by just seeing which one is above the other e.g. we can determine the *join* of two elements, by just identifying the elements that they connect to and see which one is lowest.
+这种排列允许我们通过简单地查看哪个点在另一个点的上方来比较任意两个点。例如，我们可以通过识别它们连接到的元素并查看哪个元素最低，来确定两个元素的*并*。
 
 
-Color order
+
+颜色顺序 (Color order)
 ---
 
-We all know many examples of total orders (any form of chart or ranking is a total order), but there are probably not so many obvious examples of partial orders that we can think of off the top of our head. So let's see some. This will gives us some context, and will help us understand what joins are.
+我们都知道很多全序的例子（任何形式的图表或排名都是全序），但我们很难想到一些显而易见的偏序例子。那么让我们来看一些例子。这将为我们提供一些背景，并帮助我们理解什么是并。
 
-To stay true to our form, let's revisit our color-mixing monoid and create a *color-mixing partial order* in which all colors point to colors that contain them.
+为了保持我们一贯的风格，让我们回顾一下颜色混合幺半群 (color-mixing monoid)，并创建一个*颜色混合偏序*，在其中所有颜色指向包含它们的颜色。
 
 ![A color mixing poset](../04_order/color_mixing_poset.svg)
 
-If you go through it, you will notice that the join of any two colors is the color that they make up when mixed. Nice, right?
+如果你仔细观察，会发现任意两个颜色的并就是它们混合后产生的颜色。很有趣，对吧？
 
 ![Join in a color mixing poset](../04_order/color_mixing_poset_join.svg)
 
-Numbers by division
+通过除法排序的数字 (Numbers by division)
 ---
 
-We saw that when we order numbers by "bigger or equal to", they form a linear order (*the* linear order even.) But numbers can also form a partial order, for example they form a partial order if we order them by which divides which, i.e. if $a$ divides $b$, then $a$ is before $b$ e.g. because $2 \times 5 = 10$, $2$ and $5$ come before $10$ (but $3$, for example, does not come before $10$.)
+我们看到，当按“大于或等于”对数字排序时，它们形成线性顺序（*甚至是*线性顺序）。但数字也可以形成偏序，例如，如果我们根据哪个数字能整除哪个数字进行排序，那么它们就会形成一个偏序。例如，如果 $a$ 能整除 $b$，那么 $a$ 就排在 $b$ 前面。例如，因为 $2 \times 5 = 10$，$2$ 和 $5$ 在 $10$ 前面（但 $3$ 不能在 $10$ 前面）。
 
 ![Divides poset](../04_order/divides_poset.svg)
 
-And it so happens (actually for very good reason) that the join operation again corresponds to an operation that is relevant in the context of the objects --- the join of two numbers in this partial order is their *least common multiple*. 
+事实证明（实际上有充分的理由），在这个偏序中，并操作再次对应于与对象相关的操作——两个数字的并是它们的*最小公倍数* (least common multiple)。
 
-And the *meet* (the opposite of join) of two numbers is their *greatest common divisor*.
+而两个数字的*交*（与并相反）是它们的*最大公约数* (greatest common divisor)。
 
 ![Divides poset](../04_order/divides_poset_meet.svg)
 
-Inclusion order
+包含顺序 (Inclusion order)
 ---
 
-Given a collection of all possible sets containing a combination of a given set of elements...
+给定包含给定元素组合的所有可能集合...
 
 ![A color mixing poset, ordered by inclusion](../04_order/color_mixing_poset_inclusion_subsets.svg)
 
-...we can define what is called the *inclusion order* of those sets, in which $a$ comes before $b$ if $a$ *includes* $b$, or in other words if $b$ is a *subset* of $a$.
+...我们可以定义这些集合的*包含顺序* (inclusion order)，其中如果 $a$ *包含* $b$，即 $b$ 是 $a$ 的*子集*，那么 $a$ 排在 $b$ 之前。
 
 ![A color mixing poset, ordered by inclusion](../04_order/color_mixing_poset_inclusion.svg)
 
-In this case the *join* operation of two sets is their *union*, and the *meet* operation is their set *intersection*.
+在这种情况下，两个集合的*并*操作是它们的*并集*，而*交*操作是它们的*交集*。
 
-This diagram might remind you of something --- if we take the colors that are contained in each set and mix them into one color, we get the color-blending partial order that we saw earlier.
+这个图可能会让你想起某些东西——如果我们将每个集合中包含的颜色混合成一种颜色，我们就会得到前面看到的颜色混合偏序。
 
 ![A color mixing poset, ordered by inclusion](../04_order/color_mixing_poset_blend.svg)
 
-The order example with the number dividers is also isomorphic to an inclusion order, namely the inclusion order of all possible sets of *prime* numbers, including repeating ones (or alternatively the set of all *prime powers*). This is confirmed by the fundamental theory of arithmetic, which states that every number can be written as a product of primes in exactly one way.
+使用数字除法的排序示例也与包含顺序同构，具体来说是所有*质数*集合的包含顺序（包括重复的质数），或者可以说是所有*质数幂* (prime powers) 的集合。这一结论由算术基本定理 (fundamental theorem of arithmetic) 证实，该定理指出，每个数字都可以用质数的乘积以唯一的方式表示。
 
 ![Divides poset](../04_order/divides_poset_inclusion.svg)
 
-Order isomorphisms
+顺序同构 (Order isomorphisms)
 ---
 
-We mentioned order isomorphisms several times already so this is about time to elaborate on what they are. Take the isomorphism between the number partial order and the prime inclusion order as an example. Like an isomorphism between any two sets, it is comprised of two functions: 
+我们已经多次提到顺序同构 (order isomorphisms)，所以是时候详细解释一下了。以数字偏序和质数包含顺序之间的同构为例。像任何两个集合之间的同构一样，它由两个函数组成：
 
-- One function from the prime inclusion order, to the number order (which in this case is just the *multiplication* of all the elements in the set) 
-- One function from the number order to the prime inclusion order (which is an operation called *prime factorization* of a number, consisting of finding the set of prime numbers that result in that number when multiplied with one another). 
+- 一个函数从质数包含顺序到数字顺序（在这种情况下就是将集合中的所有元素相乘）。
+- 一个函数从数字顺序到质数包含顺序（即*质因数分解*，这个操作找到一组质数，这些质数相乘后得到该数字）。
 
 ![Divides poset](../04_order/divides_poset_isomorphism.svg)
 
-> An order isomorphism is essentially an isomorphism  between the orders' underlying sets (invertible function). However, besides their underlying sets, orders also have the arrows that connect them, so there is one more condition: in order for an invertible function to constitute an order isomorphism, it has to *respect those arrows*, in other words it should be *order preserving*. More specifically, applying this function (let's call it $F$) to any two elements in one set ($a$ and $b$) should result in two elements that have the same corresponding order in the other set (so $a ≤ b$ if and only if $F(a) ≤ F(b)$). 
-Birkhoff's representation theorem
+> 顺序同构本质上是底层集合的同构（可逆函数）。然而，除了它们的底层集合，顺序还包含连接它们的箭头，所以还有一个额外的条件：为了使一个可逆函数构成顺序同构，它必须*尊重这些箭头*，换句话说，它应该*保持顺序*。更具体地说，将这个函数（称为 $F$）应用于一个集合中的任意两个元素（$a$ 和 $b$）时，应该得到在另一个集合中具有相同对应顺序的两个元素（即 $a ≤ b$ 当且仅当 $F(a) ≤ F(b)$）。
+
+Birkhoff 表示定理 (Birkhoff's representation theorem)
 ---
 
-So far, we saw two different partial orders, one based on color mixing, and one based on number division, that can be represented by the inclusion orders of all possible combinations of sets of some *basic elements* (the primary colors in the first case, and the prime numbers (or prime powers) in the second one.) Many other partial orders can be defined in this way. Which ones exactly, is a question that is answered by an amazing result called *Birkhoff's representation theorem*. They are the *finite* partial orders that meet the following two criteria: 
+到目前为止，我们已经看到了两种不同的偏序，一种基于颜色混合，一种基于数字除法，它们可以通过某些*基本元素*（第一种情况下是原色，第二种情况下是质数或质数幂）的所有可能组合的包含顺序来表示。许多其他偏序也可以用这种方式定义。究竟是哪一些，Birkhoff 的一个惊人成果——*Birkhoff 表示定理*，给出了答案。它们是符合以下两个条件的*有限*偏序：
 
-1. All elements have *joins* and *meets*.
-2. Those *meet* and *join* operations *distribute* over one another, that is if we denote joins as meets as  $∨$ or $∧$, then $x ∨ (y ∧ z) = (x ∨ y) ∧ (x ∨ z)$.
+1. 所有元素都有*并*和*交*。
+2. 这些*交*和*并*运算彼此*分配*，即如果我们用 $∨$ 或 $∧$ 表示并和交，那么 $x ∨ (y ∧ z) = (x ∨ y) ∧ (x ∨ z)$。
+
+符合第一个条件的偏序称为*格* (lattices)。符合第二个条件的称为*分配格* (distributive lattices)。
+
+我们用来构造包含顺序的“质”元素是不能通过其他元素的*并*构造的元素。它们也被称为*并不可约元素* (join-irreducible elements)。
+
+顺便提一下，不是*分配格*的偏序同样也与包含顺序同构，只不过它们与*不包含所有可能组合*的元素的包含顺序同构。
 
 
-The partial orders that meet the first criteria are called *lattices*. The ones that meet the second one are called distributive lattices.
 
-And the "prime" elements which we use to construct the inclusion order are the elements that are not the *join* of any other elements. They are also called *join-irreducible* elements.
-
-By the way, the partial orders that are *not* distributive lattices are also isomorphic to inclusion orders, it is just that they are isomorphic to inclusion orders that *do not contain all possible combinations* of elements.
-
-Lattices
+格 (Lattices)
 ===
 
-We will now review the orders for which Birkhoff's theorem applies i.e. the *lattices*. Lattices are partial orders, in which every two elements have a *join* and a *meet*. So every lattice is also partial order, but not every partial order is a lattice (we will see even more members of this hierarchy). 
+接下来我们将回顾 Birkhoff 定理适用的顺序，即*格*。格是偏序的一种，其中每两个元素都有*并*和*交*。因此，每个格都是偏序，但并非所有偏序都是格（我们还会看到更多这种层级结构的成员）。
 
-Most partial orders that are created based on some sort of rule are distributive lattices, like for example the partial orders from the previous section are also distributive lattices when they are drawn in full, for example the color-mixing order.
+大多数基于某种规则创建的偏序都是分配格，例如前一节中的偏序就是当它们完整绘制时的分配格，例如颜色混合顺序。
 
 ![A color mixing lattice](../04_order/color_mixing_lattice.svg)
 
-Notice that we added the black ball at the top and the white one at the bottom. We did that because otherwise the top three elements wouldn't have a *join* element, and the bottom three wouldn't have a *meet*.
+注意，我们在顶部添加了一个黑色球，在底部添加了一个白色球。我们这样做是因为否则顶部三个元素将没有*并*元素，而底部三个元素将没有*交*元素。
 
-Bounded lattices
+有界格 (Bounded lattices)
 ---
 
-Our color-mixing lattice, has a *greatest element* (the black ball) and a *least element* (the white one). Lattices that have a least and greatest elements are called *bounded lattices*. It isn't hard to see that all finite lattices are also bounded.
+我们的颜色混合格有一个*最大元素*（黑色球）和一个*最小元素*（白色球）。拥有最小和最大元素的格称为*有界格*。不难看出，所有有限格都是有界的。
 
-**Task:** Prove that all finite lattices are bounded.
+**任务：** 证明所有有限格都是有界的。
 
-{% if site.distribution == 'print' %}
 
-Interlude --- semilattices and trees
+
+半格和树的插曲 (Interlude — Semilattices and Trees)
 ---
 
-Lattices are partial orders that have both *join* *and* *meet* for each pair of elements. Partial orders that just have *join* (and no *meet*), or just have *meet* and no *join* are called *semilattices*. More specifically, partial orders that have *meet* for every pair of elements are called *meet-semilattices*.
+格是既有*并*又有*交*的偏序结构。只有*并*（没有*交*）或只有*交*（没有*并*）的偏序称为*半格* (semilattices)。更具体地说，有*交*的偏序称为*交半格* (meet-semilattices)。
 
 ![Semilattice](../04_order/semilattice.svg)
 
-A structure that is similar to a semilattice (and probably more famous than it) is the *tree*.
+与半格类似（而且可能比半格更为人熟知）的结构是*树* (tree)。
 
 ![Tree](../04_order/tree.svg)
 
-The difference between the two is small but crucial:  in a tree, each element can only be connected to just one other element (although it can have multiple elements connected *to* it). If we represent a tree as an inclusion order, each set would "belong" in only one superset, whereas with semilattices there would be no such restrictions.
+两者的区别很小，但至关重要：在树中，每个元素只能与一个其他元素相连（尽管它可以有多个元素连接*到*它）。如果我们将树表示为包含顺序，那么每个集合只会“属于”一个上位集合，而在半格中则没有这样的限制。
 
 ![Tree and semilattice compared](../04_order/semilattice_tree.svg)
 
-<!-- TODO add a similar diagram for posets and total orders -->
+<!-- TODO 添加类似于偏序 (posets) 和全序 (total orders) 的图表 -->
 
-A good intuition for the difference between the two is that a semilattice is capable of representing much more general relations, so for example, the mother-child relation forms a tree (a mother can have multiple children, but a child can have *only one* mother), but the "older sibling" relation forms a lattice, as a child can have multiple older siblings and vise versa.
+一个直观的理解是，半格 (semilattice) 能够表示更为一般的关系。例如，母子关系形成了一棵树（一个母亲可以有多个孩子，但一个孩子只能有*一个*母亲），而“兄弟姐妹”关系则形成了一个格 (lattice)，因为一个孩子可以有多个哥哥或姐姐，反之亦然。
 
-Why am I speaking about trees? It's because people tend to use them for modeling all kinds of phenomena and to imagine everything as trees. The tree is the structure that all of us understand, that comes at us naturally, without even realizing that we are using a structure --- most human-made hierarchies are modeled as trees. A typical organization of people are modeled as trees - you have one person at the top, a couple of people who report to them, then even more people that report to this couple of people.
+为什么我要讲树 (trees) 呢？因为人们倾向于用它们来建模各种现象，并将一切想象成树。树这种结构是我们每个人都理解的，它自然地展现在我们面前，甚至在我们还没有意识到自己在使用结构的时候就已经在使用它了——大多数人为设计的层级结构都是以树的形式进行建模的。一个典型的组织架构被建模为树形结构——你有一个人在顶端，有几个人向他汇报，然后更多的人向这几个人汇报。
 
 ![Tree](../04_order/tree-organization.svg)
 
-(Contrast this with informal social groups, in which more or less everyone is connected to everyone else.)
- 
-And, cities (ones that are designed rather than left to evolve naturally) are also modeled as trees: you have several neighborhoods each of which has a school, a department store etc., connected with to each other and (in bigger cities) organized into bigger living units.
+（与非正式的社交群体相比，后者大致上每个人都与其他人有联系。）
 
-The implications of the tendency to use trees, as opposed to lattices, to model are examined in the ground-breaking essay “A City is Not a Tree” by Christopher Alexander.
+而且，城市（那些设计出来的，而不是自然演变出来的）也被建模为树形结构：你有几个街区，每个街区都有一所学校、一个商场等等，并且它们彼此相连，在大城市中，它们又组织成更大的生活单元。
 
-> In simplicity of structure the tree is comparable to the compulsive desire for neatness and order that insists the candlesticks on a mantelpiece be perfectly straight and perfectly symmetrical about the center. The semilattice, by comparison, is the structure of a complex fabric; it is the structure of living things, of great paintings and symphonies. 
+相对于使用格 (lattice) 来进行建模，使用树结构的倾向在Christopher Alexander的开创性文章《城市不是一棵树》中得到了详尽的探讨。
 
-In general, it seems that hierarchies that are specifically designed by *people*, such as cities tend to come up as trees, whereas hierarchies that are natural, such as the hierarchy of colors, tend to come be lattices.
+> 在结构的简洁性上，树类似于那种强迫症式的整洁与秩序感，这种秩序要求壁炉架上的烛台必须完全直立并对称地排列。与此相对，半格 (semilattice) 是复杂结构的代表；它是生命的结构，是伟大画作与交响乐的结构。
 
-{%endif%}
+总的来说，似乎是那些由*人类*专门设计的层级结构（如城市）更倾向于以树的形式展现，而那些自然存在的层级结构（如颜色的层次结构）则更倾向于以格子的形式呈现。
 
-Interlude: Formal concept analysis
+插曲：形式概念分析 (Interlude: Formal concept analysis)
 ===
 
-In the previous section we (along with Christopher Alexander) argued that lattice-based hierarchies are "natural", that is, they arise in nature. Now, we will see an interesting way to uncover such hierarchies, given a set of objects that share some attributes. This is an overview of a mathematical method, called *formal context analysis*.
+在上一节中，我们（以及克里斯托弗·亚历山大）认为基于格 (lattice) 的层级结构是“自然的”，也就是说它们在自然界中出现。现在我们将看到一种有趣的方法，通过一组具有某些属性的对象来揭示这种层级结构。这是一个称为*形式概念分析* (formal concept analysis) 的数学方法概述。
 
-The data structure that we will be analyzing, called *formal context* consists of 3 sets. Firstly, the set containing all *objects* that we will be analyzing (denoted as $G$).
+我们将要分析的数据结构称为*形式背景* (formal context)，它由 3 个集合组成。首先是包含我们将要分析的所有*对象*的集合（记为 $G$）。
 
 ![Formal concept analysis - function](../04_order/concept-objects.svg)
 
-Secondly, a set of some *attributes* that these objects might have (denoted as $M$). Here we will be using the 3 base colors.
+其次是一组这些对象可能具有的*属性* (attributes)（记为 $M$）。在这里，我们将使用三种基本颜色。
 
 ![Formal concept analysis - function](../04_order/concept-attributes.svg)
 
-And finally a set of relation (called *incidence*) that expresses which objects have which attributes, expressed by a set of pairs $G × M$. So, having a pair containing a ball and a base color (yellow for example) would indicates that the color of the ball contains (i.e. is composed of) the color yellow (among other colors).
+最后是一个关系集 (relation set)（称为*关联* (incidence)），它表示哪些对象具有哪些属性，并通过一组对 $G × M$ 表示。因此，包含一个球和一种基本颜色（例如黄色）的对表示该球的颜色包含黄色（即由黄色及其他颜色组成）。
 
 ![Formal concept analysis - function](../04_order/concept-incidense.svg)
 
-Now, let's use these sets to build a lattice. 
+现在，让我们使用这些集合来构建一个格。
 
-First step: From the set of pairs, we build a function, connecting each attributes with the set of objects that share this attribute (we can do this because functions are relations and relations are expressed by pairs).
+第一步：从这一对集合中，我们构建一个函数，将每个属性与共享该属性的对象集合相关联（我们可以这样做，因为函数是关系，而关系是由对表示的）。
 
 ![Formal concept analysis - function](../04_order/concept-function.svg)
 
-Take a look at the target of this function, which is a set of sets. Is there some way to order those sets in order to visialize them better? Of course, we can order them by inclusion. In this way, each attribute would be connected to an attribute that is shared by a similar set of objects.
+看一下这个函数的目标，即一组集合。有没有什么方法可以对这些集合进行排序以便更好地可视化？当然，我们可以通过包含关系来排序这些集合。这样，每个属性都会与一个由相似对象组成的属性相连。
 
-Add top and bottom values, and we get a lattice.
+加上顶点和底点，我们得到了一个格。
 
 ![Formal concept analysis - function](../04_order/concept-lattice.svg)
 
-Ordering the concept as a lattice might help us see connections between the concepts, in the context e.g. we see that *all balls in our set that contain the color yellow also contain the color red.*
+将概念按格的方式排序可能有助于我们在上下文中看到概念之间的联系。例如，我们可以看到*我们集合中所有包含黄色的球也包含红色*。
 
-**Task:** Take a set of object and one containing attributes and create your own concept lattice. Example: the objects can be lifeforms: fish, frog, dog, water weed, corn etc. and attributes can be their characteristics: "lives in water", "lives in land", "can move", "is a plant", "is an animal" etc. 
+**任务：** 选择一组对象和一个包含属性的集合，创建你自己的概念格。例如：对象可以是生命体：鱼、青蛙、狗、水草、玉米等，属性可以是它们的特征：“生活在水中”、“生活在陆地上”、“可以移动”、“是植物”、“是动物”等等。
 
-Preorder
+预序 (Preorder)
 ===
 
-In the previous section, we saw how removing the law of *totality* from the laws of (linear) order produces a different (and somewhat more interesting) structure, called *partial order*. Now let's see what will happen if we remove another one of the laws, namely the *antisymmetry* law. If you recall, the antisymmetry law mandated that you cannot have an object that is at the same time smaller and bigger than another one. (or that $a ≤ b ⟺ b ≰ a$).
+在上一节中，我们看到从（线性）顺序的规则中删除*全体性*法则会产生一种不同（且更有趣）的结构，称为*偏序* (partial order)。现在让我们看看，如果我们删除另一个法则，即*反对称性* (antisymmetry) 法则，会发生什么。如果你还记得，反对称性法则规定，不能同时有一个对象既小于又大于另一个对象（即 $a ≤ b ⟺ b ≰ a$）。
 
-| | Linear order | Partial order | Preorder |
-| | $a ≤ b$ or $b ≤ a$ | $a ≤ b$ or $b ≤ a$ or neither |  $a ≤ b$ or $b ≤ a$ or neither or both | 
-|---| ---             | ---        |
-|Reflexivity| X | X | X |
-|Transitivity| X | X | X |
-|Antisymmetry | X | X  |  |
-|Totality | X | | |
+| | 线性顺序 (Linear order) | 偏序 (Partial order) | 预序 (Preorder) |
+| --- | --- | --- | --- |
+| 反身性 (Reflexivity) | X | X | X |
+| 传递性 (Transitivity) | X | X | X |
+| 反对称性 (Antisymmetry) | X | X  |  |
+| 全体性 (Totality) | X | | |
 
-The result is a structure called a *preorder* which is not exactly an order in the everyday sense --- it can have arrows coming from any point to any other: if a partial order can be used to model who is better than who at soccer, then a preorder can be used to model who has beaten who, either directly (by playing him) or indirectly.
+结果就是产生了一种称为*预序*的结构，这并不是我们日常意义上的顺序——它可以从任何点到达任何其他点。如果偏序可以用来建模谁在足球比赛中比谁更强，那么预序可以用来建模谁击败了谁，无论是直接（通过比赛）还是间接。
 
 ![preorder](../04_order/preorder.svg)
 
-Preorders have just one law --- *transitivity* $a ≤ b \land b ≤ c \to a ≤ c$ (two, if we count *reflexivity*). The part about the indirect wins is a result of this law. Due to it, all indirect wins (ones that are wins not against the player directly, but against someone who had beat them) are added as a direct result of its application, as seen here (we show indirect wins in lighter tone). 
+预序只有一个规则——*传递性* $a ≤ b \land b ≤ c \to a ≤ c$（如果我们算上*反身性*的话，则有两个规则）。关于间接胜利的部分正是这一规则的结果。由于这个规则，所有间接胜利（即不是直接对抗，而是通过击败对手的对手而获胜）都会作为其应用的直接结果自动添加，如下所示（我们用较浅的色调显示间接胜利）。
 
 ![preorder in sport](../04_order/preorder_sports.svg)
 
-And as a result of that, all "circle" relationships (e.g. where you have a weaker player beating a stronger one) result in just a bunch of objects that are all connected to one another. 
+因此，所有“循环”关系（例如较弱的玩家击败较强的玩家）最终都导致一组彼此互相连接的对象。
 
-All of that structure arises naturally from the simple law of transitivity.
+这一切结构都自然地源自简单的传递性法则。
 
-Preorders and equivalence relations
+预序与等价关系 (Preorders and equivalence relations)
 ---
 
-Preorders may be viewed as a middle-ground between *partial orders* and *equivalence relations*. As the missing exactly the property on which those two structures differ --- (anti)symmetry. Because of that, if we have a bunch of objects in a preorder that follow the law of *symmetry*, those objects form an equivalence relation. And if they follow the reverse law of *antisymmetry*, they form a partial order.
+预序可以被看作是*偏序* (partial orders) 和*等价关系* (equivalence relations) 之间的中间地带。它们缺少的正是这两种结构的差异之处——即（反）对称性 (antisymmetry / symmetry)。因此，如果在预序中有一组对象满足*对称性*法则，那么这些对象就形成了一个等价关系。而如果它们满足*反对称性*法则，它们则形成了一个偏序。
 
-| Equivalence relation | Preorder | Partial order |
-| ---          | --- | --- |
-| Reflexivity | Reflexivity | Reflexivity |
-| Transitivity | Transitivity | Transitivity | 
-| Symmetry | - |Antisymmetry |
+| 等价关系 (Equivalence relation) | 预序 (Preorder) | 偏序 (Partial order) |
+| --- | --- | --- |
+| 反身性 (Reflexivity) | 反身性 (Reflexivity) | 反身性 (Reflexivity) |
+| 传递性 (Transitivity) | 传递性 (Transitivity) | 传递性 (Transitivity) | 
+| 对称性 (Symmetry) | - | 反对称性 (Antisymmetry) |
 
-In particular, any subset of objects that are connected with one another both ways (like in the example above) follows the *symmetry* requirement. So if we group all elements that have such connection, we would get a bunch of sets, all of which define different *equivalence relations* based on the preorder, called the preorder's *equivalence classes*.
+特别是，任何同时双向连接的一组对象（如上例所示）都遵循*对称性*要求。因此，如果我们将所有具有这种连接的元素进行分组，我们将得到一组定义了基于预序的不同*等价类* (equivalence classes) 的集合。
 
 ![preorder](../04_order/preorder_equivalence.svg)
 
-And, even more interestingly, if we transfer the preorder connections between the elements of these sets to connections between the sets themselves, these connections would follow the *antisymmetry* requirement, which means that they would form a *partial order.*
+更有趣的是，如果我们将预序中各个集合间的连接转化为这些集合之间的连接，这些连接将遵循*反对称性*要求，从而形成一个*偏序*。
 
 ![preorder](../04_order/preorder_partial_order.svg)
 
-In short, for every preorder, we can define the *partial order of the equivalence classes of this preorder*.
+简而言之，对于每一个预序，我们都可以定义出*该预序的等价类的偏序*。
 
-{% if site.distribution == 'print' %}
-
-Maps as preorders
+地图作为预序 (Maps as preorders)
 ---
 
-We use maps to get around all the time, often without thinking about the fact that that they are actually diagrams. More specifically, some of them are preorders --- the objects represent cities or intersections, and the relations represent the roads. 
+我们经常使用地图进行导航，往往不会意识到它们实际上是图 (diagrams)。更具体地说，有些地图是预序——对象表示城市或交叉口，关系则表示道路。
 
 ![A map as a preorder](../04_order/preorder_map.svg)
 
-Reflexivity reflects the fact that if you have a route allowing you to get from point $a$ to point $b$ and one that allows you to go from $b$ to $c$, then you can go from $a$ to $c$ as well. Two-way roads may be represented by two arrows that form an isomorphism between objects. Objects that are such that you can always get from one object to the other form equivalence classes (ideally all intersections would be in one equivalence class, else you would have places from which you would not be able to go back from).
+反身性反映了这样的事实：如果你有一条路可以从点 $a$ 到点 $b$，又有一条路可以从 $b$ 到 $c$，那么你也可以从 $a$ 到 $c$。双向道路可以用两条箭头表示，它们在对象之间形成同构。那些无论如何都可以相互到达的对象组成了等价类（理想情况下，所有交叉口都应该属于一个等价类，否则就会出现无法返回的地方）。
 
 ![preorder](../04_order/preorder_map_equivalence.svg)
 
-However, maps that contain more than one road (and even more than one *route*) connecting two intersections, cannot be represented using preorders. For that we would need categories (don't worry, we will get there).
+然而，包含不止一条连接两个交叉口的路的地图（甚至包含不止一条*路线*）无法用预序表示。为此，我们需要范畴 (categories)（别担心，我们会在后面讲到）。
 
-State machines as preorders 
+状态机作为预序 (State machines as preorders)
 ---
 
-Let's now reformat the preorder that we used in the previous two examples as a Hasse diagram that goes from left to right. Now, it (hopefully) doesn't look so much like a hierarchy, nor like map, but like a description of a process (which, if you think about it, is also a map just one that is temporal rather than spatial.) This is actually a very good way to describe a computation model known as *finite state machine*. 
+现在，让我们将前两个例子中的预序重新格式化为从左到右的哈斯图 (Hasse diagram)。现在，它（希望看起来）不再像一个层级结构，也不像一张地图，而像一个过程的描述（如果你细想一下，过程实际上也是一种地图，只不过是时间上的而不是空间上的）。这是描述一种称为*有限状态机* (finite state machine) 的计算模型的非常好的方式。
 
 ![A state machine as a preorder](../04_order/preorder_state_machine.svg)
 
-A specification of a finite state machine consists of a set of states that the machine can have, which, as the name suggest, must be finite, and a bunch of transition functions that specify which state do we transition to (often expressed as tables.)
+有限状态机的规格由机器可以具有的一组状态组成，正如其名称所示，这些状态必须是有限的，还有一组过渡函数 (transition functions)，指定我们会转移到哪个状态（通常以表格形式表示）。
 
-But as we saw, a finite state machine is similar to a preorder with a greatest and least object, in which the relations between the objects are represented by functions.
+但正如我们所看到的，有限状态机类似于一个具有最大和最小对象的预序，在其中对象之间的关系由函数表示。
 
-Finite state machines are used in organization planning e.g. imagine a process where a given item gets manufactured, gets checked by a quality control person, who, if they find some deficiencies, pass it to the necessary repairing departments and then they check it again and send it for shipping. This process can be modeled by the above diagram. 
+有限状态机在组织规划中广泛使用，例如，设想一个流程：某个产品被制造出来后，由质检员检查，如果他们发现某些缺陷，则将其交给修理部门，修理后再次检查，然后发送到发货部门。这个流程可以用上面的图来建模。
 
-{%endif%}
-
-<!--
-
-
-https://www.cs.rochester.edu/u/nelson/courses/csc_173/fa/fa.html
-
-
-|Current State | Input | Next State | 
-|---   | ---   | ---        |
-|| X | X | X |
-|Identity| X | X | X |
-|Invertibility  | |  | X |
-|Closure  | | X | X |
-
-Or imagine a computational algorithm for parsing input which iterates a string of characters and converts them to some other objects until all of the input is parsed.
-
-TODO
-Turing machines
-https://www.i2cell.science/how-a-turing-machine-works/
 ---
-State machines are, however not Turing-complete, that is, they cannot encode any algorithm.
 
-|Current State | Input | Next State | Write | Move |
-|---   | ---   | ---        |
--->
+**任务：** 创建你自己的有限状态机，并展示如何将其视为预序的一部分。
 
-Orders as categories
+
+
+顺序作为范畴 (Orders as categories)
 ===
 
-We saw that preorders are a powerful concept, so let's take a deeper look at the law that governs them --- the transitivity law. What this law tells us that if we have two pairs of relationship $a ≤ b$ and $b ≤ c$, then we automatically have a third one $a ≤ c$. 
+我们已经看到了预序是一个强大的概念，现在让我们深入研究一下控制它们的法则——*传递性*法则。这个法则告诉我们，如果我们有两对关系 $a ≤ b$ 和 $b ≤ c$，那么我们就自动拥有了第三对关系 $a ≤ c$。
 
 ![Transitivity](../04_order/transitivity.svg)
 
-In other words, the transitivity law tells us that the $≤$ relationship composes i.e. if we view the "bigger than" relationship as a morphism we would see that the law of transitivity is actually the categorical definition of *composition*. 
+换句话说，传递性法则告诉我们，$≤$ 关系是可以*复合*的。也就是说，如果我们将“比……大”的关系视为态射 (morphism)，我们会发现传递性法则实际上就是范畴论中*复合* (composition) 的定义。
 
 ![Transitivity as functional composition](../04_order/transitivity_composition.svg)
 
-(we have to also verify that the relation is associative, but that's easy)
+（我们还必须验证该关系是*结合*的，但这很容易）
 
-So let's review the definition of a category again.
+现在，让我们再次回顾范畴的定义。
 
-> A category is a collection of *objects* (we can think of them as points) and *morphisms* (arrows) that go from one object to another, where:
-> 1. Each object has to have the identity morphism.
-> 2. There should be a way to compose two morphisms with an appropriate type signature into a third one in a way that is associative.
+> 一个范畴是由*对象* (objects)（我们可以将其视为点）和*态射* (morphisms)（箭头）组成的，它们从一个对象指向另一个对象，其中：
+> 1. 每个对象必须有一个恒等态射 (identity morphism)。
+> 2. 必须有一种方法可以将两个具有适当类型签名的态射组合成一个第三个态射，并且这种组合是结合的。
 
-Looks like we have law number 2 covered. What about that other one --- the identity law? We have it too, under the name *reflexivity*.
+看起来我们已经满足了第二条法则。至于另一条——恒等性法则呢？我们同样也拥有它，以*反身性*的形式。
 
 ![Reflexivity](../04_order/reflexivity.svg)
 
-So it's official --- preorders are categories (sounds kinda obvious, especially after we also saw that orders can be reduced to sets and functions using the inclusion order, and sets and functions form a category in their own right.)
+因此，这很明显——*预序是范畴*。这一点听起来也很自然，尤其是在我们看到顺序可以通过包含顺序简化为集合与函数，而集合与函数本身也构成了一个范畴。
 
-And since partial orders and total orders are preorders too, they are categories as well. 
+由于偏序 (partial orders) 和全序 (total orders) 也是预序，它们同样是范畴。
 
-When we compare the categories of orders to other categories, (like the quintessential category of sets), we see one thing that immediately sets them apart: in other categories there can be *many different morphisms (arrows)* between two objects and in orders can have *at most one morphism*, that is, we either have $a ≤ b$ or we do not. 
+当我们将顺序的范畴与其他范畴进行比较时（例如集合的范畴 (category of sets)），我们会立即看到一个明显的区别：在其他范畴中，两个对象之间可能存在*多个不同的态射*（箭头），而在顺序中，两个对象之间最多只能有*一个态射*，也就是说，我们要么有 $a ≤ b$，要么没有。
 
 ![Orders compared to other categories](../04_order/arrows_one_arrow.svg)
 
-In the contrast, in the category of sets where there are potentially infinite amount of functions from, say, the set of integers and the set of boolean values, as well as a lot of functions that go the other way around, and the existence of either of these functions does not imply that one set is "bigger" than the other one.
+与之相对，在集合范畴中，可能存在无限多的函数，从比如整数的集合到布尔值的集合，并且存在从另一个方向映射回来的许多函数，而且这两个集合之间的函数是否存在并不意味着其中一个集合“比”另一个更大。
 
 ![Orders compared to other categories](../04_order/order_category.svg)
 
-So, an order is a category that has at most one morphism between two objects. But the converse is also true ---  *every category* that has at most one morphism between objects is an order (or a *thin* category as it is called in category-theoretic terms).
+因此，顺序是一个在两个对象之间最多有一个态射的范畴。但反过来也是如此——*每一个*在两个对象之间最多只有一个态射的范畴也是一个顺序（在范畴论术语中，称为*稀薄范畴* (thin categories)）。
 
-An interesting fact that follows trivially from the fact that the they have at most one morphism between given two objects is that in thin categories *all diagrams commute*.
+由于在稀薄范畴中两个对象之间最多只有一个态射，因此一个有趣的推论是，*所有的图表 (diagrams) 都是交换的*。
 
-**Task:** Prove this. 
+**任务：** 证明这一点。
 
-Products and coproducts
+积与余积 (Products and coproducts)
 ---
 
-While we are rehashing diagrams from the previous chapters, let's look at the diagram defining the *coproduct* of two objects in a category, from chapter 2. 
+当我们回顾前几章的图表时，让我们来看看第二章中定义*余积* (coproduct) 的图表。
+
 ![Joins as coproduct](../04_order/coproduct_join.svg)
 
-If you recall, this is an operation that corresponds to *set inclusion* in the category of sets.
+如果你还记得，这是一种操作，对应于集合范畴中的*包含* (set inclusion)。
 
 ![Joins as coproduct](../04_order/coproduct_inclusion.svg)
 
-But wait, wasn't there some other operation that that corresponded to set inclusion? Oh yes, the *join* operation in orders. And not merely that, but joins in orders are defined in the exact same way as the categorical coproducts.
+但等等，这不是有另一种操作也对应于集合的包含吗？哦，对了，是顺序中的*并* (join) 操作。而且，不仅如此，顺序中的并操作定义方式与范畴中的余积完全相同。
 
-In category theory, an object $G$ is the coproduct of objects $Y$ and $B$ if the following two conditions are met:
+在范畴论中，物体 $G$ 是物体 $Y$ 和 $B$ 的余积，如果满足以下两个条件：
 
-1. We have a morphism from any of the elements of the coproduct to the coproduct, so $Y → G$ and $B → G$.
-2. For any other object $P$ that also has those morphisms (so $Y → P$ and $B → P$) we would have morphism $G → P$.
+1. 我们有从每个元素到余积的态射，因此 $Y → G$ 和 $B → G$。
+2. 对于任何另一个物体 $P$，如果该物体也有这些态射（即 $Y → P$ 和 $B → P$），我们就有态射 $G → P$。
 
 ![Joins as coproduct](../04_order/coproduct_morphisms.svg)
 
-In the realm of orders, we say that $G$ is the *join* of objects $Y$ and $B$ if:
+在顺序领域中，我们说物体 $G$ 是物体 $Y$ 和 $B$ 的*并*，如果：
 
-1. It is bigger than both of these objects, so $Y ≤ G$ and $B ≤ G$.
+1. 它大于这两个物体，因此 $Y ≤ G$ 和 $B ≤ G$。
 
-2. It is smaller than any other object that is bigger than them, so for any other object $P$ such that $P ≤ G$ and $P ≤ B$ then we should also have $G ≤ P$.
+2. 它小于所有大于它们的物体，即对于任何其他物体 $P$，如果 $P ≤ G$ 且 $P ≤ B$，则我们也有 $G ≤ P$。
 
 ![Joins as coproduct](../04_order/coproduct_join_morphisms.svg)
 
-We can see that the two definitions and their diagrams are the same. So, speaking in category theoretic terms, we can say that the *categorical coproduct* in the category of orders is the *join* operation. Which of course means that *products* correspond to *meets*.
+我们可以看到这两个定义及其图表是相同的。因此，用范畴论的术语来说，我们可以说顺序中的*范畴余积*就是*并*操作。这当然意味着*积* (products) 对应于*交* (meets)。
 
-Overall, orders (thin categories) are often used for exploring categorical concepts in a context that is easier to understand e.g. understand the *order-theoretic* concepts of meets and joins would help you better understand the *more general categorical* concepts of products and coproducts).
+总的来说，顺序（稀薄范畴）经常用于在更容易理解的上下文中探索范畴概念。例如，理解*顺序理论*中的并与交的概念，可以帮助你更好地理解*更一般的范畴论*中的积与余积概念。
 
-Orders are also helpful when they are used as thin categories i.e. as an alternative to "full-fledged" categories, in contexts when we aren't particularily interested in the difference between the morphisms that go from one object to another. We will see an example of that in the next chapter.
+当顺序被用作稀薄范畴时，它们同样是有用的，特别是在我们对从一个对象到另一个对象的态射之间的区别不太感兴趣的上下文中。在下一章中，我们将看到一个例子。
