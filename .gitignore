@@ -3,3 +3,4 @@ errors.md
 *.un~
 _site
 book.*
+.idea

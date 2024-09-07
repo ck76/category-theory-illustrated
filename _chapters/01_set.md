@@ -1,493 +1,497 @@
+以下是按您要求的纯Markdown文本翻译：
+
 ---
-layout: default
-title: Sets
+
+layout: default  
+title: 集合 (Sets)
+
 ---
 
-Sets
+集合 (Sets)
 ===
 
-Let's begin our inquiry by looking at the basic theory of sets. Set theory and category theory share many similarities. We can view category theory as a *generalization* of set theory. That is, it's meant to describe the same thing as set theory (everything?), but to do it in a more abstract manner, one that is more versatile and (hopefully) simpler. 
+让我们通过研究集合的基本理论开始我们的探讨。集合论 (Set Theory) 和范畴论 (Category Theory) 共享许多相似之处。我们可以将范畴论视为集合论的*泛化*。也就是说，范畴论旨在描述与集合论相同的事物（所有事物？），但以一种更抽象、更灵活且（希望）更简单的方式进行描述。
 
-In other words, sets are an *example of a category* (the *proto-example*, we might say), and it is useful to have examples. 
+换句话说，集合是*范畴的一个例子*（我们可以称之为*原型例子*），有例子是很有用的。
 
-What is an Abstract Theory
+什么是抽象理论 (What is an Abstract Theory)
 ===
 
-> Instead of asking what can be defined and deduced from what is assumed to begin with, we ask instead what more general ideas and principles can be found, in terms of which what was our starting-point can be defined or deduced.
-> Bertrand Russell, from Introduction to Mathematical Philosophy
+> “我们不再问从假设出发可以定义和推导出什么，而是询问可以找到什么更普遍的想法和原则，通过这些想法和原则可以定义或推导出我们的起点。”  
+> —— 伯特兰·罗素 (Bertrand Russell)，《数学哲学导论 (Introduction to Mathematical Philosophy)》
 
-Most scientific and mathematical theories have a specific *domain*, which they are tied to, and in which they are valid. They are created with this domain in mind and are not intended to be used outside of it. For example, Darwin's theory of evolution is created in order to explain how different *biological species* came to evolve using natural selection, quantum mechanics is a description of how particles behave at a specific scale, etc.
+大多数科学和数学理论都有一个特定的*领域*，它们与该领域紧密相关并且在该领域有效。它们是为该领域创建的，并不打算在其他领域使用。例如，达尔文的进化论是为了解释不同的*生物物种*如何通过自然选择进化，而量子力学则描述了粒子在特定尺度上的行为等。
 
-Even most mathematical theories, although they are not inherently *bound* to a specific domain (like the scientific theories) are at least strongly related to some domain, as for example differential equations are created to model how events change over time. 
+即使大多数数学理论虽然并非固有地*绑定*到某个特定领域（如科学理论那样），它们至少与某个领域有很强的联系，例如微分方程是为描述事物如何随时间变化而创建的。
 
-Set theory and category theory are different, they are not created to provide a rigorous explanation of how a particular phenomenon works, instead they provide a more general framework for explaining all kinds of phenomena. They work less like tools and more like languages for defining tools. Theories that are like that are called *abstract* theories. 
+集合论和范畴论不同，它们不是为了提供关于某个特定现象的严格解释，而是提供了一个更为普遍的框架，用于解释各种现象。它们的作用不像工具，而更像是定义工具的语言。这样的理论被称为*抽象理论*。
 
-The borders of the two are sometimes blurry. All theories *use abstraction*, otherwise they would be pretty useless: without abstraction Darwin would have to speak about specific animal species or even individual animals. But theories have core concepts that don't refer to anything in particular, but are instead left for people to generalize on. All theories are applicable outside of their domains, but set theory and category theory do not have a domain to begin with.
+有时两者的界限是模糊的。所有理论都*使用抽象*，否则它们将毫无用处：如果没有抽象，达尔文将不得不谈论具体的动物物种甚至单个动物。但理论有一些核心概念，这些概念不指代任何特定事物，而是供人们进行泛化。所有理论都适用于它们的领域之外，但集合论和范畴论一开始就没有特定的领域。
 
-Concrete theories, like the theory of evolution, are composed of concrete concepts. For example, the concept of a *population*, also called a *gene-pool*, refers to a group of individuals that can interbreed. Abstract theories, like set theory, are composed of abstract concepts, like the concept of a set. The concept of a set by itself does not refer to anything. However, we cannot say that it is an empty concept, as there are countless things that can be represented by sets, for example, gene pools can be (very aptly) represented by sets of individual animals. Animal species can also be represented by sets &mdash; a set of all populations that can theoretically interbreed.
-You've already seen how abstract theories may be useful. Because they are so simple, they can be used as building blocks to many concrete theories. Because they are common, they can be used to unify and compare different concrete theories, by putting these theories in common grounds (this is very characteristic of category theory, as we will see later). Moreover, good (abstract) theories can serve as *mental models* for developing our thoughts. 
+具体理论，如进化论，由具体概念组成。例如，*种群 (population)*，也叫*基因库 (gene-pool)*，指的是可以相互繁殖的个体群体。而抽象理论，如集合论，则由抽象概念组成，例如集合的概念。集合的概念本身不指代任何特定事物。然而，我们不能说它是空洞的概念，因为有无数事物可以用集合表示，例如，基因库可以（非常恰当地）用个体动物的集合来表示。物种也可以用集合表示——一个由所有理论上可以相互繁殖的种群组成的集合。
 
-<!-- comic - brain on category theory -->
+你已经看到了抽象理论的有用之处。因为它们如此简单，可以作为许多具体理论的构建块。因为它们具有普遍性，可以用来统一和比较不同的具体理论，通过将这些理论置于共同的基础上（这是范畴论非常典型的特征，我们稍后会看到）。此外，好的（抽象）理论可以作为*思维模型*，帮助我们发展思维。
 
-<!--
-People have tried to be precise and at the same time down to Earth for centuries, and only recently discovered that "precise and down to Earth" is an oxymoron. Let's take Euclidean geometry as an example. Yes, Euclidean geometry is precise, because it is valid for all sets of objects, called ("point", "line", "angle", "circle", etc.), which have relationships, as defined by the five famous axioms. Yes, geometry does, in many instances, describe the natural world, because there are many sets of objects which have these relations. However, its "precise" part and its "down to Earth" part have nothing to do with each other. We can, for example, define a point as any stain on the floor of your room and a line as a piece of duct tape, put on the same floor. That will be a completely valid application of the Euclidean laws, albeit not very useful one. Or we can try to use geometry to reason about points on the surface of the Earth, which is a very useful application of geometry, however not of Euclidean geometry, because Euclidean geometry only describes points on a flat plane, and the Earth is not flat. You can argue that these are actually two separate theories there, which just happen to be perceived as one. You have the axioms, or the postulates on one hand, which are not useful for anything on their own, and you have applications in science and engineering which are somewhat based on them, but not quite. 
--->
+<!-- 漫画 - 范畴论激活大脑 -->
 
-Sets
+集合 (Sets)
 ===
 
-> “A set is a gathering together into a whole of definite, distinct objects of our perception or of our thought—which are called elements of the set.” – Georg Cantor
+> “集合是我们感知或思维的确定的、独特的对象的集合，这些对象被称为集合的元素。”  
+> —— 格奥尔格·康托尔 (Georg Cantor)
 
-Perhaps unsurprisingly, everything in set theory is defined in terms of sets. A set is a collection of things where the "things" can be anything you want (like individuals, populations, genes, etc.) Consider, for example, these balls.
+也许毫不奇怪，集合论中的一切都是用集合来定义的。集合是事物的集合，其中的“事物”可以是你想要的任何东西（如个体、种群、基因等）。例如，考虑这些球。
 
 ![Balls](../01_set/elements.svg)
 
+让我们构建一个集合，称之为 $G$（灰色 (gray)），它包含*所有*这些球作为元素。这样的集合只能有一个：因为集合没有结构（没有顺序，没有一个球在另一个球之前或之后，也没有成员在集合中有“特殊”地位）。包含相同元素的两个集合只是同一个集合的两个图片。
 
-Let's construct a set, call it $G$ (as gray) that contains *all* of them as elements. There can only be one such set: because a set has no structure (there is no order, no ball goes before or after another, there are no members which are "special" with respect to their membership of the set.) Two sets that contain the same elements are just two pictures of the same set.
+![所有球的集合](../01_set/all.svg)
 
-![The set of all balls](../01_set/all.svg)
+这个例子看起来可能过于简单，但实际上，它和其他例子一样有效。
 
-This example may look overly-simple, but in fact, it's just as valid as any other.
+使这个概念有用的关键见解在于，它使你能够像处理一个事物一样处理多个事物。
 
-The key insight that makes the concept useful is the fact that it enables you to reason about several things as if they were one.
- 
-Subsets 
+子集 (Subsets)
 ---
 
-Let's construct one more set. The set of *all balls that are warm in color*. Let's call it $Y$ (because in the diagram, it's colored in **y**ellow).
+让我们再构建一个集合。这个集合包含*所有颜色温暖的球*。我们称之为 $Y$（因为在图中，它以**y**ellow（黄色）显示）。
 
-![The set of all balls of warm colors](../01_set/subset.svg)
+![所有颜色温暖的球的集合](../01_set/subset.svg)
 
-Notice that $Y$ contains only elements that are also present in $G$. That is, every element of the set of $Y$ is also an element in the set $G$. When two sets have this relation, we may say that $Y$ is a *subset* of $G$ (or $Y \subseteq G$). A subset resides completely inside its superset when the two are drawn together.
+注意，$Y$ 只包含也出现在 $G$ 中的元素。也就是说，集合 $Y$ 的每个元素也是集合 $G$ 的元素。当两个集合具有这种关系时，我们可以说 $Y$ 是 $G$ 的一个*子集*（或 $Y \subseteq G$）。当两个集合一起绘制时，子集完全位于其超集内。
 
-![Y and G together](../01_set/set_subset.svg)
+![Y 和 G 一起](../01_set/set_subset.svg)
 
-Singleton Sets
+单例集合 (Singleton Sets)
 ---
 
-The set of all *red balls* contains just one ball. We said above that sets summarize *several* elements into one. Still, sets that contain just one element are perfectly valid &mdash; simply put, there are things that are *one of a kind*. The set of kings/queens that a given kingdom has is a singleton set. 
+所有*红球*的集合只包含一个球。我们之前说过，集合将*多个*元素汇总为一个。但即使包含一个元素的集合也是完全有效的——简而言之，有些事物是*独一无二的*。一个王国的国王/王后的集合就是一个单例集合。
 
-![The singleton set of red balls](../01_set/singleton.svg)
+![红球的单例集合](../01_set/singleton.svg)
 
-What's the point of the singleton set? Well, it is part of the language of set theory, e.g., if we have a function which expects a set of given items, but if there is only one item that meets the criteria, we can just create a singleton set with that item.
+单例集合有什么意义呢？嗯，它是集合论语言的一部分，例如，如果我们有一个期望给定项集合的函数，而只有一个项满足条件，我们可以只用该项创建一个单例集合。
 
-The Empty set
+空集 (The Empty Set)
 ---
 
-Of course if one is a valid answer, zero can be also. If we want a set of all *black balls*  $B$ or all the *white balls*, $W$, the answer to all these questions is the same &mdash; the empty set.
+当然，如果一个是有效的答案，那么零也可以是。如果我们想要一个所有*黑球*的集合 $B$ 或所有*白球*的集合 $W$，所有这些问题的答案都是相同的——空集。
 
-![The empty set](../01_set/void.svg)
+![空集](../01_set/void.svg)
 
-Because a set is defined only by the items it contains, the empty set is *unique* &mdash; there is no difference between the set that contains zero *balls* and the set that contains zero *numbers*, for instance. Formally, the empty set is marked with the symbol $\varnothing$ (so $B = W = \varnothing$).
+因为集合仅由其包含的项目定义，所以空集是*唯一的*——例如，包含零个*球*的集合和包含零个*数字*的集合之间没有区别。形式上，空集用符号 $\varnothing$ 表示（所以 $B = W = \varnothing$）。
 
-The empty set has some special properties, for example, it is a subset of every other set. Mathematically speaking, $\forall A  \to \varnothing \subseteq A$ ($\forall$ means "for all")
+空集有一些特殊属性，例如，它是每个其他集合的子集。数学上，$\forall A  \to \varnothing \subseteq A$ （$\forall$ 表示“对于所有”）。
 
-Functions
+函数 (Functions)
 ===
 
-> "By function I mean the unity of the act of arranging various representations under one common representation." --- Immanuel Kant, from "The Critique of Pure Reason"
+> “我所说的函数是指将各种表象排列在一个共同表象之下的统一性。”  
+> —— 伊曼纽尔·康德 (Immanuel Kant)，《纯粹理性批判 (The Critique of Pure Reason)》
 
-A function is a relationship between two sets that matches each element of one set, called the *source set* of the function, with exactly one element from another set, called the *target set* of the function. 
+函数是两个集合之间的关系，它将一个集合的每个元素与另一个集合中的一个元素对应起来，第一个集合称为函数的*源集合*，第二个集合称为函数的*目标集合*。
 
-These two sets are also called the *domain* and *codomain* of the function, or its *input* and *output*.  In programming, they go by the name of *argument type* and *return type*. In logic, they correspond to the *premise* and *conclusion* (we will get there). We might also say, depending on the situation, that a given function *goes* from this set to that other one, *connects* this set to the other, or that it *converts* a value from this set to a value from the other one. These different terms demonstrate the multifaceted nature of the concept of function.
+这些集合也被称为函数的*定义域*和*值域*，或*输入*和*输出*。在编程中，它们分别被称为*参数类型*和*返回类型*。在逻辑中，它们对应于*前提*和*结论*（我们稍后会讨论）。根据情况不同，我们也可以说一个给定的函数*从*这个集合到另一个集合，*连接*这两个集合，或者它将一个集合的值*转换*为另一个集合的值。这些不同的术语表明了函数概念的多面性。
 
-Different types of functions
+不同类型的函数 (Different types of functions)
 ---
 
-Here is a function $f$, which converts each ball from the set $R$ to the ball with the opposite color in another set $G$ (in mathematics a function's name is often accompanied by the names of its source and target sets, like this: $f: R → G$)
+这是一个函数 $f$，它将集合 $R$ 中的每个球转换为另一个集合 $G$ 中颜色相反的球（在数学中，函数的名称通常伴随着其源集合和目标集合的名称，如下所示：$f: R → G$）。
 
-![Opposite colors](../01_set/function_one_one.svg)
+![相反的颜色](../01_set/function_one_one.svg)
 
-This is probably one of the simplest type of function that exists &mdash; it encodes a *one-to-one relationship* between the sets. That is to say, *one* element from the source is connected to exactly *one* element from the target (and the other way around).
+这可能是存在的最简单类型的函数之一——它编码了集合之间的*一对一关系*。也就是说，源集合中的*一个*元素被连接到目标集合中的*一个*元素（反之亦然）。
 
-But functions can also express relationships of the type *many-to-one*, where *many* elements from the source might be connected to *one* element from the target (but not the other way around). Below is one such function.
+但函数也可以表达*多对一*的关系，其中源集合中的*多个*元素可能被连接到目标集合中的*一个*元素（但反之则不成立）。下面是一个这样的函数。
 
-![Function from a bigger set to a smaller one](../01_set/function_big_small.svg)
+![从较大的集合到较小的集合的函数](../01_set/function_big_small.svg
 
-Such functions might represent operations such as *categorizing* a given collection of objects by some criteria, or partitioning them, based on some property that they might have.
+)
 
-A function can also express relationships in which some elements from the target set do not play a part.
+这样的函数可能代表诸如根据某些标准对给定对象集合进行*分类*，或根据某种属性对它们进行划分的操作。
 
-![Function from a smaller set to a bigger one](../01_set/function_small_big.svg)
+函数还可以表达某些目标集合中的元素不参与的关系。
 
-An example might be the relationship between some kind of pattern or structure and the emergence of this pattern in some more complicated context.
+![从较小集合到较大集合的函数](../01_set/function_small_big.svg)
 
-We saw how versatile functions are, but there is one thing that you cannot have in a function. You cannot have a source element that is not mapped to anything, or that is mapped to more than one target element &mdash; that would constitute a *many-to-many* relationship and as we said functions express many-to-one relationships. There is a reason for that "design decision", and we will arrive at it shortly.
+一个例子可能是某种模式或结构与这种模式在某个更复杂的上下文中的出现之间的关系。
 
-Functions in everyday life
+我们看到了函数的多样性，但有一件事是你在函数中无法拥有的。你不能有一个源元素没有被映射到任何东西，或者被映射到多个目标元素——那将构成一个*多对多关系*，而我们说过函数表达的是多对一关系。这种“设计决策”是有原因的，我们很快就会谈到它。
+
+日常生活中的函数 (Functions in everyday life)
 ---
 
-Sets and functions can express relationships between all kinds of objects, and even people. Every question that you ask that has an answer can be expressed as a function.
+集合和函数可以表达各种对象，甚至是人之间的关系。你提出的每一个有答案的问题都可以表示为一个函数。
 
-The question "How far are we from New York?" is a function with set of all places in the world as source set and its target set consisting of the set of all positive numbers.
+问题“我们离纽约有多远？”是一个以世界上所有地方的集合为源集合，目标集合由所有正数的集合组成的函数。
 
-The question "Who is my father?" is a function whose source is the set of all people in the world.
+问题“我父亲是谁？”是一个源为世界上所有人的函数。
 
-**Question:** What is the target of this function?
+**问题：** 这个函数的目标是什么？
 
-Note that the question "Who is my child?" is *NOT* a straightforward function, because a person can have no children, or can have multiple children. We will learn to represent such questions as functions later.
+注意，问题“我有孩子吗？”*不是*一个直接的函数，因为一个人可能没有孩子，或者可能有多个孩子。我们将学习如何将这些问题表示为函数。
 
-**Question:** Do all functions that we drew at the beginning *express* something? Do you think that a function should express something in order to be valid? 
+**问题：** 我们一开始画的所有函数是否都*表达*了某种东西？你认为一个函数需要表达某些东西才能有效吗？
 
-The Identity Function
+恒等函数 (The Identity Function)
 ---
 
-For every set $G$, no matter what it represents, we can define the function that does nothing, or in other words, a function which maps every element of $G$ to itself. It is called *the identity function* of $G$ or $ID_{G}: G → G$.
+对于每个集合 $G$，无论它表示什么，我们都可以定义一个什么都不做的函数，换句话说，一个将 $G$ 中的每个元素映射到自身的函数。它被称为 $G$ 的*恒等函数*，或 $ID_{G}: G → G$。
 
-![The identity function](../01_set/function_identity.svg)
+![恒等函数](../01_set/function_identity.svg)
 
-You can think of $ID_{G}$ as a function which represents the set $G$ in the realm of functions. Its existence allows us to prove many theorems, that we "know" by intuition, formally.
+你可以将 $ID_{G}$ 视为一个代表 $G$ 在函数领域中的函数。它的存在使我们能够正式地证明许多我们“直觉上知道”的定理。
 
-Functions and Subsets
+函数与子集 (Functions and Subsets)
 ---
 
-For each set and subset, no matter what they represent, we can define a function (called the *image* of the subset) that maps each element of the subset to itself:
+对于每个集合和子集，无论它们表示什么，我们都可以定义一个函数（称为子集的*像*），它将子集中的每个元素映射到自身：
 
-![Function from a smaller set to a bigger one](../01_set/function_small_big.svg)
+![从较小集合到较大集合的函数](../01_set/function_small_big.svg)
 
-Every set is a subset of itself, in which case this function is the same as the identity.
+每个集合都是它自己的子集，在这种情况下，这个函数与恒等函数相同。
 
-Functions and the Empty Set
+函数与空集 (Functions and the Empty Set)
 ---
 
-There is a unique function from the empty set to any other set.
+从空集到任何其他集合都有一个唯一的函数。
 
-![Function with empty set](../01_set/function_empty.svg)
+![带有空集的函数](../01_set/function_empty.svg)
 
-**Question:** Is this really valid? Why? Check the definition.
+**问题：** 这真的有效吗？为什么？检查定义。
 
-Note that this statement is also a result from the one saying that there is a function between a Subset and a Set, and the one that says that the empty set is a subset of any other set.
+请注意，这一说法也是从“存在一个子集到集合的函数”的结果，以及“空集是任何其他集合的子集”的结果得出的。
 
-**Question:** What about the other way around. Are there functions with the empty set as a target as opposed to its source?
+**问题：** 反过来呢？有没有以空集为目标而不是以空集为源的函数？
 
-Functions and Singleton Sets
+函数与单例集合 (Functions and Singleton Sets)
 ---
 
-There is a unique function from any set to any singleton set.
+从任何集合到任何单例集合都有一个唯一的函数。
 
-![Function with a singleton set](../01_set/function_singleton.svg)
+![带有单例集合的函数](../01_set/function_singleton.svg)
 
-**Question:** Is this really the only way to connect *any* set to a singleton set in a valid way?
+**问题：** 这真的是将*任何*集合连接到单例集合的唯一有效方法吗？
 
-**Question:** Again, what about the other way around?
+**问题：** 再次反过来呢？
 
-Sets and Functions with numbers
+数字的集合与函数 (Sets and Functions with numbers)
 ===
 
-All numerical operations can be expressed as functions acting on the set of (different types of) numbers. 
+所有的数字运算都可以表示为在不同类型的数字集合上作用的函数。
 
-Number sets
+数字集合 (Number sets)
 ---
 
-Because not all functions work on all numbers, we separate the set of numbers to several sets, many of which are subsets to one another, such the set of whole numbers $\mathbb{Z} := {... -3 -2, -1, 0, 1, 2, 3... }$, the set of positive whole numbers, (also called "natural" numbers), $\mathbb{N} := {1, 2, 3... }$. We also have the set of Real numbers $\mathbb{R}$, which includes almost all numbers and the set of positive real numbers (or $\mathbb{R}_{>0}$). 
+因为并非所有函数都适用于所有数字，我们将数字集合划分为几个集合，其中许多集合是彼此的子集，例如整数集合 $\mathbb{Z} := {... -3, -2, -1, 0, 1, 2, 3... }$，正整数集合（也称为“自然”数），$\mathbb{N} := {1, 2, 3... }$。我们还有实数集合 $\mathbb{R}$，它包括几乎所有数字，以及正实数集合（或 $\mathbb{R}_{>0}$）。
 
-Number functions
+数字函数 (Number functions)
 ---
 
-Each numerical operation is a function between two of these sets. For example, squaring a number is a function from the set of real numbers to the set of real non-negative numbers (because both sets are infinite, we cannot draw them in their entirety, however we can draw a part of them).
+每个数字运算都是这些集合之间的函数。例如，平方一个数是从实数集合到非负实数集合的函数（因为这两个集合都是无限的，我们无法绘制它们的全貌，但我们可以绘制它们的一部分）。
 
-![The square function](../01_set/square.svg)
+![平方函数](../01_set/square.svg)
 
-I will use the occasion to reiterate some of the more important characteristics of functions:
+借此机会，我想重申函数的一些重要特征：
 
-- All numbers from the target have (or should have) two arrows pointing at them (one for the positive square root and one for the negative one), and that is OK. 
-- Zero from the source set is connected to itself in the target set &mdash; that is permitted.
-- Some numbers aren't the square of any other number &mdash; that is also permitted.
+- 目标集合中的所有数字都有（或应该有）两条箭头指向它们（一个对应正平方根，另一个对应负平方根），这是可以的。
+- 源集合中的零与目标集合中的自身连接——这是允许的。
+- 某些数字不是其他数字的平方——这也是允许的。
 
-Overall everything is permitted, as long as you can always provide exactly one result (also known as *The result™*) per value. For numerical operations, this is always true, simply because math is designed this way.
+总体而言，只要每个值都能提供*唯一结果*，一切都是允许的。对于数字运算，这总是正确的，因为数学的设计就是这样。
 
-> Every generalization of number has first presented itself as needed for some simple problem: negative numbers were needed in order that subtraction might be always possible, since otherwise a − b would be meaningless if a were less than b; fractions were needed in order that division might be always possible; and complex numbers are needed in order that extraction of roots and solution of equations may be always possible.  
-> Bertrand Russell, from Introduction to Mathematical Philosophy
+> “每一个数字的泛化最初都呈现为解决某个简单问题所需的：为了使减法总是可能的，需要负数，否则当 $a < b$ 时 $a - b$ 将没有意义；为了使除法总是可能的，需要分数；为了使提取根和解方程总是可能的，需要复数。”  
+> —— 伯特兰·罗素 (Bertrand Russell)，《数学哲学导论 (Introduction to Mathematical Philosophy)》
 
-Note that most mathematical operations, such as addition, multiplication, etc. require two numbers in order to produce a result. This does not mean that they are not functions, it just means they're a little fancier. Depending on what we need, we may present those operations as functions from the sets of *tuples* of numbers to the set of numbers, or we may say that they take a number and return a function. More on that later.
+注意，大多数数学运算，如加法、乘法等，都需要两个数字才能产生结果。这并不意味着它们不是函数，只是它们有点复杂。根据需要，我们可以将这些运算表示为从数字*元组*集合到数字集合的函数，或者我们可以说它们接受一个数字并返回一个函数。稍后我们会详细讨论。
 
-Sets and Functions in Programming
+编程中的集合与函数 (Sets and Functions in Programming)
 ===
 
-Sets are used extensively in programming, especially in their incarnation as *types* (also called *classes*). All sets of numbers that we discussed earlier also exist in most languages as types.
+集合在编程中被广泛使用，尤其是在其作为*类型*（也称为*类*）的体现中。我们之前讨论的所有数字集合在大多数编程语言中也作为类型存在。
 
-Sets and types
+集合与类型 (Sets and types)
 ---
 
-Sets are not exactly the same thing as types, but all types are (or can be seen as) sets. For example, we can view the `Boolean` type as a set containing two elements &mdash; `true` and `false`.
+集合与类型并不完全相同，但所有类型都是（或可以视为）集合。例如，我们可以将 `Boolean` 类型视为包含两个元素的集合——`true` 和 `false`。
 
-![Set of boolean values](../01_set/boolean.svg)
+![布尔值集合](../01_set/boolean.svg)
 
-Another very basic set in programming is the set of keyboard characters, or `Char`. Characters are actually used rarely by themselves and mostly as parts of sequences.
+编程中的另一个非常基本的集合是键盘字符的集合，或 `Char`。字符实际上很少单独使用，通常作为序列的一部分使用。
 
-![Set of characters](../01_set/char.svg)
+![字符集合](../01_set/char.svg)
 
-Most of the types of programming are composite types &mdash; they are a combination of the primitive ones that are listed here. Again, we will cover these later.
+大多数编程类型是复合类型——它们是这里列出的原始类型的组合。同样，我们稍后会讨论这些。
 
-**Question:** What is the type equivalent of subsets in programming?
+**问题：** 编程中的子集等价物是什么？
 
-Functions and methods/subroutines
+函数与方法/子程序 (Functions and methods/subroutines)
 ---
 
-Some functions in programming (also called methods, subroutines, etc.) kinda resemble mathematical functions &mdash; they sometimes take one value of a given type (or in other words, an element that belongs to a given set) and always return exactly one element which belongs to another type (or set). For example, here is a function that takes an argument of type `Char` and returns a `Boolean`, indicating whether the character is a letter.
+在编程中，一些函数（也称为方法、子程序等）有点类似于数学函数——它们有时接受一个给定类型的值（换句话说，属于给定集合的元素），并且总是返回一个属于另一个类型（或集合）的元素。例如，以下是一个接受 `Char` 类型的参数并返回 `Boolean` 的函数，用于指示该字符是否为字母。
 
-![A function from Char to Boolean](../01_set/char_boolean.svg)
+![从 Char 到 Boolean 的函数](../01_set/char_boolean.svg)
 
-However functions in most programming languages can also be quite different from mathematical functions &mdash; they can perform various operations that have nothing to do with returning a value. These operations are sometimes called side effects. 
+然而，大多数编程语言中的函数也可能与数学函数完全不同——它们可以执行各种与返回值无关的操作。这些操作有时被称为副作用。
 
-Why are functions in programming different? Well, figuring a way to encode *effectful* functions in a way that is mathematically sound isn't trivial and at the time when most programming paradigms that are in use today were created, people had bigger problems than the their functions not being mathematically sound (e.g. actually being able to run any program at all). 
+为什么编程中的函数不同呢？嗯，找到一种将*有副作用*的函数编码为数学上合理的方式并不容易，而且在当今大多数编程范式被创建时，人们面临的问题比函数不符合数学规范要大得多（例如，能够实际运行任何程序）。
 
-Nowadays, many people feel that mathematical functions are too limiting and hard to use. And they might be right. But mathematical functions have one big advantage over non-mathematical ones &mdash; their type signature tells you almost everything about what the function does (this is probably the reason why most functional languages are strongly-typed).
+如今，许多人认为数学函数过于限制且难以使用。他们可能是对的。但数学函数相对于非数学函数有一个很大的优势——它们的类型签名几乎告诉你关于函数的所有信息（这可能是大多数函数式语言强类型的原因）。
 
-Purely-functional programming languages
+纯函数式编程语言 (Purely-functional programming languages)
 ---
 
-We said that while all mathematical functions are also programming functions, the reverse is not true for *most* programming languages. However, there are some languages that only permit mathematical functions, and for which this equality holds. They are called *purely-functional* programming languages.
+我们说过，虽然所有数学函数也是编程函数，但对于*大多数*编程语言，反之则不成立。然而，有些语言只允许数学函数，因此这种等价性成立。它们被称为*纯函数式编程语言*。
 
-A peculiarity in such languages is that they don't support functions that perform operations like rendering stuff on screen, doing I/O, etc. (in this context, such operations are called "side effects".
+纯函数式编程语言的一个特点是，它们不支持执行诸如在屏幕上渲染内容、进行 I/O 等操作的函数（在此上下文中，这类操作被称为“副作用”）。
 
-In purely functional programming languages, such operations are *outsourced* to the language's runtime. Instead of writing functions that directly perform a side effect, for example `console.log('Hello')`, we write functions that return a type that represents that side effect (for example, in Haskell side effects are handled by the `IO` type) and the runtime then executes those functions for us. 
+在纯函数式编程语言中，这类操作被*委托*给语言的运行时。与其编写直接执行副作用的函数，例如 `console.log('Hello')`，我们编写返回代表该副作用的类型的函数（例如，在 Haskell 中，副作用
 
-We then link all those functions into a whole program, often by using a thing called *continuation passing style*.
+由 `IO` 类型处理），然后运行时为我们执行这些函数。
 
+然后，我们使用所谓的*持续传递风格 (continuation passing style)* 将所有这些函数链接成一个完整的程序。
 
-Functional Composition 
+函数组合 (Functional Composition)
 ===
 
-Now, we were just about to reach the heart of the matter regarding the topic of functions. And that is functional composition. Assume that we have two functions, $g: Y → P$ and $f: P → G$ and the target of the first one is the same set as the source of the second one.
+现在，我们即将进入函数主题的核心内容。那就是函数组合。假设我们有两个函数，$g: Y → P$ 和 $f: P → G$，它们的目标与源相同。
 
-![Matching functions](../01_set/functions_matching.svg)
+![匹配的函数](../01_set/functions_matching.svg)
 
-If we apply the first function $g$ to some element from set $Y$, we will get an element of the set $P$. Then, if we apply the second function $f$ to *that* element, we will get an element from type $G$.
+如果我们将第一个函数 $g$ 应用于集合 $Y$ 中的某个元素，我们将得到集合 $P$ 中的一个元素。然后，如果我们将第二个函数 $f$ 应用于*那个*元素，我们将得到集合 $G$ 中的一个元素。
 
-![Applying one function after another](../01_set/functions_one_after_another.svg)
+![一个函数接一个函数应用](../01_set/functions_one_after_another.svg)
 
-We can define a function that is the equivalent to performing the operation described above. 
-That would be a function such that, if you follow the arrow $h$ for any element of set $Y$ you will get to the same element of the set $G$ as the one you will get if you follow both the $g$ and $f$ arrows.
+我们可以定义一个函数，它相当于执行上述操作的函数。这个函数是这样的，如果你遵循集合 $Y$ 中的元素的箭头 $h$，你将得到与遵循 $g$ 和 $f$ 箭头相同的集合 $G$ 元素。
 
-Let us call it $h: Y → G$. We may say that $h$ is the *composition* of $g$ and $f$, or $h = f \circ g$ (notice that the first function is on the right, so it's similar to $b = f(g(a)$).
+让我们称其为 $h: Y → G$。我们可以说 $h$ 是 $g$ 和 $f$ 的*组合*，或 $h = f \circ g$（注意，第一个函数在右边，所以它类似于 $b = f(g(a))$）。
 
-![Functional composition](../01_set/functions_compose.svg)
+![函数组合](../01_set/functions_compose.svg)
 
-Composition is the essence of all things categorical. The key insight is that the sum of two parts is no more complex than the parts themselves.  
+组合是所有范畴事物的本质。关键见解在于，两个部分的总和并不比部分本身更复杂。
 
-**Question:** Think about which qualities of a function make composition possible, e.g., does it work with other types of relationships, like many-to-many and one-to-many.
+**问题：** 思考一下是什么使得函数可以进行组合，例如，它是否适用于其他类型的关系，如多对多和一对多。
 
-Composition of relationships
+关系的组合 (Composition of relationships)
 ---
 
-To understand how powerful composition is, consider the following: one set being connected to another means that each function from the second set can be transferred to a corresponding function from the first one.
+为了理解组合的强大功能，考虑以下内容：一个集合与另一个集合的连接意味着从第二个集合到任何其他集合的每个函数都可以转移到第一个集合的相应函数。
 
-If we have a function $g: P → Y$ from set $P$ to set $Y$, then for every function $f$ from the set $Y$ to any other set, there is a corresponding function $f \circ g$ from the set $P$ to the same set. In other words, every time you define a new function from $Y$ to some other set, you gain one function from $P$ to that same set for free.
+如果我们有一个函数 $g: P → Y$，那么对于从集合 $Y$ 到任何其他集合的每个函数 $f$，存在一个从集合 $P$ 到相同集合的对应函数 $f \circ g$。换句话说，每当你定义一个从 $Y$ 到其他集合的新函数时，你就免费获得了一个从 $P$ 到同一集合的函数。
 
-![Functional composition connect](../01_set/morphism_general.svg)
+![函数组合连接](../01_set/morphism_general.svg)
 
-For example, if we again take the relationship between a person and his mother as a function with the set of all people in the world as source, and the set of all people that have children as its target, composing this function with other similar functions would give us all relatives on a person's mother side.
+例如，如果我们再次将人与其母亲之间的关系视为一个以世界上所有人为源集合，所有有孩子的人为目标集合的函数，将此函数与其他类似函数组合将使我们获得一个人的母系亲属。
 
-Although you might be seeing functional composition for the first time, the intuition behind it is there &mdash; we all know that each person whom our mother is related to is automatically our relative as well &mdash; our mother's father is our grandfather, our mother's partner is our father, etc.
+虽然你可能是第一次看到函数组合，但它背后的直觉已经存在——我们都知道我们母亲的每个亲戚都是我们的亲戚——我们母亲的父亲是我们的祖父，我们母亲的伴侣是我们的父亲，等等。
 
-Composition in engineering
+工程中的组合 (Composition in engineering)
 ---
 
-Besides being useful for *analyzing* relationships that already exist, the principle of composition can help you in the practice of *building* objects that exhibit such relationships i.e. engineering. 
+除了用于*分析*已存在的关系外，组合原理还可以帮助你在*构建*表现出这种关系的对象（即工程）中发挥作用。
 
-One of the main ways in which modern engineering differs from ancient craftsmanship is the concept of a *part/module/component* - a product that performs a given function that is not made to be used directly, but is instead optimized to be combined with other such products in order to form a "end-user" product. For example, an *espresso machine* is just a combination of the components, such as , *pump, heater, grinder group* etc, when composed in an appropriate way.
+现代工程与古代手工业的主要区别之一是*零件/模块/组件*的概念——一种产品，它执行一个给定的功能，但并不是直接使用的，而是经过优化后与其他此类产品组合，形成“终端用户”产品。例如，*浓缩咖啡机*只是组件的组合，例如，*泵、加热器、研磨组*等，当以适当的方式组合时。
 
-![A espresso machine ](../01_set/machine.svg)
+![浓缩咖啡机](../01_set/machine.svg)
 
-**Task:** Think about what would be those functions' sources and targets.
+**任务：** 思考这些函数的源和目标是什么。
 
-By the way, diagrams that are "zoomed out" that show functions without showing set elements are called *external diagrams*, as opposed to the ones that we saw before, which are *internal*. 
+顺便说一句，显示不显示集合元素的函数的“缩小”图称为*外部图*，与我们之前看到的*内部图*相对。
 
-Composition and external diagrams 
+组合与外部图 (Composition and external diagrams)
 ---
 
-Let's look at the diagram that demonstrates functional composition in which we showed that successive application of the two composed functions ($f \circ g$) and the new function ($h$) are equivalent.
+让我们看看演示函数组合的图，我们表明了组合的两个函数（$f \circ g$）和新函数（$h$）的顺次应用是等价的。
 
-![Functional composition](../01_set/functions_compose.svg)
+![函数组合](../01_set/functions_compose.svg)
 
-We showed this equivalence by drawing an *internal* diagram, and explicitly drawing the elements of the functions' sources and targets in such a way that the two paths are equivalent.
+我们通过绘制一个*内部*图，并明确绘制函数源和目标的元素，以证明两条路径是等价的。
 
-Alternatively, we can just *say* that the arrow paths are all equivalent (all arrows starting from a given set element ultimately lead to the same corresponding element from the resulting set) and draw the equivalence as an external diagram.
+或者，我们可以简单地*说*箭头路径是等价的（从给定集合元素出发的所有箭头最终都会到达结果集合中的相同对应元素），并将等价关系绘制为一个外部图。
 
-![Functional composition for sets](../01_set/functions_compose_sets.svg)
+![集合的函数组合](../01_set/functions_compose_sets.svg)
 
-The external diagram is a more appropriate representation of the concept of composition, as it is more general. In fact, it is *so* general that it can actually serve as a *definition of functional composition*.
+外部图是组合概念的更合适表示，因为它更通用。事实上，它*如此*通用，以至于它实际上可以作为*函数组合的定义*。
 
-> The composition of two functions $f$ and $g$ is a third function $h$ defined in such a way that all the paths in this diagram are equivalent.
+> 函数 $f$ 和 $g$ 的组合是一个第三个函数 $h$，其定义为该图中的所有路径都是等价的。
 
-![Functional composition - general definition](../01_set/functions_compose_general.svg)
+![函数组合 - 通用定义](../01_set/functions_compose_general.svg)
 
-If you continue reading this book, you will hear more about diagrams in which all paths are equivalent (they are called *commuting diagrams*, by the way).
+如果你继续阅读本书，你会听到更多关于路径等价的图表（顺便说一下，它们被称为*交换图 (commuting diagrams)*）。
 
-At this point you might be worried that I had forgotten that I am supposed to talk about category theory and I am just presenting a bunch of irrelevant concepts. I may indeed do that sometimes, but not right now - the fact that *functional composition* can be presented without even mentioning category theory doesn't stop it from being one of category theory's *most important concepts*. 
+此时你可能会担心我忘记了我应该谈论范畴论，而只是展示了一些不相关的概念。我有时可能确实会这样做，但现在并不是这样——*函数组合*可以在不提及范畴论的情况下展示，但这并不能阻止它成为范畴论*最重要的概念之一*。
 
-In fact, we can say (although this is not an official definition) that category theory is the study of things that are *function-like* (we call them *morphisms*). They have a source and a target, compose with one another in an associative way, and can be represented by external diagrams.
+事实上，我们可以说（虽然这不是官方定义）范畴论是研究类似*函数*的事物（我们称它们为*态射 (morphisms)*）。它们有一个源和一个目标，以关联的方式组合，并且可以通过外部图表示。
 
-And there is another way of defining category theory without defining category theory: it is what you get if you replace the concept of equality with the concept of *isomorphism*. We haven't talked about isomorphisms yet, but this is what we will be doing till the end of this chapter.
+还有另一种定义范畴论的方法，即用*同构* (isomorphism) 的概念代替*相等*的概念。我们尚未讨论同构，但这将是我们本章剩余时间的内容。
 
-Isomorphism
+同构 (Isomorphism)
 ===
 
-To explain what isomorphism is, we go back to the examples of the types of relationships that functions can represent, and to the first and most elementary of them all &mdash; the *one-to-one* type of relationship. We know that all functions have exactly one element from the source set, pointing to one element from the target set. But for one-to-one functions *the reverse is also true* &mdash; exactly one element from the target set points to one element from the source. 
+要解释什么是同构，我们回到函数可以表示的关系类型的例子，以及最基础的关系——*一对一*关系。我们知道，所有函数都有一个源集合中的元素指向目标集合中的一个元素。但对于一对一函数，*反过来也成立*——目标集合中的一个元素指向源集合中的一个元素。
 
-![Opposite colors](../01_set/function_one_one.svg)
+![相反的颜色](../01_set/function_one_one.svg)
 
-If we have a one-to-one-function that connects sets that are of the same size (as is the case here), then this function has the following property: all elements from the target set have exactly one arrow pointing at them. In this case, the function is *invertible*. That is, if you flip the arrows of the function and its source and target, you get another valid function.
+如果我们有一个连接大小相同集合的一对一函数（如这里的情况），那么该函数具有以下性质：目标集合中的所有元素都有一个箭头指向它们。在这种情况下，该函数是*可逆的*。也就是说，如果你翻转该函数的箭头及其源和目标，你会得到另一个有效的函数。
 
-![Opposite colors](../01_set/isomorphism_one_one.svg)
+![相反的颜色](../01_set/isomorphism_one_one.svg)
 
-Invertible functions are called *isomorphisms*. When there exists an invertible function between two sets, we say that the sets are *isomorphic*. For example, because we have an invertible function that converts the temperature measured in *Celsius* to temperature measured in *Fahrenheit*, and vise versa, we can say that temperatures measured in Celsius and Fahrenheit are isomorphic.
+可逆函数被称为*同构*。当两个集合之间存在可逆函数时，我们说这两个集合是*同构的*。例如，因为我们有一个将*摄氏*温度转换为*华氏*温度并反之亦然的可逆函数，我们可以说摄氏温度和华氏温度是同构的。
 
-Isomorphism means "same form" in Greek (although actually their form is the only thing which is different between two isomorphic sets).
+同构在希腊语中的意思是“相同的形式”（虽然实际上两组同构集合之间唯一不同的就是它们的形式）。
 
-More formally, two sets $R$ and $G$ are isomorphic (or $R ≅ G$) if there exist functions $f: G → R$ and its reverse $g: R → G$, such that $f \circ g = ID_{R}$ and $g \circ f = ID_{G}$ (notice how the identity function comes in handy).
+更正式地说，两个集合 $R$ 和 $G$ 是同构的（或 $R ≅ G$），如果存在函数 $f: G → R$ 及其逆函数 $g: R → G$，使得 $f \circ g = ID_{R}$ 和 $g \circ f = ID_{G}$（注意恒等函数在这里派上了用场）。
 
-Isomorphism and identity
+同构与恒等 (Isomorphism and identity)
 ---
 
-If you look closely you would see that the identity function is invertible too (its reverse is itself), so each set is isomorphic to itself in that way.
+如果你仔细观察，你会发现恒等函数也是可逆的（它的逆函数是它自己），因此每个集合都是这样同构于自身的。
 
-![The identity function](../01_set/isomorphism_identity.svg)
+![恒等函数](../01_set/isomorphism_identity.svg)
 
-Therefore, the concept of an isomorphism contains the concept of equality &mdash; all equal things are also isomorphic.
+因此，同构的概念包含了相等的概念——所有相等的事物也是同构的。
 
-Isomorphism and composition
+同构与组合 (Isomorphism and composition)
 ---
 
-An interesting fact about isomorphisms is that if we have functions that convert a member of set $A$ to a member of set $B$, and the other way around, then, because of functional composition, we know that any function from/to $A$ has a corresponding function from/to $B$.
+同构的一个有趣的事实是，如果我们有将集合 $A$ 的成员转换为集合 $B$ 成员的函数，反之亦然，那么由于函数组合的存在，我们知道从/到 $A$ 的任何函数都有一个相应的从/到 $B$ 的函数。
 
-![The architecture of isomorphism](../01_set/isomorphism_general.svg)
+![同构的架构](../01_set/isomorphism_general.svg)
 
-For example, if you have a function "is the partner of" that goes from the set of all married people to the same set, then that function is invertible. That is not to say that you are the same person as your significant other, but rather that every statement about you, or every relation you have to some other person or object is also a relation between them and this person/object, and vice versa. 
+例如，如果你有一个从所有已婚人的集合到相同集合的“伴侣是”函数，那么该函数是可逆的。这并不是说你和你的伴侣是同一个人，而是说关于你或你与其他人或对象的每一个陈述也是他们与该人或对象的关系，反之亦然。
 
-Composing isomorphisms
+组合同构 (Composing isomorphisms)
 ---
 
-Another interesting fact about isomorphisms is that if we have two isomorphisms that have a set in common, then we can obtain a third isomorphism between the other two sets that would be the result of their (the isomorphisms) composition.
+关于同构的另一个有趣事实是，如果我们有两个共享集合的同构，那么我们可以通过组合（同构）获得其他两个集合之间的第三
 
-Composing two isomorphisms into another isomorphism is possible by composing the two pairs of functions that make up the isomorphism in the two directions. 
+个同构。
 
-![Composing isomorphisms](../01_set/isomorphisms_compose.svg)
+将两个同构组合成另一个同构是通过将同构在两个方向上的两个函数组合来实现的。
 
-Informally, we can see that the two morphisms are indeed reverse to each other and hence form an isomorphism. If we want to prove that fact formally, we will do something like the following: 
+![组合同构](../01_set/isomorphisms_compose.svg)
 
-Given that if two functions are isomorphic, then their composition is equal to an identity function, proving that functions $g \circ f$ and $f' \circ g'$, are isomorphic is equivalent to proving that their composition is equal to identity.
+非正式地，我们可以看到这两个态射确实是彼此的逆函数，因此形成同构。如果我们想要正式地证明这一事实，我们会做类似于以下的事情：
+
+鉴于如果两个函数是同构的，那么它们的组合等于恒等函数，证明函数 $g \circ f$ 和 $f' \circ g'$ 是同构的等同于证明它们的组合等于恒等。
 
 $g \circ f \circ f' \circ g' = id$
 
-But we know already that $f$ and $f'$ are isomorphic and hence $f\circ f' = id$, so the above formula is equivalent to (you can reference the diagram to see what that means):
+但我们已经知道 $f$ 和 $f'$ 是同构的，因此 $f\circ f' = id$，所以上述公式等同于（你可以参考图表看看这意味着什么）：
 
 $g \circ id \circ g' = id$
 
-And we know that anything composed with $id$ is equal to itself, so it is equivalent to:
+我们知道任何与 $id$ 组合的东西等于它自身，因此它等同于：
 
 $g \circ g' = id$
 
-which is true, because $g$ and $g'$ are isomorphic and isomorphic functions composed are equal to identity.
+这是真的，因为 $g$ 和 $g'$ 是同构的，并且组合的同构函数等于恒等。
 
-By the way, there is another way to obtain the isomorphism &mdash; by composing the two morphisms one way in order to get the third function and then taking its reverse. But to do this, we have to prove that the function we get from composing two bijective functions is also bijective. 
+顺便说一下，还有另一种获得同构的方法——通过一个方向组合两个态射以获得第三个函数，然后再取它的逆函数。但要做到这一点，我们必须证明从组合两个双射函数得到的函数也是双射的。
 
-Isomorphisms Between Singleton Sets
+单例集合之间的同构 (Isomorphisms Between Singleton Sets)
 ---
 
-Between any two singleton sets, we may define the only possible function.
+在任何两个单例集合之间，我们可以定义唯一可能的函数。
 
-![The only possible function between singletons](../01_set/singleton_function.svg)
+![单例之间唯一可能的函数](../01_set/singleton_function.svg)
 
-The function is invertible, which means that all singleton sets are isomorphic to one another, and furthermore (which is important) they are isomorphic *in one unique way*.
+该函数是可逆的，这意味着所有单例集合是同构的，此外（这很重要）它们*以唯一的方式*同构。
 
-![Isomorphic singletons](../01_set/singleton_isomorphism.svg)
+![同构的单例](../01_set/singleton_isomorphism.svg)
 
-Following the logic from the last paragraph, each statement about something that is one of a kind can be transferred to a statement about another thing that is one of a kind. 
+按照最后一段的逻辑，关于独一无二的事物的每一个陈述都可以转移为关于另一个独一无二的事物的陈述。
 
-**Question:** Try to come up with a good example that shows how a statement that demonstrates the isomorphism between singleton sets (I obviously couldn't). Consider that all of people and objects are sharing one and the same universe.
+**问题：** 尝试提出一个好例子，展示如何证明单例集合之间同构的陈述（显然我想不出来）。考虑到所有人和物体共享同一个宇宙。
 
-Equivalence relations and isomorphisms
+等价关系与同构 (Equivalence relations and isomorphisms)
 ===
 
-We said that isomorphic sets aren't necessarily the same set (although the reverse is true). However, it is hard to get away from the notion that being isomorphic means that they are *equal* or *equivalent* in some respect. For example, all people who are connected by the *isomorphic* mother/child relationship share some of the same genes. 
+我们说过，同构集合不一定是同一个集合（虽然反过来成立）。然而，很难摆脱这样的想法，即同构意味着它们在某种程度上是*相等的*或*等价的*。例如，所有通过*同构*母子关系连接的人共享一些相同的基因。
 
-And in computer science, if we have functions that convert an object of type $A$ to an object of type $B$ and the other way around (as for example the functions between a data structure and its id), we also can pretty much regard $A$ and $B$ as two formats of the same thing, as having one means that we can easily obtain the other.
+在计算机科学中，如果我们有将对象 $A$ 转换为对象 $B$ 并反之亦然的函数（例如数据结构及其 id 之间的函数），我们也可以基本上将 $A$ 和 $B$ 视为同一事物的两种格式，因为拥有其中一个意味着我们可以轻松获得另一个。
 
-Equivalence relations
+等价关系 (Equivalence relations)
 ---
 
-What does it mean for two things to be equivalent? The question sounds quite philosophical, but there is actually is a formal way to answer it, i.e., there is a mathematical concept that captures the concept of equality in a rather elegant way &mdash; the concept of an *equivalence relation*. 
+两个事物等价意味着什么？这个问题听起来很哲学化，但实际上有一个正式的方式来回答它，即存在一个捕捉相等概念的优雅数学概念——*等价关系*的概念。
 
-So what is an equivalence relation? We already know what a relation is --- it is a connection between two sets (an example of which is function). But when is a relation an equivalence relation? Well, according the definition, it's when it follows three laws, which correspond to three intuitive ideas about equality. Let's review them.
+那么什么是等价关系呢？我们已经知道关系是什么——它是两个集合之间的连接（一个例子是函数）。但什么时候关系是等价关系呢？根据定义，它符合三个直观的关于相等的法律。让我们回顾一下它们。
 
-Reflexivity
+自反性 (Reflexivity)
 ---
 
-The first idea that defines equivalence, is that *everything is equivalent with itself*. 
+定义等价的第一个思想是*每件事物都与其自身等价*。
 
-![Reflexivity](../01_set/reflexivity.svg)
+![自反性](../01_set/reflexivity.svg)
 
-This simple principle translates to the equally simple law of *reflexivity*: for all sets $A$, $A=A$.
+这个简单的原则可以转化为同样简单的*自反性*定律：对于所有集合 $A$，$A=A$。
 
-Transitivity
+传递性 (Transitivity)
 ---
 
-According to the Christian theology of the Holy Trinity, the Jesus' Father is God, Jesus is God, and the Holy Spirit is also God, however, the Father is not the same person as Jesus (neither is Jesus the Holy Spirit). If this seems weird to you, that's because it breaks the second law of equivalence relations, transitivity. Transitivity is the idea that things that are both equal to a third thing must also equal between themselves. 
+根据基督教的圣三一神学，耶稣的父亲是上帝，耶稣是上帝，圣灵也是上帝，然而，父亲与耶稣不是同一个人（耶稣也不是圣灵）。如果你觉得这很奇怪，那是因为它违反了等价关系的第二条定律——传递性。传递性是指等于第三件事物的两件事物必须彼此相等。
 
-![Transitivity](../01_set/transitivity.svg)
+![传递性](../01_set/transitivity.svg)
 
-Mathematically, for all sets $A$ $B$ and $C$, if $A=B$ and $B=C$ then $A=C$. 
+数学上，对于所有集合 $A$、$B$ 和 $C$，如果 $A=B$ 且 $B=C$，那么 $A=C$。
 
-Note that we don't need to define what happens in similar situations that involve more than three sets, as they can be settled by just multiple application of this same law. 
+注意，我们不需要定义涉及三个以上集合的类似情况，因为它们可以通过多次应用该定律来解决。
 
-Symmetry
+对称性 (Symmetry)
 ---
 
-If one thing is equal to another, the reverse is also true, i.e, the other thing is also equal to the first one. This idea is called *symmetry*. Symmetry is probably the most characteristic property of the equivalence relation, which is not true for almost any other relation. 
+如果一件事物等于另一件事物，反过来也成立，即另一件事物也等于第一件事物。这一思想被称为*对称性*。对称性可能是等价关系的最典型特性，而其他几乎没有关系具有这一特性。
 
-![symmetry](../01_set/symmetry.svg)
+![对称性](../01_set/symmetry.svg)
 
-In mathematical terms: if $A=B$ then $B=A$.
+用数学术语来说：如果 $A=B$ 那么 $B=A$。
 
-Isomorphisms as equivalence relations
+同构作为等价关系 (Isomorphisms as equivalence relations)
 ---
 
-Isomorphisms *are* indeed equivalence relations. And "incidentally", we already have all the information needed to prove it (in the same way in which James Bond seems to always incidentally have exactly the gadgets that are needed to complete his mission). 
+同构*确实*是等价关系。而且“顺便说一下”，我们已经有了证明它所需的所有信息（就像詹姆斯·邦德总是碰巧有完成任务所需的所有装备一样）。
 
-We said that the most characteristic property of the equivalence relation is its *symmetry*. And this property is satisfied by isomorphisms, due to the isomorphisms' most characteristic property, namely the fact that they are *invertible*.
+我们说过等价关系的最典型特性是其*对称性*。而由于同构的最典型特性，即它们是*可逆的*，这一特性也在同构中得到了满足。
 
-![Symmetry of isomorphisms](../01_set/isomorphism_symmetry.svg)
+![同构的对称性](../01_set/isomorphism_symmetry.svg)
 
-**Task:** One law down, two to go: Go through the previous section and verify that isomorphisms also satisfy the other equivalence relation laws.
+**任务：** 一条定律已解决，还有两条：请查看前一节内容，验证同构是否也符合其他等价关系定律。
 
-The practice of using isomorphisms to define an equivalence relation is very prominent in category theory where isomorphisms are denoted with $≅$, which is almost the same as $=$ (and is also similar to having two opposite arrows connecting one set to the other).
+使用同构定义等价关系的做法在范畴论中非常显著，在范畴论中同构用符号 $≅$ 表示，它几乎与 $=$ 相同（也类似于用两条相反的箭头连接一个集合到另一个集合）。
 
-{% if site.distribution == 'print'%}
+---
 
-Interlude --- numbers as isomorphisms
+插曲：同构与数字 (Interlude --- numbers as isomorphisms)
 ===
 
-Many people would say that the concept of a number is the most basic concept in mathematics. But actually they are wrong --- *sets and isomorphisms are more basic*! Or at least, numbers can be defined using sets and isomorphisms. 
+许多人会说，数字的概念是数学中最基本的概念。但实际上他们错了——*集合和同构更加基本*! 或至少，数字可以通过集合和同构来定义。
 
-To understand how, let's think about how you teach a person what a number is (in particular, here we will concentrate on the *natural*, or counting numbers). You may start your lesson by showing them a bunch of objects that are of a given quantity, like for example if you want to demonstrate the number $2$, you might bring them like two pencils, two apples or two of something else. 
+要理解这一点，让我们思考一下你如何教一个人数字的概念（特别是，这里我们将集中讨论*自然数*，即计数用的数字）。你可以通过展示一些给定数量的物体来开始教学，例如，如果你想展示数字 2，你可能会拿出两支铅笔、两个苹果或其他两个东西。
 
-![Two balls](../01_set/number_two.svg)
+![两个球](../01_set/number_two.svg)
 
-When you do that, it would be important to highlight that you are not referring to only the left object, or only about the right one, but that we should consider both things at once, i.e., both things as one, so if the person to whom you are explaining happens to know what a set is, this piece of knowledge might come in handy. Also, being good teachers, we might provide them with some more examples of sets of 2 things.
+在你这样做时，重要的是要强调你并不是指左边的物体，或者仅仅指右边的物体，而是要考虑这两样东西在一起，换句话说，就是将它们视为一个整体。因此，如果你正在向一个已经了解集合概念的人解释这个问题，这个知识点可能派得上用场。此外，作为好的教师，我们可能会提供一些包含两个事物的集合的其他例子。
 
-![A set of two balls](../01_set/number_two_sets.svg)
+![两球的集合](../01_set/number_two_sets.svg)
 
-This is a good starting point, but the person may still be staring at the objects instead of the structure &mdash; they might ask if this or that set is $2$ as well. At this point, if the person whom you are explaining happens to know about isomorphisms (let's say they lived in a cave with nothing but this book with them), you can easily formulate your final definition, saying that the number $2$ is represented by those sets and all other sets that are isomorphic to them, or by the *equivalence class* of sets that have two elements, as the formal definition goes (don't worry, we will learn all about equivalence classes later).
+这是一个很好的起点，但学习者可能仍然盯着这些物体而不是关注结构——他们可能会问，其他这个或那个集合也是 2 吗？此时，如果你解释的对象碰巧知道同构（假设他们曾经在洞穴中与这本书相伴），你可以很容易地进行最终的定义，告诉他们数字 2 是由这些集合和所有与它们同构的其他集合代表的，或者按照正式定义，它是具有两个元素的集合的*等价类*。
 
-![A set of two balls](../01_set/number_two_isomorphism.svg)
+![两个球的同构集合](../01_set/number_two_isomorphism.svg)
 
-At this point there are no more examples that we can add. In fact, because we consider all other sets as well, we might say that this is not just a bunch of examples, but a proper *definition* of the number $2$. And we can extend that to include all other numbers. In fact, the first definition of a natural number (presented by Gottlob Frege in 1884) is roughly based on this very idea.
+此时，我们不再需要添加更多的例子。事实上，因为我们考虑了所有其他集合，我们可以说这不仅仅是一堆例子，而是数字 2 的一个恰当的*定义*。我们可以将这种方法扩展到包括所有其他数字。事实上，第一种自然数的定义（由戈特洛布·弗雷格 (Gottlob Frege) 于1884年提出）大致基于这个想法。
 
-Before we close this chapter, there is one meta-note that we should definitely make: according to the definition of a number that we presented, a number is not an *object*, but a whole *system of interconnected objects*, containing in this case an infinite number of objects. This may seem weird to you, but it's actually pretty characteristic of the categorical way of modeling things.
+在结束本章之前，我们必须指出一个元注：根据我们提出的数字定义，数字并不是一个*对象*，而是一个包含无数相互关联对象的*系统*。这对你来说可能有些奇怪，但它实际上是范畴论中建模方式的一个典型特征。
 
-{%endif%}
-
-Addendum: The case of composition in software development
+附录：软件开发中的组合案例 (Addendum: The case of composition in software development)
 ===
 
-> An unstructured monolithic design is not a good idea, except maybe for a tiny operating system in, say, a toaster, but even there it is arguable.--- Andrew S. Tanenbaum
+> “不结构化的单片设计不是一个好主意，除了可能对于像烤面包机这样的小型操作系统，甚至在这种情况下也是有争议的。”—— 安德鲁·S·塔宁鲍姆 (Andrew S. Tanenbaum)
 
-Software development is a peculiar discipline --- in theory, it should be just some sort of *engineering*, however the way it is executed in practice is sometimes closer to *craftsmanship*, with the principle of composition not being utilized to the fullest. 
+软件开发是一门特殊的学科——理论上，它应该是某种*工程*，但实际上执行时，它有时更接近于*手工艺*，没有充分利用组合原则。
 
-To see why, imagine a person (e.g. me), tinkering with some sort of engineering problem e.g. trying to fix a machine or modify it to serve a new purpose. If the machine in question is mechanical or electrical, this person will be forced to pretty much make due with the components that already exist, simply because they can rarely afford to manufacture new components themselves (or at least they would avoid it if possible). This limitation, forces component manufacturers to create components that are versatile and that work well together, in the same way in which pure functions work well together. And this in turn makes it easy for engineers to create better machines without doing all the work themselves. 
+想象一个人（例如我自己）在修理某个工程问题，例如试图修理一台机器或修改它以适应新的用途。如果这台机器是机械的或电气的，那么这个人将不得不利用现有的组件，因为他们不太可能自己制造新组件（或至少他们会避免这么做）。这种限制迫使组件制造商创建通用且协作良好的组件，就像纯函数组合良好一样。这反过来又使工程师能够更轻松地制造出更好的机器，而不必自己完成所有工作。
 
-But things are different if the machine in question is software-based --- due to the ease with which new software components can be rolled out, our design can blur the line that separates some of the components or even do away with the concept of component altogether and make the whole program one giant component (*monolithic design*). Worse, when no ready-made components are available, this approach is actually easier than the component-based approach that we described in the previous paragraph, and so many people use it. 
+但如果这台机器是基于软件的，情况就不同了——由于新软件组件可以很容易地被创建，我们的设计可以模糊组件之间的界限，甚至完全消除组件的概念，将整个程序变成一个巨大的组件（即*单片设计*）。更糟糕的是，当没有现成的组件可用时，这种方法实际上比基于组件的设计更容易使用，因此许多人选择了它。
 
-This is bad, as the benefits of monolithic design are mostly short-term --- not being separated to components makes programs harder to reason about, harder to modify (e.g. you cannot replace a faulty component with a new one) and generally more primitive than component-based programs. For these reasons, I think that currently, programmers are losing out by not utilizing the principles of functional composition. In fact, I was so unhappy with the situation that I decided to write a whole book on applied category theory to help people understand the principles of composition better --- it's called Category Theory Illustrated (Oh wait, I am writing that right now, aren't I?)
+这很糟糕，因为单片设计的好处主要是短期的——没有拆分成组件的程序更难以理解、更难修改（例如，你不能用一个新的组件替换一个故障组件），总体上比基于组件的程序更原始。出于这些原因，我认为目前程序员没有充分利用函数组合的原则。实际上，我对此感到如此不满，以至于决定写一本关于应用范畴论的书，帮助人们更好地理解组合的原则——它叫做《范畴论图解》(Category Theory Illustrated)（哦，等等，我现在正在写这本书，对吧？）

@@ -1,144 +1,145 @@
 ---
-layout: default
-title: About 
+
+layout: default  
+title: 关于
+
 ---
 
-{: style="text-align: center"}
-In memory of 
+{: style="text-align: center"}  
+纪念
 
-{: style="text-align: center"}
-Francis William Lawvere 
+{: style="text-align: center"}  
+弗朗西斯·威廉·劳维尔 (Francis William Lawvere)
 
-{: style="text-align: center"}
+{: style="text-align: center"}  
 1937 --- 2023
 
-<div style="page-break-after: always; opacity: 0 ; height: 400px"> 
-\pagebreak 
+<div style="page-break-after: always; opacity: 0 ; height: 400px">  
+\pagebreak  
 </div>
 
-{: style="text-align: right"}
-*"Try as you may,*
+{: style="text-align: right"}  
+*"你尽力了，*
 
-{: style="text-align: right"}
-*you just can't get away,*
+{: style="text-align: right"}  
+*但你就是无法逃避数学"*
 
-{: style="text-align: right"}
-*from mathematics"*
+{: style="text-align: right"}  
+汤姆·莱勒 (Tom Lehrer)
 
-{: style="text-align: right" }
-Tom Lehrer 
-
-<div style="page-break-after: always; opacity: 0 ; height: 400px"> 
-\pagebreak 
+<div style="page-break-after: always; opacity: 0 ; height: 400px">  
+\pagebreak  
 </div>
 
-The story behind this book
+这本书背后的故事
 ===
 
-I was interested in math as a kid, but was always messing up calculations, so I decided it was not my thing and started pursuing other interests, like writing and visual art.
+我小时候对数学感兴趣，但总是搞错计算，所以我决定这不是我的专长，并开始追求其他兴趣，比如写作和视觉艺术。
 
-A little later I got into programming and I found that this was similar to the part of mathematics that I enjoyed. I started using functional programming in an effort to explore the similarity and to improve myself as a developer. I discovered category theory a little later.
+后来我开始接触编程，发现它与我喜欢的那部分数学很相似。为了探索这种相似性并提高自己的开发能力，我开始使用函数式编程。不久后，我发现了范畴论 (Category Theory)。
 
-Some 5 years ago I found myself jobless for a few months and decided to publish some of the diagrams that I drew as part of the notes I kept when was reading "Category Theory for Scientists" by David Spivak. The effort resulted in a rough version of the first two chapters of this book, which I published online.
+大约五年前，我失业了几个月，决定发布一些我在阅读大卫·斯皮瓦克 (David Spivak) 的《科学家的范畴论 (Category Theory for Scientists)》时记笔记所绘制的图。这一努力产生了本书前两章的粗略版本，我将其发布到网上。
 
-A few years after that some people found my notes and encouraged me write more. They were so nice that I forgot my imposter syndrome and got to work on the next several chapters.
+几年后，一些人找到了我的笔记并鼓励我写更多。他们非常友善，以至于让我忘记了自己的冒充者综合症，开始着手写接下来的几章。
 
-On math
+关于数学
 ===
 
-Ever since Newton's Principia, the discipline of mathematics is viewed in the somewhat demeaning position of "science and engineering's workhorse" --- only "useful" as a means for helping scientists and engineers to make technological and scientific advancements, i.e., it is viewed as just a tool for solving "practical" problems. 
+自从牛顿 (Newton) 的《自然哲学的数学原理 (Principia)》以来，数学被视为“科学和工程的工作马”，即数学仅被视为一种帮助科学家和工程师取得技术和科学进展的工具，仅用于解决“实际”问题。
 
-Because of this, mathematicians are in a weird and, I'd say, unique position of always having to defend what they do with respect to its value for *other disciplines*. I again stress that this is something that would be considered absurd when it comes to any other discipline. 
+因此，数学家处于一个奇怪且独特的位置，始终需要为他们所做的工作辩护，证明它对*其他学科*的价值。我再强调一次，这种情况在其他学科上显得荒谬。
 
-People don't expect any return on investment from *physical theories*, e.g., no one bashes a physical theory for having no utilitarian value.
+没有人期望从*物理理论*中得到回报。例如，没有人因为某个物理理论没有实用价值而批评它。
 
-And bashing philosophical theories for being impractical would be even more absurd --- imagine bashing Wittgenstein, for example:
+批评哲学理论不实用则更为荒唐。试想有人批评维特根斯坦 (Wittgenstein):
 
-> "All too well, but what can you do with the picture theory of language?" 
-> "Well, I am told it does have its applications is programming language theory..."
+> “很好，但语言的图像理论能做什么？”
+> “我听说它在编程语言理论中有些应用……”
 
-Or someone being sceptical to David Hume's scepticism:
+或者对大卫·休谟 (David Hume) 的怀疑论表示怀疑：
 
-> "That's all fine and dandy, but your theory leaves us at square one in terms of our knowledge. What the hell are we expected to do from there?"
+> “很好，但你的理论让我们在知识上原地踏步。接下来我们该做什么？”
 
-Although many people don't necessarily subscribe to this view of mathematics as a workhorse, we can see it encoded inside the structure of most mathematics textbooks --- each chapter starts with an explanation of a concept, followed by some examples, and then ends with a list of problems that this concept solves. 
+虽然许多人不一定认同数学是工具的观点，但我们可以在大多数数学教科书的结构中看到这种编码：每章以概念解释开始，然后是一些例子，最后是列出该概念所解决的问题。
 
-There is nothing wrong with this approach, but mathematics is so much more than a tool for solving problems. It was the basis of a religious cult in ancient Greece (the Pythagoreans), it was seen by philosophers as means to understanding the laws which govern the universe. It was, and still is, a language which can allow for people with different cultural backgrounds to understand each other. And it is also art and a means of entertainment. It is a mode of thinking, Or we can even say it is thinking itself. Some people say that "writing is thinking", but I would argue that writing, when refined enough, and free from any kind of bias in on the side of the author, automatically becomes *mathematical writing* --- you can almost convert the words into formulas and diagrams.
+这种方法没有错，但数学远不止是解决问题的工具。它曾是古希腊宗教教派（毕达哥拉斯学派）的基础，被哲学家视为理解宇宙法则的手段。它曾是，也仍然是，一种使不同文化背景的人能够相互理解的语言。它也是一种艺术和娱乐方式。它是一种思维模式，甚至可以说它就是思维本身。有人说“写作即思考”，但我认为，写作一旦足够精炼并且没有任何作者偏见，就自动成为*数学写作*——你几乎可以将文字转换为公式和图表。
 
-Category theory embodies all these aspects of mathematics, so I think it's very good grounds to writing a book where all of them shine --- a book that isn't based on solving of problems, but exploring concepts and seeking connections between them. A book that is, overall, pretty.
+范畴论 (Category Theory) 体现了数学的所有这些方面，因此我认为它是写一本展示所有这些方面的书的良好基础——一本不以解决问题为基础，而是探索概念并寻求它们之间联系的书。一本整体上很美的书。
 
-Who is this book for 
+这本书是为谁写的
 ====
 
-So, who is this book for? Some people would phrase the question as "Who *should* read this book", but if you ask it this way, then the answer is "nobody". Indeed, if you think in terms of "should", mathematics (or at least the type of mathematics that is reviewed here) won't help you much, although it is falsely advertised as a solution to many problems (whereas it is, in fact, (as we established) something much more).
+那么，这本书是为谁写的呢？有些人可能会将这个问题表述为“谁*应该*读这本书”，但如果你这样问，答案就是“没有人”。的确，如果你以“应该”的角度思考，数学（至少本书涉及的数学类型）不会对你有多大帮助，尽管它被虚假地宣传为解决许多问题的方案（而实际上它是，正如我们所述，远不止如此）。
 
-Let's take an example --- many people claim that Einstein's theories of relativity are essential for GPS-es to work properly. Due to relativistic effects, the clocks on GPS satellites tick faster than identical clocks on the ground.
+让我们举个例子——许多人声称爱因斯坦 (Einstein) 的相对论对于全球定位系统 (GPS) 的正常运行至关重要。由于相对论效应，GPS 卫星上的时钟比地面上的相同时钟走得更快。
 
-They seem to think that if the theory didn't exist, the engineers that developed the GPSes would have faced this phenomenon in the following way:
+他们似乎认为，如果没有该理论，开发 GPS 的工程师会面对以下情况：
 
-> Engineer 1: Whoa, the clocks on the satellites are off by X nanoseconds! 
+> 工程师1：哇，卫星上的时钟快了X纳秒！
 >
-> Engineer 2: But that's impossible! Our mathematical model predicts that they should be correct. 
+> 工程师2：但这不可能！我们的数学模型预测它们应该是正确的。
 >
-> Engineer 1: OK, so what do we do now?
+> 工程师1：好的，那我们现在该怎么办？
 >
-> Engineer 2: I guess we need to drop this project until we have a viable mathematical model that describes time in the universe.
+> 工程师2：我想我们得搁置这个项目，直到我们有一个描述宇宙时间的数学模型。
 
-Although I am not an expert in special relativity, I suspect that the way this conversation would have developed would be closer to the following:
+虽然我不是相对论 (special relativity) 的专家，但我怀疑这段对话的发展更接近于以下情况：
 
-> Engineer 1: Whoa, the clocks on the satellites are off by X nanoseconds!
+> 工程师1：哇，卫星上的时钟快了X纳秒！
 >
-> Engineer 2: This is normal. There are many unknowns.
+> 工程师2：这是正常的。存在许多未知数。
 >
-> Engineer 1: OK, so what do we do now?
+> 工程师1：好的，那我们现在该怎么办？
 >
-> Engineer 2: Just adjust it by X and see if it works. Oh, and tell that to some physicist. They might find it interesting.
+> 工程师2：只需调整X看看是否有效。哦，顺便告诉物理学家，他们可能会觉得有趣。
 
-In other words, we can solve problems without any advanced math, or with no math at all, as evidenced by the fact that the Egyptians were able to build the pyramids without even knowing Euclidean geometry. And with that I am not claiming that math is so insignificant, that it is not even good enough to serve as a tool for building stuff. Quite the contrary, I think that math is much more than just a simple tool. So going through any math textbook (and of course especially this one) would help you in ways that are much more vital than finding solutions to "complex" problems.
+换句话说，我们可以在没有任何高级数学甚至没有数学的情况下解决问题，正如埃及人能够在不知道欧几里得几何 (Euclidean geometry) 的情况下建造金字塔一样。而我要说的是，数学不仅仅是一个简单的工具。阅读任何一本数学教科书（当然，尤其是这本书）都会在许多更重要的方面帮助你，而不仅仅是解决“复杂”问题。
 
-Some people say that we don’t use maths in our daily life. But, if true, that is only because other people have solved all hard problems for us and the solutions are encoded on the tools that we use, however not knowing math means that you will be forever a consumer, bound to use those existing tools and solutions and thinking patterns, not being able to do anything on your own.
+有些人说我们在日常生活中不使用数学。但如果这是真的，那只是因为其他人已经为我们解决了所有难题，并且这些解决方案编码在我们使用的工具中。但是，如果你不了解数学，那你将永远是一个消费者，依赖于现有的工具和解决方案，而无法自行解决任何问题。
 
-And so "Who is this book for" is not to be read as who should, but who *can* read it. Then, the answer is "everyone".
+因此，“这本书是为谁写的”这个问题不应该被理解为谁应该读，而是谁*可以*读。答案是：“每个人”。
 
-About category theory
+关于范畴论
 ===
 
-Like we said, the fundaments of mathematics are the fundaments of thought. Category theory allows us to formalize those fundaments that we use in our daily (intellectual) lives.
+如我们所述，数学的基础是思维的基础。范畴论 (Category Theory) 让我们能够形式化我们在日常（智力）生活中使用的这些基础。
 
-The way we think and talk is based on intuition that develops naturally and is a very easy way to get our point across. However, intuition also makes it easy to be misunderstood --- what we say usually can be interpreted in many ways, some of which are wrong. Misunderstanding of these kinds are the reason why biases appear. Moreover, some people (called "sophists" in ancient Greece) would introduce biases on purpose in order to get short-term gains (not caring that introducing biases hurts everyone on the long run).
+我们的思考和交流方式是基于自然发展起来的直觉，这是我们传达观点的非常简单的方式。然而，直觉也使得误解变得容易——我们所说的话通常可以以多种方式解释，其中有些是错误的。这类误解是偏见产生的原因。此外，有些人（在古希腊被称为“诡辩家”）会故意引入偏见，以便获得短期利益（不关心引入偏见对每个人的长期伤害）。
 
-It's in such situations, that people often resort to *formulas* and *diagrams* to refine their thoughts. Diagrams (even more than formulas) are ubiquitous in science and mathematics.
+在这种情况下，人们通常会诉诸*公式*和*图表*来完善他们的想法。图表（甚至比公式更常见）在科学和数学中无处不在。
 
-Category theory formalizes the concept of diagrams and their components --- arrows and objects --- to create a language for presenting all kinds of ideas. In this sense, category theory is a way to unify knowledge, both mathematical and scientific, and to unite various modes of thinking with common terms. 
+范畴论形式化了图表及其组成部分——箭头 (arrows) 和对象 (objects)——以创建一种表示各种想法的语言。在这个意义上，范畴论是一种统一知识的方式，既包括数学知识，也包括科学知识，并且通过通用术语统一各种思维模式。
 
-As a consequence of that, category theory and diagrams are also a very understandable way to communicate a formal concept clearly, something I hope to demonstrate in the following pages.
+因此，范畴论和图表也是一种非常易于理解的方式来清晰地传达一个正式的概念，我希望在接下来的几页中能展示这一点。
 
-Summary
+总结
 ===
 
-In this book we will visit various such modes of knowledge and along the way, see all kinds of mathematical objects, viewed through the lens of categories.
+在本书中，我们将探索各种知识模式，并在此过程中，通过范畴的视角 (lens of categories) 看到各种数学对象。
 
-We start with *set theory* in chapter 1, which is the original way to formalize different mathematical concepts.
+我们从第一章的*集合论 (set theory)* 开始，这是形式化不同数学概念的最初方式。
 
-Chapter 2 we will make a (hopefully) gentle transition from sets to *categories* while showing how the two compare and (finally) introducing the definition of category theory.
+第二章我们将进行一个（希望）平滑的过渡，从集合到*范畴 (categories)*，同时展示它们的比较，最终引出范畴论的定义。
 
-In the next two chapters, 3 and 4, we jump into two different branches of mathematics and introduce their main means of abstraction, *groups and orders*, observing how they connect to the core category-theoretic concepts that we introduced earlier.
+接下来的两章，第三章和第四章，我们将跳入数学的两个不同分支，并介绍它们的主要抽象手段，*群 (groups)* 和 *序 (orders)*，观察它们如何与我们之前介绍的核心范畴论概念相联系。
 
-Chapter 5 also follows the main formula of the previous two chapters, getting to the heart of the matter of why category theory is a universal language, by showing its connection with the ancient discipline of *logic*. As in chapters 3 and 4, we start with a crash course in logic itself.
+第五章也遵循前两章的主要公式，深入探讨为什么范畴论是一种通用语言，
 
-The connection between all these different disciplines is examined in chapter 6, using one of the most interesting category-theoretical concepts --- the concept of a functor.
+展示它与古老学科*逻辑 (logic)* 的联系。与第三章和第四章一样，我们从逻辑本身的速成课程开始。
 
-In chapter 7 we review another more interesting and more advanced categorical concept, the concept of a *natural transformation*.
+第六章我们探讨所有这些不同学科之间的联系，使用一个最有趣的范畴理论概念——*函子 (functor)* 的概念。
 
-Acknowledgments
+在第七章中，我们将回顾另一个更有趣且更高级的范畴概念，*自然变换 (natural transformation)* 的概念。
+
+致谢
 ===
 
-Thanks to my wife Dimitrina, for all her support.
+感谢我的妻子迪米特丽娜 (Dimitrina)，感谢她的支持。
 
-My daughter Daria, my "anti-author" who stayed seated on my knees when I was writing the second and third chapters and mercilessly deleted many sentences, most of them bad.
+感谢我的女儿达里亚 (Daria)，我的“反作者”，她坐在我膝上写第二、三章时无情地删除了许多句子，其中大部分都是糟糕的句子。
 
-Thanks to my high-school arts teacher, Mrs Georgieva who told me that I have some talent, but I have to work.
+感谢我的高中美术老师乔治耶娃夫人 (Mrs. Georgieva)，她告诉我我有些天赋，但需要努力。
 
-Thanks to Prathyush Pramod who encouraged me to finish the book and is also helping me out with it.
+感谢普拉休什·普拉莫德 (Prathyush Pramod)，他鼓励我完成这本书并帮助了我。
 
-And also to everyone else who submitted feedback and helped me fix some of the numerous errors that I made --- knowing myself, I know that there are more.
+也感谢所有提交反馈并帮助我修正我所犯的无数错误的人——了解我自己，我知道还有更多。
