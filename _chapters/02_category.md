@@ -1,584 +1,574 @@
 ---
 layout: default
-title: Categories
+title: 类 (Categories)
 ---
 
-From Sets to Categories
+从集合到范畴 (From Sets to Categories)
 ===
 
-In this chapter we will see some more set-theoretic constructs, but we will also introduce their category-theoretic counterparts in an effort to gently introduce the concept of a category itself.
+在本章中，我们将看到一些更多的集合论构造，同时也将引入它们的范畴论 (category-theoretic) 对应物，以便轻松引入范畴 (category) 概念本身。
 
-When we are finished with that, we will try, (and almost succeed) to define categories from scratch, without actually relying on set theory.
+当我们完成这些内容后，我们将尝试（并几乎成功地）从头开始定义范畴，而不依赖于集合论。
 
-Products
+积 (Products)
 ===
 
-In the previous chapter there were several places where needed a way to construct a set whose elements are *composite* of the elements of some other sets: when we discussed mathematical functions, we couldn't define $+$ and $-$ because we could only formulate functions that take one argument. Then, when we introduced the primitive types in programming languages, like `Char` and `Number`, we mentioned that most of the types that we actually use are *composite* types. So how do we construct those?
+在上一章中，有几个地方我们需要构造一个集合，其元素是一些其他集合元素的*复合*。例如，当我们讨论数学函数时，由于只能构建接受一个参数的函数，因此我们无法定义加法 ($+$) 和减法 ($-$)。然后，当我们介绍编程语言中的基本类型（如 `Char` 和 `Number`）时，我们提到，实际上我们使用的大多数类型都是*复合*类型。那么我们如何构建这些复合类型呢？
 
-The simplest composite type, of the sets $B$, that contains $b$'s and the set $Y$, that contains $y$'s is the *Cartesian product* of $B$ and $Y$, that is the set of *ordered pairs* that contain one element of the set $Y$ and one element of the set $B$. Or formally speaking: $Y \times B = \{ (y, b) \}$ where $y ∈ Y, b ∈ B$ ($∈$ means "is an element of").
+最简单的复合类型是集合 $B$，其中包含 $b$ 的元素，集合 $Y$，其中包含 $y$ 的元素。这就是 $B$ 和 $Y$ 的*笛卡尔积* (Cartesian product)，即包含一个来自集合 $Y$ 的元素和一个来自集合 $B$ 的元素的*有序对*。形式化地表示：$Y \times B = \{ (y, b) \}$，其中 $y ∈ Y, b ∈ B$（$∈$ 表示“是...的元素”）。
 
-![Product parts](../02_category/product_parts.svg)
+![积的部分](../02_category/product_parts.svg)
 
-It is denoted $B \times Y$ and it comes equipped with two functions for retrieving the $b$ and the $y$ from each $(b, y)$.
+它表示为 $B \times Y$，并配备有两个函数，分别用于从每个 $(b, y)$ 中检索 $b$ 和 $y$。
 
-![Product](../02_category/product.svg)
+![积](../02_category/product.svg)
 
-**Question**: Why is this called a product? Hint: How many elements does it have?
+**问题**：为什么它被称为“积”呢？提示：它有多少个元素？
 
 {% if site.distribution == 'print'%}
 
-Interlude --- coordinate systems
+插曲——坐标系 (Interlude --- coordinate systems)
 ---
 
-The concept of *Cartesian product* was first defined by the mathematician and philosopher René Descartes as a basis for the *Cartesian coordinate system*, which is why both concepts are named after him (although it does not look like it, as they use the latinized version of his name). 
+*笛卡尔积* (Cartesian product) 的概念首先由数学家和哲学家勒内·笛卡尔 (René Descartes) 定义，作为*笛卡尔坐标系* (Cartesian coordinate system) 的基础，这也是为什么这两个概念都以他的名字命名（尽管表面上看不出来，因为它们使用的是他名字的拉丁化形式）。
 
-Most people know how Cartesian coordinate systems works, but an equally interesting question, on which few people think about, is how we can define it using sets and functions. 
+大多数人都知道笛卡尔坐标系是如何工作的，但很少有人思考如何用集合和函数来定义它。
 
-A Cartesian coordinate system consists of two perpendicular lines, situated on an *Euclidean plane* and some kind of mapping that resembles a function, connecting any point in these two lines to a number, representing the distance between the point that is being mapped and the lines' point of overlap (which is mapped to the number $0$).
+笛卡尔坐标系由两条垂直的直线组成，这些直线位于*欧几里得平面* (Euclidean plane) 上，并通过类似函数的映射，将平面上的任意一点与一个数值相关联，该数值表示该点与两条直线交点的距离（该交点被映射到数值 $0$）。
 
-![Cartesian coordinates](../02_category/coordinates_x_y.svg)
+![笛卡尔坐标](../02_category/coordinates_x_y.svg)
 
-Using this construct (as well as the concept of a Cartesian product), we can describe not only the points on the lines, but any point on the Euclidean plane. We do that by measuring the distance between the point and those two lines.
+利用这一构造（以及笛卡尔积的概念），我们不仅可以描述这些直线上的点，还可以描述欧几里得平面上的任意一点。我们通过测量该点与两条直线的距离来做到这一点。
 
-![Cartesian coordinates](../02_category/coordinates.svg)
+![笛卡尔坐标](../02_category/coordinates.svg)
 
-And since the point is the main primitive of Euclidean geometry, the coordinate system allows us to also describe all kinds of geometric figures such as this triangle (which is described using products of products).
+由于点是欧几里得几何的主要原始对象，坐标系还允许我们描述所有类型的几何图形，例如这个三角形（它是通过多个积的形式来描述的）。
 
-![Cartesian coordinates](../02_category/coordinates_triangle.svg)
+![笛卡尔坐标系的三角形](../02_category/coordinates_triangle.svg)
 
-So we can say that the Cartesian coordinate system is some kind of function-like mapping between all kinds of sets of (products of) *products of numbers* and *geometric figures* that correspond to these numbers, using which we can derive some properties of the figures using the numbers (for example, using the products in the example below, we can compute that the triangle that they represent has base of $6$ units and height of $5$ units. 
+因此，我们可以说，笛卡尔坐标系是某种类似函数的映射，它将所有种类的（积的）*数的积集合*与这些数对应的*几何图形*联系起来，利用这些数，我们可以推导出图形的一些性质（例如，通过下图中的积，我们可以计算出这个三角形的底边长为 $6$ 个单位，高为 $5$ 个单位）。
 
-![Cartesian coordinates](../02_category/coordinates_isomorphism.svg)
+![笛卡尔坐标系同构](../02_category/coordinates_isomorphism.svg)
 
-What's even more interesting is that this mapping is one-to-one, which makes the two realms *isomorphic* (traditionally we say that the point is *completely* described by the coordinates, which is the same thing).
+更有趣的是，这种映射是一对一的，这使得两个领域*同构* (isomorphic)（传统上，我们说该点被坐标*完全*描述，这意味着同样的事情）。
 
-With that, our effort to represent Cartesian coordinates with sets is complete, except we haven't described what these function-like things that connect points to numbers are --- they make intuitive sense as functions, and that they exhibit all relevant properties (many-to-one mapping (or one-to-one in this case)), however, we have only covered functions as mappings between *sets* and in this case, even if we can think of the coordinate system as a set (of points and figures), geometrical figures are definitely not a set, as it has a lot of additional things going on (or additional *structure*, as a category theorist would say). So defining this mapping formally, would require us to also formalize both geometry and algebra, and moreover to do so in a way in which they are compatible with one another. This is some of the ambitions of category theory and this is what we will attempt to do later in this book.
+到此为止，我们通过集合来表示笛卡尔坐标系的工作基本完成，但我们还没有描述将点与数值连接起来的这些类似函数的东西——它们直观地理解为函数，并且表现出所有相关的性质（例如，多对一映射，或者在这种情况下是一对一映射）。然而，我们只讨论了集合之间的函数映射。即使我们可以将坐标系视为一个集合（由点和图形组成），几何图形显然不是集合，因为它包含了很多附加内容（或者用范畴论的说法，附加的*结构*）。因此，正式定义这种映射，需要我们同时形式化几何和代数，并使它们彼此兼容。这也是范畴论的一些雄心壮志，稍后我们将在本书中尝试解决这一问题。
 
-But before we continue with that, let's see some other neat uses of products.
+在我们继续讨论之前，让我们看看积的一些其他有趣用途。
 
 {%endif%}
 
-Products as Objects
+作为对象的积 (Products as Objects)
 ---
 
-In the previous chapter, we established the correspondence of various concepts in programming languages and set theory --- sets resemble types, functions resemble methods/subroutines. This picture is made complete with products, that are like stripped-down *classes* (also called *records* or *structs*) --- the sets that form the product correspond to the class's *properties*  (also called *members*) and the functions for accessing them are like what programmers call *getter methods* e.g. the famous example of object-oriented programming of a `Person` class with `name` and `age` fields is nothing more than a product of the set of strings, and the sets of numbers. And objects with more than two values can be expressed as products the composites of which are themselves products.
+在上一章中，我们建立了编程语言概念和集合论的对应关系——集合类似于类型，函数类似于方法/子例程。这个图景通过积得以完善，积就像简化版的*类* (class)（也称为*记录* (record) 或*结构体* (struct)）——形成积的集合对应于类的*属性* (properties)（也称为*成员* (members)），用于访问这些属性的函数就像程序员所说的*getter 方法*。例如，面向对象编程中著名的 `Person` 类，具有 `name` 和 `age` 字段，这实际上不过是字符串集合和数字集合的积。具有多个值的对象可以通过积的复合来表达，而这些复合本身也是积。
 
-Using Products to Define Numeric Operations
+使用积定义数值运算 (Using Products to Define Numeric Operations)
 ---
 
-Products can also be used for expressing functions that take more than one argument (and this is indeed how multi-param functions are implemented in languages who actually have tuples, like the ones from the ML family ). For example, "plus" is a function from the set of products of two numbers to the set of numbers, so, $+: \mathbb{Z} \times \mathbb{Z} → \mathbb{Z}$. 
+积还可以用于表达接受多个参数的函数（事实上，这也是多参数函数在具有元组 (tuple) 的语言中实现的方式，如 ML 家族的语言）。例如，"加法" 是从两个数字的积集合到数字集合的函数，因此，$+: \mathbb{Z} \times \mathbb{Z} → \mathbb{Z}$。
 
-![The plus function](../02_category/plus.svg)
+![加法函数](../02_category/plus.svg)
 
-In other words, products are extremely important concept, that is vital if you want to represent any kind of structure.
+换句话说，积是非常重要的概念，如果你想表示任何类型的结构，它都是必不可少的。
 
-Defining products in terms of sets 
+通过集合定义积 (Defining products in terms of sets)
 ---
 
-A product is, as we said, a set of *ordered* pairs (formally speaking $A \times B ≠ B \times A$). So, to define a product we must define the concept of an ordered pair. So how can we do that? Note that an ordered pair of elements is not just a set containing the two elements ---  that would just be a *pair*, but not an *ordered pair*).
+如我们所说，积是*有序*对的集合（形式上讲 $A \times B ≠ B \times A$）。因此，为了定义积，我们必须定义有序对的概念。那么我们如何做到这一点呢？请注意，有序对的元素不仅仅是一个包含两个元素的集合——那只会是一个*对*，而不是一个*有序对*。
 
-Rather, an ordered pair is a structure that contains two objects as well as information about which of those objects is the first and which one is second (and in programming, we have the ability to assign names to each member of an object, which accomplishes the same purpose as ordering does for pairs.)
+相反，有序对是一种结构，它包含两个对象以及关于哪一个是第一个、哪一个是第二个的信息（在编程中，我们可以为对象的每个成员指定名称，这与对的排序功能相同）。
 
-The ordered part is important as, while some mathematical operations (such as addition) don't care about order, others (such as subtraction) do (and in programming, when we manipulate an object we obviously want to access a specific property, not just any random property).
+有序部分很重要，因为虽然某些数学运算（如加法）不关心顺序，但其他运算（如减法）则非常依赖顺序（在编程中，当我们操作对象时，我们显然希望访问特定属性，而不是随机的属性）。
 
-![A pair](../02_category/pair.svg)
+![一个对](../02_category/pair.svg)
 
-So does that mean that we have to define ordered pair as a "primitive" type, like we defined sets in order to use them? That's possible, but there is another approach if we can define a construct that is *isomorphic* to the ordered pair, using only sets, we can use that construct instead of them. And mathematicians had come up with multiple ingenious ways to do that. Here is the first one, which was suggested by Norbert Wiener in 1914. Note the smart use of the fact that the empty set is unique. 
+这是否意味着我们必须将有序对定义为类似集合的“原始”类型才能使用它们？这有可能，但还有另一种方法：如果我们能够使用仅由集合定义的构造来表示有序对的同构物，我们就可以使用该构造代替有序对。数学家已经提出了多种聪明的方法来做到这一点。以下是第一个方法，由诺伯特·维纳 (Norbert Wiener) 于1914年提出。请注意空集唯一性的巧妙运用。
 
-![A pair, represented by sets](../02_category/pair_as_set_2.svg)
+![由集合表示的对](../02_category/pair_as_set_2.svg)
 
-The next one was suggested in the same year by Felix Hausdorff. In order to use that one, we just have to define $1$, and $2$ first.
+下一种方法同样在1914年由费利克斯·豪斯多夫 (Felix Hausdorff) 提出。要使用这种方法，我们首先必须定义 $1$ 和 $2$。
 
-![A pair, represented by sets](../02_category/pair_as_set_3.svg)
+![由集合表示的对](../02_category/pair_as_set_3.svg)
 
-Suggested in 1921 Kazimierz Kuratowski, this one uses just the component of the pair.
+1921年，卡齐米日·库拉托夫斯基 (Kazimierz Kuratowski) 提出的这种方法只使用了对的组成部分。
 
-![A pair, represented by sets](../02_category/pair_as_set_1.svg)
+![由集合表示的对](../02_category/pair_as_set_1.svg)
 
-Defining products in terms of functions 
+通过函数定义积 (Defining products in terms of functions)
 ---
 
+前面的积定义通过*放大*积的各个元素来查看它们的组成部分。我们可以将其视为定义的*低层次*方法。这次我们将尝试做相反的事情——尽可能地忽视我们的集合的内容，即我们不会放大，而是*缩小*，尝试避开我们在前一部分遇到的困难，并提供基于函数和*外部*图表的积定义。
 
-In the product definitions presented in the previous section worked by *zooming in* into the individual elements of the product and seeing what they can be made of We may think of this as a *low-level* approach to the definition. This time we will try to do the opposite --- we will try to be as oblivious to the contents of our sets as possible i.e. instead of zooming in we will *zoom out*, we will attempt to fly over the difficulties that we met in the previous section and provide a definition of a product in terms of functions and *external* diagrams.
+我们如何通过外部图表定义积呢？即给定两个集合，如何确定它们的积集合？为此，我们首先必须考虑积有哪些*函数*，我们有两个函数——分别用于检索对的两个元素（所谓的“getter”）。
 
-How can we define products in terms of external diagrams i.e. given two sets how can we pinpoint the set that is their product? To do that, we must first think about *what functions* are there for a given product, and we have two of those --- the functions for retrieving the two elements of the pair (the "getters", so to say). 
+![积](../02_category/product.svg)
 
-![Product](../02_category/product.svg)
+形式上，如果我们有一个集合 $G$，它是集合 $Y$ 和 $B$ 的积，那么我们还应该有函数返回积的元素，因此 $G → Y$ 和 $G → B$。现在让我们切换到外部视角。
 
-Formally, if we have a set $G$ which is the product of sets $Y$ and $B$, then we should also have functions which give us back the elements of the product, so $G → Y$ and $G → B$. Now let's switch to the external view.
+![积，外部图表](../02_category/product_external.svg)
 
-![Product, external diagram](../02_category/product_external.svg)
+这个图表已经提供了一个定义，但还不是一个完整的定义，因为 $Y$ 和 $B$ 的积并不是唯一可以定义这些函数的集合。例如，$Y \times B \times R$ 的三元组集合，对于任何元素 $R$ 也符合条件。如果存在从 $G$ 到 $B$ 的函数，那么集合 $G$ 本身也满足我们的积条件，因为它与 $B$ 和它自身相连。还有许多其他对象也符合条件。
 
-This diagram already provides a definition, but not a complete definition, because the product of $Y$ and $B$ is not the only set for which such functions can be defined. For example, a set of triples of $Y \times B \times R$ for any element $R$ also qualifies. And if there is a function from $G$ to $B$ then the set $G$ itself meets our condition for being the product, because it is connected to $B$ and to itself. And there can be many other objects that qualify as well.
+![积，外部图表](../02_category/product_candidates.svg)
 
-![Product, external diagram](../02_category/product_candidates.svg)
+然而，三元组集合 $Y \times B \times R$ 仅仅因为它可以被转换为 $Y \times B$，因此与 $Y$ 和 $B$ 相连：箭头 $Y \times B \times R \to B$ 只是箭头 $Y \times B \times R \to Y \times B$ 和箭头 $Y \times B \to B$ 的复合。相同的推理适用于所有其他对象。
 
-However, the set of triples  $Y \times B \times R$ is connected to $Y$ and $B$ only because it can be converted to $Y \times B$: the arrow $Y \times B \times R \to B$ is just the composition of the arrow $Y \times B \times R \to Y \times B$ and the arrow  $Y \times B \to B$. The same reasoning applies to all other objects.
+![积，外部图表](../02_category/products_morphisms.svg)
 
-![Product, external diagram](../02_category/products_morphisms.svg)
+（直观上，所有这些对象都比对的对象*更复杂*，你总是可以有一个函数将更复杂的结构转换为更简单的结构（当我们讨论将子集转换为它们的超集的函数时，我们已经看到了一个例子）。）
 
-(Intuitively, all such objects would be *more complex* than the pair objects and you can always have a function that converts a more complex structure, to a simpler one (we saw an example of this when we covered the functions that convert subsets to their supersets).)
+更正式地，如果我们假设有一个集合 $I$ 可以作为集合 $B$ 和 $Y$ 的假积（impostor product），即 $I$ 是这样一个集合，存在两个函数，我们称之为 $ib: I → B$ 和 $iy: I → Y$，它们允许我们从中得出 $B$ 和 $Y$ 的元素，那么还必须存在一个类型签名为 $I → B \times Y$ 的唯一函数，该函数将假积转换为真积，$ib$ 和 $iy$ 只是将该函数与通常的“getter”函数复合的结果，该 getter 函数将从对中返回元素（即无论我们选择哪个对象作为 $I$，此图表都会交换）。
 
-More formally, if we suppose that there is a set $I$ that can serve as an impostor product of sets $B$ and $Y$ i.e. that $I$ is such that there exist two functions, which we will call $ib: I → B$ and $iy: I → Y$ that allow us to derive elements $B$ and $Y$ from it, then there must also exist a unique function with the type signature $I → B \times Y$ that converts the impostor from the true product, and $ib$ and $iy$ are just results of composing that function with the usual "getter" functions that go from the pair to the elements (i.e. whichever object we pick for $I$, this digram would commute).
+![积的普遍性质](../02_category/product_universal_property.svg)
 
-![Product, universal property](../02_category/product_universal_property.svg)
+在范畴论中，这种给定对象可能具有的性质（参与某种结构，使得所有类似的对象都可以转换为/从它转换而来）称为*普遍性质* (universal property)。我们不会对此进行更详细的讨论，因为现在讨论这个问题还为时过早（毕竟我们还没有真正解释范畴论是什么）。
 
+我们需要指出的一件事是，这个定义（顺便说一下，前面的所有定义也是如此）并没有排除与积同构的集合——当我们使用普遍性质表示事物时，同构与等同是一回事。在编程中，我们必须采用相同的观点，尤其是在我们处理更高级别的事物时——可能存在许多不同的对的实现（例如，由不同库提供的实现），但只要它们以相同的方式工作（即我们可以将一个转换为另一个，反之亦然），它们对我们来说都是相同的。
 
-In category theory, this type of property that a given object might possess (participating in a structure such that all similar objects can be converted to/from it) is called a *universal property*. We won't go into more detail about this, as it is a bit early for that now (after all we haven't even yet said what category theory is). 
-
-One thing that we need to point out is that this definition (as, by the way, all the previous ones) does not rule out the sets which are isomorphic to the product --- when we represents things using universal properties, an isomorphism is the same as equality. This is the same viewpoint that we must adopt in programming, especially when we work on the higher level --- there might be many different implementations of pair (e.g. ones provided by different libraries), but as long as they work in the same way (i.e. we can convert one to the other and vice versa) they are all the same for us).
-
-Sums
+和积 (Sums)
 ===
 
-We will now study a construct that is pretty similar to the product but at the same time is very different. Similar because, like the product, it is a relation between two sets which allows you to unite them into one, without erasing their structure. But different as it encodes a quite different type of relation --- a product encodes an *and*  relation between two sets, while the sum encodes an *or* relation. 
+我们现在将研究一个与积 (product) 非常相似但同时也非常不同的构造。它之所以相似，是因为它也是两个集合之间的一种关系，允许你将它们合并为一个集合，而不抹去它们的结构。但不同之处在于，它编码了一种完全不同的关系——积编码的是两个集合之间的*与*关系，而和编码的是*或*关系。
 
-The sum of two sets $B$ and $Y$, denoted $B + Y$ is a set that contains *all elements from the first set combined with all elements from the second one*. 
+两个集合 $B$ 和 $Y$ 的和，表示为 $B + Y$，是一个包含*第一个集合中的所有元素与第二个集合中的所有元素*的集合。
 
-![Sum or coproduct](../02_category/coproduct.svg)
+![和或上积](../02_category/coproduct.svg)
 
-We can immediately see the connection with the *or* logical structure: For example, because a parent is either a mother or a father of a child, the set of all parents is the sum of the set of mothers and the set of fathers, or $P = M + F$.
+我们可以立即看到它与*或*逻辑结构的联系：例如，因为父母是孩子的母亲或父亲，所有父母的集合就是母亲集合和父亲集合的和，或者 $P = M + F$。
 
-
-Defining Sums in Terms of Sets
+用集合表示和 (Defining Sums in Terms of Sets)
 ---
 
-As with the product, representing sums in terms of sets is not so straightforward e.g. when a given object is an element of both sets, then it appears in the sum twice which is not permitted, because a set cannot contain the same element twice. 
+与积一样，使用集合表示和并不是那么简单。例如，当某个对象是两个集合的元素时，它会在和中出现两次，这是不允许的，因为一个集合不能包含相同的元素两次。
 
-As with the product, the solution is to put some extra structure.
+与积一样，解决方案是增加一些额外的结构。
 
-![A member of a coproduct](../02_category/coproduct_member.svg)
+![和的成员](../02_category/coproduct_member.svg)
 
-And, as with the product, there is a low-level way to express a sum using sets alone. Incidentally, we can use pairs.
+与积一样，有一种低层次的方法可以使用仅有的集合来表示和。巧合的是，我们可以使用对 (pair)。
 
-![A member of a coproduct, examined](../02_category/coproduct_member_set.svg)
+![和的成员，分析](../02_category/coproduct_member_set.svg)
 
-Defining sums in terms of functions
+用函数表示和 (Defining Sums in Terms of Functions)
 ---
 
-As you might already suspect, the interesting part is expressing the sum of two sets using functions. To do that we have to go back to the conceptual part of the definition. We said that sums express an *or* relation between two things. 
+正如你可能已经怀疑到的，有趣的部分是使用函数表示两个集合的和。为此，我们必须回到定义的概念部分。我们说过，和表示的是两个事物之间的*或*关系。
 
-A property of every *or* relation is that if something is an $A$ that something is also an $A \vee B$ , and same for $B$ (The $\vee$ symbol means *or* by the way). For example, if my hair is *brown*, then my hair is also *either blond or brown*. This is what *or* means, right? This property can be expressed as a function, two functions actually --- one for each set that takes part in the sum relation (for example, if parents are either mothers or fathers, then there surely exist functions $mothers → parents$ and $fathers → parents$).
+每个*或*关系的一个性质是：如果某物是 $A$，那么它也是 $A \vee B$，$B$ 也是如此（顺便说一句，符号 $\vee$ 表示“或”）。例如，如果我的头发是*棕色*，那么我的头发也是*要么金色，要么棕色*。这就是*或*的意思，对吧？这个性质可以表示为一个函数，实际上有两个函数——每个参与和关系的集合都有一个函数（例如，如果父母是母亲或父亲，那么肯定存在 $mothers → parents$ 和 $fathers → parents$ 的函数）。
 
-![Coproduct, external diagram](../02_category/coproduct_external.svg)
+![和积，外部图表](../02_category/coproduct_external.svg)
 
-As you might have already noticed, this definition is pretty similar to the definition of the product from the previous section. And the similarities don't end here. As with products, we have sets that can be thought of as *impostor* sums --- ones for which these functions exist, but which also contain additional information.
+你可能已经注意到，这个定义与前一部分中积的定义非常相似。而且相似之处不止于此。与积一样，我们有些集合可以被视为*假和* (impostor sums)——这些函数存在，但它们还包含额外的信息。
 
-![Coproduct, external diagram](../02_category/coproduct_candidates.svg)
+![和积，外部图表](../02_category/coproduct_candidates.svg)
 
-All these sets express relationships which are more vague than the simple sum, and therefore given such a set (an "impostor" set as we called it earlier), there would exist a unique function that would distinguish it from the true sum. The only difference is that, unlike with the products, this time this function goes *from the sum* to the impostor.
+所有这些集合表达的关系比简单的和要模糊得多，因此，给定这样一个集合（如前面所说的“假集合”），将会存在一个唯一的函数区分它与真实的和。唯一的区别是，与积不同，这次这个函数是*从和*到假集合的。
 
-![Coproduct, external diagram](../02_category/coproduct_morphisms.svg)
+![和积，外部图表](../02_category/coproduct_morphisms.svg)
 
-
-Interlude: Categorical Duality 
+插曲：范畴对偶 (Interlude: Categorical Duality)
 ===
 
-The concepts of product and sum might already look similar in a way when we view them through their internal diagrams, but once we zoom out to the external view, and we draw the two concepts external diagrams, this similarity is quickly made precise.
+从内部图表来看，和 (sum) 和积 (product) 可能看起来已经有些相似了，但一旦我们切换到外部视角并绘制这两个概念的外部图表，这种相似性就会立即变得清晰。
 
-I use "diagrams" in plural, but actually the two concepts are captured *by one and the same diagram*, the only difference between the two being that their arrows are flipped --- many-to-one relationships become one-to-many and the other way around.
+我使用了复数形式的“图表”，但实际上这两个概念是通过*同一个图表*捕捉到的，唯一的区别是它们的箭头方向相反——多对一的关系变成了一对多，反之亦然。
 
-![Coproduct and product](../02_category/coproduct_product_duality.svg)
+![和积与积的对偶性](../02_category/coproduct_product_duality.svg)
 
-The universal properties that define the two construct are the same as well --- if we have a sum $Y + B$, for each impostor sum, such as $Y + B + R$, there exist a trivial function $Y + B  \to Y + B + R$.
+定义这两个构造的普遍性质 (universal properties) 也是相同的——如果我们有一个和 $Y + B$，对于每个假和 (impostor sum)，如 $Y + B + R$，存在一个平凡函数 $Y + B \to Y + B + R$。
 
-And, if you remember, with product the arrows go the other way around --- the equivalent example for product would be the function $Y \times B \times R \to Y \times B $ 
+并且，如果你还记得，积的箭头则是相反的——积的等价例子将是函数 $Y \times B \times R \to Y \times B$。
 
-This fact uncovers a deep connection between the concepts of the *product* and *sum*, which is not otherwise apparent --- they are each other's opposites. *Product* is the opposite of *sum* and *sum* is the opposite of *product*.
+这一事实揭示了和 (sum) 和积 (product) 概念之间的深刻联系，它们实际上是彼此的对立面。*积*是*和*的对立面，而*和*是*积*的对立面。
 
-In category theory, concepts that have such a relationship are said to be *dual* to each other. So the  the concepts of *product* and *sum* are dual. This is why sum is known in a category-theoretic setting as *converse product*, or *coproduct* for short. This naming convention is used for all dual constructs in category theory.
+在范畴论中，具有这种关系的概念被称为彼此的*对偶* (dual)。因此，和 (sum) 和积 (product) 的概念是对偶的。这也是为什么和在范畴论环境中被称为*逆积* (converse product)，或简称为*上积* (coproduct)。这种命名约定用于范畴论中的所有对偶构造。
 
 {% if site.distribution == 'print'%}
 
-De Morgan duality
+德摩根对偶 (De Morgan Duality)
 ---
 
-Now let's look at how the concepts of product and sum from the viewpoint of *logic*. We mentioned that:
+现在让我们从*逻辑*的角度来看和积 (sum) 和积 (product) 的概念。我们提到过：
 
-- The *product* of two sets contains an element of the first one *and* one element of the second one.
-- A *sum* of two sets contains an element of the first one *or* one element of the second one.
+- 两个集合的*积*包含一个来自第一个集合的元素*与*一个来自第二个集合的元素。
+- 两个集合的*和*包含一个来自第一个集合的元素*或*一个来自第二个集合的元素。
 
-When we view those sets as propositions, we discover the concept of the *product* ($\times$) corresponds exactly to the *and* relation in logic (denoted $\land$). From this viewpoint, the function $Y \times B \to Y$  can be viewed as instance of a logical rule of inference called *conjunction elimination* (also called *simplification*) stating that, $Y  \land B \to Y$, for example, if your hair is partly blond and partly brown, then it is partly blond.
+当我们将这些集合视为命题时，我们会发现*积*的概念 ($\times$) 与逻辑中的*与*关系完全一致（记作 $\land$）。从这个角度来看，函数 $Y \times B \to Y$ 可以看作是逻辑推理规则中的一个实例，称为*合取消去* (conjunction elimination)（也称为*简化*），即 $Y \land B \to Y$，例如，如果你的头发是部分金色和部分棕色，那么它就是部分金色。
 
-By the same token, the concept of a *sum* ($+$) corresponds the *or* relation in logic (denoted $\lor$). From this viewpoint, the function $Y  \to Y + B$  can be viewed as instance of a logical rule of inference called *disjunction introduction*, stating that, $Y  \to Y \lor B$ for example, if your hair is blond, it is either blond or brown.
+同样地，*和* ($+$) 的概念与逻辑中的*或*关系一致（记作 $\lor$）。从这个角度来看，函数 $Y \to Y + B$ 可以视为逻辑推理规则中的一个实例，称为*析取引入* (disjunction introduction)，即 $Y \to Y \lor B$。例如，如果你的头发是金色的，那么它要么是金色的，要么是棕色的。
 
-This means, among other things, that the concepts of *and* and *or* are also dual --- an idea which was put forward in the 19th century by the mathematician Augustus De Morgan and is henceforth known as *De Morgan duality*, and which is a predecessor to the modern idea of duality in category theory, that we examined before. 
+这意味着，*与* 和 *或* 的概念也是对偶的——这个思想由 19 世纪的数学家奥古斯都·德摩根 (Augustus De Morgan) 提出，并因此称为*德摩根对偶* (De Morgan duality)，这是现代范畴论中对偶思想的前身。
 
-This duality is subtly encoded in the logical symbols for *and* and *or* ($\land$ and $\lor$) --- they are nothing but stylized-versions of the diagrams of products and coproducts (yes, I know they are reversed, but still)...
+这种对偶性被微妙地编码在逻辑符号中，表示*与* 和 *或* ($\land$ 和 $\lor$)——它们实际上是积和上积图表的简化版本（虽然方向相反，但仍然成立）。
 
-![Coproduct and product](../02_category/demorgan_duality.svg)
-
-The duality of $\land$ and $\lor$ can be seen in the two formulas that are most often associated with De Morgan which are known as De Morgan laws (although De Morgan didn't actually discover those (they were previously formulated, by William of Ockham (of "Ockham's razor" fame, among other people)).
+![德摩根对偶](../02_category/demorgan_duality.svg)
 
 $\neg(A \wedge B) = \neg{A} \vee \neg{B}$
 
 $\neg(A \vee B) = \neg{A} \wedge \neg{B}$
 
-You can read the second formula as, for example, if my hair is not blond *or* brown, this means that my hair is not blond *and* my hair is not brown, and vice versa (the connection work both ways)
+例如，你可以将第二个公式理解为，如果我的头发既不是金色也不是棕色，这意味着我的头发不是金色的*并且*不是棕色的，反之亦然（这种联系是双向的）。
 
-Now we will go through the formulas and we would try to show that they are actually a simple corollary of the duality between *and* and *or* 
+现在我们将逐步解析这些公式，展示它们实际上是*与* 和 *或* 对偶性下的一个简单推论。
 
-Let's say we want to find the statement that is opposite of "blond *or* brown".
+假设我们想找到“金色或棕色”的反命题。
 
-$A \vee B$ 
+$A \vee B$
 
-The first thing we want to do is, to replace the statements that constitute it with their opposites, which would make the statement "not blond *or* not brown"
+我们首先要做的是，用它们的反命题替换构成它的陈述，这将使命题变为“不是金色或不是棕色”。
 
-$\neg{A} \vee \neg{B}$ 
+$\neg{A} \vee \neg{B}$
 
-However, this statement is clearly not the opposite of "blond *or* brown"(saying that my hair is not blond *or* not brown does in fact allow it to be blond and also allows for it to be brown, it just doesn't allow it to be both of these things).
+然而，这个命题显然不是“金色或棕色”的反命题（说我的头发不是金色的或不是棕色的，实际上允许它是金色的，也允许它是棕色的，只是不允许它同时是两者）。
 
-So what have we missed? Simple:  we replaced the propositions with their opposites, but we didn't replace the *operator* that connects them --- it is still *or* for both propositions. So we must replace it with *or* converse. As we said earlier, and as you can see by analyzing this example, this operator is *and* So the formula becomes "not blond *and* not brown".
+那么我们遗漏了什么呢？很简单：我们替换了命题，但没有替换连接它们的*运算符*——对于两个命题，仍然是“或”。因此，我们必须用*或*的反命题替换它。正如我们之前所说，并且通过分析这个例子，你可以看到，这个运算符是*与*。因此，公式变为“不是金色*并且*不是棕色”。
 
-$\neg{A} \wedge \neg{B}$ 
+$\neg{A} \wedge \neg{B}$
 
-Saying that this formula is the opposite or "blond and brown" --- is the same thing as saying that it is equivalent to its negation, which is precisely what the second De Morgan law says.
+这个公式就是“金色与棕色”的反命题，也就是说，它等价于它的否定，正是德摩根第二定律所说的。
 
 $\neg(A \vee B) = \neg{A} \wedge \neg{B}$
 
-And if we "flip" this whole formula (we can do that without changing the signs of the individual propositions, as it is valid for all propositions) we get the first law.
+如果我们将整个公式“翻转”（我们可以这样做，而不改变单个命题的符号，因为它对所有命题都是有效的），我们得到了第一条定律。
 
 $\neg(A \wedge B) = \neg{A} \vee \neg{B}$
 
-This probably provokes a lot of questions and we have a whole chapter about logic to address those. But before we get to it, we have to see what categories (and sets) are.
+这可能会引发许多问题，我们有一整章关于逻辑的内容来解决这些问题。但在我们开始研究这些之前，我们需要看看什么是范畴（以及集合）。
 
 {% endif %}
 
-Defining the rest of set theory using functions
+使用函数定义集合论的其余部分 (Defining the Rest of Set Theory Using Functions)
 ===
 
-So far, we saw some amazing ways of defining set-theoretic constructs without looking at the set elements and by only using functions and external diagrams.
+到目前为止，我们已经看到了如何通过不查看集合元素并仅使用函数和外部图表来定义集合论的构造。
 
-In the first chapter we defined functions and functional composition with this digram.
+在第一章中，我们使用如下图表定义了函数和函数的复合。
 
-![Functional composition](../02_category/functions_compose_sets.svg)
+![函数复合](../02_category/functions_compose_sets.svg)
 
-And now, we also defined products and sums.
+现在我们也定义了积和和。
 
-![Coproduct and product](../02_category/coproduct_product_duality.svg)
+![和积与积](../02_category/coproduct_product_duality.svg)
 
-What's even more amazing, is that we can define *all of set-theory*, based just on the concept of functions, as discovered by the category theory pioneer Francis William Lawvere. 
+更令人惊奇的是，我们可以基于*函数*的概念，定义*整个集合论*，这一发现归功于范畴论的先驱弗朗西斯·威廉·劳维尔 (Francis William Lawvere)。
 
-Defining set elements using functions
+用函数定义集合元素 (Defining Set Elements Using Functions)
 ---
 
-Traditionally, everything in set theory is defined in terms of two things: *sets* and *elements*, so, if we want to define it using *sets* and *functions*, we must define the concept of a *set element* in terms of functions.
+传统上，集合论中的一切都由两件事定义：*集合*和*元素*，所以如果我们要使用*集合*和*函数*来定义它，那么我们必须用函数定义*集合元素*的概念。
 
-To do so, we will use the singleton set.
+为此，我们将使用单例集合 (singleton set)。
 
-![The singleton set](../02_category/elements_singleton.svg)
+![单例集合](../02_category/elements_singleton.svg)
 
-OK, let's start by taking a random set which we want to describe.
+好吧，让我们从描述一个随机集合开始。
 
-![A set of three elements](../02_category/elements_set.svg)
+![一个三元素集合](../02_category/elements_set.svg)
 
-And let's examine the functions from the singleton set, to that random set.
+然后我们检查从单例集合到这个随机集合的函数。
 
-![Functions from the singleton set](../02_category/elements_singleton_functions.svg)
+![从单例集合到集合的函数](../02_category/elements_singleton_functions.svg)
 
-It's easy to see that there would be exactly one function for each element of the set i.e. that each element of any set $X$ is isomorphic to a function $$1 \to X$$.
+很容易看出，对于集合中的每个元素，将有一个唯一的函数，因此每个集合 $X$ 的元素与一个函数 $1 \to X$ 是同构的。
 
-So, we can say that what we call "elements" of a set are the functions from the singleton set to it.
+因此，我们可以说所谓的集合“元素”就是从单例集合到它的函数。
 
-Defining the singleton set using functions
+用函数定义单例集合 (Defining the Singleton Set Using Functions)
 ---
 
-Now that we came up with a definition of a set *element*, using just functions, we can try to draw the elements of our set as an external diagram.
+现在我们已经用函数定义了集合*元素*，我们可以尝试将集合的元素绘制成一个外部图表。
 
-![Functions from the singleton set](../02_category/elements_singleton_functions_partly_external.svg)
+![从单例集合到集合的函数](../02_category/elements_singleton_functions_partly_external.svg)
 
-However, our diagram is not yet fully external, as it depends on the idea of the singleton set, i.e. the set with one *element*. Furthermore, this makes the whole definition circular, as we have to already have the concept of an element defined, in order to define the concept of an one-element set.
+然而，我们的图表还没有完全外部化，因为它依赖于单例集合的概念，即具有一个*元素*的集合。此外，这使得整个定义是循环的，因为为了定义单元素集合的概念，我们必须已经定义了元素的概念。
 
-To avoid these difficulties, we devise a way to define the singleton set, using just functions. We do it in the same way that we did for products and sums - by using a unique property that the singleton set has. In particular, there is exactly one function from any other set to the singleton set i.e. if $1$ is the singleton set, then we have $\forall  X  \exists!  X \to 1$.
+为了避免这些困难，我们设计了一种仅使用函数来定义单例集合的方法。我们以与定义积和和相同的方式来做这件事——通过使用单例集合的唯一属性。具体来说，存在从任何其他集合到单例集合的唯一函数，即如果 $1$ 是单例集合，那么我们有 $\forall X \exists! X \to 1$。
 
-![Terminal object](../02_category/terminal_object_internal.svg)
+![终对象](../02_category/terminal_object_internal.svg)
 
-It turns out that this property defines the singleton set uniquely i.e. there is no other set that has it, other than the sets that are isomorphic to the singleton set. This is simply because, if there are two sets that have it, those two sets would also have unique morphisms between *themselves* i.e. they would be isomorphic to one another. More formally, if we have two sets $X$ and $Y$, such that $\exists!X \to 1 \land \exists!Y \to 1$ then we also have $X \cong Y$.
+事实证明，这个属性唯一地定义了单例集合，即除了与单例集合同构的集合之外，没有其他集合具有这个属性。这只是因为，如果有两个集合具有这个属性，那么这两个集合之间也会存在唯一的态射 (morphism)，即它们将是同构的。更正式地说，如果我们有两个集合 $X$ 和 $Y$，使得 $\exists!X \to 1 \land \exists!Y \to 1$，那么我们也有 $X \cong Y$。
 
-![Terminal object](../02_category/terminal_object_internal_isomorphisms.svg)
+![终对象](../02_category/terminal_object_internal_isomorphisms.svg)
 
-And because there is no other set, other than the singleton set that has this property, we can use it as a definition of the singleton set and say that if we have $\forall  X  \exists!  X \to 1$, then $1$ is the singleton set.
+由于没有其他集合具有这个属性，我们可以使用它来定义单例集合，并且可以说如果我们有 $\forall X \exists! X \to 1$，那么 $1$ 是单例集合。
 
-![Terminal object](../02_category/terminal_object.svg)
+![终对象](../02_category/terminal_object.svg)
 
-With this, we acquire a fully-external definition (up to an isomorphism) of the singleton set, and thus a definition of a set element - the elements of set are just the functions from the singleton set to that set.
+通过这个定义，我们获得了单例集合的完全外部定义（同构意义下），因此获得了集合元素的定义——集合的元素只是从单例集合到该集合的函数。
 
-![Functions from the singleton set](../02_category/elements_external.svg)
+![从单例集合到集合的函数](../02_category/elements_external.svg)
 
-Note that from this property it follows that the singleton set has exactly one element.
+请注意，从该属性可以推导出，单例集合只有一个元素。
 
-![Functions from the singleton set](../02_category/singleton_elements_external.svg)
+![从单例集合到集合的函数](../02_category/singleton_elements_external.svg)
 
-**Question:** Why exactly (check the definition)? 
+**问题**：为什么是这样呢（检查定义）？
 
-Defining the empty set using functions
+用函数定义空集 (Defining the Empty Set Using Functions)
 ---
 
-The empty set is the set that has no elements, but how would we say this without referring to elements?  
+空集是没有元素的集合，但是我们如何在不引用元素的情况下表达这一点呢？
 
-We said that there exists a unique function that goes *from* the empty set *to* any other set. But the reverse is also true: the empty set is the only set such that there exists a function from it to any other set.
+我们说过，存在从空集*到*任何其他集合的唯一函数。但反过来也成立：空集是唯一存在从它到任何其他集合的函数的集合。
 
-![Initial object](../02_category/initial_object.svg)
+![初对象](../02_category/initial_object.svg)
 
-Observant readers will notice the similarities between the diagrams depicting the initial and terminal object (yes the two concepts are, of course, duals of each other).
+细心的读者会注意到，初对象和终对象的图表非常相似（是的，这两个概念当然是对偶的）。
 
-![Initial terminal duality](../02_category/initial_terminal_duality.svg)
+![初对象和终对象的对偶性](../02_category/initial_terminal_duality.svg)
 
+一些*更加*细心的读者可能还会注意到，积/上积图表与初/终对象图表也有相似之处。
 
-And some *even more* observant readers may also notice the similarities between the product/coproduct diagrams and the initial/terminal object diagrams.
+![积与和积](../02_category/coproduct_product_duality.svg)
 
-![Coproduct and product](../02_category/coproduct_product_duality.svg)
+（各位，保持冷静，你们*观察力太强了*——我们还有大约四章才能涉及到这些内容。）
 
-(Folks, keep it down please, you are *too observant* --- we have, like, 4 chapters to go until we get to this.)
-
-Functional application
+函数应用 (Functional Application)
 ---
 
-Now, as amazed as we are after seeing the functional definition of a set element, we might be inclined to ask the following: If elements are represented by functions, then how do you *apply* a given function to an element of one set, to get an element of another set?
+看到集合元素的函数定义后，我们可能会产生这样的疑问：如果元素由函数表示，那么我们如何将一个函数应用于一个集合的元素，以获得另一个集合的元素呢？
 
-The answer is surprisingly simple --- in order to apply a function to a set, you must first select an element of the set and the act of *selecting* an element from a set is the same as constructing a function from the singleton set to this element. 
+答案出乎意料的简单——为了将函数应用于一个集合，首先你必须选择集合的一个元素，而选择集合元素的行为与构造一个从单例集合到这个元素的函数是相同的。
 
-![Functional application - internal diagram](../02_category/application_internal.svg)
+![函数应用——内部图表](../02_category/application_internal.svg)
 
-And then *applying* a function to an element is the same as composing this function, with the function we want to apply. 
+然后，*应用*一个函数到一个元素，相当于将这个函数与我们想要应用的函数组合在一起。
 
-![Functional application - external diagram](../02_category/application_external.svg)
+![函数应用——外部图表](../02_category/application_external.svg)
 
-The result is the function that represents the result of the application.
+结果是表示应用结果的函数。
 
-Conclusion
+结论 (Conclusion)
 ---
 
-In the future, we may cover the entirety of Lawvere's Elementary Theory of the Category of Sets (or ETCS for short), and list all concepts and axioms that are required to define a rigorous set theory using functions, but this is enough for you to get the main idea: that these axioms constitute a definition of set theory, which is based entirely on functions. This is a key idea, but there is an even bigger thing there: because it is more general than the traditional definition, this new definition also applies to objects that are not exactly sets, but are *like* sets in some respects.
+未来，我们可能会讨论整个劳维尔的《集合范畴的初等理论》(Elementary Theory of the Category of Sets, ETCS)，并列出定义一个严谨的集合论所需的所有概念和公理，但现在这些已经足够让你理解主要思想：这些公理构成了一个集合论的定义，完全基于函数。这是一个关键思想，但还有更大的事情要讨论：因为它比传统定义更为普遍，这个新的定义也适用于不完全是集合但在某些方面*类似*于集合的对象。
 
-You may say that they apply to an entirely different *categories of objects*.
+你可以说它们适用于完全不同的*对象类别* (categories of objects)。
 
-Category Theory --- brief definition
+范畴论简要定义 (Category Theory --- Brief Definition)
 ===
 
-Maybe it is about time to see what a category is. We will start with a short definition --- a category consists of objects (an example of which are sets) and morphisms that go from one object to another (which can be viewed as functions) and that should be composable. We can say a lot more about categories, and even present a formal definition, but for now it is sufficient for you to remember that sets are one example of a category and that categorical objects are like sets, except that we don't *see* their elements. Or to put it another way, category-theoretic notions are captured by the external diagrams, while strictly set-theoretic notions can be captured by internal ones.
+也许是时候看看什么是范畴了。我们将从一个简短的定义开始——范畴由对象 (objects)（一个例子是集合）和从一个对象到另一个对象的态射 (morphisms) 组成（可以视为函数），而这些态射应该是可复合的 (composable)。我们可以对范畴说很多更多的内容，甚至可以提供一个形式化定义，但目前只需记住，集合是范畴的一个例子，而范畴对象类似于集合，除了我们*看不到*它们的元素。或者换句话说，范畴论的概念通过外部图表表示，而严格的集合论概念可以通过内部图表表示。
 
-![Category theory and set theory compared](../02_category/set_category.svg)
+![范畴论与集合论的比较](../02_category/set_category.svg)
 
-When we are within the realm of sets, we can view each set as a collection of individual elements. In category theory, we don't have such a notion . However, taking this notion away allows us to define concepts such as the sum and product sets in a whole different and more general way. Plus we always have a way to "go back" to set theory, using the tricks from the last section.
+当我们处于集合的领域时，我们可以将每个集合视为个体元素的集合。在范畴论中，我们没有这样的概念。然而，去掉这个概念使我们能够以一种完全不同且更普遍的方式定义诸如和集合 (sum sets) 和积集合 (product sets) 之类的概念。此外，我们总是有办法“回到”集合论，使用上一节中的技巧。
 
-But why would we want to have this more general definition? It is because, in this way we can use our theory to describe objects other than sets. We already discussed one such object --- types in programming languages. Remember that we said that programming types (classes) are somewhat similar to sets, and programming methods are somewhat similar to functions between sets, but they are not exactly identical? Category theory allows us to generalize the similarities of these... ahem, categories.
+但为什么我们想要一个更普遍的定义呢？这是因为，通过这种方式，我们可以使用我们的理论来描述非集合的对象。我们已经讨论过一个这样的对象——编程语言中的类型。还记得我们说过，编程类型（类）在某种程度上类似于集合，而编程方法类似于集合之间的函数，但它们并不完全相同？范畴论允许我们泛化这些……嗯，范畴 (categories) 的相似性。
 
-| Category Theory | Set theory | Programming Languages |
+| 范畴论 (Category Theory) | 集合论 (Set Theory) | 编程语言 (Programming Languages) |
 | ---             | ---        | ---                   |
-| Category        | **N/A**    | **N/A**                   |
-| Objects and  Morphisms        | Sets and Functions   | Classes and methods |
-| **N/A**           | Element    | Object                |
+| 范畴 (Category)        | **N/A**    | **N/A**                   |
+| 对象和态射 (Objects and Morphisms) | 集合与函数 (Sets and Functions) | 类与方法 (Classes and Methods) |
+| **N/A**           | 元素 (Element)    | 对象 (Object)                |
 
-Notice the somehow weird, (but actually completely logical) symmetry (or perhaps "reverse symmetry") between the world as viewed through the lenses of set theory, and the way it is viewed through the lens of category theory:
+注意，通过集合论的视角看待的世界和通过范畴论视角看待的世界之间，存在一种奇怪的（但实际上完全合乎逻辑的）对称性（或许可以称为“反向对称性”）。
 
-| Category Theory | Set theory | 
+| 范畴论 (Category Theory) | 集合论 (Set Theory) | 
 | ---             | ---        |
-| Category        | **N/A**        | 
-| Objects and  Morphisms        | Sets and functions |
-| **N/A**             | Element    | 
+| 范畴 (Category)        | **N/A**        | 
+| 对象和态射 (Objects and Morphisms)        | 集合与函数 (Sets and Functions) |
+| **N/A**             | 元素 (Element)    | 
 
-By switching to external diagrams, we lose sight of the particular (the elements of our sets), but we gain the ability to zoom out and see the whole universe where we have been previously trapped in. In the same way that the whole realm of sets can be thought as one category, a programming language can also be thought of as a category. The concept of a category allows us to find and analyze similarities between these and other structures.
+通过切换到外部图表，我们失去了具体的视角（集合的元素），但我们获得了放大视角，能够看到我们之前被困住的整个宇宙。与整个集合领域可以视为一个范畴类似，编程语言也可以视为一个范畴。范畴的概念允许我们发现并分析这些和其他结构之间的相似性。
 
-**NB:** The word "Object" is used in both programming languages and in category theory, but has completely different meanings. A categorical object is equivalent to a *type* or a *class* in programming language theory.
+**注意**：在编程语言和范畴论中都使用了“对象”一词，但它们的含义完全不同。在范畴论中，范畴对象等同于编程语言理论中的*类型*或*类*。
 
-Sets Vs Categories
+集合 vs 范畴 (Sets Vs Categories)
 ---
 
-One remark before we continue: in the last few paragraphs, it might sound as if though category theory and set theory are somehow competing with each another. Perhaps that notion would be somewhat correct if category and set theory were meant to describe *concrete* phenomena, in the way that the theory of relativity and the theory of quantum mechanics are both supposed to explain the physical world. Concrete theories are conceived mainly as *descriptions* of the world, and as such it makes sense for them to be connected in some sort of hierarchy. 
+在继续之前，我们先做一个说明：在过去的几段中，可能看起来范畴论和集合论在某种程度上是互相竞争的。也许这种观点在某种程度上是正确的，如果范畴论和集合论都是为了描述*具体的*现象，就像相对论和量子力学都试图解释物理世界一样。具体理论主要是作为对世界的*描述*来构建的，因此它们之间存在某种层次关系是合理的。
 
-In contrast, abstract theories, like category theory and set theory, are more like *languages* for expressing such descriptions --- they still can be connected, and *are* connected in more than one way, but there is no inherent hierarchical relationship between the two and therefore arguing over which of the two is more basic, or more general, is just a chicken-and-egg problem, as you will see in the next chapter.
+然而，抽象理论，如范畴论和集合论，更像是用于表达这种描述的*语言*——它们仍然可以相互联系，并且以不止一种方式*确实*联系在一起，但它们之间没有固有的层次关系，因此争论哪一个更基础或更普遍，实际上就是一个鸡生蛋还是蛋生鸡的问题，正如你将在下一章中看到的那样。
 
-Defining Categories (again)
+再次定义范畴 (Defining Categories Again)
 ===
 
-> "...deal with all elements of a set by ignoring them and working with the set's definition." --- Dijkstra (from "On the cruelty of really teaching computing science")
+> “…通过忽略集合的所有元素，并仅关注集合的定义来处理它们。” --- 戴克斯特拉 (Dijkstra) （来自《论真正教授计算科学的残酷性》）
 
-All category theory books (including this one) start by talking about set theory. However looking back I really don't know why this is the case --- most books that focus on a given subject usually don't start off by introducing an *entirely different subject* before even starting to talk about the main one, even if the two subjects are very closely related. 
+所有关于范畴论的书（包括这本）都从讨论集合论开始。然而回头看看，我真的不明白为什么会这样——大多数专注于某个主题的书通常不会在开始时引入*完全不同的主题*，即使这两个主题非常密切相关。
 
-Perhaps the set-first approach *is* the best way to introduce people to categories. Or perhaps using sets to introduce categories is one of those things that people do just because everyone else does it. But, one thing is for certain --- we don't *need* to study sets in order to understand categories. So now I would like to start over and talk about categories as a foundational concept. So let's pretend like this is a new book (I wonder if I can dedicate this to a different person).
+也许先讲集合是介绍范畴的最佳方式。或者，也许通过集合来介绍范畴是人们这样做的原因，只是因为每个人都这样做。但有一件事是确定的——我们不*需要*学习集合才能理解范畴。所以现在我想重新开始，并把范畴作为一个基础概念来讨论。让我们假装这是一本新书（我想知道是否可以将这本书献给不同的人）。
 
-So. A category is a collection of objects (things) where the "things" can be anything you want. Consider, for example, these ~~colorful~~ gray balls:
+所以。范畴是对象（things）的集合，而这些“things”可以是你想要的任何东西。例如，考虑这些~~五颜六色的~~灰色球体：
 
-![Balls](../02_category/elements.svg)
+![球体](../02_category/elements.svg)
 
-A category consists of a collection of objects as well as some arrows connecting objects to one another. We call the arrows *morphisms*.
+范畴由对象的集合以及一些连接对象的箭头组成。我们称这些箭头为*态射* (morphisms)。
 
-![A category](../02_category/category.svg)
+![一个范畴](../02_category/category.svg)
 
-Wait a minute, we said that all sets form a category, but at the same time any one set can be seen as a category in its own right (just one which has no morphisms). This is true and an example of a phenomenon that is very characteristic of category theory --- one structure can be examined from many different angles and may play many different roles, often in a recursive fashion.
+等一下，我们说过所有的集合构成一个范畴，但同时任何一个集合都可以被视为一个范畴本身（只是一个没有态射的范畴）。这是真的，这是范畴论一个非常典型的现象的例子——一种结构可以从多角度进行检查，并且可能在递归的方式中扮演许多不同的角色。
 
-This particular analogy (a set as a category with no morphisms) is, however, not very useful. Not because it's incorrect in any way , but rather because category theory is *all about the morphisms*. If the *arrows* in set theory are nothing but a connection between their source and a destination, in category theory it's the *objects* that are nothing but a source and destination for the arrows that connect them to other objects. This is why, in the diagram above, the arrows, and not the objects, are colored: if you ask me, the category of sets should really be called *the category of functions*.
+然而，这种比喻（一个没有态射的集合是一个范畴）并不是特别有用。不是因为它在任何方面都是不正确的，而是因为范畴论*全都是关于态射的*。如果集合论中的*箭头*仅仅是它们的源对象和目标对象之间的连接，那么在范畴论中，*对象*只是箭头连接其他对象的源和目标。因此，在上面的图表中，箭头而不是对象被着色：如果你问我，集合范畴应该被称为*函数范畴*。
 
-Speaking of which, note that objects in a category can be connected together by multiple arrows, and that having the same source and target sets does not in any way make arrows equivalent.
+说到这里，注意范畴中的对象可以通过多个箭头相互连接，并且有相同的源对象和目标对象并不意味着这些箭头是等价的。
 
-![Two objects connected with multiple arrows](../02_category/arrows.svg)
+![两个对象由多个箭头连接](../02_category/arrows.svg)
 
-Why that is true is pretty obvious if we go back to set theory for a second (OK, maybe we really *have* to do it from time to time). There are, for example, an infinite number of functions that go from number to boolean, and the fact that they have the same input type and the same output type (or the same *type signature*, as we like to say) does not in any way make them equivalent to one another.
+为什么这是事实，如果我们回到集合论的角度来看，这是显而易见的（好吧，也许我们确实*有时*需要回到集合论）。例如，从数字到布尔值的函数是无限的，它们有相同的输入类型和输出类型（或者我们所说的*类型签名*），但这并不意味着它们在任何方面是等价的。
 
-![Two sets connected with multiple functions](../02_category/set_arrows.svg)
+![两个集合由多个函数连接](../02_category/set_arrows.svg)
 
-There are some types of categories in which only one morphism between two objects is allowed (or one in each direction), but we will talk about them later.
+有一些类型的范畴，只允许在两个对象之间存在一个态射（或者每个方向一个），但我们以后会讨论它们。
 
-Composition
+复合 (Composition)
 ---
 
-The most important requirement for a structure to be called a category is that *two morphisms can make a third*, or in other words, that morphisms are *composable* --- given two successive arrows with appropriate type signatures, we can draw a third one that is equivalent to the consecutive application of the first two functions.
+一个结构被称为范畴的最重要要求是*两个态射可以组成第三个*，换句话说，态射是*可复合的* (composable) ——给定两个具有适当类型签名的连续箭头，我们可以画出第三个箭头，其等价于前两个函数的连续应用。
 
-![Composition of morphisms](../02_category/composition.svg)
+![态射的复合](../02_category/composition.svg)
 
-Formally, this requirement says that there should exist an operation (denoted with the symbol $•$) such that for each two functions $g: A → B$ and $f: B → C$, there exists a function $(f • g): A → C$.
+形式上，这个要求表明应该存在一个运算（用符号 $•$ 表示），使得对于每两个函数 $g: A → B$ 和 $f: B → C$，存在一个函数 $(f • g): A → C$。
 
-![Composition of morphisms in the context of additional morphism](../02_category/composition_arrows.svg)
+![复合态射和额外态射](../02_category/composition_arrows.svg)
 
-**NB:** Note (if you haven't already) that functional composition is read from right to left. e.g. applying $g$ and then applying $f$ is written $f • g$ and not the other way around. (You can think of it as a shortcut to $f(g(a))$).
+**注意**：请注意（如果你还没有注意到），函数复合是从右到左读取的。例如，应用 $g$ 然后应用 $f$ 被写为 $f • g$，而不是相反。（你可以把它看作是 $f(g(a))$ 的简写）。
 
-The law of identity
+同一律 (The Law of Identity)
 ---
 
-Before the standard Arabic numerals that we use today, there were Roman numbers. Roman numerals weren't any good, because they lacked the concept of *zero* --- a number that indicated the absence of a quantity, and any number system that lacks this simple concept is bound to remain extremely limited. It is the same in programming, where we have multiple values that indicate the absence of a value. 
+在我们今天使用的标准阿拉伯数字出现之前，有罗马数字。罗马数字不好用，因为它们缺乏*零*的概念——一个表示数量缺失的数字，而任何缺乏这个简单概念的数字系统注定会非常有限。同样，在编程中，我们有多个表示值缺失的值。
 
-The zero of category theory is what we call the "identity morphism" for each object. In short, this is a morphism that doesn't do anything.
+范畴论中的零就是所谓的每个对象的“恒等态射” (identity morphism)。简而言之，这是一种不做任何事情的态射。
 
-![The identity morphism (but can also be any other morphism)](../02_category/identity.svg)
+![恒等态射（也可以是任何其他态射）](../02_category/identity.svg)
 
+标记这个态射很重要，因为从一个对象到同一对象可以有许多态射，其中许多实际上是做事情的。例如，数学处理的许多函数都以数字集合作为源和目标，如 $negate$，$square$，$add one$，而它们都不是恒等态射。
 
-It's important to mark this morphism, because there can be (let's add the very important (and also very boring) reminder) many morphisms that go from one object to the same object, many of which actually do stuff. For example, mathematics deals with a multitude of functions that have the set of numbers as source and target, such as $negate$, $square$, $add one$, and are not at all the identity morphism.
+一个结构必须具有每个对象的恒等态射，才能被称为范畴——这就是*恒等律* (law of identity)。
 
-A structure must have an identity morphism for each object in order for it to be called a category --- this is known as the *law of identity*.
+**问题**：在集合范畴中，恒等态射是什么？
 
-**Question:** What is the identity morphism in the category of sets?
-
-The law of associativity
+结合律 (The Law of Associativity)
 ---
 
-Functional composition is special not only because you can take any two morphisms with appropriate signatures and make a third, but because you can do so indefinitely, i.e. for each $n$ successive arrows, each of which has as source object the target object of the previous, we can draw one (exactly one) arrow that is equivalent to the consecutive application of all $n$ arrows.
+函数复合之所以特别，不仅仅是因为你可以将两个具有适当签名的态射组合成第三个态射，还因为你可以无限制地这样做，即对于每个 $n$ 个连续箭头，每个箭头的源对象是上一个箭头的目标对象，我们可以画出一个（唯一的）箭头，它等价于所有 $n$ 个箭头的连续应用。
 
-![Composition of morphisms with many objects](../02_category/composition_n_objects.svg)
+![具有多个对象的态射复合](../02_category/composition_n_objects.svg)
 
-But let's get back to the math. If we carefully review the definition above, we can see that it can be reduced to multiple applications of the following formula: given 3 objects and 2 morphisms between them $f$ $g$ $h$, combining $h$ and $g$ and then combining the end result with $f$ should be the same as combining $h$ to the result of $g$ and $f$ (or simply $(h • g) • f = h • (g • f)$). 
+让我们回到数学。仔细回顾上面的定义，我们可以看到它可以简化为以下公式的多次应用：给定 3 个对象和它们之间的两个态射 $f$、$g$ 和 $h$，先将 $h$ 与 $g$ 组合，然后将结果与 $f$ 组合，这应该与先将 $h$ 组合到 $g$ 和 $f$ 的结果是相同的（或者简单地说 $(h • g) • f = h • (g • f)$）。
 
-This formula can be expressed using the following diagram, which would only commute if the formula is true (given that all our category-theoretic diagrams are commutative, we can say, in such cases, that the formula and the diagram are equivalent).
+这个公式可以用下图表示，只有当公式为真时，图表才会交换（考虑到我们所有的范畴论图表都是交换的，我们可以说，在这种情况下，公式和图表是等价的）。
 
-![Composition of morphisms with many objects](../02_category/composition_associativity.svg)
+![具有多个对象的复合态射](../02_category/composition_associativity.svg)
 
-This formula (and the diagram) is the definition of a property called $associativity$. Being associative is required for functional composition to really be called functional composition (and for a category to really be called a category). It is also required for our diagrams to work, as diagrams can only represent associative structures (imagine if the diagram above would not commute, it would be super weird).
+这个公式（以及图表）定义了一个称为*结合性* (associativity) 的性质。结合性是函数复合真正被称为函数复合（以及一个范畴被真正称为范畴）的必要条件。它也是我们图表工作所必需的，因为图表只能表示结合结构（想象一下，如果上面的图表不交换，那会非常奇怪）。
 
-Associativity is not just about diagrams. For example, when we express relations using formulas, associativity just means that brackets don't matter in our formulas (as evidenced by the definition $(h • g) • f = h • (g • f)$). 
+结合性不仅仅与图表有关。例如，当我们使用公式表达关系时，结合性只是意味着公式中的括号无关紧要（正如定义 $(h • g) • f = h • (g • f)$ 所显示的那样）。
 
-And it is not only about categories either, it is a property of many other operations on other types of objects as well e.g. if we look at numbers, we can see that the multiplication operation is associative e.g. $(1 \times 2) \times 3 = 1 \times (2 \times 3)$. While division is not $(1 / 2) / 3 = 1 / (2 / 3)$.
+结合性不仅仅与范畴有关，它也是许多其他类型对象上的其他运算的一个性质。例如，如果我们看数字，我们可以看到乘法运算是结合的，例如 $(1 \times 2) \times 3 = 1 \times (2 \times 3)$。而除法不是 $(1 / 2) / 3 ≠ 1 / (2 / 3)$。
 
-This approach (composing indefinitely many things) for building stuff is often used in programming. To see some examples, you don't need to look further than the pipe operator in Unix (`|`), which feeds the standard output of a program into the standard input of another program. If you *want* to look further, note that there is a whole programming paradigm based on functional composition, called "concatenative programming" utilized in languages like Forth and Factor.
+这种组合无限多个事物的构建方法经常在编程中使用。要看到一些例子，你不需要看得太远，只需看看 Unix 中的管道操作符 (`|`)，它将一个程序的标准输出输入到另一个程序的标准输入中。如果你*想*看得更远，注意有一种基于函数复合的编程范式，称为“级联编程”，它在 Forth 和 Factor 等语言中得到了应用。
 
-
-Commuting diagrams
+交换图 (Commuting Diagrams)
 ---
 
-The diagrams above use colors to illustrate the fact that the green morphism is equivalent to the other two (and not just some unrelated morphism), but in practice this notation is a little redundant --- the only reason to draw diagrams in the first place is to represent paths that are equivalent to each other. All other paths would just belong in different diagrams. 
+上面的图表使用颜色来说明绿色的态射等同于其他两个态射（而不仅仅是一些无关的态射），但实际上这种符号有点多余——画图表的唯一原因是表示等价路径。所有其他路径都只属于不同的图表。
 
-![Composition of morphisms - a commuting diagram](../02_category/composition_commuting_diagram.svg)
+![态射复合——交换图](../02_category/composition_commuting_diagram.svg)
 
-As we mentioned briefly in the last chapter, all diagrams that are like that (ones in which any two paths between two objects are equivalent to one another) are called *commutative diagrams* (or diagrams that *commute*). All diagrams in this book (except the incorrectly constructed ones) commute.
+正如我们在上一章中简要提到的，所有这样的图表（其中任何两个对象之间的两条路径是等价的）都被称为*交换图表* (commutative diagrams) 或*交换图*。本书中的所有图表（除非是错误构造的图表）都是交换的。
 
-More formally, a commuting diagram is a diagram in which given two objects $a$ and $b$ and two sequences of morphisms between those two objects, we can say that those sequences are equivalent. 
+更正式地说，一个交换图是一个图表，其中给定两个对象 $a$ 和 $b$ 以及它们之间的两个态射序列，我们可以说这些序列是等价的。
 
-The diagram above is one of the simplest commuting diagrams.
+上面的图表是最简单的交换图之一。
 
-A summary
+总结 (A Summary)
 ---
 
-For future reference, let's restate what a category is:
+为了以后参考，让我们重新定义什么是范畴：
 
-A category is a collection of *objects* (we can think of them as *points*) and *morphisms* (or *arrows*) that go from one object to another, where:
-1. Each object has to have the identity morphism.
-2. There should be a way to compose two morphisms with an appropriate type signature into a third one, in a way that is *associative*.
+范畴是*对象*（我们可以将其视为*点*）和从一个对象到另一个对象的*态射*（或*箭头*）的集合，其中：
+1. 每个对象必须具有恒等态射。
+2. 应该有一种方式将两个具有适当类型签名的态射复合成第三个态射，并且这种复合方式是*结合的*。
 
-This is it.
+就这样。
 
 {% if site.distribution == 'print'%}
 
-Addendum: Why are categories like that?
-===
-
-
-*Why* are categories defined by those two laws and not some other two (or one, three, four etc.). laws? From one standpoint, the answer to that seems obvious --- we study categories because they *work*, I mean, look at how many applications are there. 
-
-But at the same time category theory is an abstract theory, so everything about it is kinda arbitrary: you can remove a law --- and you get another theory that looks similar to category theory (although it might actually turn out to be quite different in practice (due to a phenomenon called "emergence")). Or you can add one more law and get yet another theory, so if this specific set of laws works better than any other, then this fact demands an explanation. Not a *mathematical* explanation (e.g. we cannot prove that this theory is better than some other one), but an explanation nevertheless. What follows is *my* attempt to provide such an explanation, regarding the laws of *identity* and *associativity*.
-
-Identity and isomorphisms
-===
-
-The reason the identity law is required is by far the more obvious one. We need to have a morphism that does nothing? It's because morphisms are the basic building blocks of our language, we need the identity morphism to be able to speak properly. For example, once we have the concept of identity morphism defined, we can define a category-theoretic definition of an *isomorphism*, based on it (which is important, because the concept of an isomorphism is very important for category theory): 
-
-Like we said in the previous chapter, an isomorphism between two objects ($A$ and $B$) consists of two morphisms --- ($A → B$.  and $B → A$) such that their compositions are equivalent to the identity functions of the respective objects. Formally, objects $A$ and $B$ are isomorphic if there exist morphisms $f: A → B$ and $g: B → A$ such that $f \circ g = ID_{B}$ and $g \circ f = ID_{A}$. 
-
-And here is the same thing expressed with a commuting diagram.
-
-![Isomorphism](../02_category/isomorphism.svg)
-
-Like the previous one, the diagram expresses the same (simple) fact as the formula, namely that going from the one of objects ($A$ and $B$) to the other one and then back again to the starting object is the same as applying the identity morphism i.e. doing nothing. 
-
-
-Associativity and reductionism
-===
-
-> If, in some cataclysm, all of scientific knowledge were to be destroyed, and only one sentence passed on to the next generations of creatures, what statement would contain the most information in the fewest words? I believe it is the atomic hypothesis (or the atomic fact, or whatever you wish to call it) that all things are made of atoms—little particles that move around in perpetual motion, attracting each other when they are a little distance apart, but repelling upon being squeezed into one another. In that one sentence, you will see, there is an enormous amount of information about the world, if just a little imagination and thinking are applied. --- Richard Feynman
-
-
-Associativity --- what does it mean and why is it there? In order to tackle this question, we must first talk about another concept --- the concept of *reductionism*: 
-
-Reductionism is the idea that the behaviour of some more complex phenomenon can be understood in terms of a number of *simpler* and more fundamental phenomena, or in other words, the idea that things keep getting simpler and simpler as they get "smaller" (or when they are viewed at a lower level), like for example, the behavior of matter can be understood by studying the behaviors of its constituents i.e. atoms. Whether the reductionist view is *universally valid*, i.e. whether it is possible to explain everything with a simpler things (and devise a *theory of everything* that reduces the whole universe to a few very simple laws) is a question that we can argue about until that universe's inevitable collapse. But, what is certain is that reductionism underpins all our understanding, especially when it comes to science and mathematics --- each scientific discipline has a set of fundaments using which it tries to explain a given set of more complex phenomena, e.g. particle physics tries to explain the behaviour of atoms in terms of a given set of elementary particles, chemistry tries to explain the behaviour of various chemical substances in terms of the chemical elements that they are composed of, etc. A behavior that cannot be reduced to the fundamentals of a given scientific discipline is simply outside of the scope of that discipline (and therefore a new discipline has to be created to tackle it). So, if this principle is so important, it would be beneficial to be able to formalize it, and this is what we will try to do now.
-
-Commutativity
+附录：为什么范畴是这样的？ (Addendum: Why are Categories Like That?)
 ---
 
-One way to state the principle of reductionism is to say that *each thing is nothing but a sum of its parts*. Let's try to formalize that. It would mean that a set of objects when combined in whichever way, will always result in the same object. 
+*为什么*范畴是由这两个定律（而不是其他一两个、三个、四个等）定义的？从某个角度来看，答案似乎显而易见——我们研究范畴，因为它们*有效*，看看有多少应用。
 
-So, if we have
+但同时，范畴论是一个抽象理论，所以它的所有内容都有点任意：你可以删除一个定律——你会得到另一个看起来类似范畴论的理论（尽管它在实践中可能完全不同（由于一个叫做“涌现现象”的现象））。或者你可以添加一个定律，得到另一个理论，所以如果这个特定的定律集比其他任何一个都更有效，那么这个事实就需要一个解释。虽然不是一个*数学*解释（例如，我们不能证明这个理论比其他某些理论更好），但仍然需要一个解释。接下来是*我*试图解释*恒等性*和*结合性*定律的原因。
 
-$A \circ B \circ C = D$
-
-We also have 
-
-$B \circ A \circ C = X$
-
-$C \circ A \circ B = X$
-
-etc
-
-Or simply
-
-$A \circ B = B \circ  A$
-
-Incidentally this is the definition of a mathematical law called *commutativity*.
-
-**Task:** if our objects are sets, which set operation can represents the sum?
-
-Associativity
+恒等性和同构 (Identity and Isomorphisms)
 ---
 
-Commutativity law is applicable only in contexts where the order is irrelevant i.e. when an object can be represented as the sum of its parts *when combined in whichever way*. But there are many cases in which an object is to be represented by the sum of its parts, but only when *combined in one specific way*.
+恒等律是显而易见的一个要求。为什么需要有一个什么都不做的态射？这是因为态射是我们语言的基本构建块，我们需要恒等态射来能够正确地表达。例如，一旦我们定义了恒等态射的概念，我们就可以基于它定义一个范畴论的*同构* (isomorphism) 概念（这很重要，因为同构的概念在范畴论中非常重要）：
 
-In such contexts, commutativity would not hold, because the fact that A can be combined with B to get C would not automatically mean that B can be combined with A to get the same result (in the case of functions, they may not be able to be combined at all).
+正如我们在上一章中所说的，两个对象 ($A$ 和 $B$) 之间的同构由两个态射组成——（$A → B$ 和 $B → A$），它们的复合等价于各自对象的恒等函数。形式上，如果存在态射 $f: A → B$ 和 $g: B → A$ 使得 $f \circ g = ID_{B}$ 且 $g \circ f = ID_{A}$，则对象 $A$ 和 $B$ 是同构的。
 
-But a weaker version of the law of reductionism would still hold in this case, namely that if we take a bunch of objects, combined in a certain order, it would be true that *any pair of those objects could, at any time, be replaced by the object we get by combining them*, i.e. if we have.
+这里是同样的内容，用交换图表示。
 
-$A \circ  B = D$
+![同构](../02_category/isomorphism.svg)
 
-and 
+和前面一样，图表表达了与公式相同的（简单）事实，即从一个对象（$A$ 和 $B$ 之一）到另一个对象，然后再回到起始对象与应用恒等态射相同，即什么都不做。
 
-$B \circ  C = X$
+结合性和还原论 (Associativity and Reductionism)
+---
 
-we would also have
+> “如果在某种灾难中，所有的科学知识都被摧毁，只传给下一代生物一个句子，那么哪句话能在最少的词中包含最多的信息？我认为是原子假说（或原子事实，或无论你怎么称呼它）——所有事物都是由原子构成的——小粒子，它们永恒地运动，相互吸引，距离稍远时靠近，但在被挤压在一起时排斥彼此。” --- 理查德·费曼 (Richard Feynman)
 
-$(A \circ B \circ C) = D \circ C = A \circ X$
+结合性——它的含义是什么？为什么它存在？要回答这个问题，我们首先必须讨论另一个概念——*还原论* (reductionism) 概念：
 
-or simply 
+还原论是指一些更复杂的现象的行为可以用一些*更简单*和更基础的现象来理解，换句话说，事物随着它们变得“更小”而越来越简单（或者当它们在更低的层次上被观察时），例如，物质的行为可以通过研究其组成部分的行为来理解，即原子。
 
-$(A\circ  B)\circ  C = A \circ (B \circ C)$
+还原论是否*普遍有效*，即是否可以用更简单的事物解释一切（并制定出一种*万物理论*，将整个宇宙归结为几个非常简单的定律），这是一个可以争论到宇宙最终崩溃的问题。然而，确定的是，还原论支撑了我们所有的理解，特别是在科学和数学领域——每个科学学科都有一套基础，用来解释一组更复杂的现象。例如，粒子物理学试图用一组基本粒子的行为来解释原子的行为，化学试图用化学元素的组成来解释各种化学物质的行为，等等。无法还原到某个学科基础的行为，显然就超出了该学科的范围（因此需要创建新的学科来解决它）。因此，如果这个原则如此重要，能够将其形式化会是很有益的，这就是我们现在将尝试做的。
 
-And this, I think, is the essence of associativity --- the ability to study complex phenomenon by zooming in into a part that you want to examine in a given moment, and looking at it in isolation.
+交换律 (Commutativity)
+---
 
-Note that associativity only allows for combining things in one dimension. Later we will learn about extensions of category theory that allow for working in 2 dimensions.
+还原论的一个陈述方式是说*每个事物不过是其部分的总和*。让我们尝试将其形式化。它意味着一组对象，无论以何种方式组合，都会始终产生相同的对象。
+
+所以，如果我们有
+
+$$A \circ B \circ C = D$$
+
+我们也有
+
+$$B \circ A \circ C = X$$
+
+$$C \circ A \circ B = X$$
+
+等等
+
+或简单地
+
+$$A \circ B = B \circ A$$
+
+顺便说一下，这就是*交换律* (commutativity) 的定义。
+
+**任务**：如果我们的对象是集合，哪个集合运算可以表示这个总和？
+
+结合性 (Associativity)
+---
+
+交换律只适用于顺序无关的情况，即当一个对象可以表示为*无论以何种方式组合其部分*的总和时。但是在许多情况下，一个对象要表示为其部分的总和，但*只能按照特定方式组合*。
+
+在这些情况下，交换律不会成立，因为 A 可以与 B 组合得到 C，这并不自动意味着 B 可以与 A 组合得到相同的结果（在函数的情况下，它们可能根本无法组合）。
+
+但是，还原论的较弱版本在这种情况下仍然成立，即如果我们以特定顺序组合了一组对象，*这组对象中的任何一对对象都可以随时被它们的组合结果所取代*，即如果我们有
+
+$$A \circ B = D$$
+
+和
+
+$$B \circ C = X$$
+
+我们也有
+
+$$(A \circ B \circ C) = D \circ C = A \circ X$$
+
+或者简单地说
+
+$$(A \circ B) \circ C = A \circ (B \circ C)$$
+
+我认为这就是结合律的本质——通过缩小到你希望在特定时刻检查的部分来研究复杂现象，并单独观察它。
+
+注意，结合律只允许在一维中组合事物。稍后我们将学习范畴论的扩展，它允许在二维中工作。
 
 {%endif%}
