@@ -253,100 +253,78 @@ $$
 
 这些方法中，类型论坚持认为，这只是按照有限数量的规则，用一个值替换另一个值的过程。
 
-This principle is also underneat the way axiom schemas are used in logic, but it is actually much more general than that. It is also the principle behind algrebra in general e.g. the rules of addition are nothing but rules that define when can you substitute a value to another.
+这个原则也在逻辑中公理模式的使用方式之下，但它实际上比这更广泛。它也是代数中普遍存在的原则，例如加法规则不过是定义何时可以用一个值替代另一个值的规则。
 
-But wait, are substitution rules really powerful enough to represent all functions? How would we go about in representing types that have an infinite number of terms (such as the natural numbers), and functions between them (such as the `sum` function).
+但等一下，替换规则真的足够强大来表示所有函数吗？我们如何表示具有无限项的类型（例如自然数）以及它们之间的函数（例如 `sum` 函数）呢？
 
-
-Type theory and logic
---- 
-
-Type theory and computation
+类型论与逻辑 (Type theory and logic)
 ---
 
+类型论与计算 (Type theory and computation)
+---
 
-The product type
+乘积类型 (The product type)
 ===
 
-> "In general, we can think of data as defined by some collection of selectors and constructors, together with specified conditions that these procedures must fulfill in order to be a valid representation." --- Hal Abelson Jerry Sussman and Julie Sussman, SICP 
+> “一般而言，我们可以将数据视为由一组选择器和构造器定义的，并且这些过程必须满足指定的条件，以便成为有效的表示。”—— 哈尔·阿贝尔森 (Hal Abelson)、杰拉尔德·萨斯曼 (Jerry Sussman) 和朱莉·萨斯曼 (Julie Sussman), 《计算机程序的构造和解释》
 
-Type formation rules
----
+### 类型构造规则 (Type formation rules)
 
-When we define a new type we firstly want to *provide a type definition* show what the type should look like. This is known as the *type-formation rule*. 
+当我们定义一个新类型时，首先我们需要*提供类型定义*，展示该类型应该是什么样子。这被称为*类型构造规则*。
 
 $$\frac{\Gamma \vdash A \; \mathrm{type} \quad \Gamma \vdash B \; \mathrm{type}}{\Gamma \vdash A \times B \; \mathrm{type}}$$
 
-Term introduction rules
----
+### 项引入规则 (Term introduction rules)
 
-OK, now that we have the definition of the type, we would typically want a way to create values from that type or, in other words we would need *constructors*.
+现在我们有了类型的定义，通常我们需要一种方法来从该类型创建值，换句话说，我们需要*构造器*。
 
-```
+```javascript
   constructor(a, b) {
     this.a = a;
     this.b = b;
   }
 ```
 
-In type-theoretic terms, we would call constructor a *term introduction rule*, (*term* being the type-theoretic word for value).
+在类型论术语中，我们将构造器称为*项引入规则*（*项*是类型论中对值的称呼）。
 
+乘积类型的引入规则：
 
-Introduction rules for product types:
+$$\frac{\Gamma \vdash A \; \mathrm{type} \quad \Gamma \vdash B \; \mathrm{type}}{\Gamma, x:A, y:B \vdash (x, y):A \times B}$$
 
-$$\frac{\Gamma \vdash A \; \mathrm{type} \quad \Gamma\vdash B \; \mathrm{type}}{\Gamma, x:A, y:B \vdash (x, y):A \times B}$$
-
-Term elimination rules
----
+### 项消除规则 (Term elimination rules)
 
 $$\frac{\Gamma \vdash A \; \mathrm{type} \quad \Gamma \vdash B \; \mathrm{type}}{\Gamma, z:A \times B \vdash \pi_1(z):A} \qquad \frac{\Gamma \vdash A \; \mathrm{type} \quad \Gamma \vdash B \; \mathrm{type}}{\Gamma, z:A \times B \vdash \pi_2(z):B}$$
 
-Computation rule
----
+### 计算规则 (Computation rule)
 
-$$\frac{\Gamma \vdash A \; \mathrm{type} \quad \Gamma\vdash B \; \mathrm{type}}{\Gamma, x:A, y:B \vdash \beta_{\times 1}(x, y):\pi_1((x, y)) =_A x} \qquad \frac{\Gamma \vdash A \; \mathrm{type} \quad \Gamma \vdash B \; \mathrm{type}}{\Gamma, x:A, y:B \vdash \beta_{\times 2}(x, y):\pi_2((x, y)) =_{B} y}$$
+$$\frac{\Gamma \vdash A \; \mathrm{type} \quad \Gamma \vdash B \; \mathrm{type}}{\Gamma, x:A, y:B \vdash \beta_{\times 1}(x, y):\pi_1((x, y)) =_A x} \qquad \frac{\Gamma \vdash A \; \mathrm{type} \quad \Gamma \vdash B \; \mathrm{type}}{\Gamma, x:A, y:B \vdash \beta_{\times 2}(x, y):\pi_2((x, y)) =_{B} y}$$
 
-Uniqueness rules 
----
+### 唯一性规则 (Uniqueness rules)
 
 $$\frac{\Gamma \vdash A \; \mathrm{type} \quad \Gamma \vdash B \; \mathrm{type}}{\Gamma, z:A \times B \vdash \eta_{\times}(z):z =_{A \times B} (\pi_1(z), \pi_2(z))}$$
 
-
-
-Types as mathematical foundation
+类型作为数学基础 (Types as mathematical foundation)
 ===
 
-Types and computation
+类型与计算 (Types and computation)
 ===
 
-Types and logic
+类型与逻辑 (Types and logic)
 ===
 
-
-Numbers as types
+类型中的自然数 (Numbers as types)
 ===
 
-Learning mathematics, can feel overwhelming, because of the huge, even infinite, body of knowledge: how do you proceed so big of a task? But it turns out the answer is simple: you start off knowing 0 things, 0 theories. Then, you learn 1 theory - congrats, you have learned your first theory and so you would know a total of 1 theories. Then, you learn 1 more theory and you would already know a total of 2 theories. Then learn 1 more theory and then 1 more and, given enough time and dedication, you may learn all theories.
+学习数学有时会让人感到不知所措，因为它包含了巨大的，甚至是无限的知识体系：面对如此庞大的任务，该如何进行呢？但答案实际上很简单：你从知道 0 件事、0 个理论开始。然后，你学习 1 个理论——恭喜你，你已经学会了第一个理论，因此你总共知道 1 个理论。接着，再学习 1 个理论，这时你已经知道了 2 个理论。再学习 1 个理论，接着再学 1 个理论，给自己足够的时间和专注，你或许可以学会所有的理论。
 
-This little argument applies not only to learning mathematical theories, but to everything else that is "countable", so to say. This is because it is the basis of the mathematical definition of natural numbers, as famously syntesized in the 19th century by the Italian mathematician Giuseppe Peano:
+这个小论点不仅适用于学习数学理论，还适用于所有“可数的”事物，因为它是自然数数学定义的基础，正如意大利数学家朱塞佩·皮亚诺 (Giuseppe Peano) 在19世纪著名地概括的那样：
 
-1. $0$ is a natural number.
-2. If $n$ is a naturan number, $n+1$ is a natural number.
+1. $0$ 是自然数。
+2. 如果 $n$ 是自然数，那么 $n+1$ 也是自然数。
 
-And then, he gave the following laws.
+随后，他给出了如下的定律。
 
-
-Types and categories
+类型与范畴 (Types and categories)
 ===
 
-In thinking of a category as a type theory, the objects of a category are
-regarded as types (or sorts) and the arrows as mappings between the corresponding
-types. Roughly speaking, a category may be thought of a type theory shorn of
-its syntax. In the 1970s Lambek20 established that, viewed in this way, cartesian
-closed categories correspond to the typed λ-calculus. Later Seely [1984] proved
-that locally Cartesian closed categories correspond to Martin-L¨of, or predicative,
-type theories. Lambek and Dana Scott independently observed that C-monoids,
-i.e., categories with products and exponentials and a single, nonterminal object
-correspond to the untyped λ-calculus. The analogy between type theories and
-categories has since led to what Jacobs [1999] terms a “type-theoretic boom”,
-with much input from, and applications to, computer science
+当把一个范畴视为一个类型理论时，范畴的对象被看作类型（或类），而箭头则被视为对应类型之间的映射。大致来说，可以把范畴视为一个类型理论去掉了它的语法。在20世纪70年代，兰贝克 (Lambek) 建立了这样一种观点，即闭笛卡尔范畴 (cartesian closed categories) 对应于类型化的 λ 演算。后来，西利 (Seely) 在1984年证明了局部闭笛卡尔范畴 (locally cartesian closed categories) 对应于马丁-洛夫 (Martin-Löf) 的或预言性的类型理论。兰贝克和戴纳·斯科特 (Dana Scott) 独立观察到，C-单子（即具有乘积和指数以及单一非终端对象的范畴）对应于非类型化的 λ 演算。类型理论与范畴之间的类比自此促成了雅各布斯 (Jacobs) [1999] 所称的“类型理论繁荣”，其中包含了大量来自计算机科学的输入和应用。

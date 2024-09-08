@@ -3,136 +3,120 @@ layout: default
 title: Functors
 ---
 
-Functors 
+函子 (Functors)
 ===
 
-From this chapter on, we will change the tactic a bit (as I am sure you are tired of jumping through different subjects) and we will dive at full throttle into the world of categories, using the structures that we saw so far as context. This will allow us to generalize some of the concepts that we examined in these structures and thus make them valid for all categories. 
+从本章开始，我们将稍微改变策略（因为我相信你已经厌倦了在不同主题之间跳跃），我们将全速深入范畴的世界，使用迄今为止看到的结构作为背景。这将使我们能够推广这些结构中研究过的一些概念，从而使它们对所有范畴都适用。
 
-Categories we saw so far
+我们迄今看到的范畴 (Categories we saw so far)
 ===
 
-So far, we saw many different categories and category types. Let's review them once more:
+到目前为止，我们看到了许多不同的范畴和范畴类型。让我们再回顾一下：
 
-The category of sets
+### 集合范畴 (The category of sets)
+我们首先审视了所有范畴之母——*集合范畴*。
+
+![集合范畴](../10_functors/category_sets.svg)
+
+我们还看到了它包含许多其他范畴，例如编程语言中的类型范畴。
+
+### 特殊类型的范畴 (Special types of categories)
+我们还学习了其他代数对象，它们实际上只是*特殊类型的范畴*，例如只包含一个*对象*的范畴（如单子、群）和在任意两个对象之间只有一个*态射*的范畴（如预序、偏序）。
+
+![范畴类型](../10_functors/category_types.svg)
+
+### 其他范畴 (Other categories)
+我们还定义了许多基于不同概念的*范畴*，例如基于逻辑或编程语言的范畴，也有一些“没那么严肃的范畴”，例如颜色混合的偏序范畴。
+
+![颜色混合范畴](../10_functors/category_color_mixing.svg)
+
+### 有限范畴 (Finite categories)
+最重要的是，我们看到了*完全是虚构的*范畴，例如我的足球运动员层级。这些正式被称为*有限范畴*。
+
+![有限范畴](../10_functors/finite_categories.svg)
+
+尽管它们本身可能没什么用，但背后的想法很重要——我们可以画出任何点和箭头的组合并称其为一个范畴，就像我们可以用任何物体的组合构造一个集合一样。
+
+### 审视一些有限范畴 (Examining some finite categories)
 ---
 
-We began by reviewing the mother of all categories --- *the category of sets*.
+为将来参考，让我们看看一些重要的有限范畴。
 
-![The category of sets](../10_functors/category_sets.svg)
+最简单的范畴是 $0$（享受一下这个简约的图表）。
 
-We also saw that it contains within itself many other categories, such as the category of types in programming languages.
+![有限范畴 0](../10_functors/finite_zero.svg)
 
-Special types of categories 
----
+接下来是最简单的范畴 $1$——它由一个对象组成，除了其恒等态射之外没有其他态射（我们不绘制恒等态射，按照惯例）。
 
-We also learned about other algebraic objects that turned out to be just *special types of categories*, like categories that have just one *object* (monoids, groups) and categories that have only one *morphism* between any two objects (preorders, partial orders).
+![有限范畴 1](../10_functors/finite_one.svg)
 
-![Types of categories](../10_functors/category_types.svg)
+如果我们将对象的数量增加到两个，我们会看到几个更有趣的范畴，例如包含两个对象和一个态射的范畴 $2$。
 
-Other categories
----
+![有限范畴 2](../10_functors/finite_two.svg)
 
-We also defined a lot of *categories based on different concepts*, like the ones based on logics/programming languages, but also some "less-serious ones", as for example the color-mixing partial order/category.
+**任务：** 还有另外两个只包含 2 个对象且两个对象之间至多有一个态射的范畴，画出它们。
 
-![Category of colors](../10_functors/category_color_mixing.svg)
+最后，范畴 $3$ 包含 3 个对象以及 3 个态射（其中一个是其他两个的复合态射）。
 
-Finite categories
----
+![有限范畴 3](../10_functors/finite_three.svg)
 
-And most importantly, we saw some categories that are *completely made up*, such as my soccer player hierarchy. Those are formally called *finite categories*. 
-
-![Finite categories](../10_functors/finite_categories.svg)
-
-Although they are not useful by themselves, the idea behind them is important --- we can draw any combination of points and arrows and call it a category, in the same way that we can construct a set out of every combination of objects. 
-
-Examining some finite categories
----
-
-For future reference, let's see some important finite categories. 
-
-The simplest category is $0$ (enjoy the minimalism of this diagram).
-
-![The finite category 0](../10_functors/finite_zero.svg)
-
-The next simplest category is $1$ --- it is comprised of one object no morphism besides its identity morphism (which we don't draw, as usual)
-
-![the finite category 1](../10_functors/finite_one.svg)
-
-If we increment the number of objects to two, we see a couple of more interesting categories, like for example the category $2$ containing two objects and one morphism.
-
-![the finite category 2](../10_functors/finite_two.svg)
-
-**Task:** There are just two more categories that have 2 objects and at most one morphism between two objects, draw them.
-
-And finally the category $3$ has 3 objects and also 3 morphisms (one of which is the composition of the other two).
-
-![the finite category 3](../10_functors/finite_three.svg)
-
-Categorical isomorphisms
+范畴同构 (Categorical isomorphisms)
 ===
 
-Many of the categories that we saw are similar to one another, as for example, both the color-mixing order and categories that represent logic have a *greatest* and a *least* object. To pinpoint such similarities, and understand what they mean, it is useful to have formal ways to connect categories with one another. The simplest type of such connection is the good old isomorphism.
+我们所看到的许多范畴彼此非常相似，例如，颜色混合偏序和表示逻辑的范畴都有一个*最大*和*最小*对象。为了指出这些相似性并理解它们的意义，能够使用正式的方式将范畴相互连接是很有用的。最简单的一种连接方式就是老朋友*同构*。
 
-Set isomorphisms
----
+### 集合同构 (Set isomorphisms)
+在第1章中，我们讨论了*集合同构*，它在两个集合之间建立了等价关系。如果你忘记了，集合同构是集合之间的*双向函数*。
 
-In chapter 1 we talked about *set isomorphisms*, which establish an equivalence between two sets. In case you have forgotten, a set isomorphism is a *two-way function* between two sets. 
+![集合同构](../10_functors/set_isomorphism.svg)
 
-![Set isomorphism](../10_functors/set_isomorphism.svg)
+它也可以被视为两个“互为逆”的函数，组合后等于恒等函数。
 
-It can alternatively be viewed as two "twin" functions such that each of which equals identity, when composed with the other one. 
+### 序同构 (Order isomorphisms)
+在第4章中，我们遇到了*序同构*，并且看到它们类似于集合同构，但多了一个条件——除了保持对象之间的映射外，定义同构的函数还必须保持对象的顺序，例如一个序中的最大对象应该与另一个序中的最大对象连接，最小对象应该与最小对象连接，所有中间的对象也应如此。
 
+![序同构](../10_functors/order_isomorphism.svg)
 
-Order isomorphisms
----
+更正式地说，对于任何 $a$ 和 $b$，如果我们有 $a ≤ b$，那么我们也应该有 $F(a) ≤ F(b)$（反之亦然）。
 
-Then, in chapter 4, we encountered *order isomorphisms* and we saw that they are like set isomorphisms, but with one extra condition --- aside from just being there, the functions that define the isomorphism have to preserve the order of the object e.g. the greatest object of one order should be connected to the greatest object of the other one, the least object of one order should be connected to the least object of the other one, and same for all objects that are in between. 
+### 范畴同构 (Categorical isomorphisms)
+现在，我们将推广序同构的定义，使其适用于所有其他范畴（即适用于可能在两个对象之间有多个态射的范畴）：
 
-![Order isomorphism](../10_functors/order_isomorphism.svg)
+> 给定两个范畴，它们之间的同构是对象集合之间的可逆映射，*以及*连接它们的态射之间的可逆映射，并且每个范畴的态射映射到另一个范畴中*具有相同签名*的态射。
 
-Or more formally put, for any $a$ and $b$ if we have $a ≤ b$ we should also have $F(a) ≤ F(b)$ (and vise versa).
+![范畴同构](../10_functors/category_isomorphism.svg)
 
-Categorical isomorphisms
----
+仔细检查这个定义后，我们会意识到，尽管它*听起来*更复杂（看起来*更凌乱*）一些，但实际上它与我们对序同构的定义是*相同的*。
 
-Now, we will generalize the definition of an order isomorphism, so it also applies to all other categories (i.e. to categories that may have more than one morphism between two objects): 
+只不过当两个对象之间只有一个态射时，所谓的“态射映射”是平凡的，所以我们可以忽略它们。
 
-> Given two categories, an isomorphism between them is an invertible mapping between the underlying sets of objects, *and* an invertible mapping between the morphisms that connect them, which maps each morphism from one category to a morphism *with the same signature*.
+![序同构](../10_functors/category_order_isomorphism_2.svg)
 
-![Category isomorphism](../10_functors/category_isomorphism.svg)
-
-After examining this definition closely, we realize that, although it *sounds* a bit more complex (and *looks* a bit messier) than the one we have for orders *it is actually the same thing*. 
-
-It is just that the so-called "morphism mapping" between categories that have just one morphism for any two objects are trivial, and so we can omit them.
-
-![Order isomorphism](../10_functors/category_order_isomorphism_2.svg)
-
-**Question:** What are the morphism functions for orders?
+**问题：** 序的态射函数是什么？
 
 <!--
-We always map the single morphism of the source category to the single morphism of the target category (which is guaranteed to exist, due to the *order-preserving* condition)
+我们总是将源范畴的单一态射映射到目标范畴的单一态射（由于*保持序*的条件，该态射保证存在）
 -->
 
-However, when we can have more than one morphism between two given objects, we need to make sure that each morphism in the source category has a corresponding morphism in the target one, and for this reason we need not only a mapping between the categories' objects, but one between their morphisms.
+然而，当两个对象之间可以有多个态射时，我们需要确保源范畴中的每个态射在目标范畴中都有对应的态射。因此，我们不仅需要对象之间的映射，还需要它们的态射之间的映射。
 
-![Category isomorphism](../10_functors/category_order_isomorphism.svg)
+![范畴同构](../10_functors/category_order_isomorphism.svg)
 
-By the way, what we just did (taking a concept that is defined for a more narrow structure (orders) and redefining it for a more broad one (categories)) is called *generalizing* of the concept.
+顺便说一句，我们刚刚做的事情（将为更狭窄结构（序）定义的概念重新定义为更广泛的结构（范畴））称为*概念推广*。
 
-The problem with categorical isomorphisms
+### 范畴同构的问题 (The problem with categorical isomorphisms)
 ---
 
-By examining them more closely, we realize that categorical isomorphisms are not so hard to define. However there is another issue with them, namely that they *don't capture the essence of what categorical equality should be*. I have devised a very good and intuitive explanation why is it the case, that this ~~margin~~ section is too narrow to contain. So we will leave it for the next chapter, where we will also devise a more apt way to define a *two-way connection* between categories. 
+仔细研究后，我们意识到定义范畴同构并不难。然而，还有另一个问题，即它们*并没有捕捉到范畴相等的本质*。我想出一个非常好的直观解释，但这段空间太窄，无法容纳这个解释。因此，我们将在下一章中讨论一个更适合定义范畴之间*双向连接*的方法。
 
-But first, we need to examine *one-way connections* between them, i.e. *functors*.
+但首先，我们需要研究范畴之间的*单向连接*，即*函子*。
 
-PS: Categorical isomorphisms are also *very rare in practice* --- the only one that comes to mind me is the Curry-Howard-Lambek isomorphism from the previous chapter. That's because if two categories are isomorphic then there is no reason at all to treat them as different categories --- they are one and the same. 
+PS: 范畴同构在实践中也*非常罕见*——我能想到的唯一例子是上一章中的柯里–霍华德–兰贝克同构。这是因为如果两个范畴是同构的，那么完全没有理由将它们视为不同的范畴——它们实际上是同一个范畴。
 
 <!--
-comics:
-OK, I think I got it --- isomorphisms are when you have two similar pictures and you connect the dots.
-
-Pretty much.
+漫画：
+好的，我想我明白了——同构是当你有两个相似的图，然后把点连起来。
+差不多是这样。
 -->
 
 What are functors
