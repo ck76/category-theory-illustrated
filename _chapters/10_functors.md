@@ -350,110 +350,110 @@ PS: 范畴同构在实践中也*非常罕见*——我能想到的唯一例子�
 **任务：** 扩展证明。
 
 <!--
-And the second law ($F(g•f) = F(g)•F(f)) also follows from the fact that there is only one morphism with a given signature. 
+第二条定律 ($F(g•f) = F(g)•F(f)$) 也可以从这样一个事实推导出来，即对于给定的签名只有一个态射。
 
-Suppose that in the source order we have two morphisms with the following type signature:
+假设在源序中我们有两个具有以下类型签名的态射：
 
-$f :: a \to b$ and $g :: b \to c$. 
+$f :: a \to b$ 和 $g :: b \to c$。
 
-Then, if we compose those two morphisms in the target order ($F(g)•F(f)$), we get a morphism from object $F(a)$ to object $F(c)$ ($F(g)•F(f) :: F(a) \to F(c)$).
+那么，如果我们在目标序中组合这两个态射 ($F(g)•F(f)$)，我们会得到一个从对象 $F(a)$ 到对象 $F(c)$ 的态射 ($F(g)•F(f) :: F(a) \to F(c)$)。
 
-If we compose the two morphisms in the source order, and we use the functor to get the corresponding morphism in the target order ($F(g•f)$) we get another morphism from object $F(a)$ to object $F(c)$ ($F(g•f) :: F(a) \to F(c)$)
+如果我们在源序中组合这两个态射，并且使用函子得到它们在目标序中的对应态射 ($F(g•f)$)，我们会得到另一个从对象 $F(a)$ 到对象 $F(c)$ 的态射 ($F(g•f) :: F(a) \to F(c)$)。
 
-But because in orders there can be just one morphism between $F(a)$ and $F(c)$ so these two morphisms must be equal to one another.
- 
+但因为在序中，从 $F(a)$ 到 $F(c)$ 只有一个态射，所以这两个态射必须相等。
+
 -->
 
-Linear functions
+线性函数 (Linear functions)
 ===
 
-OK, enough with this abstract nonsense, let's talk about "normal" functions --- ones between numbers. 
+好了，足够的抽象内容了，让我们来谈谈“普通”函数——那些在数字之间的函数。
 
-In calculus, there is this concept of *linear functions* (also called "degree one polynomials") that are sometimes defined as functions of the form $f(x) = xa$ i.e. ones that contain no operations other than multiplying the argument by some constant (designated as $a$ in the example). 
+在微积分中，有一个*线性函数*（也称为“一次多项式”）的概念，通常定义为形如 $f(x) = ax$ 的函数，即那些只包含将自变量乘以某个常数（在示例中指定为 $a$）的运算的函数。
 
-But if we start plotting some such functions we will realize that there is another way to describe them --- their graphs are always comprised of straight lines.
+但如果我们开始绘制这些函数的图像，我们会意识到它们可以用另一种方式描述——它们的图像总是由直线组成。
 
-![Linear functions](../10_functors/linear_functions.svg)
+![线性函数](../10_functors/linear_functions.svg)
 
-**Question:** Why is that?
+**问题：** 为什么是这样？
 
-Another interesting property of these functions is that most of them *preserve* addition, that is for any $x$ and $y$, you have $f(x) + f(y) = f(x + y)$. We already know that this equation is equivalent to the second functor law. So linear functions are just *functors between the group of natural numbers under addition and itself.* As we will see later, they are example of functors in the *category of vector spaces*.
+这些函数的另一个有趣性质是，大多数函数*保持*加法，也就是说对于任意的 $x$ 和 $y$，我们有 $f(x) + f(y) = f(x + y)$。我们已经知道这个等式等价于函子的第二条定律。因此，线性函数实际上是*加法下自然数群与其自身之间的函子*。我们稍后会看到，它们是*向量空间范畴*中函子的一个例子。
 
-![Linear functions](../10_functors/linear_function_functor.svg)
+![线性函数](../10_functors/linear_function_functor.svg)
 
-**Question:** Are the two formulas we presented to define linear functions completely equivalent?
+**问题：** 我们用来定义线性函数的这两个公式是否完全等价？
 
 <!--
-Let 
-$f(x) = ax $
+设
+$f(x) = ax$
 
-and 
+并且
 
-$f(y) = ay $
+$f(y) = ay$
 
-Then
+那么
 
-$f(x) + f(y) = ax + ay $
+$f(x) + f(y) = ax + ay$
 
-This means that
+这意味着
 
 $f(x) + f(y) = a(x + y)$
 
-but $f(x) = ax$, so 
+但 $f(x) = ax$，所以
 
 $f(x) + f(y) = f(x + y)$
 -->
 
-And if we view that natural numbers as an order, linear functions are also functors as well, as all functions that are plotted with straight lines are obviously monotonic.
+如果我们将自然数视为一个序列，线性函数也是函子，因为所有用直线绘制的函数显然都是单调的。
 
-Note, however, that not all functions that are plotted straight lines preserve addition --- functions of the form $f(x) = x * a + b$ in which $b$ is non-zero, are also straight lines (and are also called linear) but they don't preserve addition.
+但请注意，并非所有用直线绘制的函数都保持加法——形如 $f(x) = x * a + b$ 的函数，其中 $b$ 非零，也是一条直线（并且也称为线性函数），但它们不保持加法。
 
-![Linear functions](../10_functors/linear_function_non_functor.svg)
+![线性函数](../10_functors/linear_function_non_functor.svg)
 
-For those, the above formula looks like this: $f(x) + b + f(y) + b = f(x + y) + b$.
+对于这些函数，上述公式变为：$f(x) + b + f(y) + b = f(x + y) + b$。
 
 <!--
 
-The category of topological spaces
+拓扑空间范畴 (The category of topological spaces)
 ---
-The smoothness of the mapping means that paths may stretch or collapse but not break. 
+映射的平滑性意味着路径可以伸展或收缩，但不能断裂。
 -->
 
 
-Functors in programming. The list functor
+编程中的函子——列表函子 (Functors in programming. The list functor)
 ===
 
-Types in programming language form a category, associated to that category are some functors that programmers use every day, such as the list functor, that we will use as an example. The list functor is an example of a functor that maps from the realm of simple (primitive) types and functions to the realm of more complex (generic) types and functions. 
+编程语言中的类型构成了一个范畴，与该范畴相关的一些函子是程序员每天都会使用的，例如我们将使用的列表函子。列表函子是将简单（原始）类型和函数的领域映射到更复杂（泛型）类型和函数的领域的一个函子示例。
 
-![A functor in programming](../10_functors/functor_programming.svg)
+![编程中的函子](../10_functors/functor_programming.svg)
 
-But let's start with the basics: defining the concept of a functor in programming context is as simple as changing the terms we use, according to the table in chapter 2 (the one that compares category theory with programming languages), and (perhaps more importantly) changing the font we use in our formulas from "modern" to "monospaced".
+但让我们从基础开始：在编程上下文中定义函子的概念其实很简单，只需要根据第2章中的对照表（其中比较了范畴论和编程语言），并且（或许更重要的是）将我们公式中的字体从“现代”更改为“等宽字体”。
 
-> A functor between two categories (let's call them `A` and `B`) consists of a mapping that maps each ~~object~~ *type* in `A` to a type in `B` and a mapping that maps each ~~morphism~~ *function* between types in `A` to a function between types in `B`, in a way that preserves the structure of the category.
+> 两个范畴之间的函子（我们称它们为 `A` 和 `B`）由一个映射组成，它将 `A` 中的每个 ~~对象~~ *类型* 映射到 `B` 中的一个类型，并将 `A` 中每个 ~~态射~~ *函数* 映射到 `B` 中的一个函数，且映射方式保持范畴的结构。
 
-Comparing these definitions makes us realize that mathematicians and programmers are two very different communities, that are united by the fact that they both use functors (and by their appreciation of peculiar typefaces).
+比较这些定义，我们会意识到，数学家和程序员是两个非常不同的群体，但它们因都使用函子这一事实而联系在一起（并且它们都欣赏特殊的字体）。
 
-Type mapping
+### 类型映射 (Type mapping)
 ---
 
-The first component of a functor is a mapping that converts one type (let's call it `A`) to another type (`B`). So it is *like a function, but between types*. Such constructions are supported by almost all programming languages that have static type checking in the first place --- they go by the name of *generic types*. A generic type is nothing but a function that maps one (concrete) type to another (this is why generic types are sometimes called *type-level functions*). 
+函子的第一个组成部分是将一种类型（我们称之为 `A`）转换为另一种类型（`B`）的映射。所以它*像一个函数，但在类型之间*。几乎所有支持静态类型检查的编程语言都支持这种结构——它们称为*泛型类型*。泛型类型实际上就是一个将一种（具体）类型映射到另一种类型的函数（这就是为什么泛型类型有时被称为*类型级函数*）。
 
-![A functor in programming - type mapping](../10_functors/functor_programming_objects.svg)
+![编程中的函子——类型映射](../10_functors/functor_programming_objects.svg)
 
-Note that although the diagrams they look similar, a *type-level* function is completely different from a *value-level* function. A value-level function from `String`, to `List<String>` (or in mathy Haskell/ML-inspired notation $string \to List\ string$ is) converts a *value* of type `String` (such as `"foo"`) and to a value of type `List<String>`. You even have (as we will see later) a value-level functions with signature $a \to List\ a$ that can convert any value to a list of elements containing that value, but this is different from the *type-level* function `List<A>` as that one converts a *type* $a$ to a *type* $List\ a$ (e.g. the type `string` to the type $List\ string$, $number$ to $List\ number$ etc.).
+请注意，尽管图表看起来相似，但*类型级*函数与*值级*函数完全不同。一个从 `String` 到 `List<String>` 的值级函数（或使用数学风格的 Haskell/ML 风格的符号表示为 $string \to List\ string$）将 `String` 类型的值（例如 `"foo"`）转换为 `List<String>` 类型的值。你甚至可以有（如我们稍后将看到的）一个签名为 $a \to List\ a$ 的值级函数，它可以将任何值转换为一个包含该值的元素列表，但这与*类型级*函数 `List<A>` 不同，后者将*类型* $a$ 转换为*类型* $List\ a$（例如，将类型 `string` 转换为类型 $List\ string$，将 `number` 转换为 $List\ number$ 等）。
 
-Function mapping
+### 函数映射 (Function mapping)
 ---
 
-So the type mapping of a functor is simply a generic type in a programming language (we can also have functors between two generic types, but we will review those later). So what is the *function mapping* --- this is a mapping that convert any function operating on simple types, like $string \to number$ to a function between their more complex counterparts e.g. $List\ string \to List\ number$.
+因此，函子的类型映射只是编程语言中的泛型类型（我们也可以有两个泛型类型之间的函子，但我们稍后会讨论这些）。那么*函数映射*是什么呢——这是一个将任何操作简单类型的函数（如 $string \to number$）转换为它们更复杂的对应物之间的函数的映射，例如 $List\ string \to List\ number$。
 
-![A functor in programming - function mapping](../10_functors/functor_programming_morphisms.svg)
+![编程中的函子——函数映射](../10_functors/functor_programming_morphisms.svg)
 
-In programming languages, this mapping is represented by a higher-order function called `map` with a signature (using Haskell notation), $(a \to b) \to (Fa \to Fb)$, where $F$ represents the generic type.
+在编程语言中，这种映射由一个名为 `map` 的高阶函数表示，其签名为（使用 Haskell 符号），$(a \to b) \to (Fa \to Fb)$，其中 $F$ 表示泛型类型。
 
-Note that although any possible function that has this type signature (that that obeys the functor laws) gives rise to a functor, *not all such functors are useful*. Usually, there is only one of them that makes sense for a given generic type and that's why we talk about *the* list functor, and see `map` is defined directly in the in the generic datatype, as a method.
+请注意，尽管任何具有这种类型签名的可能函数（并且遵守函子定律）都会产生一个函子，但并非所有这样的函子都是有用的。通常，对于给定的泛型类型，只有一个函数是有意义的，这就是为什么我们谈论*列表函子*，并且看到 `map` 直接定义在泛型数据类型中，作为一个方法。
 
-In the case of lists and similar structures, the *useful* implementation of `map` is the one that applies the original (simple) function to all elements of the list. 
+在列表和类似结构的情况下，`map` 的*有用*实现是将原始（简单）函数应用于列表的所有元素。
 
 ```
 class Array<A> {
@@ -467,104 +467,107 @@ class Array<A> {
 }
 ```
 
-Functor laws
+### 函子定律 (Functor laws)
 ---
 
-Aside from facilitating code reuse by bringing in all standard functions of simple types in a more complex context, `map` allows us to work in a way that is predictable, courtesy of the functor laws, which in programming context look like this.
+除了通过在更复杂的上下文中引入所有简单类型的标准函数来促进代码复用外，`map` 使我们能够以可预测的方式工作，这要归功于函子定律，在编程上下文中，它们看起来如下。
 
-Identity law:
+身份定律：
 ```
 a.map(a => a) == a
 ```
-Composition law:
+组合定律：
 ```
 a.map(f).map(g) == a.map((a) => g(f(a)))
 ```
 
-**Task:** Use examples to verify that the laws are followed.
+**任务：** 使用示例来验证这些定律是否被遵守。
 
-What are functors for
+### 函子的用途 (What are functors for)
 ===
 
-Now, that we have seen so many examples of functors, we finally can attempt to answer the million-dollar question, namely what are functors for and why are they useful? (often formulated also as "Why are you wasting your/my time with this (abstract) nonsense?") 
+现在，我们已经看到了这么多函子的例子，终于可以尝试回答这个价值百万美元的问题了，即函子到底是干什么用的，为什么它们有用？（通常也被表述为“你为什么要浪费你/我的时间在这些（抽象的）废话上？”）
 
-Well, we saw that *maps are functors* and we know that *maps are useful*, so let's start from there. 
+我们已经看到了*地图是函子*，并且我们知道
 
-So, why is a map useful? Well, it obviously has to do with the fact that the points and arrows of the map corresponds to the cities and the roads in the place you are visiting in i.e. due to the very fact that it is a functor, but there is a second aspect as well - maps (or at least those of them that are useful) are *simpler to work with* than the actual things they represent. For example, road maps are useful, because they are *smaller* than the territory they represent, so it is much easier to go look up the routes between two given places by following a map, than to actually travel through all them in real life. 
+*地图是有用的*，所以让我们从这里开始。
 
-And functors in programming are used for similar reason - functions that involve simple types like `string`, `number`, `boolean` etc. are ... simple, and least when compared with functions that work with lists and other generic types. Using the `map` function allows us to operate on such types without having to think about them and to derive functions that transform them, from functions that transform simple values. In other words, functors are means of *abstraction*.
+那么，为什么地图有用呢？显然，这与地图上的点和箭头对应于你所在地方的城市和道路这一事实有关，即因为它实际上是一个函子，但还有第二个方面——地图（或至少那些有用的地图）*比它们所代表的实际事物更简单*。例如，路线图之所以有用，是因为它们比它们所代表的区域*小*，因此查找两个地方之间的路线时，使用地图要比实际走遍所有路线简单得多。
 
-Of course, not all routes on the map and no functions that between generic datatypes can be derived just by functions between the types they contain. This is generally true for many "useful" functors: because their source categories are "simpler" than the target, some of the morphisms in the target have no equivalents in the source i.e. making the model simpler inevitably results in losing some of its capabilities. This is a consequence of "the map is not the territory" principle (or in programming context, "every abstraction is a leaky abstraction", as Joel Spolsky put it): 
+在编程中使用函子的原因也是类似的——涉及简单类型如 `string`、`number`、`boolean` 等的函数是……简单的，至少与处理列表和其他泛型类型的函数相比是这样的。使用 `map` 函数允许我们在不需要考虑这些复杂类型的情况下操作它们，并从操作简单值的函数中派生出转换这些复杂类型的函数。换句话说，函子是一种*抽象*的手段。
 
-Pointed functors
+当然，并非地图上的所有路线和泛型数据类型之间的所有函数都可以仅通过它们包含的类型之间的函数派生出来。这通常适用于许多“有用的”函子：因为它们的源范畴比目标范畴“简单”，所以目标范畴中的一些态射在源范畴中没有对应物。即，简化模型不可避免地导致失去一些能力。这是“地图不是领土”原则的一个结果（或在编程上下文中，如 Joel Spolsky 所说的，“每个抽象都是有漏洞的抽象”）。
+
+### 指向函子 (Pointed functors)
 ===
 
-Now, before we close it off, we will review one more functor-related concept that is particularly useful in programming - *pointed endofunctors.*
+现在，在结束之前，我们将回顾一个在编程中特别有用的与函子相关的概念——*指向自函子*（pointed endofunctors）。
 
-Endofunctors
+#### 自函子 (Endofunctors)
 ---
 
-To understand what pointed endofunctors are, we have to first understand what are *endofunctors*, and we already saw some examples of those in the last section. Let me explain: from the way the diagrams there looked like, we might get the impression that different type families belong to different categories.
+要理解什么是指向自函子，我们首先要理解什么是*自函子*，我们在上一节中已经看到了它们的一些例子。让我解释一下：从那里的图看起来，我们可能会误以为不同的类型家族属于不同的范畴。
 
-![A functor in programming](../10_functors/functor_programming.svg)
+![编程中的函子](../10_functors/functor_programming.svg)
 
-But that is not the case - all type families from a given programming language are actually part of one and the same category - the category of *types*.
+但事实并非如此——来自给定编程语言的所有类型家族实际上属于同一个范畴——*类型范畴*。
 
-![A functor in programming](../10_functors/functor_programming_endo.svg)
+![编程中的自函子](../10_functors/functor_programming_endo.svg)
 
-Wait, so this is permitted? Yes, these are exactly what we call *endofunctors* i.e. ones that have one and the same category as source and target.
+等等，这是允许的吗？是的，这正是我们所说的*自函子*，即那些源范畴和目标范畴相同的函子。
 
-The identity functor
+#### 恒等函子 (The identity functor)
 ---
 
-So, what are some examples of endofunctors? I want to focus on one that will probably look familiar to you - it is the *identity functor* of each category, the one that maps each object and morphism to itself.
+那么，自函子的一些例子是什么呢？我想集中讨论一个你可能会觉得熟悉的例子——它是每个范畴的*恒等函子*，它将每个对象和态射映射到其自身。
 
-![Identity  functor](../10_functors/identity_functor.svg)
+![恒等函子](../10_functors/identity_functor.svg)
 
-And it might be familiar, because an identity functor is similar to an identity morphism - it allow us to talk about value-related stuff without actually involving values. 
+这可能会让你觉得熟悉，因为恒等函子类似于恒等态射——它允许我们讨论与值相关的内容，而不实际涉及值。
 
-Pointed functors
+#### 指向函子 (Pointed functors)
 ---
 
-Finally, the identity functor, together with all other functors to which the identity functor can be *naturally transformed* are called *pointed functors* (i.e. a functor is pointed if there exist a morphism from the identity functor to it). As we will see shortly, the list functor is a pointed functor.
+最后，恒等函子以及所有可以*自然变换*到恒等函子的函子被称为*指向函子*（即，如果存在从恒等函子到某个函子的态射，则称该函子为指向函子）。正如我们将很快看到的，列表函子是一个指向函子。
 
-![Pointed functor](../10_functors/pointed_functor.svg)
+![指向函子](../10_functors/pointed_functor.svg)
 
-We still haven't discussed what does it mean for one functor to be naturally transformed to another one (although the commuting diagram above can give you some idea). This is a complex concept and we have a whole chapter about it (the next one). 
+我们还没有讨论什么是一个函子自然变换到另一个函子（尽管上面的交换图可以给你一些提示）。这是一个复杂的概念，我们将在下一章中详细探讨。
 
-However if we concentrate solely on the category of types in programming languages, then *a natural transformation is just a function* that translates each value of what we called the "simple types" to a value of the functor's generic type i.e. $a \to F\ a$), in a way that this diagram commutes.
+然而，如果我们仅关注编程语言中的类型范畴，那么*自然变换只是一个函数*，它将我们称为“简单类型”的每个值转换为函子的泛型类型的一个值，即 $a \to F\ a$，并且这种方式使得这个图表交换。
 
-![Pointed functor in Set](../10_functors/pointed_functor_set.svg)
+![集合范畴中的指向函子](../10_functors/pointed_functor_set.svg)
 
-What does it take for this diagram to commute? It means that when you have two equivalent routes for reaching from the top-left diagonal to the bottom-right diagonal i.e. that applying any function between any two types ($a \to b$), followed by the lifting function ($b \to F\ b$), is equivalent to applying the lifting function first ($a \to F\ a$), and then the mapped version of the original function second ($F\ a \to F\ b$).
+让这个图表交换的条件是什么？这意味着，当你有两个等效的路径从左上角到右下角时，即应用任何两个类型之间的函数（$a \to b$），然后是提升函数（$b \to F\ b$），等价于首先应用提升函数（$a \to F\ a$），然后是原始函数的映射版本（$F\ a \to F\ b$）。
 
-The list functor is pointed, because such a function exist for the list functor - it is the function $a \to [\ a\ ]$ that puts every value in a "singleton" list. So, for every function between simple types, such as the function $length:\ string \to number$ we have a square like this one.
+列表函子是指向的，因为列表函子存在这样的函数——它是 $a \to [\ a\ ]$，将每个值放入一个“单例”列表中。因此，对于简单类型之间的每个函数，例如 $length:\ string \to number$，我们有一个像这样的正方形。
 
-![Pointed functor in Set](../10_functors/pointed_functor_set_internal.svg)
+![集合范畴中的指向函子](../10_functors/pointed_functor_set_internal.svg)
 
-And the fact that the square commutes is expressed by the following equality:
+该方形的交换可以通过以下等式表示：
 
 ```
 [a].map(f) = [f(a)]
 ```
-By the way, it may not look like it right now, but this commuting square might be the one of the most-important diagram that exist in category theory, second to only the triangle of functional composition.
 
-The category of small categories
+顺便说一句，尽管它现在看起来可能并不像这样，但这个交换方形可能是范畴论中存在的最重要的图之一，仅次于函数组合的三角形。
+
+小范畴的范畴 (The category of small categories)
 ===
 
-Ha, I got you this time (or at least I *hope* I did) - you probably thought that I won't introduce another category in this chapter, but this is exactly what I am going to do now. And (surprise again) the new category won't be the category of functors (don't worry, we will introduce that in the next chapter). Instead, we will examine the category of (small) categories, that has all the categories that we saw so far as objects and functors as its morphisms, like $Set$ - the category of sets, $Mon$, the category of monoids, $Ord$, the category of orders etc.
+哈哈，这次我抓住你了（至少我*希望*如此）——你可能认为我不会在本章中引入另一个范畴，但这正是我现在要做的事情。（再次惊喜）新引入的范畴不会是函子的范畴（别担心，我们会在下一章介绍它）。相反，我们将研究（小）范畴的范畴，它的对象是我们迄今为止看到的所有范畴，而它的态射是这些范畴之间的函子，比如 $Set$——集合范畴，$Mon$——幺半群范畴，$Ord$——序范畴等。
 
-![The category of categories](../10_functors/category_of_categories.svg)
+![范畴的范畴](../10_functors/category_of_categories.svg)
 
-We haven't yet mentioned the fact that functors compose (and in an associative way at that), but since a functor is just a bunch of functions, it is no wonder that it does.
+我们还没有提到函子是可以组合的（并且是以关联的方式），但由于函子只是一些函数，毫不奇怪它是可以组合的。
 
-**Task:** Go through the functor definition and see how do they compose. 
+**任务：** 通过函子的定义，看看它们是如何组合的。
 
-**Question:** What are the initial and terminal object of the category of small categories.
+**问题：** 小范畴范畴的始对象和终对象是什么？
 
-Categories all the way down
+层层范畴 (Categories all the way down)
 ---
 
-The recursive nature of category theory might sometimes leave us confused: we started by saying that categories are *composed of objects and morphisms*, but now we are saying that there are *morphisms between categories* (functors). And on top of that, there is a category where *the objects are categories themselves*. Does that mean that categories are an example of... categories? Sounds a bit weird on intuitive level (as for example biscuits don't contain other biscuits and houses don't use houses as building material), but it is actually the case. Like, for example, every monoid is a category with one just object, but at the same time, monoids can be seen as belonging to one category - the category of monoids, where they are connected by monoid homomorphisms. We also have the category of groups, for example, which contains the category of monoids as a subcategory, as all monoids are groups etc.
+范畴论的递归性质有时会让我们感到困惑：我们一开始说范畴是*由对象和态射组成的*，但现在我们又说*范畴之间存在态射*（函子）。不仅如此，还有一个范畴，其中*对象本身是范畴*。这是否意味着范畴是……范畴的一个例子？从直觉上讲，这听起来有点奇怪（例如，饼干不包含其他饼干，房子也不会用房子作为建材），但事实确实如此。例如，每个幺半群都是只有一个对象的范畴，但同时，幺半群可以被看作属于一个范畴——幺半群范畴，它们通过幺半群同态相互连接。我们还可以举例群范畴，它包含了幺半群范畴作为子范畴，因为所有幺半群都是群，等等。
 
-Category theory does *categorize* everything, so, from a category-theoretic standpoint, all of maths is *categories all the way down*. Whether you would threat a given category as a universe or as a point depends solemnly on the context. Category theory is an *abstract* theory. That is, it does not seek to represent an actual state of affairs, but to provide a language that you can use to express many different ideas.
+范畴论*对一切进行分类*，因此，从范畴论的角度来看，整个数学都是*层层范畴*。你是否将给定的范畴视为一个宇宙或一个点，完全取决于上下文。范畴论是一种*抽象*理论。即，它并不寻求代表实际的状态，而是提供一种可以用来表达许多不同想法的语言。
