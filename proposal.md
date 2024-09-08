@@ -1,105 +1,104 @@
-About
+关于
 ===
 
-About category theory
+关于范畴论 (About category theory)
 ---
 
-> Category Theory is considered by many to be an involved domain of study to get into. It becomes a ground for unification of mathematical ideas for a wide variety of domains. And the way it achieves this is by taking an abstract vantage point on the ideas, their properties, and processes in these disciplines. This viewpoint gives it the ability to reason about analogies happening in distinct domains and draw rigorous analogies across the patterns happening in them in a rigorous way.
+> 许多人认为，范畴论是一个难以进入的领域。它成为了许多数学领域的统一基础。其实现这一目标的方式是通过对这些学科中的概念、性质和过程采取一种抽象的观点。这种视角赋予了它在不同领域中识别类比的能力，并以严格的方式在这些领域的模式之间进行严格的类比。
 
-[Source](https://github.com/prathyvsh/category-theory-resources)
+[来源](https://github.com/prathyvsh/category-theory-resources)
 
-Category theory has a variety of applications: 
+范畴论有许多应用：
 
-- It is used in **programming language theory**, for example the usage of monads in functional programming. 
+- 它被用于**编程语言理论**，例如在函数式编程中使用的单子 (monads)。
 
-- It is used in other scientific disciplines e.g. quantum mechanics:
+- 它还被应用于其他科学领域，例如量子力学：
 
-> [...] The categorical formalization of this result (Abramsky and Coecke, 2004), now referred to as categorical quantum mechanics, became a hit within the computer science semantics community, and ultimately allowed for several young people to establish research careers in this area. **Top computer science conferences (e.g. LiCS and ICALP) indeed regularly accept papers on categorical quantum mechanics, and more recently leading physics journals (e.g. PRL and NJP) have started to do so too**.
+> [...] 这一结果的范畴化形式 (Abramsky 和 Coecke, 2004)，现在被称为范畴量子力学 (categorical quantum mechanics)，在计算机科学语义学界大受欢迎，最终为许多年轻人提供了在该领域建立研究事业的机会。**顶尖的计算机科学会议（例如 LiCS 和 ICALP）确实定期接受有关范畴量子力学的论文，最近领先的物理期刊（例如 PRL 和 NJP）也开始接受此类论文。**
 
-Source: Picturing Quantum Processes by Bob Coecke (Cambridge University Press - 2017)
+来源: Bob Coecke 著《Picturing Quantum Processes》（剑桥大学出版社，2017）
 
-- It may also be used as an axiomatic foundation for mathematics, as an alternative to set theory and other proposed foundations. 
+- 它还可用作数学的公理化基础，作为集合论和其他提议的基础的替代方案。
 
-- Last but not least (perhaps even most importantly) category theory has a very good potential as a *teaching tool* for a variety of other subjects.
+- 最后但同样重要的是（甚至可能是最重要的），范畴论在作为*教学工具*方面具有极大的潜力，适用于多个学科。
 
-About the book
+关于本书 (About the book)
 ---
 
-I am writing a primer in category theory and various related concepts in "higher" mathematics that is *really* accessible to people with no prior exposure to the subject without being dumbed down, by utilizing visual explanations.
+我正在编写一本范畴论及相关“高等”数学概念的入门书籍，它对没有先验知识的读者非常友好，并且不降低难度，主要通过视觉解释来帮助理解。
 
-My book serves as chapter 0 going through the gist of the material covered by other similar introductory books, but doing so in a way that would enable non-mathematicians to swift through with ease.
+我的书相当于第0章，涵盖了其他类似入门书籍中的主要内容，但以一种使非数学家也能轻松理解的方式呈现。
 
-Reading it would enable my readers to effortlessly go through any academic introduction to category theory, as well as to start tackling resources that use category theory as a tool to treat other subjects.
+阅读这本书将使我的读者能够轻松阅读任何关于范畴论的学术入门书籍，并开始处理那些使用范畴论作为工具来讨论其他主题的资源。
 
-About the author
+关于作者 (About the author)
 ---
 
-I am a Bulgarian nerd who works in web programming with background in design and technical communication. I am into functional programming, from where I first learned about category theory but then started finding math more and more fascinating. 
+我是一个来自保加利亚的书呆子，从事网络编程工作，背景为设计和技术传播。我对函数式编程感兴趣，正是在那里我首次接触到范畴论，之后我对数学的兴趣越来越大。
 
-Born and living in Sofia with my wife and kid.
+我与妻子和孩子生活在索菲亚。
 
-Similar resources
+类似资源 (Similar resources)
 ===
 
-Here is [a good list of category theory introductions](https://github.com/prathyvsh/category-theory-resources)
+这里是[范畴论入门的好资源列表](https://github.com/prathyvsh/category-theory-resources)。
 
-"Category Theory Illustrated" (which I will call CTI from now on), however possesses some unique features that make it different from the ones that I looked into. Here I will examine those features of CTI when compared specifically to my two favorite introductions, which also target the two biggest target audiences for CTI - programmers (nerds) and scientists (academics).
+然而，《范畴论图解》（我将其称为 CTI）具有一些独特的特征，使其区别于我所研究的其他资源。在这里，我将重点介绍 CTI 的特点，特别是与我最喜欢的两本书相比，这两本书也分别面向 CTI 的两个最大目标受众——程序员（书呆子）和科学家（学者）。
 
-- Category Theory for Programmers by Bartosz Milewski (self-published- 2018) - [Full text](https://github.com/hmemcpy/milewski-ctfp-pdf/)
+- Bartosz Milewski 所著《程序员的范畴论》（自出版，2018）—[全文](https://github.com/hmemcpy/milewski-ctfp-pdf/)
 
-- Category Theory for the Sciences by David I. Spivak (MIT press - 2014) - [Free version](http://math.mit.edu/~dspivak/CT4S.pdf)
+- David I. Spivak 所著《科学家的范畴论》（MIT 出版社，2014）—[免费版](http://math.mit.edu/~dspivak/CT4S.pdf)
 
-I am attaching excerpts from both of them, as well as one from CTI, that explain a similar concept - the concept of an *order*.
+我附上了它们的摘录，以及 CTI 中的相似概念——*序*的概念。
 
-Category Theory for Programmers
+程序员的范畴论 (Category Theory for Programmers)
 ---
 
-> A preorder is a set with an ordering relation between its elements that’s traditionally written as <= (less than or equal). The “pre” in preorder is there because we’re only requiring the relation to be transitive and reflexive but not necessarily antisymmetric (so it’s possible to have cycles).
+> 预序 (preorder) 是一个集合，其中元素之间有一个顺序关系，通常写作 <=（小于等于）。之所以叫“预序”，是因为我们只要求关系是传递的和自反的，但不一定是反对称的（因此可能存在循环）。
 
-> A set with the preorder relation gives rise to a category. The objects are the elements of this set. A morphism from object a to b either doesn’t exist, if the objects cannot be compared or if it’s not true that a <= b; or it exists if a <= b, and it points from a to b. There is never more than one morphism from one object to another. Therefore any hom-set in such a category is either an empty set or a one-element set. Such a category is called thin.
+> 具有预序关系的集合产生了一个范畴。对象是这个集合的元素。从对象 a 到 b 的态射要么不存在，如果对象无法比较，或者 a <= b 不成立；要么存在，并且它从 a 指向 b。从一个对象到另一个对象的态射永远只有一个。因此，任何这样范畴的态射集 (hom-set) 要么是空集，要么是一个元素的集合。这种范畴称为稀疏范畴 (thin category)。
 
-> It’s easy to convince yourself that this construction is indeed a category: The arrows are composable because, if a <= b and b <= c then a <= c; and the composition is associative. We also have the identity arrows because every element is (less than or) equal to itself (reflexivity of the underlying relation).
+> 你可以轻松地证明这种构造确实是一个范畴：箭头是可组合的，因为如果 a <= b 且 b <= c，那么 a <= c；并且组合是关联的。我们还有恒等箭头，因为每个元素都小于等于它自己（底层关系的自反性）。
 
-[Source](https://bartoszmilewski.com/2015/10/28/yoneda-embedding/)
+[来源](https://bartoszmilewski.com/2015/10/28/yoneda-embedding/)
 
-Category Theory for the Sciences 
+科学家的范畴论 (Category Theory for the Sciences)
 ---
 
-> 3.4.1 Definitions of preorder, partial order, linear order
+> 3.4.1 预序、偏序和线性序的定义
 
-> Definition 3.4.1.1. Let S be a set and R Ď S ˆS a binary relation on S; if ps,s1q P R
-we will write s ≤ s1. Then we say that R is a preorder if, for all s,s1,s2 P S we have
+> 定义 3.4.1.1. 令 S 为一个集合，R Ď S ˆS 为 S 上的一个二元关系；如果 (s, s1) P R，我们写作 s ≤ s1。那么我们称 R 为预序，如果对所有 s, s1, s2 P S，成立：
 
-> Reflexivity: s ≤ s, and
+> 自反性：s ≤ s，且
 
-> Transitivity: if s ≤ s1 and s1 ≤ s2, then s ≤ s2.
+> 传递性：如果 s ≤ s1 且 s1 ≤ s2，那么 s ≤ s2。
 
-> We say that R is a partial order if it is a preorder and, in addition, for all s,s1 P S we
-have
+> 如果它是预序，并且对所有 s, s1 P S，成立：
 
-> Antisymmetry: If s ≤ s1 and s1 ≤ s, then s “ s1.
+> 反对称性：如果 s ≤ s1 且 s1 ≤ s，那么 s = s1，我们称 R 为偏序。
 
-> We say that R is a linear order if it is a partial order and, in addition, for all s,s1 P S we have
+> 如果它是偏序，并且对所有 s, s1 P S，成立：
 
-> Comparability: Either s ≤ s1 or s1 ≤ s.
-> We denote such a preorder (or partial order or linear order) by pS,≤ q.
+> 可比较性：要么 s ≤ s1，要么 s1 ≤ s，我们称其为线性序。
 
-> Exercise 3.4.1.2.
-> a.) Decide whether the table to the left in Display (3.9) constitutes a linear order.
-> b.) Show that neither of the other tables are even preorders.
+> 我们用 pS, ≤ q 来表示这样的预序（或偏序或线性序）。
 
-[Source](http://math.mit.edu/~dspivak/CT4S.pdf) (page 93)
+> 练习 3.4.1.2.
+> a.) 判断左侧表格是否构成线性序。
+> b.) 证明其他表格甚至不是预序。
 
-The categorical aspect of orders is described on page 132 in the same link.
+[来源](http://math.mit.edu/~dspivak/CT4S.pdf)（第93页）
 
-Category Theory Illustrated
+关于序的范畴方面在同一链接的第132页描述。
+
+范畴论图解 (Category Theory Illustrated)
 ---
 
-> The most straightforward type of order that you think about is linear order i.e. one in which every object has its place depending on every other object. In this case the ordering criteria is completely deterministic and leaves no room for ambiguity in terms of which element comes before which. For example, ordering the colors by the length of their waves (or by how they appear in the rainbow).
+> 你想到的最简单的序类型是线性序，即其中每个对象根据其他对象有其位置。在这种情况下，排序标准是完全确定的，并且在哪个元素排在前面方面没有任何歧义。例如，通过波长的长短对颜色进行排序（或按它们在彩虹中出现的顺序）。
 
-![Linear order](_chapters/04_order/linear_order.svg)
+![线性序](../04_order/linear_order.svg)
 
-> In most programming languages, we can order objects linearly by providing a function which, given two objects, tells us which one of them is "bigger" (comes first) and which one is "smaller".
+> 在大多数编程语言中，我们可以通过提供一个函数来线性排序对象，该函数给定两个对象，告诉我们哪个“更大”（排在前面），哪个“更小”。
 
 ```
 [1, 3, 2].sort((a, b) => { 
@@ -111,161 +110,157 @@ Category Theory Illustrated
 })
 ```
 
-> But in order for such a function to really define an order (e.g. give the same output every time, independent of how the objects were shuffled initially), it has to obey several rules. 
+> 但为了使这样的函数真正定义一个顺序（例如，每次都给出相同的输出，而不依赖于对象最初的排序方式），它必须遵守一些规则。
 
-> Incidentally, (or rather not incidentally at all), these rules are nearly equivalent to the mathematical laws that define the criteria of the relationship between elements in an order i.e. those are the rules that define which element can point to which. Let's review them.
+> 顺便说一句（或者根本不是顺便的），这些规则几乎等同于数学定律，定义了序中的元素之间关系的标准。让我们回顾一下这些规则。
 
-> Reflexivity 
+> 自反性
 
-> Let's get the most boring law out of the way - each object has to be bigger or equal to itself, or **a ≤ a** (the relationship between elements in an order is commonly denoted as **≤** in formulas, but it can also be represented with a simple arrow from first object to the second). 
+> 让我们先介绍最无趣的定律——每个对象都必须大于或等于自身，或 **a ≤ a**（顺序中的元素关系通常用 **≤** 表示，但它也可以用从第一个对象到第二个对象的简单箭头来表示）。
 
-![Reflexivity](_chapters/04_order/reflexivity.svg)
+![自反性](../04_order/reflexivity.svg)
 
-> No special reason for this law to be so, except that the "base case" should be covered somehow. 
+> 没有特别的理由要让这个定律如此，只是为了覆盖“基本情况”。
 
-> We can formulate it the opposite way too and say that each object should *not* have the relationship to itself, in which case we would have a relation than resembles *bigger than*, as opposed to *bigger or equal to* and a slightly different type of order, sometimes called a *strict* order.
+> 我们也可以从相反的方式来表述它，称每个对象*不应该*与自己有关系，在这种情况下，我们将得到类似*大于*的关系，而不是*大于等于*的关系，这是一种稍微不同的顺序类型，有时称为*严格顺序*。
 
-> Transitivity
+> 传递性
 
+> 第二条定律可能是最不明显的（但也可能是最重要的）——它指出，如果对象 **a** 大于对象 **b**，那么它自动大于所有比对象 **b** 小的对象，或者 **a ≤ b 且 b ≤ c ➞ a ≤ c**。
 
-> The second law is maybe the least obvious, (but probably the most essential) - it states that if object **a** is bigger than object **b**, it is automatically bigger than all objects that are smaller than object **b** or **a ≤ b and b ≤ c ➞ a ≤ c**. 
+![传递性](../04_order/transitivity.svg)
 
-![Transitivity](_chapters/04_order/transitivity.svg)
+> 这条定律在很大程度上定义了什么是顺序：如果我踢球比我奶奶厉害，那么我也
 
-> This is the law that to a large extend defines what an order is: if I am better at playing soccer than my grandmother, then I would also be better at it than my grandmother's friend, whom she beats, otherwise I wouldn't really be better than her.
+比她打败的朋友厉害，否则我就不是真的比她厉害。
 
-> Antisymmetry
+> 反对称性
 
-> The third law is called antisymmetry and it states that the function that defines the order should not give contradictory results (or in other words you have **x ≤ y** and **y ≤ x** only if **x = y**). 
+> 第三条定律称为反对称性，它指出定义顺序的函数不应产生矛盾结果（换句话说，只有当 **x = y** 时，你才会有 **x ≤ y** 且 **y ≤ x**）。
 
-![antisymmetry](_chapters/04_order/antisymmetry.svg)
+![反对称性](../04_order/antisymmetry.svg)
 
-> It also means that no ties are permitted - either I am better than my grandmother at soccer or she is better at it than me.
+> 这也意味着不允许出现平局——要么我踢球比奶奶厉害，要么她踢得比我好。
 
-> Totality
+> 完全性
 
-> The last law is called *totality* (or *connexity*) and it mandates that all elements that belong to the order should be comparable - **a ≤ b or b ≤ a**. That is, for any two elements, one would always be "bigger" than the other. 
+> 最后一条定律称为*完全性*（或*可连接性*），它规定属于该顺序的所有元素都应该是可比较的——**a ≤ b 或 b ≤ a**。也就是说，对于任何两个元素，永远会有一个“更大”。
 
-> By the way, this law makes the reflexivity law redundant, as reflexivity is just a special case of totality when **a** and **b** are one and the same object, but I still want to present it for reasons that will become apparent soon.
+> 顺便说一下，这条定律使得自反性定律变得多余，因为自反性只是当 **a** 和 **b** 是同一个对象时完全性的一个特殊情况，但我仍然想展示它，原因稍后会显现。
 
-![connexity](_chapters/04_order/connexity.svg)
+![可连接性](../04_order/connexity.svg)
 
-> You might say that this law is not as self-evident as the rest of them - if you think about different types of real-life objects that we typically order, you would probably think of some situations in which it does not apply. For example, if we aim to order all people based on soccer skills there are many ways in which we can rank a person compared to their friends their friend's friends etc. but there isn't a way to order groups of people who never played with one another.
+> 你可能会说，这条定律不像其他定律那样显而易见——如果你考虑我们通常排序的各种现实生活中的对象，你可能会想到一些它不适用的情况。例如，如果我们试图根据踢球技巧对所有人进行排序，有很多方法可以根据他们与朋友及朋友的朋友的比较来排名，但对于从未一起踢过球的人群之间进行排序则没有办法。
 
-[Source](/category-theory-illustrated/04_order)
+[来源](/category-theory-illustrated/04_order)
 
-Features
+特点 (Features)
+---
+
+图表 (Diagrams)
+---
+
+范畴论本质上是非常*视觉化*的。范畴论的图表不仅仅是对其概念的补充说明，它们往往是用于定义这些概念的语言。例如，定义像*自然变换*这样更高级的概念几乎是不可能不使用图表的。因此，对于没有经验的人来说，拥有大量的图表对于理解概念至关重要。
+
+然而，关于范畴论的书籍通常与其他数学教科书一样，图表并不多。我认为这是一个巨大的机会错失，未能使该主题更加易于接近。这是创建 CTI 的初衷。
+
+除了更多图表，CTI 的图表还使用了许多来自传统传播设计的技巧（例如使用颜色），以便照亮我所涵盖的不同主题和抽象概念。
+
+我正在审阅的这两本书的图表都比 CTI 少。从我研究的资源来看，唯一一个像我一样强调图表的作者是 Tai-Danae Bradley（她的博客是 [https://www.math3ma.com/](https://www.math3ma.com/)。）
+
+CTI 的图表受到了许多读者的一致好评。苏黎世联邦理工学院的 Gonzalo Casas 教授在他的[机器人制造讲座](https://github.com/compas-teaching/COMPAS-II-FS2021/tree/main/lecture_06)中使用了一些这些图表（[讲座幻灯片](https://raw.githubusercontent.com/compas-teaching/COMPAS-II-FS2021/main/lecture_06/lecture_06.pdf)）。
+
+语言的冗长性 (Verbosity of language)
+---
+
+撇开图表不谈，我们可以看到 CTI 中的描述比其他书中的描述更为详细。这在附上的摘录中清晰可见：尽管我正在审阅的书的作者有着完全不同的呈现风格，但他们都在用更快的速度进行讲解，这对于那些拥有数学或计算机科学背景的读者来说或许是没问题的，但对于外行来说则可能非常难以跟上（我从自己的经验中知道这一点）。
+
+在 CTI 中，我首先力求以温和的方式进行讲解，花时间强调描述中的重要部分以及可能产生误解的地方，例如“对象 (object)”一词在计算机科学和范畴论中有着完全不同的含义。
+
+关于逻辑的章节 (Chapter on logic)
+---
+
+范畴论与数理逻辑有着深厚的联系。虽然许多书中提到了这一联系，但在我见过的范畴论入门书籍中，几乎没有一本能深入探讨这一联系。
+
+CTI 有一个专门的章节讨论逻辑（这是全书最长的章节），该章节介绍了范畴论与逻辑的联系，并利用它为一些范畴现象（如极限 (limits)）提供了背景。
+
+目标受众 (Target audiences)
 ===
 
-Diagrams
+CTI 的目标受众类型：
+
+程序员 (Programmers)
 ---
 
-Category theory is very *visual* in its nature. Category-theoretic diagrams are not merely supplemental illustrations for its concepts, but are often the very language that is used to define those concepts e.g. defining a more advanced concept such as *natural transformation* without diagrams is practically impossible. So having a lot of diagrams is essential for people who are inexperienced to understand the concepts. 
+### 对范畴论感兴趣，因为他们喜欢函数式编程。
 
-However, books on category theory typically have as many diagrams as other math textbooks. I consider this a huge missed opportunity for making the subject more approachable. This was the original motivation for the creation of CTI.
+函数式编程正在崛起，许多新语言和技术正在获得关注（如 Elixir 和 Clojure），主流语言也试图赶上这一潮流（如 Java 和 JavaScript）。因此，很多程序员对函数式编程和范畴论感兴趣，但缺乏数学背景来处理现有资源。CTI 是这些人理解“争论的焦点”的一种方式，然后再深入了解这些技术。
 
-Besides being more of them, the diagrams of CTI use many techniques from traditional communication design (such as the use of color for example) in order to illuminate the different subjects and abstractions that I am covering.
-
-Both books that I am reviewing have less diagrams than CTI. From the resources that I have examined, the only author who stresses on diagrams as much as I do is Tai-Danae Bradley (her blog is [https://www.math3ma.com/](https://www.math3ma.com/).)
-
-The diagrams in CTI had received universal praise from many audiences. The university professor Gonzalo Casas used some of them for his [lectures on robotic fabrication at ETH Zurich](https://github.com/compas-teaching/COMPAS-II-FS2021/tree/main/lecture_06) ([Lecture slides](https://raw.githubusercontent.com/compas-teaching/COMPAS-II-FS2021/main/lecture_06/lecture_06.pdf).)
-
-Verbosity of language
+学生 (Students)
 ---
 
-Leaving the diagrams aside, we can see that the descriptions in CTI are much more verbose than equivalent descriptions in other books. This is clearly visible in the excerpts attached: although the authors of the books that I am reviewing have quite different styles of presentation, they both move much faster with the exposition, which would be OK for readers who have prior experience with math and computer science, but would be very hard to follow by lay people (I know that from my own experience). 
+### 正在学习与范畴论相关学科的学生
 
-In CTI, I try above all to be gentle in my exposition, taking the time to stress out the important parts of the descriptions and the places where misunderstanding might occur, such as the fact that the term "object" has entirely different meanings in computer science and in category theory. 
+CTI 对于那些想要学习范畴论或越来越多使用范畴论和图示语言介绍其他学科的资源的学生有很大的帮助：
 
-Chapter on logic
+- Bob Coecke 和 Aleks Kissinger 所著《Picturing Quantum Processes》（剑桥大学出版社，2017），它用范畴论介绍量子力学
+- Nathan Carter 所著《Visual Group Theory》（美国数学协会，2009）[样本](http://www.mathcs.emory.edu/~dzb/teaching/421Fall2014/VGT-Ch-1-2.pdf)
+- Tai-Danae Bradley、Tyler Bryson 和 John Terilla 所著《拓扑学——范畴视角》（MIT 出版社，2020）
+
+正如 David Spivak 在其《拓扑学——范畴视角》的评论中所说：
+
+> 这本书处于数学教育前沿，**可能成为以范畴论视角教授基础知识的主要趋势**。
+
+CTI 帮助这些学科的学生，通过传达范畴论学者认为的“常识”来进行学习。
+
+任何其他类型的书呆子 (Any other kind of nerds)
 ---
+### 只是为了乐趣而想学点数学的人
 
-Category theory is deeply bound with mathematical logic. But although the connection is mentioned in many books, it isn't fully examined by any introductory texts on category theory that I have seen. 
+除了具有信息性，CTI 还易于阅读且有趣，因此很多人将它作为一种娱乐形式来阅读。
 
-CTI has a dedicated chapter on logic (the longest one in the book), which introduces the connection and makes use of it to give context to some categorical phenomena, such as limits.
-
-Target audiences
+反馈 (Feedback)
 ===
 
-The types of audiences of CTI.
+我的书收到了很多正面反馈，许多人在社交媒体上分享了它。
 
-Programmers 
+引述 (Quotes)
 ---
 
-### who are curious about category theory, because they are into functional programming.
-
-Functional programming is on the rise with both new languages and technologies that are gaining traction (Elixir, Clojure), and mainstream languages, trying to catch up (Java, JavaScript) and so there are many programmers who are interested in functional programming and category theory, but lack the math background to tackle the existing resources. CTI is a way for those people to understand "what the fuss is about" before diving into such technologies. 
-
-Students 
----
-
-### who are studying category-theory-related disciplines
-
-CTI would be of much help for people who want to study category theory or any of the growing number of resources that use category theory and diagrammatic language to introduce other subjects: 
-
-- Picturing Quantum Processes by Bob Coecke and Aleks Kissinger (Cambridge University Press - 2017) that uses it to introduce quantum mechanics
-
-- Visual Group Theory by Nathan Carter (MATHEMATICAL ASSOCIATION OF AMERICA - 2009) sample: http://www.mathcs.emory.edu/~dzb/teaching/421Fall2014/VGT-Ch-1-2.pdf
-
-- "Topology. A Categorical Approach" by Tai-Danae Bradley, Tyler Bryson and John Terilla (MIT press - 2020)
-
-As David Spivak puts it in his review of "Topology. A Categorical Approach":
-
-> This book is at the leading edge of what will **likely become a major pedagogical trend in mathematics: teaching the fundamentals from a categorical perspective**.
-
-CTI aids students who are studying these disciplines by communicating what is considered as a "common knowledge" by category theorists.
-
-Any other kind of nerds 
----
-### who want to learn some mathematics just for fun
-
-Aside from being informative, CTI is easy and fun to read so many people read it just as a form of recreation.
-
-Feedback
-===
-
-My book received a lot of positive feedback and a lot of people shared it on social media. 
-
-Quotes
----
-
-> "The range of applications for category theory is immense, and visually conveying meaning through illustration is an indispensable skill for organizational and technical work. Unfortunately, the foundations of category theory, despite much of their utility and simplicity being on par with Venn Diagrams, are locked behind resources that assume far too much academic background.
+> “范畴论的应用范围非常广泛，通过图示传递意义是一项不可或缺的技能，适用于组织和技术工作。不幸的是，范畴论的基础，尽管在实用性和简洁性上与维恩图相当，却被锁在了要求过高学术背景的资源之后。”
 >
-> As Gilbert Strang offered in his critique of the typical pre-calc courses in ["Too Much Calculus"](http://siags.siam.org/siagla/articles/Strang2001.pdf) in favor of linear algebra, similar arguments can be made for promoting statistics, discrete mathematics, or category theory.
+> “正如 Gilbert Strang 在他的《Too Much Calculus》（http://siags.siam.org/siagla/articles/Strang2001.pdf）中对传统预备微积分课程提出的批评一样，类似的论点可以用于促进统计学、离散数学或范畴论的发展。”
 >
->Should category theory be considered for this academic purpose or any work wherein clear thinking and explanations are valued, beginner-appropriate resources are essential. There is no book on category theory that makes its abstractions so tangible as "Category Theory Illustrated" does. I recommend it for programmers, managers, organizers, designers, or anyone else who values the structure and clarity of information, processes, and relationships."
+> “无论是出于学术目的，还是在任何重视清晰思维和解释的工作中，如果将范畴论视为这一学术目标的一部分，初学者友好的资源是必不可少的。没有哪本书能像《范畴论图解》那样让其抽象概念变得如此具体。我推荐给程序员、经理、组织者、设计师或任何重视信息、过程和关系结构和清晰度的人。”
 
-[Evan Burchard](https://www.oreilly.com/pub/au/7124), Author of "The Web Game Developer's Cookbook" and "Refactoring JavaScript"
+[Evan Burchard](https://www.oreilly.com/pub/au/7124)，《The Web Game Developer's Cookbook》和《Refactoring JavaScript》的作者
 
-> "The clarity, consistency and elegance of diagrams in 'Category Theory Illustrated' has helped us demystify and explain in simple terms a topic often feared."
+> “《范畴论图解》中的图示清晰、一致且优雅，帮助我们用简单的术语解开并解释了一个通常令人望而生畏的话题。”
 
-[Gonzalo Casas](https://gnz.io/), Software developer and lecturer for Introduction to Computational Methods for Digital Fabrication in Architecture at ETH Zurich
+[Gonzalo Casas](https://gnz.io/)，苏黎世联邦理工学院数字制造介绍讲师，软件开发人员
 
-
-Comments
+评论 (Comments)
 ---
 
-> This is the most beautiful and clearly written introduction to categories I’ve ever seen. Highly recommended. [Source](https://twitter.com/y0b1byte/status/1417567589241339912)
+> “这是我见过的最美丽且最清晰的范畴论入门书。强烈推荐。” [来源](https://twitter.com/y0b1byte/status/1417567589241339912)
 
-> Great stuff man! Internet needs more accessible Category Theory expositions. [Source](https://twitter.com/prathyvsh/status/1253303971185221634)
+> “很棒的内容！互联网需要更多易于接近的范畴论讲解。” [来源](https://twitter.com/prathyvsh/status/1253303971185221634)
 
-> What a wonderful resource this Illustrated Category Theory series is. It's an easy(ier), concise, on-ramp to the topic, that would make a nice introduction. A good resource for sharing. I look forward to the remaining topics. Thanks Boris! [Source](https://www.reddit.com/r/haskell/comments/mhs3ov/category_theory_illustrated/gt9xbp9?utm_source=share&utm_medium=web2x&context=3)
+> “《范畴论图解》系列资源非常棒。它是一个更简洁、容易理解的主题入门，将成为很好的资源。我期待着剩下的主题。感谢 Boris！” [来源](https://www.reddit.com/r/haskell/comments/mhs3ov/category_theory_illustrated/gt9xbp9?utm_source=share&utm_medium=web2x&context=3)
 
-> Awesome website! Well written and crystal clear. It's truly a feat to explain simply such a complex topic. [Source](https://news.ycombinator.com/item?id=26659190)
+> “太棒了的网站！写得很好，清晰易懂。解释如此复杂的主题还如此简洁，实属壮举。” [来源](https://news.ycombinator.com/item?id=26659190)
 
-> My God that site is beautiful. If only every "maths" site could looks like this, I'd have won a field medal! [Source](https://news.ycombinator.com/item?id=26660369)
+> “天哪，这个网站太美了。如果每个‘数学’网站都能这样，我可能早就拿菲尔兹奖了！” [来源](https://news.ycombinator.com/item?id=26660369)
 
-> I saw your site on Hacker News. I just wanted to send a note saying it's beautiful! I have been writing Haskell (PureScript really) for years, and I've been wanting to get more into Category Theory. I'm excited to read through your site, and thanks for taking the time to create it! (received by email)
+> “我在 Hacker News 上看到了你的网站。我只是想发个邮件告诉你它很棒！我已经写了多年 Haskell（实际上是 PureScript），一直想更深入了解范畴论。我很期待阅读你的网站，非常感谢你花时间创建它！（通过邮件收到）”
 
-> Thank you for creating Category Theory Illustrated, for me the book makes the concepts easier to understand and build an intuition. (received by email)
+> “感谢你创建了《范畴论图解》，对我来说，这本书使概念更容易理解，并建立了直觉。（通过邮件收到）”
 
->  It's pretty cool that you can show the bridge between two different logic systems and it actually is grokkable.  In other words I had no chance of understanding this concept from the Wiki article alone which is where I found it. (received by email)
+> “你能够展示两种不同逻辑系统之间的桥梁，令人惊叹。这意味着我原本无法仅仅通过维基百科文章理解这一概念，而你的网站却做到了。”（通过邮件收到）
 
-> What an amazing write-up!
-> I've picked up those things peace by peace form Wikipedia to be able to understand the slang in Haskell land. But it was a long and puzzling process. This great summary offered here will hopefully help other people in the future get a coherent picture more quickly. (I hope the SEO is good so people will find it. I'm at least going to recommend it form now on whenever someone asks related questions).[Source](https://news.ycombinator.com/reply?id=28661220&goto=item%3Fid%3D28660157%2328661220)
+> “太棒了的讲解！我从维基百科上零零散散地收集了这些知识，以便能够理解 Haskell 语言中的术语。但那是一个漫长且令人困惑的过程。这里提供的这个出色总结将帮助其他人更快地获得一个连贯的概念。”（[来源](https://news.ycombinator.com/reply?id=28661220&goto=item%3Fid%3D28660157%2328661220)）
 
-
-Discussions
+讨论 (Discussions)
 ---
 
 [Lobste.rs](https://lobste.rs/s/bc11fo/category_theory_illustrated_monoids)
@@ -274,6 +269,4 @@ Discussions
 
 [HackerNews again](https://news.ycombinator.com/item?id=28660157)
 
-
 [Twitter](https://twitter.com/search?q=category-theory-illustrated&src=typed_query&f=live)
-
