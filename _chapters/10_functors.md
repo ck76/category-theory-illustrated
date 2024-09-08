@@ -118,254 +118,236 @@ PS: 范畴同构在实践中也*非常罕见*——我能想到的唯一例子�
 好的，我想我明白了——同构是当你有两个相似的图，然后把点连起来。
 差不多是这样。
 -->
-
-What are functors
+什么是函子 (What are functors)
 ===
 
-The logician Rudolf Carnap coined the term "functor" as part of his project to formalize the syntax for the natural languages such as English in order to create a precise way for us to talk about science. Originally, a functor meant a word or phrase whose meaning can be customized by combining it with numerical value, such as the phrase "the temperature at $x$ o'clock", which has a different meaning depending on the value of $x$.
+逻辑学家鲁道夫·卡纳普 (Rudolf Carnap) 首次提出了“函子”这个术语，作为他形式化自然语言（如英语）的项目的一部分，以创建一种精确的方式来讨论科学。最初，函子是指一个单词或短语，它的意义可以通过与数值结合来定制，比如“$x$ 点的温度”这个短语，其含义根据 $x$ 的值而变化。
 
-In other words, a functor is a phrase that *acts as a function*, only not a function between sets, but one between *linguistic concepts* (such as times and temperature).
+换句话说，函子是一个*作为函数*的短语，但不是集合之间的函数，而是*语言概念*之间的函数（例如时间和温度）。
 
-![Functor, as envisioned by Rudolf Carnap.](../10_functors/functor_carnap.svg)
+![卡纳普设想的函子](../10_functors/functor_carnap.svg)
 
-Later, one of the inventors of category theory Sanders Mac Lane borrowed the word, to describe a something that *acts as function between categories*, which he defined in the following way:
+后来，范畴论的发明者之一桑德斯·麦克莱恩 (Sanders Mac Lane) 借用了这个词，用来描述*在范畴之间充当函数的东西*，他将其定义如下：
 
-> A functor between two categories (let's call them $A$ and $B$) consists of two mappings --- a mapping that maps each *object* in $A$ to an object in $B$ and a mapping that maps each *morphism* between any objects in $A$ to a morphism between objects in $B$, in a way that *preserves the structure* of the category. 
+> 两个范畴之间的函子（我们称它们为 $A$ 和 $B$）由两个映射组成——一个将 $A$ 中的每个*对象*映射到 $B$ 中的一个对象，另一个将 $A$ 中任意两个对象之间的每个*态射*映射到 $B$ 中的态射，这种映射方式*保持了范畴的结构*。
 
-![Functor](../10_functors/functor.svg)
+![函子](../10_functors/functor.svg)
 
-Now let's unpack this definition by going through each of its components.
+现在让我们逐一解读这个定义的各个部分。
 
-Object mapping
+### 对象映射 (Object mapping)
 ---
 
-In the definition above, we use the word "mapping" to avoid misusing the word "function" for something that isn't exactly a function. But in this particular case, calling the mapping a function would barely be a misuse --- if we forget about morphisms and treat the source and target categories as sets, the object mapping is nothing but a regular old function.
+在上面的定义中，我们使用“映射”一词来避免误用“函数”这个词，虽然它不是完全符合传统定义的函数。但在这种情况下，将映射称为函数几乎不算错——如果忽略态射，并将源范畴和目标范畴视为集合，对象映射实际上就是一个普通的函数。
 
-![Functor for objects](../10_functors/functor_objects.svg)
+![对象的函子](../10_functors/functor_objects.svg)
 
-A more formal definition of object mapping involves the concept of an *underlying set* of a category: Given a category $A$, the underlying set of $A$ is a set that has the objects of $A$ as elements. Utilizing this concept, we say that the object mapping of a functor between two categories is *a function between their underlying sets*. The definition of a function is still the same:
+更正式的对象映射定义涉及到*范畴的底层集合*的概念：给定范畴 $A$，$A$ 的底层集合是一个集合，它的元素是 $A$ 的对象。利用这个概念，我们说两个范畴之间的对象映射是它们底层集合之间的*函数*。函数的定义仍然相同：
 
-> A function is a relationship between two sets that matches each element of one set, called the *source set* of the function, with exactly one element from another set, called the *target set* of the function. 
+> 函数是两个集合之间的关系，将一个集合的每个元素（称为函数的*源集合*）与另一个集合中的一个元素匹配（称为函数的*目标集合*）。
 
-Morphism mapping
+### 态射映射 (Morphism mapping)
 ---
 
-The second mapping that forms the functor is a mapping between the categories' morphisms. This mapping resembles a function as well, but with the added requirement that each morphism in $A$ a given source and target must be mapped to a morphism with the corresponding source and target in $B$, as per the object mapping.
+构成函子的第二个映射是范畴态射之间的映射。这个映射也类似于函数，但附加了一个要求，即 $A$ 中具有特定源和目标的态射必须映射到 $B$ 中具有相应源和目标的态射，符合对象映射的定义。
 
-![Functor for morphisms](../10_functors/functor_morphisms.svg)
+![态射的函子](../10_functors/functor_morphisms.svg)
 
-A more formal definition of a morphism mapping involves the concept of the *homomorphism set*: this is a set that contains all morphisms that go between given two objects in a given category. When utilizing this concept, we say that a mapping between the morphisms of two categories consists of a *set of functions between their respective homomorphism sets*.
+更正式的态射映射定义涉及到*同态集* (homomorphism set) 的概念：它是一个包含在给定范畴中两个对象之间的所有态射的集合。利用这个概念，我们说两个范畴的态射映射由它们各自的同态集之间的*一组函数*构成。
 
-![Functor for morphisms](../10_functors/functor_morphisms_formal.svg)
+![态射的函子](../10_functors/functor_morphisms_formal.svg)
 
-(Notice how the concepts of *homomorphism set* and of *underlying set* allowed us to "escape" to set theory when defining categorical concepts and define everything using functions.)
+（注意，我们使用*同态集*和*底层集合*的概念，从集合论“逃逸”到范畴论中，并使用函数来定义一切。）
 
-Functor laws
+### 函子定律 (Functor laws)
 ---
 
-So these are the two mappings (one between objects and one between morphisms) that constitute a functor. But not every pair of such two mappings is a functor. As we said, in addition to existing, the mappings should *preserve the structure* of the source category into the target category. To see what that means, we revisit the definition of a category from chapter 2:
+到目前为止，我们看到了构成函子的两个映射（一个是对象之间的映射，另一个是态射之间的映射）。但并不是每一对这样的映射都构成函子。正如我们所说，除了存在映射之外，这些映射还必须*保持源范畴的结构*到目标范畴。为了理解这意味着什么，我们回顾第2章对范畴的定义：
 
-> A category is a collection of *objects* (we can think of them as points) and *morphisms* (arrows) that go from one object to another, where:
-> 1. Each object has to have the identity morphism.
-> 2. There should be a way to compose two morphisms with an appropriate type signature into a third one, in a way that is associative.
+> 范畴是*对象*（可以看作点）和*态射*（箭头）组成的集合，其中态射从一个对象到另一个对象，并满足：
+> 1. 每个对象必须具有恒等态射。
+> 2. 必须有一种方式将两个具有适当类型签名的态射组合成第三个态射，并且这种组合是结合律的。
 
-So this definition translates to the following two *functor laws*
+因此，这一定义转化为以下两条*函子定律*：
 
-1. Functions between morphisms should *preserve identities* i.e. all identity morphisms should be mapped to other identity morphisms.
- ![Functor](../10_functors/functor_laws_identity.svg)
+1. 态射之间的函数应*保持恒等性*，即所有恒等态射应映射到其他恒等态射。
+   ![函子定律 - 恒等性](../10_functors/functor_laws_identity.svg)
 
-2. Functors should also *preserve composition* i.e. for any two morphisms $f$ and $g$, the morphism that corresponds to their composition $F(g•f)$ in the source category should be mapped to the morphism that corresponds to the composition of their counterparts in the target directory, so $F(g•f) = F(g)•F(f)$.
+2. 函子还应*保持复合*，即对于任意两个态射 $f$ 和 $g$，在源范畴中对应于它们复合的态射 $F(g•f)$ 应该被映射到目标范畴中对应的复合态射 $F(g)•F(f)$ 上，即 $F(g•f) = F(g)•F(f)$。
 
- ![Functor](../10_functors/functor_laws_composition.svg)
+![函子定律 - 复合性](../10_functors/functor_laws_composition.svg)
 
-And these laws conclude the definition of functors --- a simple but, as we will see shortly, very powerful concept. 
+这两条定律完成了对函子的定义——这是一个简单但非常强大的概念，我们接下来会看到它的强大之处。
 
-To see *why* is it so powerful, let's check some examples. 
-
-Functors in everyday language
+### 日常语言中的函子 (Functors in everyday language)
 ---
 
-There is a common figure of speech (which is used  all the time in this book) which goes like this: 
+在日常生活中有一个常见的说法（本书中也经常使用这种说法），如下所示：
 
-> If $a$ is like $F a$, then $b$ is like $F b$.
+> 如果 $a$ 类似于 $F a$，那么 $b$ 也类似于 $F b$。
 
-Or "$a$ is related to $F a$, in the same way as $b$ is related to $F b$," e.g. "If schools are like corporations, then teachers are like bosses". 
+或者说“$a$ 与 $F a$ 之间有某种关系，类似于 $b$ 与 $F b$ 之间的关系”，例如“如果学校像公司，那么老师就像老板”。
 
-This figure of speech is nothing but a way to describe a functor in our day-to-day language: what we mean by it is that there is a certain connection (or category-theory therms a "morphism") between schools and teachers, that is similar to the connection between corporations and bosses i.e. that there is some kind of structure-preserving map that connects the category of school-related things, to the category of work-related things which maps schools ($a$) to corporations ($F a$) and teacher ($b$) to bosses ($F b$), and which is such that the connections between schools and teachers ($a \to b$) are mapped to the connections between corporations and bosses ($F a \to F b$).
+这种说法实际上是用日常语言描述函子的一种方式：我们的意思是，在学校和老师之间有某种联系（用范畴论的术语来说是“态射”），类似于公司和老板之间的联系，即存在某种保持结构的映射，将与学校相关的事物范畴映射到与工作相关的事物范畴，将学校（$a$）映射到公司（$F a$），将老师（$b$）映射到老板（$F b$），并且学校与老师之间的关系（$a \to b$）被映射为公司与老板之间的关系（$F a \to F b$）。
 
-Diagrams are functors
+### 图表是函子 (Diagrams are functors)
 ---
 
-> “A sign is something by knowing which we know something more.” — Charles Sanders Peirce
+> “符号是一种通过了解它，我们可以了解更多东西的存在。”—— 查尔斯·桑德斯·皮尔斯 (Charles Sanders Peirce)
 
-We will start with an example of a functor that is very *meta* --- the diagrams/illustrations in this book.
+我们将从一个非常*元*的函子例子开始——本书中的图表/插图。
 
-You might have noticed that diagrams play a special role in category theory --- while in other disciplines their function is merely complementary i.e. they only show what is already defined in another way, here *the diagrams themselves serve as definitions*. 
+你可能已经注意到，图表在范畴论中扮演了特殊的角色——在其他学科中，图表的功能仅仅是辅助性的，即它们只是展示已经通过其他方式定义的内容，而在这里，*图表本身就是定义*。
 
-For example, in chapter 1 we presented the following definition of functional composition.
+例如，在第1章中我们给出了以下函数复合的定义。
 
-> The composition of two functions $f$ and $g$ is a third function $h$ defined in such a way that this diagram commutes.
+> 两个函数 $f$ 和 $g$ 的复合是一个第三个函数 $h$，其定义方式使得该图表可交换。
 
-![Functional composition - general definition](../10_functors/functions_compose_general.svg)
+![函数复合 - 通用定义](../10_functors/functions_compose_general.svg)
 
-We all see the benefit of defining stuff by means of diagrams as opposed to writing lengthy definitions like
+我们都看到了通过图表定义事物的好处，而不是写下冗长的定义，比如：
 
-> "Suppose you have three objects $a$, $b$ and $c$ and two morphisms $f: b \to c$ and $g: a \to b$..."
+> “假设你有三个对象 $a$、$b$ 和 $c$，以及两个态射 $f: b \to c$ 和 $g: a \to b$……”
 
-However, it (defining stuff by means of diagrams) presents a problem --- definitions in mathematics are supposed to be formal, so if we want to use diagrams as definitions we must first *formalize the definition of a diagram itself*. 
+然而，用图表定义事物会带来一个问题——数学中的定义应该是正式的，所以如果我们想使用图表作为定义，我们必须首先*形式化图表本身的定义*。
 
-So how can we do that? One key observation is that diagrams look as finite categories, as, for example, the above definition looks in the same way as the category $3$.
+那么我们该如何做呢？一个关键的观察是，图表看起来像有限范畴，例如，上述定义与范畴 $3$ 看起来相似。
 
-![the finite category 3](../10_functors/finite_three.svg)
+![有限范畴 3](../10_functors/finite_three.svg)
 
-However, this is only part of the story as finite categories are just structures, whereas diagrams are *signs*. They are "something by knowing which we know something more.", as Peirce famously put it (or "...which can be used in order to tell a lie", in the words of Umberto Eco). 
+然而，这只是故事的一部分，因为有限范畴只是结构，而图表是*符号*。它们是“通过了解它，我们可以了解更多东西”，正如皮尔斯著名的说法（或者用翁贝托·艾柯 (Umberto Eco) 的话来说，“……可以用来撒谎的东西”）。
 
-For this reason, aside from a finite category that encodes the diagram's structure, the definition of a diagram must also include a way for "interpreting" this category in some other context i.e. they must include *functors*.
+因此，除了编码图表结构的有限范畴外，图表的定义还必须包括一种在其他上下文中“解释”这个范畴的方式，即它们必须包括*函子*。
 
-![diagram as a functor](../10_functors/diagram_functor.svg)
+![图表作为函子](../10_functors/diagram_functor.svg)
 
-This is how the concept of functors allows us to formalize the notion of diagrams: 
+这就是函子概念让我们形式化图表概念的方式：
 
-> A *diagram* is comprised of one finite category (called an *index category*) and a functor from it to some other category.
+> 一个*图表*由
 
-If you know about semiotics, you may view the source and target categories of the functor as *signifier* and *signified*.
+一个有限范畴（称为*索引范畴*）和从它到其他范畴的函子组成。
 
-And so, you can already see that the concept of a functor plays a very important role in category theory. Because of it, diagrams in category theory can be *specified formally* i.e. they are categorical objects *per se*. 
+如果你了解符号学，您可以将函子的源范畴和目标范畴视为*能指*和*所指*。
 
-You might even say that they are categorical objects *par excellence* (TODO: remove that last joke).
+由此你可以看出，函子在范畴论中扮演着非常重要的角色。正因为如此，范畴论中的图表可以*形式化指定*，即它们本身就是范畴对象。
 
-<!--
-(TODO: By the way, the fact that a diagram commutes means just that the morphism in the finite category are sometimes composites of one another).
--->
+你甚至可以说它们是范畴对象的*卓越代表*（TODO: 删除最后这个笑话）。
 
-Maps are functors
+### 地图是函子 (Maps are functors)
 ---
 
-> A map is not the territory it represents, but, if correct, it has a similar structure to the territory, which accounts for its usefulness. Alfred Korzybski
+> “地图不是它所代表的领土，但如果是正确的，它具有与领土相似的结构，这使它具有实用性。”—— 阿尔弗雷德·科日布斯基 (Alfred Korzybski)
 
-Functors are sometimes called "maps" for a good reason --- maps, like all other diagrams, are functors. If we consider some space, containing cities and roads that we travel by, as a category, in which the cities are objects and roads between them are morphisms, then a road map can be viewed as category that represent some region of that space, together with a functor that maps the objects in the map to real-world objects.
+函子有时被称为“映射”是有原因的——地图，就像其他所有图表一样，实际上是函子。如果我们将包含城市和连接城市的道路的空间视为一个范畴，其中城市是对象，道路是态射，那么一张路线图可以被视为代表该空间某一区域的范畴，以及将该地图中的对象映射到现实世界对象的函子。
 
-![A map and a preorder of city pathways](../10_functors/preorder_map_functor.svg)
+![城市路径的预序与地图](../10_functors/preorder_map_functor.svg)
 
-In maps, morphisms that are a result of composition are often not displayed, but we use them all the time --- they are called *routes*. And the law of preserving composition tells us that every route that we create on a map corresponds to a real-world route. 
+在地图中，通常不会显示复合得到的态射，但我们经常使用它们——它们被称为*路线*。保持复合性的定律告诉我们，我们在地图上创建的每条路线都对应现实世界中的一条路线。
 
-![A map and a preorder of city pathways](../10_functors/preorder_map_functor_route.svg)
+![城市路径的预序与地图 - 路线](../10_functors/preorder_map_functor_route.svg)
 
-Notice that in order to be a functor, a map does not have to list *all* roads that exist in real life, and *all* traveling options ("the map is not the territory"), the only requirement is that *the roads that it lists should be actual* --- this is a characteristic shared by all many-to-one relationships (i.e. functions).
+注意，为了成为一个函子，地图不必列出*所有*现实中存在的道路和*所有*旅行选项（“地图不是领土”），唯一的要求是*它列出的道路必须是真实存在的*——这是所有多对一关系（即函数）共有的特性。
 
-<!--
-Functors can also go from complex to simple
+### 人类感知具有函子性质 (Human perception is functorial)
 ---
 
-So far, we saw functors that go from a simple category, into a more complex one, which aim to *select* some objects from the target category*.
+我们看到，除了是一个范畴论概念之外，函子还与许多研究人类心智的学科相关，如逻辑、语言学、符号学等。为什么会这样呢？我最近写了一篇[关于使用逻辑建模现实生活思维的博客文章](/logic-thought)，其中探讨了函子（以及“映射”）的“非凡有效性”，我认为人类的感知和思维是具有函子性质的。
 
-But functors can go the other way too --- from complex to simple --- those are the functors which *sort* the object of the source category into the categories that constitute the target.
+我的观点是，为了感知我们周围的世界，我们通过一系列函子，从更原始的“低层次”心理模型转向更抽象的“高层次”模型。
 
+我们可以说，感知始于原始的感官数据。然后，通过一个函子，我们转向一个包含基本世界模型的范畴（告诉我们我们在空间中的位置、我们看到的物体数量等）。接着，我们将这个模型与另一个更抽象的模型连接起来，该模型为我们提供了所处情况的更高层次视图，依此类推。
 
-Even more interestingly, we often encounter often special pairs of functors, consisting of one *selective* and one *sorting* functor that go between two categories, that kinda reverse each other. 
+![感知具有函子性质](../10_functors/chain.svg)
 
---> 
+你可以将这视为从简单到抽象的进程，从具有较少态射的范畴进展到具有更多态射的范畴——我们从没有任何联系的感官数据组成的范畴开始，接着进入另一个范畴，其中一些数据片段之间有了联系。然后，我们将这种结构转移到具有更多联系的另一个范畴。
 
-Human perception is functorial 
+![感知具有函子性质](../10_functors/logic_thought.svg)
+
+当然，这只是一个猜想，但当我们看到函子对于我们之前讨论的数学结构有多重要时，或许可以证明它有一定的依据。
+
+### 单子中的函子 (Functors in monoids)
 ---
 
-We saw that, aside from being a category-theoretic concept, functors are connected to many disciplines that study the human mind such as logic, linguistics, semiotics and the like. Why is it so? Recently, I wrote a [blog post about using logic to model real-life thinking](/logic-thought)) where I tackle the "unreasonable effectiveness" of functors (and "maps" in general), where I argue that human perception, human thinking, is functorial.
+在这个小插曲之后，让我们回到我们通常的操作方式：
 
-My thesis is that to perceive the world around us, we are going through a bunch of functors that go from more raw "low-level" mental models to more abstract "high-level" ones. 
+嘿，你知道在群论中有一个很酷的东西叫做*群同态*（当我们谈论单子时，它被称为*单子同态*）——它是一个在群的底层集合之间保持群运算的函数。
 
-We may say that perception starts with raw sensory data. From it, we go, (using a functor) to a category containing some basic model of how the world works (one that tells us where are we in space, how many objects are we seeing etc.). Then we are connecting this model to another, even more abstract model, which provides us with a higher-level view of the situation that we are in, and so on.
+例如，如果现在是 00:00（或中午 12 点），那么 $n$ 小时后会是什么时间？这个问题的答案可以通过一个以整数集为源和目标的函数来表达。
 
-![Perception is functorial](../10_functors/chain.svg)
+![群同态作为函数](../10_functors/group_homomorphism_function.svg)
 
-You can view this as a progression from simpler to more abstract from categories with less morphisms to categories with more morphisms --- we start with the category of pieces of sensory data that have no connections between one another, and proceed to another category where some of these pieces of data are connected. Then, we transfer this structure in another category with even more connections.
+这个函数很有趣——它保持（模）加法运算：如果 13 小时后是 1 点，而 14 小时后是 2 点，那么（13 + 14）小时后是（1 + 2）点。
 
-![Perception is functorial](../10_functors/logic_thought.svg)
+![群同态](../10_functors/group_homomorphism.svg)
 
-All this is, of course, just a speculation, but we might convince yourself that there is some basis for it, especially after we see how significant functors are for the mathematical structures that we saw before.
+或者正式地说，如果我们称这个函数为 $F$，那么我们有以下等式：$F(a + b) = F(a) + F(b)$（其中右边的 $+$ 表示模加法）。由于这个等式成立，$F$ 函数是一个*群同态*，它将整数加法群映射到模 11 加法群（你可以将 11 替换为任何其他数）。
 
-Functors in monoids
-===
+群不必如此相似才能在它们之间存在同态。举个例子，将任何数 $n$ 映射为 2 的*指数* $n \to 2ⁿ$，这个函数给出了整数加法群和整数乘法群之间的群同态，即 $F(a + b) = F(a) \times F(b)$。
 
-So, after this slight detour, we will return to our usual modus operandi: 
+![不同群之间的群同态](../10_functors/group_homomorphism_addition_multiplication.svg)
 
-Hey, do you know that in group theory, there is this cool thing called *group homomorphism* (or *monoid homomorphism* when we are talking about monoids) --- it is a function between the groups' underlying sets which preserves the group operation.
+哦对了，我们在讨论什么来着？对，群同态是函子。要理解为什么，我们切换到范畴论视角，并重新审视我们第一个例子（为了简化图表，我们使用模 2 代替模 11）。
 
-So, for example, If the time of the day right now is 00:00 o'clock (or 12 PM) then what would the time be after $n$ hours? The answer to this question can be expressed as a function with the set of integers as source and target.
+![群同态作为函子](../10_functors/group_homomorphism_functor.svg)
 
-![Group homomorphism as a function](../10_functors/group_homomorphism_function.svg)
+看来，当我们将群/单子视为单对象范畴时，群/单子同态实际上就是这些范畴之间的函子。让我们看看是不是这样。
 
-This function is interesting --- it preserves the operation of (modular) addition: if, 13 hours from now the time will be 1 o'clock and if 14 hours from now it will be 2 o'clock, then the time after (13 + 14) hours will be (1 + 2) o'clock. 
-
-![Group homomorphism](../10_functors/group_homomorphism.svg)
-
-Or to put it formally, if we call it (the function) $F$, then we have the following equation: $F(a + b) = F(a) + F(b)$ (where $+$ in the right-hand side of the equation means modular addition). Because this equation holds, the $F$ function is a *group homomorphism* between the group of integers under addition and the group of modulo arithmetic with base 11 under modular addition (where you can replace 11 with any other number).
-
-
-The groups don't have to be so similar for there to be a homomorphism between them. Take, for example, the function that maps any number $n$ to 2 to the *power of $n$,* so  $n \to 2ⁿ$ (here, again, you can replace 2 with any other number). This function gives a rise to a group homomorphism between the group of integers under addition and the integers under multiplication, or $F(a + b) = F(a) \times F(b)$.
-
-![Group homomorphism between different groups](../10_functors/group_homomorphism_addition_multiplication.svg)
-
-Wait, what were we talking about, again? Oh yeah --- group homomorphisms are functors. To see why, we switch to the category-theoretic representation of groups and revisit our first example and (to make the diagram simpler, we use $mod2$ instead of $mod11$).
-
-![Group homomorphism as a functor](../10_functors/group_homomorphism_functor.svg)
-
-It seems that when we view groups/monoid as one-object categories, a group/monoid homomorphism is just a functor between these categories. Let's see if that is the case.
-
-Object mapping
+**对象映射 (Object mapping)**
 ---
 
-Groups/monoids have just one object when viewed as categories, so there is also only one possible object mapping between any couple of groups/monoids --- one that maps the (one and only) object of the source group to the object of the target group (not depicted in the diagram).
+当群/单子被视为范畴时，它们只有一个对象，所以在任何两个群/单子之间只有一个可能的对象映射——将源群的唯一对象映射到目标群的对象（图中未绘制）。
 
-Morphism mapping
+**态射映射 (Morphism mapping)**
 ---
 
-Because of the above, the morphism mapping is the only relevant component of the group homomorphism. In the category-theoretic perspective, group objects (like $1$ and $2$ $3$ etc.) correspond to morphisms (like $+1$, $+2$ $+3$ etc.) and so the morphism mapping is just mapping between the group's objects, as we can see in the diagram.
+因此，对于群同态来说，态射映射是唯一相关的组成部分。在范畴论视角中，群的对象（如 $1$、$2$、$3$ 等）对应于态射（如 $+1$、$+2$、$+3$ 等），因此态射映射就是群对象之间的映射，如图所示。
 
-
-Functor laws
+### 函子定律 (Functor laws)
 ---
 
-The first functor law trivial, it just says that the one and only identity object of the source group (which corresponds to the identity morphism of its one and only object) should be mapped to the one and only identity object of the target group. 
+第一个函子定律是平凡的，它只是说源群的唯一恒等对象（对应于其唯一对象的恒等态射）应该映射到目标群的唯一恒等对象。
 
-And if we remember that the group operation of combining two objects corresponds to *functional composition* if we view groups as categories, we realize that the group homomorphism equation $F(a + b) = F(a) \times F(b)$ is just a formulation of the second functor law: $F(g•f) = F(g)•F(f)$.
+如果我们记住，群的结合运算（组合两个对象）对应于将群视为范畴时的*函数复合*，那么我们会意识到群同态方程 $F(a + b) = F(a) \times F(b)$ 只是第二个函子定律 $F(g•f) = F(g)•F(f)$ 的一种表述。
 
-And many algebraic operations satisfy this equation, for example the functor law for the group homomorphism between $n \to 2ⁿ$ is just the famous algebraic rule, stating that $gᵃ gᵇ= gᵃ⁺ᵇ$.
+许多代数运算都满足这个方程，例如群同态的函子定律 $n \to 2ⁿ$ 就是著名的代数规则 $gᵃ gᵇ= gᵃ⁺ᵇ$。
 
-**Task:** Although it's trivial, we didn't prove that the first functor law (the one about the preservation of identities always holds. Interestingly enough, for groups/monoids it actually follows from the second law. Try to prove that. Start with the definition of the identity function.
+**任务：** 尽管很简单，但我们没有证明第一个函子定律（关于保持恒等性的定律）总是成立。有趣的是，对于群/单子来说，它实际上是从第二个定律推导出来的。试着证明这一点。首先从恒等函数的定义开始。
 
-Functors in orders
-===
-
-And now let's talk about a concept that is completely unrelated to functors, nudge-nudge (hey, bad jokes are better than no jokes at all, right?) In the theory of orders, we have the concept of functions between orders (which is unsurprising, given that orders, like monoids/groups, are based on sets) and one very interesting type of such function, which has applications in calculus and analysis, is a *monotonic function* (also called *monotone map*). This is a function between two orders that *preserves the order of the objects in the source order, in the target order. So a function $F$ is monotonic  when for every $a$ and $b$ in the source order, if $a ≤ b$ then $F(a) ≤ F(b)$.
-
-For example, the function that maps the current time to the distance traveled by some object is monotonic because the distance traveled increases (or stays the same) as time increases.
-
-![A monotonic function](../10_functors/monotone_map.svg)
-
-If we plot this or any other monotonic function on a line graph, we see that it goes just one direction (i.e. just up or just down).
-
-![A monotonic function, represented as a line-graph](../10_functors/monotone_map_plot.svg)
-
-Now we are about to prove that monotonic functions are functors too, ready?
-
-Object mapping
+### 序中的函子 (Functors in orders)
 ---
 
-Like with categories, the object mapping of an order is represented by a function between the orders' underlying sets. 
+现在让我们谈论一个与函子完全无关的概念，开个玩笑（嘿，冷笑话总比没有笑话好，对吧？）。在序的理论中，我们有序之间的函数（这并不奇怪，因为序就像单子/群一样，基于集合），其中一个非常有趣的函数类型，具有在微积分和分析中的应用，就是*单调函数*（也叫做*单调映射*）。这是两个序之间的一个函数，它*保持源序对象的顺序*，在目标序中也保持对象的顺序。所以当对于源序中的每一个 $a$ 和 $b$，如果 $a ≤ b$，那么 $F(a) ≤ F(b)$，此时函数 $F$ 是单调的。
 
-Morphism mapping
+例如，将当前时间映射到某物体行驶距离的函数是单
+
+调的，因为行驶距离随着时间增加（或保持不变）而增加。
+
+![单调函数](../10_functors/monotone_map.svg)
+
+如果我们在折线图上绘制这个或任何其他单调函数，我们会看到它的趋势只有一个方向（即只向上或只向下）。
+
+![单调函数，折线图表示](../10_functors/monotone_map_plot.svg)
+
+现在我们要证明单调函数也是函子，准备好了吗？
+
+**对象映射 (Object mapping)**
 ---
 
-With monoids, the object mapping component of functors was trivial. Here is the reverse: the morphism mapping is trivial - given a morphism between two objects from the source order, we map that morphism to the morphism between their corresponding objects in the target order. The fact that the monotonic function respects the order of the elements, ensures that the latter morphism exists.
+像在范畴中一样，序的对象映射是其底层集合之间的函数。
 
-Functor laws
+**态射映射 (Morphism mapping)**
 ---
 
-It is not hard to see that monotone maps obey the first functor law as identities are the only morphisms that go between a given object and itself. 
+与单子不同，函子的对象映射部分是平凡的。这里正好相反：态射映射是平凡的——给定源序中的两个对象之间的态射，我们将该态射映射到目标序中对应的态射。单调函数尊重元素的顺序，确保后者态射的存在。
 
-And the second law ($F(g•f) = F(g)•F(f)$) also follows trivially: both morphisms $F(g•f)$ and $F(g)•F(f)$ have the same type signature. But because in orders there can be just one morphism with a given type signature, these two morphisms must be equal to one another.
+### 函子定律 (Functor laws)
+---
 
-**Task:** Expand the proof.
+不难看出，单调映射遵循第一个函子定律，因为恒等态射是唯一的，存在于每个对象与自身之间。
+
+第二条定律 ($F(g•f) = F(g)•F(f)$) 也显然成立：$F(g•f)$ 和 $F(g)•F(f)$ 两个态射具有相同的类型签名。而在序中，具有给定类型签名的态射只能有一个，因此这两个态射必然是相等的。
+
+**任务：** 扩展证明。
 
 <!--
 And the second law ($F(g•f) = F(g)•F(f)) also follows from the fact that there is only one morphism with a given signature. 
