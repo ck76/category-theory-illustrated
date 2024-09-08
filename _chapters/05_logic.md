@@ -3,196 +3,196 @@ layout: default
 title: Logic
 ---
 
-Logic
+逻辑 (Logic)
 ===
 
-Now let's talk about one more *seemingly* unrelated topic just so we can "surprise" ourselves when we realize it's category theory. By the way, in this chapter there will be another surprise in addition to that, so don't fall asleep. 
+现在让我们讨论另一个*看似*无关的话题，这样我们可以在意识到它实际上是范畴论时“惊喜”自己。顺便说一下，本章除了这个“惊喜”之外，还会有另一个惊喜，所以不要打瞌睡。
 
-Also, I will not merely transport you to a different branch of mathematics, but to an entirely different discipline - *logic*. 
+此外，我不仅会带你进入数学的另一个分支，还会带你进入一个完全不同的学科——*逻辑* (logic)。
 
-What is logic
+什么是逻辑 (What is logic)
 ===
 
-Logic is the science of the *possible*. As such, it is at the root of all other sciences, all of which are sciences of the *actual*, i.e. that which really exists. For example, if science explains how our universe works then logic is the part of the description which is also applicable to any other universe that is *possible to exist*. A scientific theory aims to be consistent with both itself and observations, while a logical theory only needs to be consistent with itself.
+逻辑是关于*可能性*的科学。正因为如此，它是所有其他科学的基础，而其他科学则是关于*现实*的科学，即那些真实存在的事物。例如，科学解释了我们的宇宙是如何运作的，而逻辑则是描述中适用于任何其他*可能存在*宇宙的部分。科学理论的目标是与自身及观察结果保持一致，而逻辑理论只需与自身一致即可。
 
-Logic studies the *rules* by which knowing one thing leads you to conclude (or *prove*) that some other thing is also true, regardless of the things' domain (e.g. scientific discipline) and by only referring to their form.
+逻辑研究的是那些通过已知一件事情，推断出（或*证明*）另一件事情也为真的*规则*，而这些规则无关事物的领域（例如科学学科），只涉及它们的形式。
 
-On top of that, it (logic) tries to organize those rules in *logical systems* (or *formal systems* as they are also called).
+此外，逻辑试图将这些规则组织成*逻辑系统*（或称为*形式系统*）。
 
-Logic and mathematics 
+逻辑与数学 (Logic and mathematics)
 ---
 
-Seeing this description, we might think that the subject of logic is quite similar to the subject of set theory and category theory, as we described it in the first chapter - instead of the word "formal" we used another similar word, namely "abstract", and instead of "logical system" we said "theory". This observation would be quite correct - today most people agree that every mathematical theory is actually logic plus some additional definitions added to it. For example, part of the reason why *set theory* is so popular as a theory for the foundations of mathematics is that it can be defined by adding just one single primitive to the standard axioms of logic which we will see shortly - the binary relation that indicates *set membership*. Category theory is close to logic too, but in a quite different way.
+看到这个描述，我们可能会认为逻辑的主题与我们在第一章中描述的集合论 (set theory) 和范畴论 (category theory) 非常相似——我们没有使用“形式”这个词，而是使用了另一个类似的词，即“抽象”，而“逻辑系统”的说法与“理论”类似。这个观察是非常正确的——今天，大多数人都同意每一个数学理论实际上就是逻辑，加上一些额外定义。例如，*集合论* (set theory) 作为数学基础理论之一的部分原因是，它可以通过在标准逻辑公理中只添加一个原始定义——表示*集合隶属* (set membership) 的二元关系，来定义。范畴论与逻辑也有密切关系，但它们的方式完全不同。
 
-Primary propositions
+基本命题 (Primary propositions)
 ---
 
-A consequence of logic being the science of the possible is that in order to do anything at all in it, we should have an initial set of propositions that we accept as true or false. These are also called "premises", "primary propositions" or "atomic propositions" as Wittgenstein dubbed them. 
+逻辑作为*可能性*的科学的一个后果是，要想在逻辑中有所作为，我们需要先有一组我们接受为真或假的命题。这些命题也被称为“前提” (premises)、“基本命题” (primary propositions) 或“原子命题” (atomic propositions)，如维特根斯坦所称。
 
 ![Balls](../05_logic/balls.svg)
 
-In the context of logic itself, these propositions are abstracted away (i.e. we are not concerned about them directly) and so they can be represented with the colorful balls that you are familiar with. 
+在逻辑的背景下，这些命题是抽象的（即我们并不直接关心它们的内容），因此可以用你熟悉的彩色球来表示。
 
-Composing propositions
+组合命题 (Composing propositions)
 ---
 
-At the heart of logic, as in category theory, is the concept of *composition* - if we have two or more propositions that are somehow related to one another, we can combine them into one using a logical operators, like "and", "or" "follows" etc. The results would be new propositions, which we might call *composite propositions* to emphasize the fact that they are not primary. 
+逻辑的核心，正如范畴论一样，是*组合* (composition) 的概念——如果我们有两个或多个彼此相关的命题，我们可以通过逻辑运算符将它们组合成一个新的命题，例如“与” (and)、“或” (or)、“推导” (follows) 等。这样就得到了新的命题，我们可以称其为*复合命题* (composite propositions) 以强调它们并非基本命题。
 
-This composition resembles the way in which two monoid objects are combined into one using the monoid operation. Actually, some logical operations do form monoids, like for example the operation *and*, with the proposition $true$ serving as the identity element.
+这种组合类似于两个幺半群对象通过幺半群操作组合成一个新对象的方式。事实上，一些逻辑运算确实构成幺半群，例如“与”运算，其中 $true$ 命题作为幺元。
 
 ![Logical operations that form monoids](../05_logic/logic_monoid.svg)
 
-However, unlike monoids/groups, logics study combinations not just with one but with *many* logical operations and *the ways in which they relate to one another*, for example, in logic we might be interested in the law of distributivity of *and* and $or$ operations and what it entails.
+然而，不同于幺半群/群，逻辑研究的不仅仅是一个运算符的组合，还研究*多个*逻辑运算符之间的*相互关系*。例如，在逻辑中，我们可能会关注“与”和“或”运算的分配律及其带来的影响。
 
 ![The distributivity operation of "and" and "or"](../05_logic/logic_distributivity.svg)
 
-Important to note that $∧$ is the symbol for *and* and $∨$ is the symbol for $or$ (although the law above is actually valid even if *and* and $or$ are flipped).
+需要注意的是，$∧$ 是表示*与* (and) 的符号，而 $∨$ 是表示*或* (or) 的符号（尽管即使交换“与”和“或”，上述规律仍然成立）。
 
-The equivalence of primary and composite propositions
+基本命题与复合命题的等价性 (The equivalence of primary and composite propositions)
 ---
 
-When looking at the last diagram, it is important to emphasize that,  propositions that are composed of several premises (symbolized by gray balls, containing some other balls) are not in any way different from "primary" propositions (single-color balls) and that they compose in the same way (although in the leftmost proposition the green ball is wrapped in a gray ball to make the diagram prettier).
+在观察上一个图时，重要的是要强调，尽管复合命题是由多个前提组成的（用包含其他小球的灰色小球表示），它们并不与“基本命题”有任何本质区别（用单色小球表示），并且它们的组合方式是相同的（尽管在最左边的命题中，绿色小球包裹在灰色小球中以使图看起来更漂亮）。
 
 ![Balls as propositions](../05_logic/balls_propositions.svg)
 
-Modus ponens
+推理规则 (Modus ponens)
 ---
 
-As an example of a proposition that contains multiple levels of nesting (and also as a great introduction of the subject of logic in its own right), consider one of the oldest (it was already known by Stoics at 3rd century B.C.) and most famous propositions ever, namely the *modus ponens*. 
-
-Modus ponens is a proposition that is composed of two other propositions (which here we denote $A$ and $B$) and it states that if proposition $A$ is true and also if proposition $(A → B)$ is true (that is if $A$ implies $B$), then $B$ is true as well. For example, if we know that "Socrates is a human" and that "humans are mortal" (or "being human implies being mortal"), we also know that "Socrates is mortal."
+作为包含多个层次嵌套的命题的一个例子（并且也是逻辑学中非常著名的命题），我们来看看*推理规则* (modus ponens)。推理规则是由两个命题组成的（我们将其标记为 $A$ 和 $B$），其表述为：如果命题 $A$ 为真，并且命题 $(A → B)$ 为真（即 $A$ 推导出 $B$），那么 $B$ 也为真。例如，如果我们知道“苏格拉底是人”，并且知道“人都是会死的”（即“是人意味着会死”），我们就可以知道“苏格拉底会死”。
 
 ![Modus ponens](../05_logic/modus_ponens.svg)
 
-Let's dive into this proposition. We can see that it is composed of two other propositions in a $follows$ relation, where the proposition that follows ($B$) is primary, but the proposition from which $B$ follows is not primary (let's call that one $C$ - so the whole proposition becomes $C → B$.)
+我们可以深入研究这个命题。我们可以看到它由两个命题通过“推导” (follows) 关系组成，其中后继的命题 ($B$) 是基本命题，而其前导命题不是基本命题（我们称之为 $C$，因此整个命题为 $C → B$）。
 
-Going one more level down, we notice that the $C$ propositions is itself composed of two propositions in an *and*, relationship - $A$ and let's call the other one $D$ (so $A ∧ D$), where $D$ is itself composed of two propositions, this time in a $follows$ relationship - $A → B$. But all of this is better visualized in the diagram.
+如果再往下深入一层，我们会发现 $C$ 命题本身由两个命题通过“与”关系组成——$A$ 和另一个命题 $D$（因此 $A ∧ D$），而 $D$ 本身又由两个命题通过“推导”关系组成——$A → B$。但这一切用图示表现更为清晰。
 
-Tautologies
+
+
+必然真理 (Tautologies)
 ---
 
-We often cannot tell whether a given composite proposition is true or false without knowing the values of the propositions that it is made of. However, with propositions such as *modus ponens* we can: modus ponens is *always true*, regardless of whether the propositions that form it are true or false. If we want to be fancy, we can also say that it is *true in all models of the logical system*, a model being a set of real-world premises are taken to be signified by our propositions.
+通常，我们无法在不知道一个复合命题所包含命题的真假之前，判断该复合命题的真假。然而，对于像*推理规则*这样的命题，我们可以：推理规则*始终为真*，无论组成它的命题是真还是假。如果我们想更正式一点，可以说它在逻辑系统的*所有模型中都为真*，模型是由我们的命题所代表的现实前提的集合。
 
-For example, our previous example will not stop being true if we *substitute* "Socrates" with any other name, nor if we substitute "mortal" for any other quality that humans possess.
+例如，之前的例子，即使我们将“苏格拉底”换成任何其他名字，或者将“必死”替换为人类拥有的其他任何特性，这个推理仍然成立。
 
 ![Variation of modus ponens](../05_logic/modus_ponens_variations.svg)
 
-Propositions that are always true are called *tautologies*. And their more-famous counterparts that are always false are called *contradictions*. You can turn each tautology into contradiction or the other way around by adding a "not". 
+总是真命题被称为*必然真理* (tautologies)，而那些永远为假的命题则被称为*矛盾命题* (contradictions)。通过添加一个“非” (not)，你可以将必然真理变为矛盾命题，反之亦然。
 
-The simplest tautology is the so called law of identity, the statement that each proposition implies itself (e.g. "All bachelors are unmarried"). It may remind you of something.
+最简单的必然真理是所谓的同一律，即每个命题都蕴含自身（例如，“所有单身汉都是未婚的”）。这可能让你想起了一些东西。
 
 ![Identity tautology](../05_logic/tautology_identity.svg)
 
-Here are some more complex (less boring) tautologies (the symbol $¬$ means "not"/negation.
+以下是一些更复杂（不那么无聊）的必然真理（符号 $¬$ 表示“非”/否定）：
 
 ![Tautologies](../05_logic/tautology_list.svg)
 
-We will learn how to determine which propositions are a tautologies shortly, but first let's see why is this important at all i.e. what are tautologies good for. 
+我们稍后将学习如何确定哪些命题是必然真理，但首先让我们看看为什么这些是重要的——即必然真理有什么用处。
 
-Axiom schemas/Rules of inference
+公理模式/推理规则 (Axiom schemas/Rules of inference)
 ---
 
-Tautologies are useful because they are the basis of *axiom schemas*/*rules of inference*. And *axiom schemas* or *rules of inference* serve as starting point from which we can generate other true logical statements by means of substitution.
+必然真理之所以有用，是因为它们是*公理模式* (axiom schemas)/*推理规则* (rules of inference) 的基础。*公理模式*或*推理规则*作为出发点，允许我们通过替换生成其他真实的逻辑命题。
 
-Realizing that the colors of the balls in modus ponens are superficial, we may want to represent the general structure of modus ponens that all of its variations share.
+意识到推理规则中的小球颜色只是表面上的，我们可能希望表示出推理规则中所有变化共享的通用结构。
 
 ![Modus ponens](../05_logic/modus_ponens_schema.svg)
 
-This structure (the one that looks like a coloring book in our example) is called *axiom schema*. And the propositions that are produced by it are *axioms*. 
+这种结构（在我们的例子中类似于涂色书）被称为*公理模式* (axiom schema)。由此模式生成的命题称为*公理* (axioms)。
 
-Note that the propositions that we plug into the schema don't have to be primary. For example, having the proposition $a$ (that is symbolized below by the orange ball) and the proposition stating that $a$ implies $a \lor b$ (which is one of the tautologies that we saw above), we can plug those propositions into the *modus ponens* and prove that $a \lor b$ is true. 
+需要注意的是，我们插入模式中的命题不必是基本命题。例如，给定命题 $a$（用下图的橙色小球表示）和命题 $a \rightarrow a \lor b$（这是我们之前看到的必然真理之一），我们可以将这些命题插入*推理规则*中，并证明 $a \lor b$ 为真。
 
 ![Using modus ponens for rule of inference](../05_logic/modus_ponens_composite.svg)
 
-*Axiom schemas* and *rules of inference* are almost the same thing except that rules of inference allow us to actually distill the conclusion from the premises. For example in the case above, we can use modus ponens as a rule of inference to proves that $a \lor b$ is true.
+*公理模式*和*推理规则*几乎是相同的，唯一的区别在于推理规则允许我们从前提中实际提炼出结论。例如在上述情况下，我们可以使用推理规则证明 $a \lor b$ 为真。
 
-All axiom schemas can be easily applied as rules of inference and the other way around. 
+所有公理模式都可以很容易地应用为推理规则，反之亦然。
 
-Logical systems
+逻辑系统 (Logical systems)
 ---
 
-Knowing that we can use axiom schemas/rules of inference to generate new propositions, we might ask whether it is possible to create a small collection of such schemas/rules that is curated in such a way that it enables us to generate *all* other propositions. You would be happy (although a little annoyed, I imagine) to learn that there exist not only one, but many such collections. And yes, collections of this sort are what we call *logical systems*.
+既然我们知道可以使用公理模式/推理规则生成新的命题，我们可能会问是否可以创建一个小的公理模式/推理规则集合，这个集合经过精心策划，能够生成*所有*其他命题。你可能会高兴（虽然也可能有点烦）地知道，不仅仅存在一个这样的集合，而是存在多个这样的集合。是的，这类集合我们称之为*逻辑系统* (logical systems)。
 
-Here is one such collection which consists of the following five axiom schemes *in addition to the inference rule modus ponens* (These are axiom schemes, even though we use colors).
+以下是一个这样的集合，它由以下五个公理模式*以及推理规则推理规则*组成（尽管我们用了颜色，这些都是公理模式）。
 
 ![A minimal collection of Hilbert axioms](../05_logic/min_hilbert.svg)
 
-Proving that this and other similar logical systems are complete (can really generate all other propositions) is due to Gödel and is known as "Gödel's completeness theorem" (Gödel is so important that I specifically searched for the "ö" letter so I can spell his hame right.)
+证明该逻辑系统和其他类似系统是完备的（即能够生成所有其他命题）是哥德尔的功劳，这被称为“哥德尔完备性定理” (Gödel's completeness theorem)（哥德尔如此重要，我特意找到了“ö”这个字母，以确保拼写正确）。
 
-Conclusion
+结论 (Conclusion)
 ---
 
-We now have an idea about how do some of the main logical constructs (axioms, rules of inference) work. But in order to prove that they are true, and to understand *what they are*, we need to do so through a specific *interpretation* of those constructs. 
+我们现在对一些主要的逻辑构造（公理、推理规则）的工作原理有了一个初步的认识。但为了证明它们为真，并理解它们*是什么*，我们需要通过特定的*解释*来进行。
 
-We will look into two interpretations - one very old and the other, relatively recent. This would be a slight detour from our usual subject matter of points and arrows, but I assure you that it would be worth it. So let's start.
+我们将研究两种解释——一种非常古老，另一种则相对较新。这将是一次稍微偏离我们通常的点与箭头主题的探讨，但我保证，这会是值得的。那么，让我们开始吧。
 
-Classical logic. The truth-functional interpretation 
+经典逻辑：真值功能解释 (Classical logic. The truth-functional interpretation)
 ===
 
-> Beyond the world that we inhabit and perceive every day, there exist the *world of forms* where reside all ideas and concepts that manifest themselves in the objects that we perceive e.g. beyond all the people that have ever lived, there lies the prototypical person, and we are people only insofar as we resemble that person, beyond all the things in the world that are strong, lies the ultimate concepts of strength, from which all of them borrow etc. And although, as mere mortals, we live in the world of appearances and cannot perceive the world of forms, we can, through philosophy, "recollect" with it and know some of its features.
+> 在我们日常生活中感知的世界之外，存在着一个*形式世界* (world of forms)，在那个世界中居住着所有的观念和概念，这些观念和概念体现在我们感知的物体中。比如，在所有曾经存在过的人之外，存在着一个原型的人类，我们之所以是人，是因为我们与那个原型相似；在世界上所有强壮的事物之外，存在着最终的力量概念，所有强壮的事物都从中借取了强壮的属性等等。虽然作为凡人，我们生活在表象的世界中，无法感知形式的世界，但通过哲学，我们可以“回忆”这个世界，并认识到其中的一些特征。
 
-The above is a summary of a worldview that is due to the Greek philosopher Plato and is sometimes called Plato's *theory of forms*. Originally, the discipline of logic represents an effort to think and structure our thoughts in a way that they apply to this world of forms i.e. in a "formal" way. Today, this original paradigm of logic is known as "classical logic". Although it all started with Plato, most of it is due to the 20th century mathematician David Hilbert.
+以上是希腊哲学家柏拉图提出的世界观的总结，有时被称为柏拉图的*形式理论* (theory of forms)。最初，逻辑学代表了通过思考和结构化思想，以某种形式化方式应用于这个形式世界的努力。今天，这种最初的逻辑范式被称为“经典逻辑” (classical logic)。虽然这一切都始于柏拉图，但大部分功劳要归于20世纪的数学家大卫·希尔伯特 (David Hilbert)。
 
-The existence of the world of forms implies that, even if there are many things that we, people, don't know and would not ever know, at least *somewhere out there* there exists an answer to every question. In logic, this translates to *the principle of bivalence* that states that *each proposition is either true or false*. And, due to this principle, propositions in classical logic can be aptly represented in set theory by the boolean set, which contains those two values.
+形式世界的存在意味着，即使我们人类有很多不知道的事情，甚至永远不会知道，至少*在某个地方*，每一个问题都有一个答案。在逻辑学中，这可以被解释为*二值原则* (the principle of bivalence)，即每个命题要么为真，要么为假。由于这一原则，经典逻辑中的命题可以通过集合论中的布尔集来表示，该布尔集包含这两个值。
 
 ![The set of boolean values](../05_logic/boolean_set.svg)
 
-According to the classical interpretation, you can think of *primary propositions* as just a bunch of boolean values. *Logical operators* are functions that take a one or several boolean values and return another boolean value (and *composite propositions* are, just the results of the application of these functions).
+根据经典解释，你可以把*基本命题* (primary propositions) 视为一堆布尔值。*逻辑运算* (logical operators) 是将一个或多个布尔值作为输入并返回另一个布尔值的函数（而*复合命题*就是这些函数应用的结果）。
 
-Let's review all logical operators in this semantic context.
+让我们在这个语义背景下回顾所有的逻辑运算。
 
-The *negation* operation
+*否定*运算 (The *negation* operation)
 ---
 
-Let's begin with the negation operation. Negation is a unary operation, which means that it is a function that takes just *one* argument and (like all other logical operators) returns one value, where both the arguments and the return type are boolean values.
+首先来看*否定* (negation) 运算。否定是一个一元运算，这意味着它是一个只接受*一个*参数的函数，并且（像所有其他逻辑运算一样）返回一个布尔值，该参数和返回值都为布尔值。
 
 ![negation](../05_logic/negation.svg)
 
-The same function can also be expressed in a slightly less-fancy way by this table.
+同样的函数也可以用这个稍微不那么复杂的表格来表示：
 
 | p | ¬p |
 |---| --- | 
 | True  | False  | 
-| False  | True |
+| False  | True  |
 
-Tables like this one are called *truth tables* and they are ubiquitous in classical logic. They can be used not only for defining operators but for proving results as well.
+类似这样的表格被称为*真值表* (truth tables)，它们在经典逻辑中无处不在。它们不仅可以用于定义运算符，还可以用于证明结果。
 
-Interlude: Proving results by truth tables
+插曲：通过真值表证明结果 (Interlude: Proving results by truth tables)
 ---
 
-Having defined the negation operator, we are in position to prove the first of the axioms of the logical system we saw, namely the *double negation elimination*. In natural language, this axiom is equivalent to the observation that saying "I am *not unable* to do X" is the same as saying  "I am *able* to do it". 
+定义了否定运算符之后，我们现在可以证明逻辑系统中的第一个公理，即*双重否定消去* (double negation elimination)。在自然语言中，这个公理等价于这样的观察：说“我*不不能*做X”与说“我*能*做X”是一样的。
 
 ![Double negation elimination formula](../05_logic/double_negation_formula.svg)
 
-(despite its triviality, the double negation axiom is probably the most controversial result in logic, we will see why later.)
+（尽管双重否定公理看起来很简单，但它可能是逻辑学中最具争议的结果，原因我们稍后会看到。）
 
-If we view logical operators as functions from and to the set of boolean values, than proving axioms involves composing several of those functions into one function and observing its output. More specifically, the proof of the formula above involves just composing the negation function with itself and verifying that it leaves us in the same place from which we started.
+如果我们将逻辑运算符视为从布尔值集到布尔值集的函数，那么证明公理的过程就是将几个这样的函数组合成一个，并观察其输出。具体来说，上述公式的证明只涉及将否定函数与自身组合，并验证它是否将我们带回原点。
 
 ![Double negation elimination](../05_logic/double_negation_proof.svg)
 
-If we want to be formal about it, we might say that applying negation two times is equivalent to applying the *identity* function.
+如果我们想要正式一些，可以说应用两次否定运算等同于应用*恒等* (identity) 函数。
 
 ![The identity function for boolean values](../05_logic/boolean_identity.svg)
 
-If we are tired of diagrams, we can represent the composition diagram above as table as well. 
+如果我们对图表感到厌倦了，我们还可以将上面的组合图表表示为一个表格：
 
 | p | ¬p | ¬¬p |
 |---| --- | --- |
 | True  | False  | True |
-| False  | True | False |
+| False  | True  | False |
 
-Each proposition in classical logic can be proved with such diagrams/tables.
+在经典逻辑中，每个命题都可以通过这样的图表或表格来证明。
 
-The *and* and *or* operations
+*与*和*或*运算 (The *and* and *or* operations)
 ---
 
-OK, *you* know what *and* means and *I* know what it means, but what about those annoying people that want everything to be formally specified (nudge, nudge). Well we already know how we can satisfy them - we just have to construct the boolean function that represents *and*. 
+好吧，你知道*与* (and) 运算是什么意思，我也知道它的意思，但那些想要一切都正式指定的人呢？（提醒一下！）嗯，我们已经知道如何让他们满意——我们只需构造表示“与”的布尔函数。
 
-Because *and* is a *binary* operator, instead of a single value the function would accept a *pair* of boolean values.
+因为*与*是一个*二元*运算符，所以该函数接受一对布尔值作为输入。
 
 ![And](../05_logic/and.svg)
 
-Here is the equivalent truth-table (in which $∧$ is the symbol for *and*.)
+以下是真值表（$∧$ 是表示*与*的符号）：
 
 | p |	q | p ∧ q |
 |---| --- | ---   |
@@ -201,7 +201,7 @@ Here is the equivalent truth-table (in which $∧$ is the symbol for *and*.)
 | False | True  | False |
 | False | False | False |
 
-We can do the same for $or$, here is the table.
+我们可以对$或$ (or) 进行类似操作，下面是对应的真值表：
 
 | p |	q | p ∨ q |
 |---| --- | ---   |
@@ -210,19 +210,21 @@ We can do the same for $or$, here is the table.
 | False | True  | True  |
 | False | False | False |
 
-**Task:** Draw the diagram for *or*.
+**任务：** 绘制*或* (or) 的图表。
 
-Using those tables, we can also prove some axiom schemas we can use later:
+利用这些表格，我们还可以证明一些可以稍后使用的公理模式：
 
-- For *and* $p ∧ q → p$ and $p ∧ q → q$ "If I am tired and hungry, this means that I am hungry".
-- For *or*:  $p → p ∨ q$ and $q → p ∨ q$ "If I have a pen this means that I am either have a pen or a ruler".
+- 对于*与*，$p ∧ q → p$ 和 $p ∧ q → q$（“如果我累了又饿，这意味着我饿了”）。
+- 对于*或*，$p → p ∨ q$ 和 $q → p ∨ q$（“如果我有一支笔，这意味着我有一支笔或尺子”）。
 
-The *implies* operation
+
+
+*蕴含*运算 (The *implies* operation)
 ---
 
-Let's now look into something less trivial: the *implies* operation, (also known as *material condition*). This operation binds two propositions in a way that the truth of the first one implies the truth of the second one (or that the first proposition is a *necessary condition* for the second.) You can read $p → q$ as "if $p$ is true, then $q$ must also be true. 
+现在让我们看一些不那么简单的东西：*蕴含*运算 (implies operation)，也称为*材料条件* (material condition)。这个运算将两个命题联系起来，使得第一个命题的真实性意味着第二个命题的真实性（或者说，第一个命题是第二个命题的*必要条件*）。你可以将 $p → q$ 理解为“如果 $p$ 为真，那么 $q$ 必须也为真”。
 
-Implies is also a binary function - it is represented by a function from an ordered pair of boolean values, to a boolean value.
+蕴含运算也是一个二元函数——它表示从一个有序布尔值对到布尔值的函数。
 
 | p |	q | p → q |
 |---| --- | ---   |
@@ -231,20 +233,19 @@ Implies is also a binary function - it is represented by a function from an orde
 | False | True  | True  |
 | False | False | True  |
 
-Now there are some aspects of this which are non-obvious so let's go through every case.
+现在有一些不太显而易见的方面，让我们逐一说明：
 
-1. If $p$ is true and $q$ is also true, then $p$ does imply $q$ - obviously.
-2. If $p$ is true but $q$ is false then $q$ does not follow from $p$ - cause $q$ would have been true if it did.
-3. If $p$ is false but $q$ is true, then $p$ still does imply $q$. What the hell? Consider that by saying that $p$ implies $q$ we don't say that the two are 100% interdependent e.g. the claim that "drinking alcohol causes headache" does not mean that drinking is the only source of headaches.
-4. And finally if $p$ is false but $q$ is false too, then $p$ still does imply $q$ (just some other day).
+1. 如果 $p$ 为真且 $q$ 也为真，则 $p$ 确实蕴含 $q$——显然如此。
+2. 如果 $p$ 为真但 $q$ 为假，那么 $q$ 并不从 $p$ 得出——因为如果 $q$ 从 $p$ 得出，$q$ 就应该为真。
+3. 如果 $p$ 为假而 $q$ 为真，$p$ 仍然蕴含 $q$。这是什么意思呢？请考虑，声明 $p$ 蕴含 $q$ 并不意味着两者之间是完全依赖的，例如“喝酒会导致头痛”的说法并不意味着头痛的唯一来源是喝酒。
+4. 最后，如果 $p$ 为假且 $q$ 也为假，$p$ 仍然蕴含 $q$（只是换了一个场景）。
 
-It might help you to remember that in classical logic $p → q$ ($p$ implies $q$) is true when $\neg p ∨ q$ (either $p$ is false or $q$ is true.) 
+你可以记住，在经典逻辑中，$p → q$（$p$ 蕴含 $q$）为真当且仅当 $\neg p ∨ q$（要么 $p$ 为假，要么 $q$ 为真）。
 
-
-The *if and only if* operation
+*当且仅当*运算 (The *if and only if* operation)
 ---
 
-Now, let's review the operation that indicates that two propositions are equivalent (or, when one proposition is *a necessary and sufficient condition* for the other (which implies that the reverse is also true.)) This operation yields true when the propositions have the same value.
+现在，让我们回顾一下指示两个命题等价的运算（即当一个命题是另一个命题的*必要且充分条件*时——这意味着逆命题也为真）。当两个命题具有相同的真假值时，此运算返回真值。
 
 | p |	q | p ↔ q |
 |---| --- | ---   |
@@ -253,25 +254,25 @@ Now, let's review the operation that indicates that two propositions are equival
 | False | True  | False |
 | False | False | True  |
 
-But what's more interesting about this operation is that it can be constructed using the *implies* operation - it is equivalent to each of the propositions implying the other one (so $p \leftrightarrow q$ is the same as $p \to q \land q \to p$) - something which we can easily prove by comparing some truth tables.
+但更有趣的是，这个运算可以通过*蕴含*运算构造出来——它等价于每个命题蕴含另一个命题（因此 $p \leftrightarrow q$ 相当于 $p \to q \land q \to p$），这可以通过比较真值表轻松证明。
 
 | p |	q | p → q | q → p | p → q ∧ q → p|  
 |---| --- | ---   | --- | --- | --- |
-| True  | True  | True  | True | True | 
-| True  | False | False | True | False | 
-| False | True  | True  | False  | False | 
-| False | False | True  | True | True | 
+| True  | True  | True  | True | True |
+| True  | False | False | True | False |
+| False | True  | True  | False  | False |
+| False | False | True  | True | True |
 
-Because of this, the equivalence operation is called "if and only if", or "iff" for short.
+正因为如此，该等价运算被称为“当且仅当” (if and only if)，缩写为“iff”。
 
-Proving results by axioms/rules of inference
+通过公理/推理规则证明结果 (Proving results by axioms/rules of inference)
 ---
 
-Let's examine the above formula, stating that $p → q$ is the same as $¬p ∨ q$. 
+让我们看看上述公式，指出 $p → q$ 与 $¬p ∨ q$ 是等价的。
 
 ![Hilbert formula](../05_logic/hilbert_formula.svg)
 
-We can easily prove this by using truth tables.
+我们可以轻松地使用真值表来证明这一点。
 
 | p |	q | p → q | ¬p  | q   |  ¬p ∨ q |
 |---| --- | ---   | --- | --- | --- |
@@ -280,329 +281,333 @@ We can easily prove this by using truth tables.
 | False | True  | **True**  | True  | True | **True** |
 | False | False | **True**  | True  | False | **True** |
 
-But it would be much more intuitive if we do it using axioms and rules of inference. To do so, we start with the formula we have ($p → q$) plus the axiom schemas, and arrive at the formula we want to prove ($¬p ∨ q$). 
+但如果我们使用公理和推理规则来证明这一点，会更直观。为此，我们从已知公式 $p → q$ 开始，加上公理模式，最后得出我们想要证明的公式 $¬p ∨ q$。
 
-Here is one way to do it. The formulas that are used at each step are specified at the right-hand side, the rule of inference is modus ponens.
+以下是一种可能的推理过程。每一步使用的公式在右侧标注，推理规则为推理规则。
 
 ![Hilbert proof](../05_logic/hilbert_proof.svg)
 
-Note that to really prove that the two formulas are equivalent we have to also do it the other way around (start with ($¬p ∨ q$) and ($p → q$)).
+需要注意的是，要真正证明这两个公式是等价的，我们还需要反向证明（即从 $¬p ∨ q$ 开始推导 $p → q$）。
 
-Intuitionistic logic. The BHK interpretation 
+
+直觉主义逻辑 (Intuitionistic logic). BHK 解释 (The BHK interpretation)
 ===
 
-> [...] logic is life in the human brain; it may accompany life outside the brain but it can never guide it by virtue of its own power. --- L.E.J. Brouwer
+> [...] 逻辑是人脑中的生活；它可能伴随脑外的生活，但永远不能凭借自身的力量指导它。—— L.E.J. 布劳威尔
 
-I don't know about you, but I feel that the classical truth-functional interpretation of logic (althought it works and is correct in its own right) doesn't fit well the categorical framework that we are using here: It is too "low-level", it relies on manipulating the values of the propositions. According to it, the operations *and* and *or* are just 2 of the 16 possible binary logical operations and they are not really connected to each other (but we know that they actually are.)
+我不知道你是怎么想的，但我觉得经典的真值函数解释（虽然它在自身的领域内有效并且是正确的）并不太适合我们在这里使用的范畴框架：它太“低级”了，它依赖于对命题的值进行操作。根据这种解释，*和* (and) 和 *或* (or) 操作只是16种可能的二元逻辑操作中的两种，它们之间没有真正的联系（但我们知道它们实际上是相互关联的）。
 
-For these and other reasons, in the 20th century a whole new school of logic was founded, called *intuitionistic logic*. If we view classical logic as based on *set theory*, then intuitionistic logic would be based on *category theory* and its related theories. If *classical logic* is based on Plato's theory of forms, then intuitionism began with a philosophical idea originating from Kant and Schopenhauer: the idea that the world as we experience it is largely predetermined of out perceptions of it. Thus without absolute standards for truth, a proof of a proposition becomes something that you *construct*, rather than something you discover.
+基于这些以及其他原因，20世纪诞生了一整个新的逻辑学派，称为*直觉主义逻辑* (intuitionistic logic)。如果我们将经典逻辑视为基于*集合论* (set theory)，那么直觉主义逻辑则基于*范畴论* (category theory) 及其相关理论。如果说*经典逻辑*是基于柏拉图的理念论 (Plato's theory of forms)，那么直觉主义起源于康德 (Kant) 和叔本华 (Schopenhauer) 的哲学思想：即我们所体验的世界在很大程度上由我们的感知预先决定。因此，在没有绝对真理标准的情况下，命题的证明成为你*构造*出来的东西，而不是你发现的东西。
 
-Classical and intuitionistic logic diverge from one another right from the start: because according to intuitionistic logic we are *constructing* proofs rather than *discovering* them as some universal truth, we are *off with the principle of bivalence*. That is, in intuitionistic logic we have no basis to claim that each statements is necessarily *true or false*. For example, there might be a statements that might not be provable not because they are false, but simply because they fall outside of the domain of a given logical system (the twin-prime conjecture is often given as an example for this.) 
+经典逻辑和直觉主义逻辑从一开始就分道扬镳：因为根据直觉主义逻辑，我们是*构造*证明，而不是像某种普遍真理那样*发现*证明，我们就*偏离了二值性原则* (the principle of bivalence)。也就是说，在直觉主义逻辑中，我们没有依据宣称每个命题必定*为真或为假*。例如，某些命题可能无法被证明，这并不是因为它们是假的，而是因为它们超出了给定逻辑系统的范围（孪生素数猜想经常被用作例子）。
 
-Anyway, intuitionistic logic is not bivalent, i.e. we cannot have all propositions reduced to true and false. 
+总之，直觉主义逻辑不是二值的，即我们不能将所有命题简化为真和假。
 
-![The True/False dichotomy](../05_logic/true_false.svg)
+![真/假二分法](../05_logic/true_false.svg)
 
-One thing that we still do have there are propositions that are "true" in the sense that a proof for them is given - the primary propositions. So with some caveats (which we will see later) the bivalence between true and false proposition might be thought out as similar to the bivalence between the existence or absense of a proof for a given proposition - there either is a proof of it or there isn't.
+有一件事我们依然有，那就是某些命题是“真的”，意味着有一个证明可以为它们提供支持——这是基本命题。所以，在某些限制条件下（稍后我们会看到），可以将真命题与假命题之间的二值性视为命题的证明存在或不存在之间的二值性——要么有证明，要么没有。
 
-![The proved/unproved dichotomy](../05_logic/proved_unproved.svg)
+![已证明/未证明二分法](../05_logic/proved_unproved.svg)
 
-This bivalence is at the heart of what is called the Brouwer–Heyting–Kolmogorov (BHK) interpretation of logic, something that we will look into next.
+这种二值性是所谓的布劳威尔–海廷–柯尔莫戈罗夫 (Brouwer–Heyting–Kolmogorov, BHK) 逻辑解释的核心，我们接下来会深入探讨。
 
-The original formulation of the BHK interpretation is not based on any particular mathematical theory. Here, we will first illustrate it using the language of set theory (just so we can abandon it a little later).
+BHK 解释的原始形式并不基于任何特定的数学理论。这里，我们将首先用集合论的语言来说明它（只是为了稍后将其放弃）。
 
-The *and* and *or* operations
+*和* 和 *或* 操作
 ---
 
-As the existence of a proof of a proposition is taken to mean that the proposition is true, the definitions of *and* is rather simple - the proof of $A ∧ B$ is just *a pair* containing a proof of $A$, and a proof of $B$ i.e. *a set-theoretic product* of the two (see chapter 2). The principle for determining whether the proposition is true or false is similar to that of primary propositions - if the pair of proofs of $A$ and  $B$ exist (i.e. if both proofs exist) then the proof of $A \land B$ can be constructed (and so $A \land B$ is "true").
+由于命题的证明存在意味着命题为真，因此*和* (and) 的定义非常简单——$A ∧ B$ 的证明就是一个包含 $A$ 的证明和 $B$ 的证明的*对*，即它们的*集合论乘积*（参见第2章）。决定命题真假的原则与基本命题相似——如果 $A$ 和 $B$ 的证明对存在（即，如果两个证明都存在），那么 $A ∧ B$ 的证明可以被构造（因此 $A ∧ B$ 是“真”的）。
 
-![And in the BHK interpretation](../05_logic/bhk_and.svg)
+![BHK 解释中的和操作](../05_logic/bhk_and.svg)
 
-**Question:** what would be the **or** operation in this case?
+**问题：** 在这种情况下，**或** 操作会是什么？
 
-The *implies* operation
+*蕴含* 操作
 ---
 
-Now for the punchline: in the BHK interpretation, the *implies* operation is just a *function* between proofs. Saying that $A$ implies $B$ ($A \to B$) would just mean that there exist a function which can convert a proof of $A$ to a proof of $B$. 
+现在到了关键点：在 BHK 解释中，*蕴含* 操作只是证明之间的*函数*。说 $A$ 蕴含 $B$ ($A \to B$) 只意味着存在一个函数可以将 $A$ 的证明转换为 $B$ 的证明。
 
-![Implies in the BHK interpretation](../05_logic/bhk_implies.svg)
+![BHK 解释中的蕴含操作](../05_logic/bhk_implies.svg)
 
-And, (it gets even more interesting) the *modus ponens* rule of inference is nothing more than the process of *functional application*. i.e. if we have a proof of $A$ and a function $A \to B$ we can call this function to obtain a proof of $B$.
+更有趣的是，*蕴含规则* (modus ponens) 只不过是*函数应用*的过程。即，如果我们有 $A$ 的证明和一个 $A \to B$ 的函数，我们可以调用该函数来得到 $B$ 的证明。
 
-(In order to define this formally, we also need to define functions in terms of sets i.e. we need to have a set representing $A \to B$ for each $A$ and $B$. We will come back to this later.)
+（为了正式定义这一点，我们还需要以集合的形式定义函数，即我们需要为每个 $A$ 和 $B$ 具有一个表示 $A \to B$ 的集合。稍后我们会回到这个话题。）
 
-The *if and only if* operation
+*当且仅当* 操作
 ---
 
-In the section on classical logic, we proved that two propositions $A$ and $B$ are equivalent if $A$ implies $B$ and $B$ implies $A$. But if the *implies* operation is just a function, then proposition are equivalent precisely when there are two functions, converting each of them to the other i.e. when the sets containing the propositions are *isomorphic*.
+在经典逻辑部分，我们证明了当 $A$ 蕴含 $B$ 且 $B$ 蕴含 $A$ 时，两个命题 $A$ 和 $B$ 是等价的。但如果*蕴含*操作只是一个函数，那么命题等价的条件恰好是存在两个函数将它们相互转换，即命题的集合是*同构*的。
 
-![Implies in the BHK interpretation](../05_logic/bhk_iff.svg)
+![BHK 解释中的当且仅当操作](../05_logic/bhk_iff.svg)
 
-(Perhaps we should note that *not all set-theoretic functions are proofs*, only a designated set of them (which we call *canonical* functions) i.e. in set theory you can construct functions and isomorphisms between any pair of singleton sets, but that won't mean that all proofs are equivalent.)
+（或许我们应该注意到，*并不是所有的集合论函数都是证明*，只有一个指定的函数集合（我们称之为*规范函数*），即在集合论中你可以在任意两个单元素集合之间构造函数和同构，但这并不意味着所有证明都是等价的。）
 
-The *negation* operation
+*否定* 操作
 ---
 
-So according to BHK interpretation saying that $A$ is true, means that that we possess a proof of $A$ - simple enough. But it's a bit harder to express the fact that $A$ is false: it is not enough to say that we *don't have a proof* of $A$ (the fact that don't have it, doesn't mean it doesn't exist). Instead, we must show that claiming that $A$ is true leads to a *contradiction*.
+因此，根据 BHK 解释，说 $A$ 为真意味着我们拥有 $A$ 的证明——这很简单。但要表达 $A$ 为假就有点困难了：仅仅说我们*没有证明* $A$ 是不够的（没有证明并不意味着它不存在）。相反，我们必须表明，声称 $A$ 为真会导致*矛盾*。
 
-To express this, intuitionistic logic defines the constant $⊥$ which plays the role of *False* (also known as the "bottom value"). $⊥$ is defined as the proof of a formula that does not have any proofs. And the equivalent of false propositions are the ones that imply that the bottom value is provable (which is a contradiction). So $¬A$ is $A \to ⊥$. 
+为了表达这一点，直觉主义逻辑定义了常量 $⊥$，它起到*假*的作用（也称为“底部值”）。$⊥$ 被定义为一个没有任何证明的公式的证明。而假命题则是那些蕴含底值可证明的命题（这是一种矛盾）。因此，$¬A$ 就是 $A \to ⊥$。
 
-In set theory, the $⊥$ constant is expressed by the empty set.
+在集合论中，$⊥$ 常量通过空集来表示。
 
-![False in the BHK interpretation](../05_logic/bhk_false.svg)
+![BHK 解释中的假操作](../05_logic/bhk_false.svg)
 
-And the observation that propositions that are connected to the bottom value are false is expressed by the fact that if a proposition is true, i.e. there exists a proof of it, then there can be no function from it to the empty set.
+命题与底值相连的观察则通过这样表达：如果一个命题为真，即存在它的证明，那么不可能存在从该命题到空集的函数。
 
-![False in the BHK interpretation](../05_logic/bhk_false_function.svg)
+![BHK 解释中的假函数](../05_logic/bhk_false_function.svg)
 
-The only way for there to be such function is if the set of proofs of the proposition is empty as well.
+唯一能够存在此类函数的情况是该命题的证明集合也是空的。
 
-![False in the BHK interpretation](../05_logic/bhk_false_function_2.svg)
+![BHK 解释中的假函数2](../05_logic/bhk_false_function_2.svg)
 
-**Task:** Look up the definition of function and verify that there cannot exist a function from any set *to the empty set* 
+**任务：** 查找函数的定义，并验证不能存在从任何集合*到空集*的函数。
 
-**Task** Look up the definition of function and verify that there does exist a function *from the empty set* to itself (in fact there exist a function from the empty set to any other set.
+**任务：** 查找函数的定义，并验证确实存在从*空集*到自身的函数（实际上存在从空集到任何其他集合的函数）。
 
-The law of excluded middle
+排中律
 ---
 
-Although intuitionistic logic differs a lot from classical logic when it comes to its *semantics*, i.e. in the way the whole system is built (which we described above), it actually doesn't differ so much in terms of *syntax*, i.e. if we try to deduce the axiom schemas/rules of inference that correspond to the definitions of the structures outlined above, we would see that they are virtually the same as the ones that define classical logic. There is, however, one exception concerning the *double negation elimination axiom* that we saw earlier, a version of which is known as *the law of excluded middle*.
+虽然直觉主义逻辑与经典逻辑在*语义*上（即系统的构建方式）有很大不同，但在*语法*上它们并没有太多差异。也就是说，如果我们尝试推导出与上述结构定义相对应的公理模式/推理规则，会发现它们与定义经典逻辑的规则几乎相同。然而，存在一个例外，就是我们之前看到的*双重否定消除公理* (double negation elimination axiom)，其中一个版本被称为*排中律* (the law of excluded middle)。
 
-![The formula of the principle of the excluded middle](../05_logic/excluded_middle_formula.svg)
+![排中律公式](../05_logic/excluded_middle_formula.svg)
 
-This law is valid in classical logic and is true when we look at its truth tables, but there is no justification for it terms of the BHK interpretation. Why? in intuitionistic logic saying that something is false amounts to *constructing a proof* that it is false (that it implies the bottom value) and there is no method/function/alghorithm that can either prove that a given proposition is either true and false.
+该定律在经典逻辑中是有效的，并且在真值表中为真，但在 BHK 解释中没有依据。为什么？在直觉主义逻辑中，说某事为假等于*构造一个证明*来表明它为假（即它蕴含底值），而不存在任何可以证明给定命题为真或假的方法/函数/算法。
 
-The question of whether you can use the law of excluded middle spawned a heated debate between the classical logic proponent David Hilbert and the intuitionistic logic proponent L.E.J. Brouwer, known as *the Brouwer–Hilbert controversy*.
+关于能否使用排中律的问题引发了一场激烈的辩论，经典逻辑的支持者大卫·希尔伯特 (David Hilbert) 与直觉主义逻辑的支持者 L.E.J. 布劳威尔 (L.E.J. Brouwer) 展开了争论，这场争论被称为*布劳威尔–希尔伯特争论* (the Brouwer–Hilbert controversy)。
 
-Logics as categories
+逻辑作为范畴 (Logics as categories)
 ===
 
-Leaving the differences between intuitionistic and classical logics aside, the BHK interpretation is interesting because it provides that higher-level view of logic, that we need in order to construct a interpretation of it based on category theory. 
+撇开直觉主义逻辑和经典逻辑之间的差异不谈
 
-Such higher-level interpretations of logic are sometimes called *algebraic* interpretations, *algebraic* being an umbrella term describing all structures that can be represented using category theory, like groups and orders.
+，BHK 解释的有趣之处在于它提供了一种更高层次的逻辑视角，这是我们基于范畴论构建逻辑解释所需要的。
 
-The Curry-Howard isomorphism
+这种更高层次的逻辑解释有时被称为*代数解释*，代数是一个广义术语，描述了所有可以用范畴论表示的结构，比如群和序。
+
+柯里–霍华德同构 (The Curry-Howard isomorphism)
 ---
 
-Programmers might find the definition of the BHK interpretation interesting for other reason - it is very similar to a definition of a programming language: propositions are *types*, the *implies* operations are *functions*, *and* operations are composite types (objects), and *or* operations are *sum types* (which are currently not supported in most programming languages, but that's a separate topic). Finally a proof of a given proposition is represented by a value of the corresponding type. 
-![Logic as a programming language](../05_logic/logic_curry.svg)
+程序员可能会觉得 BHK 解释的定义很有趣，因为它与编程语言的定义非常相似：命题是*类型*，*蕴含*操作是*函数*，*和*操作是复合类型（对象），而*或*操作是*和类型*（目前大多数编程语言还不支持这种类型，但这是另一个话题）。最终，命题的证明通过对应类型的值来表示。
+![逻辑作为编程语言](../05_logic/logic_curry.svg)
 
-This similarity is known as the *Curry-Howard isomorphism*.
+这种相似性被称为*柯里–霍华德同构* (the Curry-Howard isomorphism)。
 
-**Task:** The Curry-Howard isomorphism is also the basis of special types of programming languages called "proof assistants" which help you verify logical proofs. Install a proof assistant and try to see how it works (I recommend the Coq Tutorial by Mike Nahas).
+**任务：** 柯里–霍华德同构也是一种特殊类型编程语言（称为“证明助手”）的基础，它可以帮助你验证逻辑证明。安装一个证明助手并尝试使用它（我推荐 Mike Nahas 的 Coq 教程）。
 
-Cartesian closed categories
+笛卡尔闭范畴 (Cartesian closed categories)
 ---
 
-Knowing about the Curry-Howard isomorphism and knowing also that programming languages can be described by category theory may lead us to think that *category theory is part of this isomorphism as well*. And we would be quite correct --- this is why it is sometimes known as the Curry-Howard-*Lambek* isomorphism (Joachim Lambek being the person who formulated the categorical side). So let's examine this isomorphism. As all other isomorphisms, it comes in two parts: 
+知道了柯里–霍华德同构，并且也知道编程语言可以用范畴论来描述，可能会让我们认为*范畴论也是该同构的一部分*。我们的想法是正确的——这就是为什么它有时被称为柯里–霍华德–兰贝克 (Curry-Howard-Lambek) 同构（约阿希姆·兰贝克 (Joachim Lambek) 是提出范畴方面同构的人）。让我们来研究一下这种同构。像其他同构一样，它由两部分组成：
 
-The first part is finding a way to convert a *logical system* into a category - this would not be hard for us, as sets form a category and the flavor of the BHK interpretation that we saw is based on sets.
+第一部分是将*逻辑系统*转换为范畴——这对我们来说并不难，因为集合构成了一个范畴，而我们看到的 BHK 解释的形式是基于集合的。
 
-![Logic as a category](../05_logic/category_curry_logic.svg)
+![逻辑作为范畴](../05_logic/category_curry_logic.svg)
 
-**Task:** See whether you can prove that logic propositions and the "implies" relation form a category. What is missing?
+**任务：** 看看你能否证明逻辑命题和“蕴含”关系构成一个范畴。还缺少什么？
 
-The second part involves converting a category into a logical system - this is much harder. To do it, we have to enumerate the criteria that a given category has to adhere to, in order for it to be "logical". These criteria have to guarantee that the category has objects that correspond to all valid logical propositions and no objects that correspond to invalid ones. 
+第二部分涉及将范畴转换为逻辑系统——这要困难得多。为了做到这一点，我们必须列举一个范畴必须遵守的标准，以使其成为“逻辑的”。这些标准必须保证范畴中有对应于所有有效逻辑命题的对象，而没有对应于无效命题的对象。
 
-![Logic as a category](../05_logic/logic_curry_category.svg)
+![逻辑作为范畴](../05_logic/logic_curry_category.svg)
 
-Categories that adhere to these criteria are called *cartesian closed categories*. To describe them here directly, but instead we would start with a similar but simpler structures that we already examined - orders.
+符合这些标准的范畴被称为*笛卡尔闭范畴* (cartesian closed categories)。我们将不会直接描述它们，而是从我们已经研究过的类似但更简单的结构——序开始。
 
-Logics as orders
+逻辑作为序 (Logics as orders)
 ---
 
-So, we already saw that a logical system along with a set of primary propositions forms a category.
+所以，我们已经看到一个逻辑系统和一组基本命题形成了一个范畴。
 
-![Logic as a preorder](../05_logic/logic_category.svg)
+![逻辑作为预序](../05_logic/logic_category.svg)
 
-If we assume that there is only one way to go from proposition $A$, to proposition $B$ (or there are many ways, but we are not interested in the difference between them), then logic is not only a category, but a *preorder* in which the relationship "bigger than" is taken to mean "implies", so ($A \to B$ is $A > B$).
+如果我们假设从命题 $A$ 到命题 $B$ 只有一种方式（或者有很多方式，但我们对它们之间的差异不感兴趣），那么逻辑不仅是一个范畴，而且是一个*预序*，其中“比……大”的关系意味着“蕴含”，因此 ($A \to B$ 是 $A > B$)。
 
-![Logic as a preorder](../05_logic/logic_preorder.svg)
+![逻辑作为预序](../05_logic/logic_preorder.svg)
 
-Furthermore, if we count propositions that follow from each other (or sets of propositions that are proven by the same proof) as equivalent, then logic is a proper *partial order*.
+此外，如果我们将彼此相互推导的命题（或由同一证明证明的一组命题）视为等价，那么逻辑就是一个真正的*偏序*。
 
-![Logic as an order](../05_logic/logic_order.svg)
+![逻辑作为序](../05_logic/logic_order.svg)
 
-And so it can be represented by a Hasse diagram, in which $A \to B$ only if $A$ is below $B$ in the diagram.
+因此它可以用一个哈斯图 (Hasse diagram) 来表示，其中 $A \to B$ 仅当 $A$ 位于图中的 $B$ 之下。
 
-![Logic as an order](../05_logic/logic_hasse.svg)
+![逻辑作为序](../05_logic/logic_hasse.svg)
 
-This is something quite characteristic of category theory --- examining a concept in a more limited version of a category (in this case orders), in order to make things simpler for ourselves. 
+这是范畴论的一个非常典型的特征——在一个更有限的范畴版本中检查一个概念（在本例中是序），以简化我们的分析。
 
-Now let's examine the question that we asked before - exactly which ~~categories~~ orders represent logic and what laws does an order have to obey so it is isomorphic to a logical system? We will attempt to answer this question as we examine the elements of logic again, this time in the context of orders.
+现在让我们重新审视之前提出的问题——究竟哪些~~范畴~~序表示逻辑，序必须遵守哪些定律才能与逻辑系统同构？我们将在重新讨论逻辑元素时，在序的背景下尝试回答这个问题。
 
-The and and or operations
+*和* 和 *或* 操作
 ---
 
-By now you probably realized that the *and* and *or* operations are the bread and butter of logic (although it's not clear which is which). As we saw, in the BHK interpretation those are represented by set *products* and *sums*. The equivalent constructs in the realm of order theory are *meets* and *joins* (in category-theoretic terms *products* and *coproducts*.)
+到现在为止，你可能已经意识到*和* (and) 和 *或* (or) 操作是逻辑的基本组成部分（尽管还不清楚哪一个是“和”，哪一个是“或”）。正如我们所见，在 BHK 解释中，它们由集合的*积* (products) 和*和* (sums) 表示。在序理论中，对应的结构是*交* (meets) 和*并* (joins)（在范畴论术语中，分别是*积*和*余积*）。
 
-![Order meet and joing](../05_logic/lattice_meet_join.svg)
+![序的交和并](../05_logic/lattice_meet_join.svg)
 
-Logic allows you to combine any two propositions in and *and* or *or* relationship, so, in order for an order to be "logical" (to be a correct representation for a logical system,) *it has to have $meet$ and $join$ operations for all elements*. Incidentally we already know how such orders are called - they are called *lattices*.
+逻辑允许你将任意两个命题结合在*和*或*或*关系中，因此，为了使序“逻辑化”（即成为逻辑系统的正确表示），它必须对所有元素具有 $meet$ 和 $join$ 操作。顺便说一句，我们已经知道这种序叫什么——它们叫做*格* (lattices)。
 
-And there is one important law of the  *and* and *or* operations, that is not always present in all lattices. It concerns the connection between the two, i.e. way that they distribute, over one another.
+*和*和*或*操作有一条重要定律，它并不总是出现在所有格中。它涉及二者之间的连接方式，即它们在彼此上的分布方式。
 
-![The distributivity operation of "and" and "or"](../05_logic/logic_distributivity.svg)
+![“和”和“或”的分配律](../05_logic/logic_distributivity.svg)
 
-Lattices that obey this law are called *distributive lattices*.
+遵守该定律的格被称为*分配格* (distributive lattices)。
 
-Wait, where have we heard about distributive lattices before? In the previous chapter we said that they are isomorphic to *inclusion orders* i.e. orders of sets, that contain a given collection of elements, and that contain *all combinations* of a given set of elements. The fact that they popped up again is not coincidental --- "logical" orders are isomorphic to inclusion orders. To understand why, you only need to think about the BHK interpretation --- the elements which participate in the inclusion are our prime propositions. And the inclusions are all combinations of these elements, in an *or* relationship (for simplicity's sake, we are ignoring the *and* operation.)
+等等，我们之前在哪里听过分配格？在前一章中，我们说它们与*包含序* (inclusion orders) 同构，即包含给定元素集的序，并且包含这些元素集的*所有组合*。它们再次出现并非偶然——“逻辑的”序与包含序同构。要理解原因，你只需要考虑 BHK 解释——参与包含的元素就是我们的基本命题。包含就是这些元素的所有组合，以*或*关系的形式（为了简化起见，我们忽略了*和*操作）。
 
-![A color mixing poset, ordered by inclusion](../05_logic/logic_poset_inclusion.svg)
+![颜色混合偏序，按包含排序](../05_logic/logic_poset_inclusion.svg)
 
-The *or* and *and* operations (or, more generally, the *coproduct* and the *product*) are, of course, categorically dual, which would explain why the symbols that represent them $\lor$ and $\land$ are the one and the same symbol, but flipped vertically. 
+*或* 和 *和* 操作（或更一般地，*余积* 和 *积*）在范畴上是对偶的，这也可以解释为什么表示它们的符号 $\lor$ 和 $\land$ 是同一个符号，只不过垂直翻转。
 
-And even the symbol itself looks like a representation of the way the arrows converge. This is probably not the case, as this symbol is used way before Hasse diagrams were a thing --- for all we know the $\lor$ symbol is probably symbolizes the "u" in "uel" (the latin word for "or") and the *and* symbol is just a flipped "u") --- but I still find the similarity fascinating.
+甚至连符号本身看起来也像箭头汇聚的表示。这可能并非巧合，因为这种符号的使用远早于哈斯图的出现——据我们所知，$\lor$ 符号可能象征着拉丁词“uel”（“或”）中的“u”，而*和*符号则只是一个倒转的“u”——但我仍然觉得这种相似性很有趣。
 
-The *negation* operation
+*否定* 操作
 ---
 
-In order for a distributive lattice to represent a logical system, it has to also have objects that correspond to the values *True* and *False* (which are written $\top$ and $\bot$). But, to mandate that these objects exist, we must first find a way to specify what they are in order/category-theoretic terms.
+为了使分配格表示一个逻辑系统，它还必须有对应*真* (True) 和*假* (False) 值的对象（分别写作 $\top$ 和 $\bot$）。但是，要规定这些对象的存在，我们必须首先找到一种方式来指定它们在序/范畴论术语中的定义。
 
-A well-known result in logic, called *the principle of explosion*, states that if we have a proof of *False* (which we write as $\bot$) i.e. if we have a statement "*False* is true" if we use the terminology of classical logic, then any and every other statement can be proven. And we also know that no true statement implies *False* (in fact in intuitionistic logic this is the definition of a true statement). Based on these criteria we know that the *False* object would look like this when compared to other objects:
+逻辑中一个著名的结果，称为*爆炸原理* (the principle of explosion)，指出如果我们有一个*假*的证明（我们写作 $\bot$），即如果我们有一个“假为真”的陈述（使用经典逻辑的术语），那么任何其他陈述都可以被证明。而且我们也知道没有一个真实陈述能蕴含*假*（事实上，在直觉主义逻辑中，这是定义一个真陈述的方式）。基于这些标准，我们知道*假*对象在与其他对象的比较中如下所示：
 
-![False, represented as a Hasse diagram](../05_logic/lattice_false.svg)
+![哈斯图中的假](../05_logic/lattice_false.svg)
 
-Circling back to the BHK interpretation, we see that the empty set fits both of these conditions.
+回到 BHK 解释，我们看到空集符合这两个条件。
 
-![False, represented as a Hasse diagram](../05_logic/lattice_false_bhk.svg)
+![哈斯图中的假](../05_logic/lattice_false_bhk.svg)
 
-Conversely, the proof of *True* which we write as $\top$, expressing the statement that "*True* is true", is trivial and doesn't say anything, so *nothing follows from it*, but at the same time it follows from every other statement.
+相反，表示*真* (True) 的证明，我们写作 $\top$，表达的是“*真为真*”这一陈述，这是微不足道的，并没有任何信息，因此*没有任何东西能从它推导出来*，但同时它又从每个其他陈述中推导出来。
 
-![True, represented as a Hasse diagram](../05_logic/lattice_true.svg)
+![哈斯图中的真](../05_logic/lattice_true.svg)
 
-So *True* and *False* are just the *greatest* and *least* objects of our order (in category-theoretic terms *terminal* and *initial* object.) 
+因此*真*和*假*只是我们序的*最大*和*最小*对象（在范畴论术语中，分别是*终端* (terminal
 
-![The whole logical system, represented as a Hasse diagram](../05_logic/lattice_true_false.svg)
+) 和*初始* (initial) 对象）。
 
-This is another example of the categorical concept of duality - $\top$ and $\bot$ are dual to each other, which makes a lot of sense if you think about it, and also helps us remember their symbols (althought if you are like me, you'll spent a year before you stop wondering which one is which, every time I see them).
+![整个逻辑系统的哈斯图表示](../05_logic/lattice_true_false.svg)
 
-So in order to represent logic, our distributive lattice has to also be *bounded* i.e. it has to have greatest and least elements (which play the roles of *True* and *False*).
+这是范畴论中对偶性的另一个例子——$\top$ 和 $\bot$ 是相互对偶的，这很有意义，如果你仔细思考的话，也有助于我们记住它们的符号（尽管如果你像我一样，每次看到它们时总是要花一年的时间来搞清楚哪个是哪个）。
 
-The *implies* operation
+因此，为了表示逻辑，我们的分配格还必须是*有界的* (bounded)，即它必须具有最大和最小元素（分别扮演*真*和*假*的角色）。
+
+*蕴含* 操作
 ---
 
-As we said, every lattice has representations of propositions implying one another (i.e. it has arrows), but to really represents a logical system it also has to have *function objects* i.e. there needs to be a rule that identifies a unique object $A → B$ for each pair of objects $A$ and $B$, such that all axioms of logic are followed. 
+正如我们所说，每个格都有表示命题相互蕴含的表示（即它具有箭头），但要真正表示一个逻辑系统，它还必须有*函数对象* (function objects)，即必须有一个规则为每对对象 $A$ 和 $B$ 识别一个唯一的对象 $A → B$，以便遵循所有逻辑公理。
 
-![Implies operation](../05_logic/implies.svg)
+![蕴含操作](../05_logic/implies.svg)
 
-We will describe this object in the same way we described all other operations --- by defining a structure consisting of a of objects and arrows in which $A → B$ plays a part. And this structure is actually a categorical reincarnation our favorite rule of inference, the *modus ponens*.
+我们将像定义其他操作那样定义该对象——通过定义一个由对象和箭头组成的结构，其中 $A → B$ 扮演重要角色。该结构实际上是我们最喜欢的推理规则*蕴含规则* (modus ponens) 的范畴重现。
 
-![Implies operation](../05_logic/implies_modus_ponens.svg)
+![蕴含操作](../05_logic/implies_modus_ponens.svg)
 
-Modus ponens is the essence of the *implies* operation, and, because we already know how the operations that it contains (*and* and *implies*) are represented in our lattice, we can directly use it as a definition by saying that the object $A → B$ is the one for which modus ponens rule holds.
+蕴含规则是*蕴含*操作的本质，而且因为我们已经知道它所包含的操作（*和*和*蕴含*）如何在我们的格中表示，所以我们可以直接将其用作定义，声明对象 $A → B$ 是满足蕴含规则的对象。
 
-> The function object $A → B$ is an object which is related to objects $A$ and $B$ in such a way that such that $A ∧ (A → B) → B$.
+> 函数对象 $A → B$ 是一个与对象 $A$ 和 $B$ 相关的对象，使得 $A ∧ (A → B) → B$。
 
-This definition is not complete, however, because (as usual) $A → B$ is *not the only object* that fits in this formula. For example, the set $A → B ∧ C$ is also one such object, as is $A → B ∧ C ∧ D$ (not going to draw all the arrows here, because it will get too (and I mean too) messy).
+然而，这个定义是不完整的，因为（如同往常一样）$A → B$ 并不是唯一满足这个公式的对象。例如，集合 $A → B ∧ C$ 也是这样的一个对象，$A → B ∧ C ∧ D$ 也是（我不会在这里画出所有的箭头，因为它会变得过于（真的很过于）复杂）。
 
-![Implies operation with universal property](../05_logic/implies_modus_ponens_impostors.svg)
+![具有普遍性质的蕴含操作](../05_logic/implies_modus_ponens_impostors.svg)
 
-So how do we set apart the real formula from all those "imposter" formulas? If you remember the definitions of the *categorical product* (or of its equivalent for orders, the *meet* operation) you would already know where this is going: we recognize that $A \to B$ is the upper *limit* of $A → B ∧ C$ and $A → B ∧ C ∧ D$ and all other imposter formulas that can be in the place of $X$ in $A ∧ X → B$. The relationship can be described in a variety of ways:
+那么我们如何区分真正的公式和所有这些“冒牌”公式呢？如果你记得*范畴积* (categorical product) 的定义（或它在序中的等价物，即*交*操作），你已经知道我们将要去的地方：我们认识到 $A \to B$ 是 $A → B ∧ C$ 和 $A → B ∧ C ∧ D$ 以及所有其他冒牌公式的*上限* (upper limit)。这种关系可以通过多种方式描述：
 
-* We can say that $A \to B$ is the most *trivial* result for which the formula $A ∧ X → B$ is satisfied and that all other results are *stronger*.
-* We can say that all other results imply $A \to B$ but not the other way around.
-* We can say that all other formulas lie *below* $A → B$ in the Hasse diagram.
+* 我们可以说 $A \to B$ 是使公式 $A ∧ X → B$ 成立的最*平凡*的结果，所有其他结果都*更强*。
+* 我们可以说所有其他结果都蕴含 $A \to B$，但反之不然。
+* 我们可以说所有其他公式都在哈斯图中*低于* $A → B$。
 
-![Implies operation with universal property](../05_logic/implies_universal_property.svg)
+![具有普遍性质的蕴含操作](../05_logic/implies_universal_property.svg)
 
-So, after choosing the best way to express the relationship (they are all equivalent) we are ready to present our final definition: 
+所以，在选择表达关系的最佳方式之后（它们都是等价的），我们准备给出我们的最终定义：
 
-> The function object $A → B$ is the topmost object which is related to objects $A$ and $B$ in such a way that $A ∧ (A → B) → B$.
+> 函数对象 $A → B$ 是满足公式 $A ∧ (A → B) → B$ 的*最高*对象。
 
-The existence of this function object (called *exponential object* in category-theoretic terms) is the final condition for an order/lattice to be a representation of logic.
+该函数对象（在范畴论术语中称为*指数对象* (exponential object)）的存在是序/格成为逻辑表示的最后一个条件。
 
-Note, by the way, that this definition of function object is valid specifically for intuinistic logic. For classical logic, the definition of  is simpler --- there $A → B$ is just $\lnot A ∨ B$, because of the law of excluded middle. 
+顺便提一下，这种函数对象的定义仅对直觉主义逻辑有效。对于经典逻辑，定义更简单——在经典逻辑中，$A → B$ 只是 $\lnot A \lor B$，因为排中律的存在。
 
-The *if and only if* operation
+*当且仅当* 操作
 ---
 
-When we examined the *if and only if* operation can be defined in terms *implies*, that is $A \leftrightarrow B$ is equivalent to $A \to B \land B \to A$.
+当我们检查*当且仅当* (if and only if) 操作时，我们看到它可以用*蕴含*来定义，即 $A \leftrightarrow B$ 等价于 $A \to B \land B \to A$。
 
-![Implies identity](../05_logic/isomorphism.svg)
+![蕴含等价](../05_logic/isomorphism.svg)
 
-We have something similar for categorical logic as well --- We say that when two propositions are connected to each other, then, particularily when we speak of orders, they are isomorphic.
+在范畴逻辑中，我们也有类似的东西——我们说当两个命题相互关联时，特别是在我们谈论序时，它们是同构的。
 
-A taste of categorical logic
+范畴逻辑的初体验 (A taste of categorical logic)
 ===
 
-In the previous section we saw some definitions, here we will convince ourselves that they really capture the concept of logic correctly, by proving some results using categorical logic.
+在上一节中，我们看到了许多定义，在这里我们将通过范畴逻辑证明一些结果，以验证这些定义是否确实正确地捕捉了逻辑的概念。
 
-True and False
+*真*和*假*
 ---
 
-The join (or least upper bound) of the *topmost* object $\top$ (which plays the role of the value *True*) and any other object that you can think of, is... $\top$ itself (or something isomorphic to it, which, as we said, is the same thing). This follows trivially from the fact that the join of two objects must be bigger or equal than both of these objects, and that there is no other object that is bigger or equal to the $\top$ is $\top$ itself. This is simply because $\top$ (as any other object) is equal to itself and because there is by definition no object that is bigger than it.
+*上限* (join)（或*最小上界* (least upper bound)）是对象 $\top$（起到*真*的作用）和任何你能想到的其他对象的结合结果是…… $\top$ 本身（或与它同构的东西，如我们所说，这就是同一件事）。这一点可以从以下事实中推导出来：两个对象的上限必须大于或等于这两个对象，并且没有其他对象比 $\top$ 更大。因此唯一可能的上限就是 $\top$ 本身。这是因为 $\top$（与任何其他对象一样）等于它自身，并且根据定义，没有其他对象比它更大。
 
-![Implies identity](../05_logic/join_true.svg)
+![蕴含等价](../05_logic/join_true.svg)
 
-This corresponds to the logical statement that $A \lor \top$ is equal to $\top$ i.e. it is true. Hence, the above observation is a proof of that statement, (an alternative to truth tables).
+这对应于逻辑陈述 $A \lor \top$ 等于 $\top$，即为真。因此，上述观察是该陈述的证明（作为真值表的替代方案）。
 
-**Task**: Think of the duel situation, with False. What does it imply, logically?
+**任务：** 想想与假相对的情况，它在逻辑上意味着什么？
 
-And and Or
+*和* 和 *或*
 ---
-Above, we saw that the join between any random object and the top object is the top object itself. But, does this situation only occur when the second object is $\top$? Wouldn't the same thing happen if $\top$ it is replaced by any other object that is higher than the first one?
+上面我们看到，任何随机对象与最大对象的上限是最大对象本身。但这种情况是否只会发生在第二个对象是 $\top$ 时？如果用比第一个对象大的任何其他对象代替 $\top$，难道不会发生同样的情况吗？
 
-![Implies identity](../05_logic/join_bigger_true.svg)
+![蕴含等价](../05_logic/join_bigger_true.svg)
 
-The answer is "Yes": when we are looking for the join of two object, we are looking for the *least* upper bound i.e. the *lowest* object that is above both of them. So, any time we have two objects and one is higher than the other, their join would be (isomorphic to) the higher object.
+答案是“是的”：当我们寻找两个对象的上限时，我们寻找的是*最小*上界，即位于它们两者之上的*最低*对象。因此，任何时候我们有两个对象且一个对象比另一个高时，它们的上限将（与）更高的对象（同构）。
 
-![Implies identity](../05_logic/join_bigger.svg)
+![蕴含等价](../05_logic/join_bigger.svg)
 
-In other words, if $A \to B$, then $A \land B \leftrightarrow B$
+换句话说，如果 $A \to B$，那么 $A \land B \leftrightarrow B$。
 
-Implies
+蕴含
 ---
 
-For our first example with implies, let's take the formula $A → B$, and examine the case when $A$ and $B$ are the same object. We said that, $A → B$ ($A → A$ in our case) is the topmost object $X$ for which the criteria given by the formula $A ∧ X → B$ is satisfied. But in this case, the formula is satisfied for any $X$, (because it evaluates to $A ∧ X → A$, which is always true), i.e. the topmost object that satisfies it is... the topmost object there is i.e. (an object isomorphic to) $True$. 
+对于我们的第一个蕴含操作示例，让我们以公式 $A → B$ 为例，研究 $A$ 和 $B$ 是同一个对象的情况。我们说 $A → B$（在我们的例子中是 $A → A$）是使公式 $A ∧ X → B$ 成立的最高对象 $X$。但在这种情况下，该公式对任何 $X$ 都成立（因为它等价于 $A ∧ X → A$，这是总为真的），因此满足它的最高对象是……最大的对象，即（与之同构的）*真*。
 
-![Implies identity](../05_logic/implies_identity.svg)
+![蕴含等价](../05_logic/implies_identity.svg)
 
-Does this make sense? Of course it does: in fact, we just proved one of the most famous laws in logic (called the law of identity, as per Aristotel), namely that $A → A$ is always true, or that everything follows from itself.
+这有意义吗？当然有：实际上，我们刚刚证明了逻辑中最著名的定律之一（称为亚里士多德的同一律 (the law of identity)），即 $A → A$ 总为真，或者说一切都可以从自身推出。
 
-And what happens if $A$ implies $B$ in any model, i.e. if $A \models B$ (semantic consequence)? In this case, $A$ would be below $B$ in our Hasse diagram (e.g. $A$ is the blue ball and $B$ is the orange one). Then the situation is somewhat similar to the previous case: $A ∧ X → B$ will be true, no matter what $X$ is (simply because $A$ already implies $B$, by itself). And so $A → B$ will again correspond to the $True$ object.
+如果 $A$ 蕴含 $B$ 在任何模型中，即 $A \models B$（语义后果），会发生什么？在这种情况下，$A$ 将位于哈斯图中的 $B$ 之下（例如，$A$ 是蓝色球，$B$ 是橙色球）。然后情况与之前有些类似：$A ∧ X → B$ 无论 $X$ 是什么都为真（仅仅因为 $A$ 自己已经蕴含了 $B$）。因此 $A → B$ 将再次对应于*真*对象。
 
-![Implies when A follows from B](../05_logic/implies_b_follows.svg)
+![当 A 推出 B 时的蕴含](../05_logic/implies_b_follows.svg)
 
-This is again a well-known result in logic (if I am not mistaken, it will be a deduction theorem of some sort): if $A \models B$), then the statement $(A → B)$ will always be true.
+这又是逻辑中的一个著名结果（如果我没记错的话，这将是某种推导定理）：如果 $A \models B$，那么陈述 $(A → B)$ 将总为真。
 
 <!--
-If and only if
+如果且仅如果
 ---
 
-Now for the a more complicated task: what would happen if $A$ is above $B$ i.e. if $B \models A$? What would the topmost object that fits the formula $(A ∧ X) → B$ then? Well, in this case there are many objects $A \land X$ that are also above $B$ and so they *don't* imply $B$. The highest such object that is below $B$ (so it can still imply $B$) would be... $B$ itself (as it literary sets the upper bound).
+现在来一个更复杂的任务：如果 $A$ 位于 $B$ 之上，即 $B \models A$ 会发生什么？那时适合公式 $(A ∧ X) → B$ 的最高对象是什么？在这种情况下，有很多对象 $A ∧ X$ 也位于 $B
 
-![Implies when B follows from A](../05_logic/implies_a_follows.svg)
+$ 之上，因此它们*不*蕴含 $B$。低于 $B$ 的最高对象（因此它仍然可以蕴含 $B$）将是…… $B$ 本身（因为它字面上设定了上界）。
 
-Translated to logical language, this says that if we have $B \models A$, then the proof of $A → B$ coincides with the proof of $B$.
+![当 B 推出 A 时的蕴含](../05_logic/implies_a_follows.svg)
+
+翻译成逻辑语言，这意味着如果我们有 $B \models A$，那么 $A → B$ 的证明与 $B$ 的证明一致。
 -->
 
 <!--
-Classical VS intuitionistic logic
+经典逻辑 VS 直觉主义逻辑
 ===
 
-So, we already formulated the definition of intuitionistic logic in terms of order/lattice --- it is represented by a lattice that is bounded (i.e. has greatest and least objects ($True$ and $False$)) and that has function objects (the law of distributivity which we mentioned earlier is always true for lattices that have function object).
+所以，我们已经在序/格的术语中定义了直觉主义逻辑——它由一个有界的格表示（即具有最大和最小对象（*真*和*假*）），并且具有函数对象（我们之前提到的分配律对于具有函数对象的格始终成立）。
 
-More interestingly, a lattice can follow the laws of *classical logic*, as well. it has to be *bounded* and *distributive* and in addition to that it has to be *complemented* which is to say that each proposition $A$, there exist an a unique proposition $\neg A$ (such that $A ∨ \neg A = 1$ and $A ∧ \neg A = 0$). These lattices are called *boolean algebras*.
+更有趣的是，一个格也可以遵循*经典逻辑*的定律。它必须是*有界的*和*分配的*，此外，它还必须是*补格* (complemented lattice)，即对于每个命题 $A$，存在一个唯一的命题 $\neg A$（使得 $A ∨ \neg A = 1$ 和 $A ∧ \neg A = 0$）。这些格称为*布尔代数* (boolean algebras)。
 
-Constructive proofs
+构造性证明
 ---
 
-Intuitionistic logic is also called *constructive* logic, or constructive mathematics. And the proofs in intuitionistic logic are constructive.
+直觉主义逻辑也被称为*构造性*逻辑，或构造性数学。直觉主义逻辑中的证明是构造性的。
 
-
-Proving a negative
+证明否定
 ---
 
-If classical logic is based on the belief that everything is either true or false, intuitionistic logic gives precedence to the famous common-sense principle that *you cannot prove a negative*.
+如果经典逻辑基于这样一种信念，即一切要么为真要么为假，那么直觉主义逻辑则优先考虑著名的常识性原则“*你无法证明否定*”。
 
-which means that while you can given a true statement and follow the arrows to reach other true statements, false statements would remain unreachable.
+这意味着，虽然你可以给出一个真命题，并沿着箭头推导出其他真命题，但假命题将保持无法触及。
 
-Given a logical system, consisting of axioms and rules of inference, I define positive statements as statements of the type "X follows from the axioms" and negative statements as statements of type  "X does not follow from the axioms".
+给定一个由公理和推理规则组成的逻辑系统，我将正命题定义为“X 可以从公理推出”的陈述，负命题则定义为“X 不能从公理推出”的陈述。
 
-Given those definitions, a positive statement is proven by just applying the rules of inference to the axioms until you reach the statement you want to prove, while there is no general way to prove a negative statement.
-
-![Path from truth](../05_logic/paths_truth.svg)
+根据这些定义，正命题是通过仅应用推理规则到公理直到你得到你想要证明的陈述来证明的，而对于负命题没有通用的方法来证明。
 
 
  https://www.algebraicjulia.org/blog/post/2021/09/cset-graphs-4/

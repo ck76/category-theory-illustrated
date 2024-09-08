@@ -1,167 +1,165 @@
 layout: default
 title: Types
 ---
+在书的最后一章“范畴概述”中，我们将讨论类型。如果你期待了解尽可能多的*新*范畴（其中有些范畴可能直到意外揭示之前，你甚至不会怀疑它们是范畴），那么这可能会让你感到失望。因为从第一章开始，我们就已经在用编程语言中的类型范畴来举例，因此我们已经知道它们如何形成范畴。同时，我们也熟悉了将类型与逻辑联系起来的柯里–霍华德同构 (Curry-Howard correspondence)。
 
-In the last "category overview" chapter in the book, we will talk about types. This might be disappointing, if you expected to learn about as many *new* categories as possible (for which you don't even suspect that they are categories till the unexpected reveal), as we've been giving examples with the category of types in a given programming language ever since the first chapter, and so we already know how they form a category. We are also already familiar with the Curry-Howard correspondence that connects types and logic. However, types are not just about programming languages, and they are not just another category. They are at the heart of a mathematical theory known as *type theory*, which is an alternative to set theory (and category theory too) the foundational language of mathematics, and they are as powerful tool as any of those formalisms.
+然而，类型不仅仅与编程语言有关，也不仅仅是另一个范畴。它们是*类型论* (type theory) 的核心，类型论是一种替代集合论（也是范畴论）的数学理论，作为数学的基础语言，它们与这些形式主义工具一样强大。
 
-Sets, Types and Russell's paradox
+集合、类型与罗素悖论 (Sets, Types and Russell's paradox)
 ===
 
-Sets
+集合 (Sets)
 ---
 
-So, here we are back at sets. As we discussed at the start of this book, most books about category theory (and mathematics in general) begin with sets, and often go back to sets --- even for us, the standard definitions of most mathematical objects start by "It like is a set, but..."
+我们回到了集合。正如本书开头所讨论的那样，大多数关于范畴论（以及数学一般）的书籍都从集合开始，往往也回到集合——即使对我们来说，大多数数学对象的标准定义都从“它像是一个集合，但是……”开始。
 
-* Category --- It is a like set, but you don't see the elements
-* Monoid --- It is like a set, but you also have this binary operation.
-* Order --- It is like a set, but the elements are ordered
+- 范畴 (Category) —— 它像一个集合，但你看不到元素
+- 单子 (Monoid) —— 它像一个集合，但你还有一个二元运算
+- 序 (Order) —— 它像一个集合，但元素是有序的
 
-**Task:** Provide short definitions of these objects that don't mention sets.
+**任务：** 提供不提及集合的这些对象的简短定义。
 
-The reason for this (I used to be baffled by it, but now I understand) is simply because *sets are simple to understand*, at least when we are operating on the conceptual level that is customary for introductory materials. We all have, for example, had a set of supplies that are needed for a given activity, (e.g. protractor compass, and pencil for the math class, or paper, paint and brush for drawing) which we grouped together so as not to forget some of them some of them, or grouped people that often hang out together as this or that company. And so, when we circle a few things, everyone knows what we are talking about. 
+之所以会这样（曾经让我困惑，但现在我理解了），原因很简单：*集合易于理解*，至少当我们操作通常用于入门材料的概念层次时是这样。例如，我们都有过为某项活动准备一组必需品（比如数学课的圆规、直尺、铅笔，或绘画的纸张、颜料、画笔），我们将它们组合在一起以防遗忘某些物品，或将经常一起活动的人分为这个或那个群体。当我们圈出一些东西时，每个人都知道我们在说什么。
 
-![Sets](../06_type/sets.svg)
+![集合](../06_type/sets.svg)
 
-However, this initial understanding of sets is somewhat *too simple*, (or *naive*, as mathematicians call it), that is, when it is examined closely it leads to a bunch of paradoxes which are not easy to resolve. The most famous of them is Russell's paradox.
+然而，这种对集合的初步理解有些*过于简单*（或者数学家称之为*朴素*），也就是说，当仔细检查时，它会导致一系列不易解决的悖论。其中最著名的就是罗素悖论。
 
-Russell's paradox
+罗素悖论 (Russell's paradox)
 ---
 
-Aside from motivating the creating type theory, Russell's paradox is very interesting in it's own right, so we will start byunderstanding how and why it occurs. 
+除了促使创建类型理论之外，罗素悖论本身也非常有趣，因此我们将从理解它的发生方式和原因入手。
 
-Most sets that we discussed (like the empty set and singleton sets) do not contain themselves. 
+我们讨论的大多数集合（如空集和单元素集合）不包含它们自己。
 
-![Sets that don't contains themselves](../06_type/sets_dont_contain_themselves.svg)
+![不包含自己的集合](../06_type/sets_dont_contain_themselves.svg)
 
-However, since in set theory everything is a set, and the elements of sets are again sets,*a set can contain itself*. This is the root cause of Russel's paradox. 
+然而，由于在集合论中一切都是集合，集合的元素再次是集合，*因此一个集合可以包含它自己*。这是罗素悖论的根源。
 
-![A set that contains itself](../06_type/set_contains_itself.svg)
+![包含自身的集合](../06_type/set_contains_itself.svg)
 
+为了理解罗素悖论，我们将尝试可视化*所有不包含自身的集合的集合*。在原始的集合符号中，我们可以将此集合定义为包含所有集合 $x$，其中 $x$ 不是 $x$ 的元素，或 $\{x \mid x ∉ x \}$。
 
-In order to understand Russell's paradox, we will try to visualize *the set of all sets that do not contain themselves*. In the original set notation we can define this set to be such that it contains all sets $x$ such that $x$ is not a member of $x$), or $\{x \mid x ∉ x \}$
+![罗素悖论 - 方案一](../06_type/russells_paradox.svg)
 
-![Russel's paradox - option one](../06_type/russells_paradox.svg)
+然而，这个图有问题——如果我们看定义，我们会发现我们刚刚定义的集合*也不包含它自己*，因此它也应该在集合中。
 
-However, there is something wrong with this picture --- if we look at the definition, we recognize that the set that we just defined *also does not contain itself* and therefore it belongs there as well.
+![罗素悖论 - 方案二](../06_type/russells_paradox_2.svg)
 
-![Russel's paradox - option one](../06_type/russells_paradox_2.svg)
+嗯，这里也不太对劲——因为我们所做的新调整导致这个集合*包含了它自己*。而移除它，让它不再成为自身的元素，则会让我们回到原点。这就是罗素悖论。
 
-Hmm, something is not quite right here either --- because of the new adjustments that we made, our set now *contains itself*. And removing it, so it's no longer an element of itself would just take us back to where we started. This is Russell's paradox. 
-
-Resolving the paradox in set theory
+在集合论中解决悖论
 ---
 
-Most people's initial reaction when seeing Russell's paradox would be something like:
+大多数人看到罗素悖论时的第一反应可能是：
 
-> "Wait, can't we just add some rules that say that you cannot draw the set that contains itself?" 
+> “等等，难道我们不能加一些规则说不能定义包含自身的集合吗？”
 
-This was exactly what the mathematicians Ernst Zermelo and Abraham Fraenkel set out to do (no pun intended). And the extra rules they added led to a new definition of a theory (i.e. a formal system) , known as *Zermelo–Fraenkel set theory*, or *ZFC* (the *C* at the end is a separate story). ZFC was a success, and it is still in use today, however it compromises one of the best features that sets have, namely their *simplicity*. 
+这正是数学家恩斯特·策梅洛 (Ernst Zermelo) 和亚伯拉罕·弗伦克尔 (Abraham Fraenkel) 所做的事情（不是双关语）。他们添加的额外规则导致了一个新的理论（即一个形式系统）的定义，称为*策梅洛–弗伦克尔集合论*，或*ZFC*（最后的 *C* 是另一个故事）。ZFC 取得了成功，并且至今仍在使用，然而它妥协了集合的一个最佳特性，即*简单性*。
 
-What do we mean by that? Well, the original formulation of set theory (which is nowadays called *naive* set theory) was based on just one (rather vague) rule/axiom: "Given a property P, there exists a set, containing all objects that have this property" i.e. any bunch of objects can form a set. 
+什么意思呢？最初的集合论定义（现今称为*朴素*集合论）基于一个（相当模糊的）规则/公理：“给定一个性质 $P$，存在一个集合，包含所有具有该性质的对象”，即任何一组对象都可以构成集合。
 
-![Naive set theory](../06_type/naive_sets.svg)
+![朴素集合论](../06_type/naive_sets.svg)
 
-In contrast, ZFC is defined by a larger number of (more restrictive) axioms. 
+相反，ZFC 由更多（更具限制性）的公理定义。
 
-For example, the *axiom of pairing*, which states that given any two sets, there exist a set which contains them as elements.
+例如，*配对公理* (axiom of pairing)，该公理声明给定任意两个集合，存在一个集合，它们作为元素包含在其中。
 
-![The axiom of pairing in ZFC](../06_type/zfc_pairing.svg)
+![ZFC 中的配对公理](../06_type/zfc_pairing.svg)
 
-...or *the axiom of union*, that states that if you have two sets you also have the set that contains all their elements.
+或者*并集公理* (axiom of union)，声明如果有两个集合，你也有一个包含它们所有元素的集合。
 
-![The axiom of union in ZFC](../06_type/zfc_union.svg)
+![ZFC 中的并集公理](../06_type/zfc_union.svg)
 
-There are a total of about 8 such axioms (depending on the flavour of the theory), curated in a way that allows us to construct all sets that are interesting, without being able to construct sets that lead to a contradiction.
+总共有大约8个这样的公理（取决于理论的版本），它们经过精心策划，允许我们构造所有有趣的集合，而不会构造出导致矛盾的集合。
 
-Resolving the paradox with type theory
+用类型理论解决悖论
 ---
 
-While Zermelo and Fraenkel were working on refining axioms of set theory in order to avert Russell's paradox, Russell himself took a different route and decided to ditch sets altogether, and develop an entirely new mathematical theory that is free of paradoxes by design. He called it *the theory of types* (or *type theory*).
+当策梅洛和弗伦克尔致力于精炼集合论的公理以避免罗素悖论时，罗素本人选择了另一条路线，决定完全抛弃集合，开发出一个设计上避免悖论的新数学理论。他称之为*类型论*（或*类型理论*）。
 
-Type theory is not at all similar to set theory, but it is at the same time, not entirely different from it, as the concepts of *types* and *terms* are clearly reminiscent of the concepts of *sets* and *elements* 
+类型论与集合论完全不同，但同时也不完全不同，因为*类型*和*项*的概念显然让人联想到*集合*和*元素*的概念。
 
-|Theory |Set theory| Type Theory|
-|------ | ---------| --------|
-|An | Element     | Term       |
-|Belongs to a | Set     | Type       |
-|Notation | $a \in A$ |  $a : A$  | 
+| 理论 | 集合论 | 类型论 |
+|------|--------|--------|
+| 一个元素 | 元素 | 项 |
+| 属于一个集合/类型 | 集合 | 类型 |
+| 表示法 | $a \in A$ | $a : A$ |
 
-The biggest difference, between the two, when it comes to *structure* is that terms are bound to their types. 
+两者之间最大的区别在于*结构*：项与它们的类型是绑定的。
 
-So, while in set theory, one element can be a member of many sets
+因此，在集合论中，一个元素可以是多个集合的成员。
 
-![A set and a subset](../06_type/set_subset.svg)
+![集合与子集](../06_type/set_subset.svg)
 
-In type theory, a term can have only one type. (note that the red ball in the small circle is different from the red ball in the bigger circle)
+在类型论中，一个项只能属于一个类型。（注意小圆圈中的红球与大圆圈中的红球不同）
 
-![A type and a subtype](../06_type/type_subtype.svg)
+![类型与子类型](../06_type/type_subtype.svg)
 
-Due to this law, types cannot contain themselves. So because of it, Russell's paradox, is entirely avoided. However, the law is very weird --- we are basically saying that if you have the type `Human` that contains all humans and the type `Mathematician` that contains all mathematicians, than the mathematician Jencel is a different object than the human Jencel.
+由于此规则，类型不能包含它们自身。因此，罗素悖论被完全避免。然而，这一规则显得很奇怪——基本上我们在说，如果你有一个包含所有人的类型“人类”（Human），以及一个包含所有数学家的类型“数学家”（Mathematician），那么数学家詹塞尔（Jencel）作为数学家与作为人类的詹塞尔是两个不同的对象。
 
-<!--comic(and no, I am not implying that mathematicians aren't human). -->
+它只有在我们意识到可以通过我们在第一章中学到的映射函数，将值的更一般版本转换为更具体的版本时，才开始显得合理。
 
-It only starts to make some sense once we realize that we can always convert the more general version of the value to the more specific one, using the image function that we learned about in the first chapter.
+![具有函数的类型与子类型](../06_type/type_subtype_function.svg)
 
-![A type and a subtype with a function](../06_type/type_subtype_function.svg)
+正如你很快会看到的，类型的概念与函数的概念有很大关联。
 
-As you would see shortly, the concept of types has to do a lot with the concept of functions.
-
-What are types
+什么是类型 (What are types)
 ===
 
-> "Every propositional function φ(x)—so it is contended—has, in addition to its range of truth, a range of significance, i.e. a range within which x must lie if φ(x) is to be a proposition at all, whether true or false. This is the first point in the theory of types; the second point is that ranges of significance form types, i.e. if x belongs to the range of significance of φ(x), then there is a class of objects, the *type* of x, all of which must also belong to the range of significance of φ(x)" --- Bertrand Russell - Principles of Mathematics
+> “每个命题函数 $\varphi(x)$ 不仅有一个真值范围，还有一个意义范围，即 $x$ 必须位于 $\varphi(x)$ 的意义范围内，才能成为一个命题，无论是真还是假。这是类型理论中的第一个要点；第二个要点是，意义范围构成类型，即如果 $x$ 属于 $\varphi(x)$ 的意义范围，那么就存在一个对象类，即 $x$ 的*类型*，它的所有成员都必须属于 $\varphi(x)$ 的意义范围。”—— 伯特兰·罗素《数学原理》
 
-In the last section, we almost fell in the trap of explaining types as something that is are "like sets, but... " (e.g. they are like sets, but a term can only be a member of one type). However, while it may be technically true, any such explanation would be very far away from the ideas behind type theory --- while types started as alternative to sets, they actually ended up quite different. So, thinking in terms of sets won't get you far as a type theorist. Indeed, if I have to rephrase that old Bulgarian joke, a person who only knows about sets, can easily explain what *monoids* are:
+在上一节中，我们差点陷入解释类型是“像集合但……”的陷阱（例如，它们像集合，但一个项只能是一个类型的成员）。虽然这在技术上可能是真的，但任何这样的解释都与类型理论背后的思想相去甚远——尽管类型最初是作为集合的替代品出现的，但它们实际上变得截然不同。因此，仅仅用集合的思维方式思考，并不能让你成为一名类型论者。事实上，如果我不得不改编一个古老的保加利亚笑话，一个只知道集合的人很容易解释*单子*是什么：
 
-> "Have you seen a set? It's the same thing, but you also have this binary operation."
+> “你见过集合吗？它和集合一样，但你还有这个二元运算。”
 
-Or *orders*: 
+或者解释*序*：
 
-> "Have you seen a set? It's the same thing, but you also have this notion that some elements are bigger than others."
+> “你见过集合吗？它和集合一样，但你还有这个某些元素比其他元素大的概念。”
 
-But for *types*, their response would to be:
+但对于*类型*，他们的回答可能会是：
 
-> "Have you seen a set? It has nothing to do with it."
+> “你见过集合吗？它和集合完全无关。”
 
-So let's see how do we define a type theory in its own right.
+因此，让我们看看如何用类型理论的独特方式定义它。
 
-We say *a* type theory, because (time for a long disclaimer) there are not one, but many different (albeit related) formulations of type theory that are, confusingly, called type *theories* (and less confusingly, *type systems*), such as *Simply-typed lambda calculus* or *Intuitionistic type theory*. For this reason, it makes sense to speak about *a* type theory. <!--comic: Dr. Smisloff --- I think they are not confused enough --> At the same time, "type theory" (uncountable) refers to the whole field of study of type theories, just like category theory is the study of categories. And moreover, (take a deep breath) you can sometimes think of the different type systems as "different versions of type theory" and so, when people talk about a given set of features that are common to all type systems, they sometimes use the term "type theory" to refer to any random type system that has these features. 
+我们说*一个*类型理论，因为（这里要做一个长篇大论的免责声明）有不止一个类型理论，而是许多不同的（尽管相关的）类型理论，被称为*类型系统*（比如*简单类型的 lambda 演算*或*直觉类型理论*）。因此，说到*一个*类型理论是合理的。同时，“类型理论”（不可数）指的是整个
 
-Anyhow, let's get back to our subject (however we want to call it). As we said, type theory was born out of Russell's search for a way to define all collections of objects that are *interesting*, without accidentally defining collections that lead us ashtray (e.g. to his eponymous paradox), and without having to make up a multitude of additional axioms (a-la ZFC). And he managed to create a system that fits all these criteria, based on a revolutionary new idea... which is basically the same idea that is at the heart of category theory (I don't know why he never got credit for being a category theory pioneer): the *interesting* collections, the collections that we want to talk about in the first place, are the *collections that are the source and target of functions*.
+类型理论的研究领域，就像范畴论是范畴的研究一样。此外，你有时可以将不同的类型系统视为“类型理论的不同版本”，因此，当人们谈论某些所有类型系统共有的特性时，有时会使用“类型理论”一词来指代任何具有这些特性的类型系统。
 
-Building types
-===
+无论如何，让我们回到我们的主题（无论我们如何称呼它）。正如我们所说，类型理论诞生于罗素寻找一种方法来定义所有“有趣”的对象集合，而不至于意外地定义出导致矛盾的集合（如他著名的悖论），也无需编造大量附加的公理（如 ZFC）。他成功地创建了一个符合所有这些标准的系统，这个革命性的想法……与范畴论的核心思想几乎相同（我不知道为什么他没有因为是范畴论的先驱而获得荣誉）：*有趣的*集合，即我们首先想要讨论的集合，是*作为函数的源和目标的集合*。
 
-We saw that type theory is not so different from set theory when it comes to *structure that it produces* --- all types are sets (although not all sets are types) and all functions are... well functions. However, type theory is very different from set theory when it comes to *the way the structure comes about*, in the same way as the intuitionistic approach to logic is different from the classical approach (and if this metaphor made  the connection between type theory and intuitionistic logic, too obvious for you, please don't mention it and act surprised when we make the connection explicit).
+构建类型 (Building types)
+---
 
-In set theory, (and especially in its naive version) all possible sets and elements are *already there from the start*, as the Platonic world of forms.
+我们看到，在产生的*结构*方面，类型理论与集合论并没有太大的不同——所有类型都是集合（尽管不是所有集合都是类型），而所有函数……也是函数。然而，在结构的产生方式方面，类型理论与集合论截然不同，就像直觉主义逻辑与经典逻辑的不同一样（如果这个比喻让你觉得类型理论与直觉逻辑的联系太明显，请不要提及，等到我们明确建立联系时假装感到惊讶）。
 
-![Sets in set theory](../06_type/set_theory_sets.svg)
+在集合论中（尤其是其朴素版本），所有可能的集合和元素*从一开始就已经存在*，如同柏拉图的理念世界。
 
-Then, with the sets already in place, we start exploring them by defining functions between them.
+![集合论中的集合](../06_type/set_theory_sets.svg)
 
-![Sets and functions in set theory](../06_type/set_theory_functions.svg)
+然后，在集合已经存在的情况下，我们开始通过定义它们之间的函数来探索它们。
 
-In type theory, we start with a space that is empty [digram ommitted] and we fill it with a small number of type that we describe element by element (not unlike the axioms of intuitionistic logic).
+![集合论中的集合与函数](../06_type/set_theory_functions.svg)
 
-Then we start defining functions. 
+而在类型理论中，我们从一个空的空间开始，然后通过定义一个个元素逐渐填充它，类似于直觉逻辑的公理。
 
-Only *through the functions* 
+然后我们开始定义函数。
 
-do the types come to be. 
+只有*通过函数*，类型才得以产生。
 
-Because a term can only belong to one type, in type theory, the natural number 1 is denoted as $1: \mathbb{N}$) and it is an entirely separate object from the integer 1 (denoted or $1: \mathbb{Z}$) 
+由于一个项只能属于一个类型，在类型理论中，自然数 $1$ 记作 $1: \mathbb{N}$，它与整数 $1$（记作 $1: \mathbb{Z}$）是完全不同的对象。
 
-![A set and a subset](../06_type/int_nat_type.svg)
+![集合与子集](../06_type/int_nat_type.svg)
 
-In programming
-----
+在编程中
+---
 
-> "In general, we can think of data as defined by some collection of selectors and constructors, together with specified conditions that these procedures must fulfill in order to be a valid representation." --- Harold Abelson, Gerald Jay Sussman, Julie Sussman - Structure and Interpretation of Computer Programs
+> “一般来说，我们可以将数据视为由一些选择器和构造器集合定义的，并且这些过程必须满足指定的条件，才能成为有效的表示。”——Harold Abelson, Gerald Jay Sussman, Julie Sussman - 《计算机程序的构造和解释》
 
-After exploring something so abstract, I think it's good to get our hands dirty with some more concrete. We already have some idea of what a type is: a type is a collection of terms, that is the source and target of *functions*. This definition may seem a bit vague, but it is trivial when we look at how types are defined in computer programming.
+在探讨了一些抽象的东西之后，我认为是时候通过更具体的事物来“实践”了。我们已经对什么是类型有了一些概念：类型是术语的集合，是*函数*的源和目标。这一定义可能看起来有点模糊，但在我们观察编程中如何定义类型时，它就变得非常直观。
 
-```
+```javascript
 class MyType<A> {
 
   a: A;
@@ -176,91 +174,84 @@ class MyType<A> {
 }
 ```
 
-It is obvious, even when viewed through the lense of traditional imperative languages, that the definition of a type consists of the definitions of *a bunch of functions*. However, not just any random collection of functions would suffice -- there are 3 special kinds of functions that have to be defined in order for a type to work. 
+即使从传统的命令式语言的角度来看，类型的定义显然由一系列*函数*的定义组成。然而，不是任何随机的函数集合都足够——为了使类型起作用，必须定义三种特殊类型的函数。
 
-First off, a type has to have a *definition* which specifies what it is. Note that this is not a function between values, but a function between types --- a *type-level function*. In programming, we call these types of functions *generic types*, but they are functions nevertheless --- we supply some types and get a definition of the new type.
+首先，类型必须有一个*定义*，说明它是什么。请注意，这不是值之间的函数，而是类型之间的函数——一个*类型级函数*。在编程中，我们称这些函数为*泛型类型*，但它们仍然是函数——我们提供一些类型，并得到新类型的定义。
 
-```
+```javascript
 class MyType<A> {
   a: A;
 ```
 
-(For non-generic types, the rule would correspond to a type-level function with no arguments, which would correspond to a (non-generic) type.)
+（对于非泛型类型，这条规则对应于无参数的类型级函数，这对应于一个非泛型类型。）
 
-Next up, a type has to have at least one *constructor* which allows us to produce a value/term of that type. The constructor is a "normal" value-level function.
+接下来，类型必须至少有一个*构造函数*，使我们能够生成该类型的值/项。构造函数是一个“普通”的值级函数。
 
-```
+```javascript
   constructor(a) {
     this.a = a;
   }
 ```
 
-Finally, a type has to have at least one *method* in order to be useful --- we don't want to construct types just for the sake of constructing new types. 
+最后，类型必须至少有一个*方法*才能发挥作用——我们不会为了构造新类型而构造类型。
 
-Methods are functions that allow us to do something with a value of that type, once we constructed it.
+方法是允许我们对构造出的类型的值进行操作的函数。
 
-```
+```javascript
   getA() {
     return this.a;
   }
 ```
 
-(There are also methods that mutate the type's properties, but we don't talk about these in functional programming.)
+（在函数式编程中，我们不讨论那些会改变类型属性的变异方法。）
 
-In Category Theory
+在范畴论中
 ---
 
-Now, let's see the categorical perspective of what are we taling about. We already know that a type corresponds to an *object* in the category of types, and a categorical object has to have at three kinds of morphisms in order for the object to play a role in the category, which correspond to the three types of functions in programming.
+现在，让我们看看我们正在讨论的内容的范畴论视角。我们已经知道，类型对应于*类型范畴*中的一个*对象*，而范畴中的对象必须至少有三种态射，才能在范畴中起作用，这与编程中的三种函数类型相对应。
 
-Firstly, a categorical object has to have a morphism that defines it. This one is more special, as it is not an ordinary morphism in the object's category, but we will discuss what exactly it is later (it is connected to the idea of a universal property.)
+首先，范畴对象必须有一个定义它的态射。这是一个比较特殊的态射，因为它不是该对象范畴中的普通态射，但我们稍后会讨论它究竟是什么（它与普遍性质的概念有关）。
 
-Secondly, a categorical object has to have at least one morphism coming *to* it, from some other object in the category. In other words, it has to be the *target* of at least one arrow.
+其次，范畴对象必须有至少一个从范畴中某个其他对象*到*它的态射。换句话说，它必须是至少一个箭头的*目标*。
 
-And thirdly, it has to have morphisms from it to some other objects. Has to be the *source* of at least one arrow.
+第三，它必须有从它到某些其他对象的态射。它必须是至少一个箭头的*源*。
 
-In type theory
+在类型论中
 ---
 
-We will now see how these type-creating functions look like in type theory. 
+我们现在将看到这些创建类型的函数在类型论中是什么样的。
 
+定义类型的函数被称为*类型规则*，每个都有一个名字。
 
-The functions that define a type are called *typing rules* and each of them has a name.
-
-
-For this, we need to get to know the formal language that is used for defining them, called *natural deduction*.
+为此，我们需要了解用于定义它们的形式语言，称为*自然演绎*。
 
 $$\frac
-  {A \; \mathrm{type}}
-  {MyType \; A \; \mathrm{type}}
+{A \; \mathrm{type}}
+{MyType \; A \; \mathrm{type}}
 $$
 
 $$\frac
-  {a : A}
-  {mytype\;a : MyType \; A}
+{a : A}
+{mytype\;a : MyType \; A}
 $$
 
 $$\frac
-  {mytype\;a : MyType \; A}
-  {a : A}
+{mytype\;a : MyType \; A}
+{a : A}
 $$
 
-
-Typing rules and the principle of substitution
+类型规则与替换原则
 ===
 
-So, why do we call morphisms in type theory *rules*? To understand that, we have to understand the principle that is underneath all of type theory --- the principle of substitution.
+那么，为什么我们称类型论中的态射为*规则*呢？为了理解这一点，我们必须理解类型论下的基本原则——替换原则。
 
-We already saw that functions in type theory and set theory look identical --- 
+我们已经看到，类型论和集合论中的函数看起来完全相同……
 
+但在集合论中，集合被假设已经存在，例如颜色集合，就像任何其他集合一样被假设存在。
 
+而在类型论中，函数是构建出来的。
 
-
-However, in set theory, sets are just assumed to exist, as for example the set of colors, as any other set is just assumed to exist.
-
-And type theory, functions are build.
-
-
-These ways, type theory holds, is nothing more than the process of *substituting* one value with another, according to a finite number of rules.
+这些方法中，类型论坚持认为，这只是按照有限数量的规则，用一个值替换另一个值的过程。
 
 This principle is also underneat the way axiom schemas are used in logic, but it is actually much more general than that. It is also the principle behind algrebra in general e.g. the rules of addition are nothing but rules that define when can you substitute a value to another.
 

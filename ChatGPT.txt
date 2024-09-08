@@ -11,7 +11,7 @@ category-theory-illustrated
 
 接下来我会给你提供内容
 --------
-你的需求是：翻译一本名为 **category-theory-illustrated** 的书，要求如下：
+我的需求是：翻译一本名为 **category-theory-illustrated** 的书，要求如下：
 
 1. **章节标题和小节标题**：所有的章节标题和小节标题（包括各级子小节）都需要保留中英双语格式，例如：“同伦类型论 (Homotopy Type Theory)” 的形式，确保中文和英文对照显示。
 
@@ -24,3 +24,5 @@ category-theory-illustrated
 5. **Markdown格式**：你希望整个翻译以纯Markdown文本的形式提供，且不要省略任何内容，确保内容完整并忠实于原文。
 
 开头和结尾，不要说废话。
+
+接下来我会给你提供内容
